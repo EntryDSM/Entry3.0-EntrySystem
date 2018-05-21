@@ -1,26 +1,17 @@
 <template>
-  <div id="app">
-    <headline></headline>
+  <div class="app">
+    <input type="text" class="text-input app__text-input" placeholder="hello">
   </div>
 </template>
 
 <script>
-import Headline from '@/components/Headline';
-
 export default {
   name: 'App',
-  components: {
-    Headline,
-  },
 };
 </script>
 
 <style lang="scss">
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
+// css initialize
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -41,7 +32,6 @@ font-size: 100%;
 font: inherit;
 vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 display: block;
@@ -63,5 +53,40 @@ content: none;
 table {
 border-collapse: collapse;
 border-spacing: 0;
+}
+
+// BEM mixin
+@mixin e($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+@mixin m($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}
+
+// text-input 전역 스타일
+.text-input {
+  height: 40px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  border: solid 0.5px #5f8a90;
+  padding: 11px 16px 10px;
+  width: 400px;
+  font-size: 18px;
+  box-sizing: border-box;
+  outline: none;
+  &::placeholder {
+    color: #acbec1;
+  }
+}
+
+// 사용
+.app {
+  @include e('text-input') {
+    width: 400px;
+  }
 }
 </style>
