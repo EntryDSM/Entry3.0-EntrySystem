@@ -5,8 +5,13 @@
 </template>
 
 <script>
+// import EntryFooter from '@/components/EntryFooter';
+
 export default {
   name: 'app',
+  components: {
+    // EntryFooter,
+  },
 };
 </script>
 
