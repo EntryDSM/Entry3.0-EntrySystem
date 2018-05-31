@@ -17,6 +17,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import './style/input.scss';
 // css initialize
 html, body {
   width: 100%;
@@ -75,16 +76,5 @@ table {
   border-spacing: 0;
 }
 
-// BEM mixin
-@mixin e($element) {
-  &__#{$element} {
-    @content;
-  }
-}
 
-@mixin m($modifier) {
-  &--#{$modifier} {
-    @content;
-  }
-}
 </style>
