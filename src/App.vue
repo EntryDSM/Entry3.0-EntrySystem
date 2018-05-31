@@ -1,17 +1,31 @@
 <template>
   <div class="app">
-    <input type="text" class="text-input app__text-input" placeholder="hello">
+    <router-view />
   </div>
 </template>
 
 <script>
+// import EntryFooter from '@/components/EntryFooter';
+// import Headline from '@/components/Headline';
+
 export default {
-  name: 'App',
+  name: 'app',
 };
 </script>
 
 <style lang="scss">
+@import './style/input.scss';
+@import './style/setting';
 // css initialize
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+input[type=password] {
+  font-family: sans-serif;
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -25,68 +39,38 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-margin: 0;
-padding: 0;
-border: 0;
-font-size: 100%;
-font: inherit;
-vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  font-family: 'nanumsquare', sans-serif;
 }
+
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-display: block;
+  display: block;
 }
+
 body {
-line-height: 1;
+  line-height: 1;
 }
+
 ol, ul {
-list-style: none;
+  list-style: none;
 }
+
 blockquote, q {
-quotes: none;
+  quotes: none;
 }
+
 blockquote:before, blockquote:after,
 q:before, q:after {
-content: '';
-content: none;
+  content: '';
+  content: none;
 }
+
 table {
-border-collapse: collapse;
-border-spacing: 0;
-}
-
-// BEM mixin
-@mixin e($element) {
-  &__#{$element} {
-    @content;
-  }
-}
-@mixin m($modifier) {
-  &--#{$modifier} {
-    @content;
-  }
-}
-
-// text-input 전역 스타일
-.text-input {
-  height: 40px;
-  border-radius: 5px;
-  background-color: #ffffff;
-  border: solid 0.5px #5f8a90;
-  padding: 11px 16px 10px;
-  width: 400px;
-  font-size: 18px;
-  box-sizing: border-box;
-  outline: none;
-  &::placeholder {
-    color: #acbec1;
-  }
-}
-
-// 사용
-.app {
-  @include e('text-input') {
-    width: 400px;
-  }
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 </style>
