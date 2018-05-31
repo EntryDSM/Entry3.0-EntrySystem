@@ -34,12 +34,6 @@
   </nav>
 </template>
 
-<script>
-export default {
-
-};
-</script>
-
 <style lang="scss" scoped>
 @import '../style/setting.scss';
 .nav {
