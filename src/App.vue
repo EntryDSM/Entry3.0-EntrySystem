@@ -6,12 +6,10 @@
 
 <script>
 // import EntryFooter from '@/components/EntryFooter';
+// import Headline from '@/components/Headline';
 
 export default {
   name: 'app',
-  components: {
-    // EntryFooter,
-  },
 };
 </script>
 
@@ -74,6 +72,4 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
-
 </style>
