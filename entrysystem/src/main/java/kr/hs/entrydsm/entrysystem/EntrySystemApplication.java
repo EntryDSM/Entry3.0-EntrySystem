@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EntrysystemApplication {
+public class EntrySystemApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EntrysystemApplication.class, args);
+		SpringApplication.run(EntrySystemApplication.class, args);
 	}
 }
