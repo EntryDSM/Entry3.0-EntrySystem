@@ -11,10 +11,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  $footer-background: #8fc6cc;
-
   footer {
     height: 250px;
-    background-color: $footer-background;
+    background-color: #8fc6cc;
   }
 </style>

@@ -1,22 +1,22 @@
 <template>
   <div class="app">
     <router-view />
-    <entry-footer />
   </div>
 </template>
 
 <script>
-import EntryFooter from '@/components/EntryFooter';
+// import EntryFooter from '@/components/EntryFooter';
 
 export default {
   name: 'app',
   components: {
-    EntryFooter,
+    // EntryFooter,
   },
 };
 </script>
 
 <style lang="scss">
+@import './style/input.scss';
 // css initialize
 html, body {
   width: 100%;
@@ -75,16 +75,5 @@ table {
   border-spacing: 0;
 }
 
-// BEM mixin
-@mixin e($element) {
-  &__#{$element} {
-    @content;
-  }
-}
 
-@mixin m($modifier) {
-  &--#{$modifier} {
-    @content;
-  }
-}
 </style>

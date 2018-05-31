@@ -5,7 +5,7 @@ import vuex from 'vuex';
 vue.use(vuex);
 
 const store = new vuex.Store({
-  // Store Example
+  // Example;
 });
 
 export default store;
