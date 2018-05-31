@@ -41,17 +41,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin e($element) {
-  &__#{$element} {
-    @content;
-  }
-}
-
-@mixin m($modifier) {
-  &--#{$modifier} {
-    @content;
-  }
-}
+@import '../style/setting.scss';
 .nav {
   height: 60px;
   box-shadow: 0 2px 10px 0 rgba(99, 141, 147, 0.05);

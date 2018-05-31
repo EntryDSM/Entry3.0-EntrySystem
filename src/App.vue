@@ -7,6 +7,8 @@
 
 <script>
 import Navi from './components/Navigation';
+// import EntryFooter from '@/components/EntryFooter';
+// import Headline from '@/components/Headline';
 
 export default {
   name: 'app',
@@ -75,6 +77,4 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
-
 </style>
