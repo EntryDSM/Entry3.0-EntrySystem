@@ -10,28 +10,22 @@
 <script>
 export default {
   name: 'Headline',
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {
       schoolName: '대덕소프트웨어마이스터고등학교',
-      title: '2019 지원자 본인인증',
     };
   },
 };
 </script>
 
 <style scoped lang="scss">
-
-@mixin e($element) {
-  &__#{$element} {
-    @content;
-  }
-}
-
-@mixin m($modifier) {
-  &--#{$modifier} {
-    @content;
-  }
-}
+@import '../style/setting';
 
 .headline {
   padding-top: 125px;
