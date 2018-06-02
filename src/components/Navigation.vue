@@ -38,14 +38,15 @@
 @import '../style/setting.scss';
 .nav {
   height: 60px;
+  padding: 0 auto;
   box-shadow: 0 2px 10px 0 rgba(99, 141, 147, 0.05);
-  padding: 0 250px;
   @include e(contants){
     position: relative;
     width: 1140px;
     height: 100%;
+    margin: 0 auto;
     display: flex;
-    align-items: center;
+    flex-direction: row;
     @include e(logo){
       display: flex;
       justify-content: center;
@@ -62,11 +63,20 @@
     }
     @include e(list) {
       position: absolute;
+      display: flex;
+      align-items: center;
+      height: 100%;
       right: 0;
       @include e(link){
-        margin-left: 45px;
+        line-height: 60px;
+        height: 100%;
+        padding: 0 15px;
+        margin-left: 15px;
         cursor: pointer;
         display: inline-block;
+        &:hover{
+          background-color: #f6f7f9;
+        }
         @include m(login){
           margin-left: 103px;
         }
@@ -82,6 +92,14 @@ a {
   &:visited{
     color: #000;
     text-decoration: none;
+  }
+}
+@media all and (max-width: 1140px) {
+  .nav__contants__list__link:not(.nav__contants__list__link--login){
+    display: none;
+  }
+  .nav__contants{
+    width: 100%;
   }
 }
 </style>
