@@ -22,7 +22,7 @@ export default {
   name: 'app',
   data() {
     return {
-      someValue: '',
+      someValue: 2019,
     };
   },
   components: {

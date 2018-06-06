@@ -7,7 +7,10 @@
         <li class="selectbox__wrapper__option__value"
           v-for="option in options"
           :key="option"
-        >{{ option.text }}</li>
+          :class="{}"
+          @click="changeValue(option.value)">
+          {{ option.text }}
+        </li>
       </ul>
     </div>
   </div>
@@ -32,12 +35,17 @@ export default {
   },
   data() {
     return {
-      isFocused: true,
+      isFocused: false,
     };
   },
   methods: {
     openOption() {
-      this.isFocused = !this.isFocused;
+      this.isFocused = true;
+    },
+    changeValue(value) {
+      this.value = value;
+      this.$emit('input', this.value);
+      this.isFocused = false;
     },
   },
 };
