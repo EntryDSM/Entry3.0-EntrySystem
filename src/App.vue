@@ -1,7 +1,17 @@
 <template>
   <div class="app">
     <router-view />
-    <selectbox></selectbox>
+    <selectbox
+      :disabledText="'년도'"
+      :options="[
+        { text: '2018', value: 2018, },
+        { text: '2017', value: 2017, },
+        { text: '2016', value: 2016, },
+        { text: '2015', value: 2015, },
+      ]"
+      v-model="someValue"
+    />
+    {{ someValue }}
   </div>
 </template>
 
@@ -10,6 +20,11 @@ import selectbox from '@/components/Selectbox';
 
 export default {
   name: 'app',
+  data() {
+    return {
+      someValue: '',
+    };
+  },
   components: {
     selectbox,
   },

@@ -1,13 +1,13 @@
 <template>
   <div class="selectbox" :class="{'selectbox--focused': isFocused}">
-    <div class="selectbox__current-value" @click="openOption">2018</div>
+    <div class="selectbox__current-value" @click="openOption">{{ value || disabledText }} </div>
     <div class="selectbox__wrapper">
       <ul class="selectbox__wrapper__option">
         <li class="selectbox__wrapper__option__line"></li>
         <li class="selectbox__wrapper__option__value"
-          v-for="value in 10"
-          :key="value"
-        >2017</li>
+          v-for="option in options"
+          :key="option"
+        >{{ option.text }}</li>
       </ul>
     </div>
   </div>
@@ -16,6 +16,20 @@
 <script>
 export default {
   name: 'selectbox',
+  props: {
+    disabledText: {
+      type: String,
+      required: true,
+    },
+    options: {
+      type: Array,
+      required: true,
+    },
+    value: {
+      type: Number,
+      required: true,
+    },
+  },
   data() {
     return {
       isFocused: true,
@@ -34,6 +48,7 @@ export default {
 
 // 셀렉트 박스 공통 스타일
 .selectbox {
+  display: inline-block;
   box-sizing: border-box;
   font-size: 18px;
   line-height: 19px;
@@ -69,7 +84,7 @@ export default {
   @include e('wrapper') {
     display: none;
     width: 100%;
-    height: 160px;
+    max-height: 160px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     box-sizing: border-box;
