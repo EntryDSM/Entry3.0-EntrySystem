@@ -1,12 +1,18 @@
 <template>
   <div class="app">
     <router-view />
+    <selectbox></selectbox>
   </div>
 </template>
 
 <script>
+import selectbox from '@/components/Selectbox';
+
 export default {
   name: 'app',
+  components: {
+    selectbox,
+  },
 };
 </script>
 
