@@ -5,10 +5,9 @@
       <ul class="selectbox__wrapper__option">
         <li class="selectbox__wrapper__option__line"></li>
         <li class="selectbox__wrapper__option__value"
-          v-for="option in options"
-          :key="option"
-          :class="{}"
-          @click="changeValue(option.value)">
+          v-for="(option, index) in options" :key="option.value"
+          :class="{'selectbox__wrapper__option__value--selected': selected[index]}"
+          @click="changeValue(option.value, index)">
           {{ option.text }}
         </li>
       </ul>
@@ -22,7 +21,7 @@ export default {
   props: {
     disabledText: {
       type: String,
-      required: true,
+      default: '선택',
     },
     options: {
       type: Array,
@@ -36,17 +35,31 @@ export default {
   data() {
     return {
       isFocused: false,
+      currentIndex: 0,
+      changedValue: this.value,
+      selected: [],
     };
   },
   methods: {
     openOption() {
       this.isFocused = true;
     },
-    changeValue(value) {
-      this.value = value;
-      this.$emit('input', this.value);
+    changeValue(value, index) {
+      this.selected.splice(this.currentIndex, 1, false);
+      this.currentIndex = index;
+      this.selected.splice(this.currentIndex, 1, true);
+      this.changedValue = value;
+      this.$emit('input', this.changedValue);
       this.isFocused = false;
     },
+  },
+  created() {
+    for (let i = 0; i < this.options.length; i += 1) {
+      if (this.value === this.options[i].value) {
+        this.selected.push(true);
+        this.currentIndex = i;
+      } else this.selected.push(false);
+    }
   },
 };
 </script>
@@ -92,7 +105,7 @@ export default {
   @include e('wrapper') {
     display: none;
     width: 100%;
-    max-height: 160px;
+    height: 160px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     box-sizing: border-box;
@@ -129,14 +142,15 @@ export default {
         width: 100%;
         padding: {
           left: 16px;
-          top: 3px;
-          bottom: 3px;
-        }
-        margin: {
-          top: 2px;
+          top: 4px;
+          bottom: 4px;
         }
         box-sizing: border-box;
         &:hover {
+          color: #2a4649;
+          background-color: #e4ebeb;
+        }
+        @include m('selected') {
           color: #2a4649;
           background-color: #e4ebeb;
         }
