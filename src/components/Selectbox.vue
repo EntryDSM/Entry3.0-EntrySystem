@@ -1,6 +1,8 @@
 <template>
   <div class="selectbox" :class="{'selectbox--focused': isFocused}">
-    <div class="selectbox__current-value" @click="toggleOption">{{ value || disabledText }} </div>
+    <div class="selectbox__current-value" @click="toggleOption">
+      {{ value || disabledText }}
+    </div>
     <div class="selectbox__wrapper">
       <ul class="selectbox__wrapper__option">
         <li class="selectbox__wrapper__option__line"></li>
@@ -75,7 +77,7 @@ $border-color: #8aaaad;
   font-size: 18px;
   line-height: 19px;
   height: 40px;
-  width: 150px;
+  background-color: #fff;
   color: #000;
   text-align: left;
   position: relative;
@@ -106,6 +108,7 @@ $border-color: #8aaaad;
     }
   }
   @include e('wrapper') {
+    background-color: #fff;
     display: none;
     width: 100%;
     height: 160px;

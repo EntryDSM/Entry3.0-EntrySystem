@@ -13,6 +13,8 @@
         { text: '2011', value: 2011, },
       ]"
       v-model="someValue"
+      :disabledText="'년도'"
+      class="selectbox"
     />
     {{ someValue }}
   </div>
@@ -25,7 +27,7 @@ export default {
   name: 'app',
   data() {
     return {
-      someValue: 0,
+      someValue: 2018,
     };
   },
   components: {
@@ -94,5 +96,9 @@ table {
   border-spacing: 0;
 }
 
+// usage
+.selectbox {
+  width: 150px;
+}
 
 </style>
