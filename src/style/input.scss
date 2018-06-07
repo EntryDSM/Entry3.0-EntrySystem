@@ -59,11 +59,11 @@ input[type=checkbox]:checked + .input-checkbox::before, .input-checkbox.checked:
 }
 
 // 라디오 버튼 공통 스타일
-input[type=radio] {
+.input-radio {
   display: none;
 }
 
-input[type=radio] + .input-radio-label {
+.input-radio + .input-radio-label {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -73,7 +73,7 @@ input[type=radio] + .input-radio-label {
   border-radius: 50%;
 }
 
-input[type=radio]:checked + .input-radio-label .input-radio-span {
+.input-radio:checked + .input-radio-label .input-radio-span {
   width: 9.6px;
   height: 9.6px;
   display: inline-block;
