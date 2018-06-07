@@ -1,6 +1,6 @@
 <template>
   <div class="selectbox" :class="{'selectbox--focused': isFocused}">
-    <div class="selectbox__current-value" @click="openOption">{{ value || disabledText }} </div>
+    <div class="selectbox__current-value" @click="toggleOption">{{ value || disabledText }} </div>
     <div class="selectbox__wrapper">
       <ul class="selectbox__wrapper__option">
         <li class="selectbox__wrapper__option__line"></li>
@@ -41,8 +41,8 @@ export default {
     };
   },
   methods: {
-    openOption() {
-      this.isFocused = true;
+    toggleOption() {
+      this.isFocused = !this.isFocused;
     },
     changeValue(value, index) {
       this.selected.splice(this.currentIndex, 1, false);
@@ -66,6 +66,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../style/setting.scss';
+$border-color: #8aaaad;
 
 // 셀렉트 박스 공통 스타일
 .selectbox {
@@ -91,11 +92,13 @@ export default {
     }
   }
   @include e('current-value') {
-    border: solid 1px #8aaaad;
+    border: solid 1px $border-color;
     box-sizing: border-box;
     height: 100%;
     width: 100%;
     border-radius: 5px;
+    position: relative;
+    z-index: 1;
     padding: {
       left: 16px;
       top: 11px;
@@ -116,9 +119,9 @@ export default {
       bottom: 12px;
     }
     border: {
-      left: solid 1px #8aaaad;
-      right: solid 1px #8aaaad;
-      bottom: solid 1px #8aaaad;
+      left: solid 1px $border-color;
+      right: solid 1px $border-color;
+      bottom: solid 1px $border-color;
     }
     @include e('option') {
       box-sizing: border-box;
