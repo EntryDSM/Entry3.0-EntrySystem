@@ -15,6 +15,7 @@ export default {
 
 <style lang="scss">
 @import './style/input.scss';
+@import './style/setting';
 // css initialize
 html, body {
   width: 100%;
