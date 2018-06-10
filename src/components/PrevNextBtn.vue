@@ -70,7 +70,7 @@ $inner-btn: #296169;
     @include m('next') {
       right: 0;
     }
-    // 버튼 내부 화살표
+    // 버튼 내부 화살표 및 세부 설정
     @include e('arrow') {
       font-size: 19px;
       color: $inner-btn;
@@ -83,7 +83,7 @@ $inner-btn: #296169;
         margin-right: 13px;
       }
     }
-    // 버튼 내부 텍스트
+    // 버튼 내부 텍스트 및 세부 설정
     @include e('text') {
       font-size: 18px;
       color: $inner-btn;
