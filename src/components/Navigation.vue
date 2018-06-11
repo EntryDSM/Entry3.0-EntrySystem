@@ -5,12 +5,8 @@
       <router-link to="/">
         <img
           class="nav__contants__logo--img"
-          src="./../assets/Entry__logo--img.png"
-          alt="EntryDSM 이미지 로고입니다."/>
-        <img
-          class="nav__contants__logo--text"
-          src="./../assets/Entry__logo--text.png"
-          alt="EntryDSM 텍스트 로고입니다."/>
+          src="./../assets/entry_logo.png"
+          alt="EntryDSM 로고">
       </router-link>
     </div>
     <ul class="nav__contants__list">
@@ -37,6 +33,7 @@
 <style lang="scss" scoped>
 @import '../style/setting.scss';
 .nav {
+  width: 1920px;
   height: 60px;
   padding: 0 auto;
   box-shadow: 0 2px 10px 0 rgba(99, 141, 147, 0.05);
@@ -52,13 +49,9 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
+      margin-left: 15px;
       @include m(img) {
         height: 30px;
-      }
-      @include m(text){
-        position: relative;
-        left: 11px;
-        width: 69px;
       }
     }
     @include e(list) {
@@ -74,9 +67,6 @@
         margin-left: 15px;
         cursor: pointer;
         display: inline-block;
-        &:hover{
-          background-color: #f6f7f9;
-        }
         @include m(login){
           margin-left: 103px;
         }
@@ -92,14 +82,6 @@ a {
   &:visited{
     color: #000;
     text-decoration: none;
-  }
-}
-@media all and (max-width: 1140px) {
-  .nav__contants__list__link:not(.nav__contants__list__link--login){
-    display: none;
-  }
-  .nav__contants{
-    width: 100%;
   }
 }
 </style>
