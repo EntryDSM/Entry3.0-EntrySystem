@@ -2,7 +2,7 @@
   <div class="prev-next-btn-cover">
     <button type="button"
             class="input-btn input-btn--prev"
-            v-if="prevShow"
+            v-if="previousUrl"
             @click="moveToPrevPage"
     >
       <span class="input-btn__arrow input-btn__arrow--left">〈</span>
@@ -10,7 +10,7 @@
     </button>
     <button type="button"
             class="input-btn input-btn--next"
-            v-if="nextShow"
+            v-if="nextUrl"
             @click="moveToNextPage"
     >
       <span class="input-btn__arrow input-btn__arrow--right">〉</span>
@@ -23,18 +23,16 @@
 export default {
   name: 'prev-next-btn',
   props: {
-    prevShow: {
-      type: Number,
-      required: true,
+    previousUrl: {
+      type: String,
     },
-    nextShow: {
-      type: Number,
-      required: true,
+    nextUrl: {
+      type: String,
     },
   },
   methods: {
     moveToPrevPage() {
-      this.$emit('toPrevPage');
+      
     },
     moveToNextPage() {
       this.$emit('toNextPage');
