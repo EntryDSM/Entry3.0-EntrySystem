@@ -1,43 +1,23 @@
 <template>
   <div class="app">
     <router-view />
-    <selectbox
-      :options="[
-        { text: '2018', value: 2018, },
-        { text: '2017', value: 2017, },
-        { text: '2016', value: 2016, },
-        { text: '2015', value: 2015, },
-        { text: '2014', value: 2014, },
-        { text: '2013', value: 2013, },
-        { text: '2012', value: 2012, },
-        { text: '2011', value: 2011, },
-      ]"
-      v-model="someValue"
-      :disabledText="'년도'"
-      class="selectbox"
-    />
-    {{ someValue }}
   </div>
 </template>
 
 <script>
-import selectbox from '@/components/Selectbox';
+// import EntryFooter from '@/components/EntryFooter';
+// import Headline from '@/components/Headline';
+// import PrevNextBtn from '@/components/PrevNextBtn';
+// import Selectbox from '@/components/Selectbox';
 
 export default {
   name: 'app',
-  data() {
-    return {
-      someValue: 2018,
-    };
-  },
-  components: {
-    selectbox,
-  },
 };
 </script>
 
 <style lang="scss">
 @import './style/input.scss';
+@import './style/setting';
 // css initialize
 html, body {
   width: 100%;
@@ -95,10 +75,4 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
-// usage
-.selectbox {
-  width: 150px;
-}
-
 </style>

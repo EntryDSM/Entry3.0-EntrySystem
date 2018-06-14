@@ -13,6 +13,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "initialize-css": "^1.4.0",
     "vue": "^2.5.2",
     "vue-lottie": "^0.2.1",
     "vue-router": "^3.0.1"
@@ -80,7 +81,7 @@
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.2",
     "vuex": "^3.0.1",
-    "webpack": "^3.6.0",
+    "webpack": "^3.12.0",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.9.1",
     "webpack-merge": "^4.1.0"
