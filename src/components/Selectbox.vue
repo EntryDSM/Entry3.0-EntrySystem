@@ -8,7 +8,7 @@
         <li class="selectbox__wrapper__option__line"></li>
         <li class="selectbox__wrapper__option__value"
           v-for="(option, index) in options" :key="option.value"
-          :class="{'selectbox__wrapper__option__value--selected': selected[index]}"
+          :class="{'selectbox__wrapper__option__value--selected': selected === index}"
           @click="changeValue(option.value, index)">
           {{ option.text }}
         </li>
@@ -37,9 +37,7 @@ export default {
   data() {
     return {
       isFocused: false,
-      currentIndex: 0,
-      changedValue: this.value,
-      selected: [],
+      selected: 0,
     };
   },
   methods: {
@@ -47,20 +45,15 @@ export default {
       this.isFocused = !this.isFocused;
     },
     changeValue(value, index) {
-      this.selected.splice(this.currentIndex, 1, false);
-      this.currentIndex = index;
-      this.selected.splice(this.currentIndex, 1, true);
-      this.changedValue = value;
-      this.$emit('input', this.changedValue);
+      this.selected = index;
+      this.value = value;
+      this.$emit('input', this.value);
       this.isFocused = false;
     },
   },
   created() {
     for (let i = 0; i < this.options.length; i += 1) {
-      if (this.value === this.options[i].value) {
-        this.selected.push(true);
-        this.currentIndex = i;
-      } else this.selected.push(false);
+      this.selected = this.options[i].value === this.value ? i : -1;
     }
   },
 };
