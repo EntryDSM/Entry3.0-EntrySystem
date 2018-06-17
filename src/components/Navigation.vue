@@ -33,7 +33,6 @@
 <style lang="scss" scoped>
 @import '../style/setting.scss';
 .nav {
-  width: 1920px;
   height: 60px;
   padding: 0 auto;
   box-shadow: 0 2px 10px 0 rgba(99, 141, 147, 0.05);
