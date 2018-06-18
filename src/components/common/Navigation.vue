@@ -5,7 +5,7 @@
       <router-link to="/">
         <img
           class="nav__contants__logo--img"
-          src="./../assets/entry_logo.png"
+          src="./../../assets/entry_logo.png"
           alt="EntryDSM 로고">
       </router-link>
     </div>
@@ -31,7 +31,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import '../style/setting.scss';
+@import '../../style/setting.scss';
 .nav {
   height: 60px;
   padding: 0 auto;
