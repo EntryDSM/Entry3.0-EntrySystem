@@ -5,10 +5,10 @@
 </template>
 
 <script>
-// import EntryFooter from '@/components/EntryFooter';
-// import Headline from '@/components/Headline';
-// import PrevNextBtn from '@/components/PrevNextBtn';
-// import Selectbox from '@/components/Selectbox';
+// import EntryFooter from '@/components/common/EntryFooter';
+// import Headline from '@/components/common/Headline';
+// import PrevNextBtn from '@/components/common/PrevNextBtn';
+// import Selectbox from '@/components/common/Selectbox';
 
 export default {
   name: 'app',
@@ -22,6 +22,7 @@ export default {
 html, body {
   width: 100%;
   height: 100%;
+  min-width: 1180px;
 }
 
 input[type=password] {

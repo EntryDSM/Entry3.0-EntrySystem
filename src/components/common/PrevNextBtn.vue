@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../style/setting';
+@import '../../style/setting';
 $inner-btn: #296169;
 
 // 전체 감싸는 부분
