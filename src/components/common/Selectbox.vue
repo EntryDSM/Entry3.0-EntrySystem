@@ -60,7 +60,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../style/setting.scss';
+@import '../../style/setting.scss';
 $border-color: #8aaaad;
 
 // 셀렉트 박스 공통 스타일

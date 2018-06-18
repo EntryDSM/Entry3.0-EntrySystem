@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../style/setting';
+@import '../../style/setting';
 
 .headline {
   padding-top: 125px;
