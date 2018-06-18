@@ -1,21 +1,17 @@
 <template>
   <div class="app">
     <router-view />
-    <entry-footer />
   </div>
 </template>
 
 <script>
-import EntryFooter from '@/components/common/EntryFooter';
+// import EntryFooter from '@/components/common/EntryFooter';
 // import Headline from '@/components/common/Headline';
 // import PrevNextBtn from '@/components/common/PrevNextBtn';
 // import Selectbox from '@/components/common/Selectbox';
 
 export default {
   name: 'app',
-  components: {
-    EntryFooter,
-  },
 };
 </script>
 
