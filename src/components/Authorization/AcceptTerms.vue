@@ -39,8 +39,8 @@
       </div>
     </div>
     <div class="AcceptTerms__checkbox">
-      <input type="checkbox" class="input-checkbox" id="input-checkbox"/>
-      <label class="input-checkbox-label" for="input-checkbox"></label>
+      <input type="checkbox" class="AcceptTerms__checkbox--input" id="Accept-checkbox"/>
+      <label class="AcceptTerms__checkbox--label" for="Accept-checkbox"></label>
       개인정보 이용약관에 동의합니다
     </div>
   </div>
@@ -100,8 +100,33 @@ export default {
       }
     }
     @include e(checkbox){
-        margin-top: 25px;
-        float: right;
+      margin-top: 25px;
+      float: right;
+      @include m(input){
+        display: none;
+      }
+      @include m(label){
+        width: 22px;
+        height: 22px;
+        background-color:#b9b9b9;
+        border-radius: 50px;
+        position: relative;
+        top: -2px;
+        margin-right: 5px;
+        display: inline-block;
+        box-sizing: border-box;
+        &::after{
+          content: "✔";
+          color: #FFF;
+          position: relative;
+          left: 4.5px;
+          top: 3px;
+        }
+      }
     }
+  }
+  .AcceptTerms__checkbox--input:checked + .AcceptTerms__checkbox--label,
+  .AcceptTerms__checkbox--label.checked {
+    background-color: #799da1;
   }
 </style>
