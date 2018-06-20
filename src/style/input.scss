@@ -24,7 +24,6 @@ input[type=checkbox] {
   top: 3px;
   display: inline-block;
   box-sizing: border-box;
-  cursor: pointer;
   &::before, &::after {
     box-sizing: border-box;
     position: absolute;
