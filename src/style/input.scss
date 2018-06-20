@@ -4,6 +4,11 @@ $input-border: #8aaaad;
 $input-pseudo: #608a8e;
 
 // 체크박스 공통 스타일
+/*
+  checkbox 사용하실 때 이렇게 사용해주세요!!
+  <input type="checkbox" id="input-checkbox"/>
+  <label class="input-checkbox" for="input-checkbox"></label>
+*/
 input[type=checkbox] {
   display: none;
 }
@@ -12,7 +17,7 @@ input[type=checkbox] {
   margin-right: 5px;
   height: 16px;
   width: 16px;
-  background-color: $input-background;
+  background-color: #FFF;
   border: 0.5px solid $input-border;
   border-radius: 2px;
   position: relative;
@@ -45,6 +50,7 @@ input[type=checkbox] {
 }
 
 input[type=checkbox]:checked + .input-checkbox, .input-checkbox.checked {
+  background-color: $input-background;
   border-color: $input-pseudo;
 }
 
