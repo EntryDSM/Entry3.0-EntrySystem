@@ -17,7 +17,7 @@ export default new Router({
     },
     {
       path: '/classify',
-      name: 'classify',
+      name: 'classification',
       component: Classification,
     },
   ],
