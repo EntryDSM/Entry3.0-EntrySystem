@@ -1,18 +1,23 @@
 <template>
   <div class="app">
+    <navi/>
     <router-view />
+    <entry-footer />
   </div>
 </template>
 
 <script>
-// import Navi from '@/components/common/Navigation';
-// import EntryFooter from '@/components/common/EntryFooter';
+import Navi from '@/components/common/Navigation';
+import EntryFooter from '@/components/common/EntryFooter';
 // import Headline from '@/components/common/Headline';
 // import PrevNextBtn from '@/components/common/PrevNextBtn';
 // import Selectbox from '@/components/common/Selectbox';
 
 export default {
   name: 'app',
+  components: {
+    Navi, EntryFooter,
+  },
 };
 </script>
 
