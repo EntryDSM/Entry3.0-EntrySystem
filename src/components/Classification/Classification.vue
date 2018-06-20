@@ -3,6 +3,8 @@
     <navigation />
     <headline :title="title" :subText="subText" />
     <div class="classification__cover">
+
+      <!-- form -->
       <div class="classification__cover__form">
         <div class="classification__cover__form__colums">
           <div class="classification__cover__form__colums__name">
@@ -21,12 +23,41 @@
             전형 선택
           </div>
           <div class="classification__cover__form__colums__input-content">
-            <input type="radio" class="input-radio" id="3" value="">
-            <label class="input-radio-label" for="3">
+            <input type="radio"
+              class="input-radio"
+              id="general"
+              value="general"
+              v-model="entranceModel">
+            <label class="input-radio-label" for="general">
               <span class="input-radio-span"></span>
             </label>
+            <label class="classification__cover__form__colums__input-content__label"
+            for="general">일반전형</label>
+
+            <input type="radio"
+              class="input-radio"
+              id="meister"
+              value="meister"
+              v-model="entranceModel">
+            <label class="input-radio-label" for="meister">
+              <span class="input-radio-span"></span>
+            </label>
+            <label class="classification__cover__form__colums__input-content__label"
+            for="meister">마이스터 인재전형</label>
+
+            <input type="radio"
+              class="input-radio"
+              id="social"
+              value="social"
+              v-model="entranceModel">
+            <label class="input-radio-label" for="social">
+              <span class="input-radio-span"></span>
+            </label>
+            <label class="classification__cover__form__colums__input-content__label"
+            for="social">사회통합전형 / 기초생활수급권자</label>
           </div>
         </div>
+
         <div class="classification__cover__form__colums">
           <div class="classification__cover__form__colums__name">
             지역 선택
@@ -67,6 +98,8 @@
           </div>
         </div>
       </div>
+      <!-- form end -->
+
       <prev-next-btn
         :prevShow="0"
         :nextShow="1"
@@ -154,6 +187,12 @@ $color-main3: #608a8e;
             top: 0;
             font-size: 14px;
             color: $color-main3;
+          }
+          @include e('label') {
+            padding: {
+              left: 10px;
+              right: 80px;
+            }
           }
         }
       }
