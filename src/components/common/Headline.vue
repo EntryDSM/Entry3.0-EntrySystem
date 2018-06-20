@@ -25,12 +25,12 @@ export default {
 @import '../../style/setting';
 
 .headline {
-  padding-top: 125px;
   width: 1140px;
   margin: 0 auto;
   text-align: left;
   height: 260px;
   @include e('sub-text') {
+    padding-top: 125px;
     font-weight: 500;
     font-size: 20px;
     height: 21px;

@@ -65,6 +65,7 @@ $border-color: #8aaaad;
 
 // 셀렉트 박스 공통 스타일
 .selectbox {
+  user-select:none;
   display: inline-block;
   box-sizing: border-box;
   font-size: 18px;
@@ -104,11 +105,12 @@ $border-color: #8aaaad;
     background-color: #fff;
     display: none;
     width: 100%;
-    height: 160px;
+    max-height: 160px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     box-sizing: border-box;
     position: absolute;
+    z-index: 1;
     top: 100%;
     left: 0;
     padding: {
