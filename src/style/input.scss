@@ -4,22 +4,26 @@ $input-border: #8aaaad;
 $input-pseudo: #608a8e;
 
 // 체크박스 공통 스타일
-input[type=checkbox] {
+/*
+  checkbox 사용하실 때 이렇게 사용해주세요!!
+  <input type="checkbox" class="input-checkbox" id="input-checkbox"/>
+  <label class="input-checkbox-label" for="input-checkbox"></label>
+*/
+.input-checkbox[type=checkbox] {
   display: none;
 }
 
-.input-checkbox {
+.input-checkbox-label {
   margin-right: 5px;
   height: 16px;
   width: 16px;
-  background-color: $input-background;
+  background-color: #FFF;
   border: 0.5px solid $input-border;
   border-radius: 2px;
   position: relative;
   top: 3px;
   display: inline-block;
   box-sizing: border-box;
-  cursor: pointer;
   &::before, &::after {
     box-sizing: border-box;
     position: absolute;
@@ -44,16 +48,16 @@ input[type=checkbox] {
   }
 }
 
-input[type=checkbox]:checked + .input-checkbox, .input-checkbox.checked {
+.input-checkbox:checked + .input-checkbox-label, .input-checkbox-label.checked {
+  background-color: $input-background;
   border-color: $input-pseudo;
 }
 
-input[type=checkbox]:checked + .input-checkbox::after, .input-checkbox.checked::after {
+.input-checkbox:checked + .input-checkbox-label::after, .input-checkbox-label.checked::after {
   height: 9px;
   width: 3px;
 }
-
-input[type=checkbox]:checked + .input-checkbox::before, .input-checkbox.checked::before {
+.input-checkbox:checked + .input-checkbox-label::before, .input-checkbox-label.checked::before {
   height: 18px;
   width: 3px;
 }
