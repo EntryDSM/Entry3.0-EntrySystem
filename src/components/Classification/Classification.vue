@@ -9,10 +9,60 @@
             검정고시 지원여부
           </div>
           <div class="classification__cover__form__colums__input-content">
+            <input type="checkbox" id="isGED" v-model="isGED">
+            <label class="input-checkbox" for="isGED"></label>
+            <span class="classification__cover__form__colums__input-content__sign">
+              * 검정고시를 통하여 지원하실 경우 체크해주세요
+            </span>
+          </div>
+        </div>
+        <div class="classification__cover__form__colums">
+          <div class="classification__cover__form__colums__name">
+            전형 선택
+          </div>
+          <div class="classification__cover__form__colums__input-content">
+            <input type="radio" class="input-radio" id="3" value="">
+            <label class="input-radio-label" for="3">
+              <span class="input-radio-span"></span>
+            </label>
+          </div>
+        </div>
+        <div class="classification__cover__form__colums">
+          <div class="classification__cover__form__colums__name">
+            지역 선택
+          </div>
+          <div class="classification__cover__form__colums__input-content">
+            <input type="checkbox" id="input-checkbox">
+            <label class="input-checkbox" for="input-checkbox"></label>
+          </div>
+        </div>
+        <div class="classification__cover__form__colums">
+          <div class="classification__cover__form__colums__name">
+            졸업 선택
+          </div>
+          <div class="classification__cover__form__colums__input-content">
+            <input type="checkbox" id="input-checkbox">
+            <label class="input-checkbox" for="input-checkbox"></label>
+          </div>
+        </div>
+        <div class="classification__cover__form__colums">
+          <div class="classification__cover__form__colums__name">
+            졸업 연도
+          </div>
+          <div class="classification__cover__form__colums__input-content">
+            <input type="checkbox" id="input-checkbox">
+            <label class="input-checkbox" for="input-checkbox"></label>
+          </div>
+        </div>
+        <div class="classification__cover__form__colums">
+          <div class="classification__cover__form__colums__name">
+            특기사항
+          </div>
+          <div class="classification__cover__form__colums__input-content">
             <input type="checkbox" id="input-checkbox">
             <label class="input-checkbox" for="input-checkbox"></label>
             <span class="classification__cover__form__colums__input-content__sign">
-              * 검정고시를 통하여 지원하실 경우 체크해주세요
+              * 졸업자의 경우 졸업연도를 선택해주세요
             </span>
           </div>
         </div>
@@ -45,6 +95,12 @@ export default {
     return {
       title: '전형 구분 선택',
       subText: '2019 입학원서 작성',
+      isGED: false,
+      entranceModel: '',
+      region: '',
+      isGraduated: false,
+      graduationYear: 0,
+      specialPoints: [],
     };
   },
   methods: {
@@ -58,7 +114,7 @@ export default {
 <style lang="scss" scoped>
 @import '../../style/setting';
 $color-main1: #769b9f;
-$color-main2: #5f8a90;
+$color-main2: #eff3f4;
 $color-main3: #608a8e;
 
 .classification {
@@ -74,7 +130,7 @@ $color-main3: #608a8e;
         height: 75px;
         line-height: 75px;
         font-size: 0;
-        border {
+        border: {
           bottom: solid 1px $color-main2;
         }
         @include e('name') {
