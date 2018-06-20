@@ -18,6 +18,7 @@
             </span>
           </div>
         </div>
+
         <div class="classification__cover__form__colums">
           <div class="classification__cover__form__colums__name">
             전형 선택
@@ -63,8 +64,12 @@
             지역 선택
           </div>
           <div class="classification__cover__form__colums__input-content">
-            <input type="checkbox" id="input-checkbox">
-            <label class="input-checkbox" for="input-checkbox"></label>
+            <selectbox class="selectbox"
+              v-model="region"
+              :options="[
+                {text: '전국', value:'전국'},
+                {text: '대전', value:'대전'}
+              ]"/>
           </div>
         </div>
         <div class="classification__cover__form__colums">
@@ -115,6 +120,7 @@ import Navigation from '../common/Navigation';
 import Headline from '../common/Headline';
 import PrevNextBtn from '../common/PrevNextBtn';
 import EntryFooter from '../common/EntryFooter';
+import Selectbox from '../common/Selectbox';
 
 export default {
   name: 'classification',
@@ -123,6 +129,7 @@ export default {
     Headline,
     PrevNextBtn,
     EntryFooter,
+    Selectbox,
   },
   data() {
     return {
@@ -198,5 +205,9 @@ $color-main3: #608a8e;
       }
     }
   }
+}
+
+.selectbox {
+  width: 150px;
 }
 </style>
