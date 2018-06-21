@@ -1,6 +1,11 @@
 <template>
-  <div class="selectbox" :class="{'selectbox--focused': isFocused}">
-    <div class="selectbox__current-value" @click="toggleOption">
+  <div class="selectbox"
+    :class="[
+      {'selectbox--focused': isEnabled && isFocused},
+      {'selectbox--not-enabled': !isEnabled}
+    ]">
+    <div class="selectbox__current-value"
+      @click="isEnabled ? toggleOption() : ''">
       {{ value || disabledText }}
     </div>
     <div class="selectbox__wrapper">
@@ -32,6 +37,10 @@ export default {
     value: {
       type: Number,
       required: true,
+    },
+    isEnabled: {
+      type: Boolean,
+      default: true,
     },
   },
   data() {
@@ -76,7 +85,7 @@ $border-color: #8aaaad;
   text-align: left;
   position: relative;
   @include m('focused') {
-    & .selectbox {
+    .selectbox {
       @include e('current-value') {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
@@ -84,6 +93,15 @@ $border-color: #8aaaad;
       }
       @include e('wrapper') {
         display: block;
+      }
+    }
+  }
+  @include m('not-enabled') {
+    .selectbox {
+      @include e('current-value') {
+        background-color: #f9f9f9;
+        border: solid 0.5px #a7a7a7;
+        color: #a7a7a7;
       }
     }
   }
@@ -105,7 +123,6 @@ $border-color: #8aaaad;
     background-color: #fff;
     display: none;
     width: 100%;
-    max-height: 160px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     box-sizing: border-box;
@@ -130,9 +147,10 @@ $border-color: #8aaaad;
       }
       width: 100%;
       height: 100%;
+      max-height: 148px;
       @include e('line') {
         margin-left: 13px;
-        width: 125px;
+        width: calc(100% - 26px);
         height: 2px;
         background-color: #eff3f4;
         margin-bottom: 3px;

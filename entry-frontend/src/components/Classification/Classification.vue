@@ -59,8 +59,8 @@
               <span class="input-radio-span"></span>
             </label>
             <label class="classification__cover__form__colums__input-content__label"
-              for="social">사
-              회통합전형 / 기초생활수급권자
+              for="social">
+              사회통합전형 / 기초생활수급권자
             </label>
           </div>
         </div>
@@ -93,8 +93,8 @@
               <span class="input-radio-span"></span>
             </label>
             <label class="classification__cover__form__colums__input-content__label"
-              for="notGradua
-              ted">졸업 예정자
+              for="notGraduated">
+              졸업 예정자
             </label>
 
             <input type="radio"
@@ -106,8 +106,8 @@
               <span class="input-radio-span"></span>
             </label>
             <label class="classification__cover__form__colums__input-content__label"
-              for="graduated
-              ">졸업자
+              for="graduated">
+              졸업자
             </label>
           </div>
         </div>
@@ -155,8 +155,7 @@
               v-model="specialPoints">
             <label class="input-checkbox-label" for="exception"></label>
             <label class="classification__cover__form__colums__input-content__label"
-              for="exception
-              ">
+              for="exception">
               특례 입학 대상자
             </label>
             <span class="classification__cover__form__colums__input-content__sign">
@@ -250,6 +249,7 @@ $color-main3: #608a8e;
           height: 100%;
           display: inline-block;
           position: relative;
+          user-select: none;
           @include e('sign') {
             position: absolute;
             right: 0;
