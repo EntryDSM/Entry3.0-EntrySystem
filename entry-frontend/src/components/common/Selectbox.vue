@@ -105,7 +105,6 @@ $border-color: #8aaaad;
     background-color: #fff;
     display: none;
     width: 100%;
-    max-height: 160px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     box-sizing: border-box;
@@ -130,9 +129,10 @@ $border-color: #8aaaad;
       }
       width: 100%;
       height: 100%;
+      max-height: 148px;
       @include e('line') {
         margin-left: 13px;
-        width: 125px;
+        width: calc(100% - 26px);
         height: 2px;
         background-color: #eff3f4;
         margin-bottom: 3px;
