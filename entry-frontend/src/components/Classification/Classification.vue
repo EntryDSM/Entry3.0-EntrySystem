@@ -32,7 +32,10 @@
             <label class="input-radio-label" for="general">
               <span class="input-radio-span"></span>
             </label>
-            <label class="classification__cover__form__colums__input-content__label" for="general">일반전형</label>
+            <label class="classification__cover__form__colums__input-content__label"
+              for="general">
+              일반전형
+            </label>
 
             <input type="radio"
               class="input-radio"
@@ -42,7 +45,10 @@
             <label class="input-radio-label" for="meister">
               <span class="input-radio-span"></span>
             </label>
-            <label class="classification__cover__form__colums__input-content__label" for="meister">마이스터 인재전형</label>
+            <label class="classification__cover__form__colums__input-content__label"
+              for="meister">
+              마이스터 인재전형
+            </label>
 
             <input type="radio"
               class="input-radio"
@@ -52,7 +58,10 @@
             <label class="input-radio-label" for="social">
               <span class="input-radio-span"></span>
             </label>
-            <label class="classification__cover__form__colums__input-content__label" for="social">사회통합전형 / 기초생활수급권자</label>
+            <label class="classification__cover__form__colums__input-content__label"
+              for="social">사
+              회통합전형 / 기초생활수급권자
+            </label>
           </div>
         </div>
 
@@ -83,7 +92,10 @@
             <label class="input-radio-label" for="notGraduated">
               <span class="input-radio-span"></span>
             </label>
-            <label class="classification__cover__form__colums__input-content__label" for="notGraduated">졸업 예정자</label>
+            <label class="classification__cover__form__colums__input-content__label"
+              for="notGradua
+              ted">졸업 예정자
+            </label>
 
             <input type="radio"
               class="input-radio"
@@ -93,7 +105,10 @@
             <label class="input-radio-label" for="graduated">
               <span class="input-radio-span"></span>
             </label>
-            <label class="classification__cover__form__colums__input-content__label" for="graduated">졸업자</label>
+            <label class="classification__cover__form__colums__input-content__label"
+              for="graduated
+              ">졸업자
+            </label>
           </div>
         </div>
         <div class="classification__cover__form__colums">
@@ -128,7 +143,10 @@
               value="honor"
               v-model="specialPoints">
             <label class="input-checkbox-label" for="honor"></label>
-            <label class="classification__cover__form__colums__input-content__label" for="honor">국가 유공자</label>
+            <label class="classification__cover__form__colums__input-content__label"
+              for="honor">
+              국가 유공자
+              </label>
 
             <input type="checkbox"
               class="input-checkbox"
@@ -136,7 +154,11 @@
               value="exception"
               v-model="specialPoints">
             <label class="input-checkbox-label" for="exception"></label>
-            <label class="classification__cover__form__colums__input-content__label" for="exception">특례 입학 대상자</label>
+            <label class="classification__cover__form__colums__input-content__label"
+              for="exception
+              ">
+              특례 입학 대상자
+            </label>
             <span class="classification__cover__form__colums__input-content__sign">
               * 졸업자의 경우 졸업연도를 선택해주세요
             </span>
