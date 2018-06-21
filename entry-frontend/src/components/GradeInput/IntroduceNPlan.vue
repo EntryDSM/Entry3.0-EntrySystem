@@ -1,7 +1,7 @@
 <template>
   <div>
     <navigation />
-    <headline :subText="'2019 입학원서 작성'" title="'성적 입력'" />
+    <headline :subText="'2019 입학원서 작성'" title="성적 입력" />
     <div class="intro-plan-cover">
       <h3>자기소개서</h3>
       <div class="underline"></div>
@@ -11,7 +11,8 @@
         자신의 장점(특성 혹은 능력)과 보완/발전시켜야 할 단점에 대하여 기술하십시오.
       </p>
       <textarea class="intro-plan-write"
-                v-model.trim="introduce"
+                :value="introduce"
+                @input="introduce = $event.target.value"
                 maxlength="1600"
                 ref="introWrite"
       ></textarea>
@@ -24,7 +25,8 @@
         상세하게 기술하십시오.
       </p>
       <textarea class="intro-plan-write"
-                v-model.trim="plan"
+                :value="plan"
+                @input="plan = $event.target.value"
                 maxlength="1600"
                 ref="planWrite"
       ></textarea>
@@ -125,7 +127,7 @@ export default {
     min-height: 390px;
     resize: vertical;
     border-radius: 10px;
-    border: 0.5px solid #5f8a90;
+    border: 1px solid #5f8a90;
     margin-top: 10px;
     font-size: 18px;
     padding: 7.5px;
