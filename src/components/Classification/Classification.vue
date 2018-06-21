@@ -11,8 +11,8 @@
             검정고시 지원여부
           </div>
           <div class="classification__cover__form__colums__input-content">
-            <input type="checkbox" id="isGED" v-model="isGED">
-            <label class="input-checkbox" for="isGED"></label>
+            <input type="checkbox" class="input-checkbox" id="isGED" v-model="isGED">
+            <label class="input-checkbox-label" for="isGED"></label>
             <span class="classification__cover__form__colums__input-content__sign">
               * 검정고시를 통하여 지원하실 경우 체크해주세요
             </span>
