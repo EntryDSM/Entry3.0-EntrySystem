@@ -53,25 +53,28 @@
             <input type="radio"
               class="input-radio"
               id="social"
-              :value="socialOption"
-              v-model="entranceModel">
+              value="social"
+              v-model="entranceModel"
+              @click="isOpen = true">
             <label class="input-radio-label" for="social">
               <span class="input-radio-span"></span>
             </label>
+            <social-option
+              :options="[
+                {text:'기초생활수급권자', value:'기초생활수급권자'},
+                {text:'한부모가족 보호대상자', value:'한부모가족 보호대상자'},
+                {text:'차상위 계층', value:'차상위 계층'},
+                {text:'차차상위 계층', value:'차차상위 계층'},
+                {text:'북한이탈주민', value:'북한이탈주민'},
+                {text:'다문화 가정', value:'다문화 가정'},
+                {text:'그 외 대상자', value:'그 외 대상자'},
+              ]"
+              v-model="socialOption"
+              :style="{display: isOpen ? 'inline-block' : 'none'}"
+              @close="isOpen = false"/>
             <label class="classification__cover__form__colums__input-content__label"
               for="social">
               사회통합전형 / {{ socialOption }}
-              <social-option
-                :options="[
-                  {text:'기초생활수급권자', value:'기초생활수급권자'},
-                  {text:'한부모가족 보호대상자', value:'한부모가족 보호대상자'},
-                  {text:'차상위 계층', value:'차상위 계층'},
-                  {text:'차차상위 계층', value:'차차상위 계층'},
-                  {text:'북한이탈주민', value:'북한이탈주민'},
-                  {text:'다문화 가정', value:'다문화 가정'},
-                  {text:'그 외 대상자', value:'그 외 대상자'},
-                ]"
-                v-model="socialOption"/>
             </label>
           </div>
         </div>
@@ -218,6 +221,7 @@ export default {
       isGraduated: false,
       graduationYear: 0,
       specialPoints: [],
+      isOpen: true,
     };
   },
   methods: {
@@ -258,7 +262,7 @@ $color-main3: #608a8e;
           display: inline-block;
         }
         @include e('input-content') {
-          font-size: 18px;
+          font-size: 0px;
           padding-left: 30px;
           box-sizing: border-box;
           width: 85%;
@@ -274,7 +278,7 @@ $color-main3: #608a8e;
             color: $color-main3;
           }
           @include e('label') {
-            position: relative;
+            font-size: 18px;
             display: inline-block;
             min-width: 100px;
             padding: {
