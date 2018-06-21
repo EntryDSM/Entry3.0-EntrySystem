@@ -112,6 +112,10 @@ export default {
     height: 2px;
     background-color: #abc9cd;
     margin-top: 10px;
+
+    &:first-of-type {
+      height: 2.5px;
+    }
   }
 
   .intro-plan-explain {
