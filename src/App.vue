@@ -47,7 +47,7 @@ time, mark, audio, video {
   padding: 0;
   border: 0;
   vertical-align: baseline;
-  font-family: 'nanumsquare', sans-serif;
+  font-family: 'NanumSquareRound', sans-serif;
 }
 
 article, aside, details, figcaption, figure,
