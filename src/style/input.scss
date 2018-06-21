@@ -1,0 +1,105 @@
+// 공통 색 변수로 분리
+$input-background: #b7d3d6;
+$input-border: #8aaaad;
+$input-pseudo: #608a8e;
+
+// 체크박스 공통 스타일
+/*
+  checkbox 사용하실 때 이렇게 사용해주세요!!
+  <input type="checkbox" class="input-checkbox" id="input-checkbox"/>
+  <label class="input-checkbox-label" for="input-checkbox"></label>
+*/
+.input-checkbox[type=checkbox] {
+  display: none;
+}
+
+.input-checkbox-label {
+  margin-right: 5px;
+  height: 16px;
+  width: 16px;
+  background-color: #FFF;
+  border: 0.5px solid $input-border;
+  border-radius: 2px;
+  position: relative;
+  top: 3px;
+  display: inline-block;
+  box-sizing: border-box;
+  &::before, &::after {
+    box-sizing: border-box;
+    position: absolute;
+    height: 0;
+    width: 2px;
+    background-color: $input-pseudo;
+    display: inline-block;
+    transform-origin: left top;
+    border-radius: 1px;
+    content: ' ';
+    transition: opacity ease 0.5;
+  }
+  &::before {
+    top: 10px;
+    left: 8px;
+    transform: rotate(-140deg);
+  }
+  &::after {
+    top: 4px;
+    left: 1px;
+    transform: rotate(-45deg);
+  }
+}
+
+.input-checkbox:checked + .input-checkbox-label, .input-checkbox-label.checked {
+  background-color: $input-background;
+  border-color: $input-pseudo;
+}
+
+.input-checkbox:checked + .input-checkbox-label::after, .input-checkbox-label.checked::after {
+  height: 9px;
+  width: 3px;
+}
+.input-checkbox:checked + .input-checkbox-label::before, .input-checkbox-label.checked::before {
+  height: 18px;
+  width: 3px;
+}
+
+// 텍스트 인풋 박스 공통 스타일
+.input-text {
+  height: 40px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  border: solid 0.5px #5f8a90;
+  padding: 11px 16px 10px;
+  width: 400px;
+  font-size: 18px;
+  box-sizing: border-box;
+  outline: none;
+  &::placeholder {
+    color: #acbec1;
+  }
+}
+
+// 라디오 버튼 공통 스타일
+.input-radio {
+  display: none;
+}
+
+.input-radio + .input-radio-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border: 0.5px solid $input-border;
+  border-radius: 50%;
+}
+.input-radio-span {
+  width: 9.6px;
+  height: 9.6px;
+  display: inline-block;
+  border-radius: 50%;
+  background-color: none;
+}
+.input-radio:checked + .input-radio-label .input-radio-span {
+  background-color: $input-background;
+  border: solid 0.5px $input-border;
+}
