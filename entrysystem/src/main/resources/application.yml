@@ -1,0 +1,7 @@
+# in Development
+spring:
+  profiles:
+    active: local
+
+# in Production
+---
