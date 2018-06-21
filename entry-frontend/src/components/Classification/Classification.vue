@@ -74,11 +74,30 @@
         </div>
         <div class="classification__cover__form__colums">
           <div class="classification__cover__form__colums__name">
-            졸업 선택
+            졸업 구분
           </div>
           <div class="classification__cover__form__colums__input-content">
-            <input type="checkbox" id="input-checkbox">
-            <label class="input-checkbox" for="input-checkbox"></label>
+            <input type="radio"
+              class="input-radio"
+              id="notGraduated"
+              :value="false"
+              v-model="entranceModel">
+            <label class="input-radio-label" for="notGraduated">
+              <span class="input-radio-span"></span>
+            </label>
+            <label class="classification__cover__form__colums__input-content__label"
+            for="notGraduated">졸업 예정자</label>
+
+            <input type="radio"
+              class="input-radio"
+              id="graduated"
+              :value="true"
+              v-model="entranceModel">
+            <label class="input-radio-label" for="graduated">
+              <span class="input-radio-span"></span>
+            </label>
+            <label class="classification__cover__form__colums__input-content__label"
+            for="graduated">졸업자</label>
           </div>
         </div>
         <div class="classification__cover__form__colums">
@@ -196,9 +215,11 @@ $color-main3: #608a8e;
             color: $color-main3;
           }
           @include e('label') {
+            display: inline-block;
+            min-width: 100px;
             padding: {
               left: 10px;
-              right: 80px;
+              right: 50px;
             }
           }
         }
