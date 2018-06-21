@@ -32,8 +32,7 @@
             <label class="input-radio-label" for="general">
               <span class="input-radio-span"></span>
             </label>
-            <label class="classification__cover__form__colums__input-content__label"
-            for="general">일반전형</label>
+            <label class="classification__cover__form__colums__input-content__label" for="general">일반전형</label>
 
             <input type="radio"
               class="input-radio"
@@ -43,8 +42,7 @@
             <label class="input-radio-label" for="meister">
               <span class="input-radio-span"></span>
             </label>
-            <label class="classification__cover__form__colums__input-content__label"
-            for="meister">마이스터 인재전형</label>
+            <label class="classification__cover__form__colums__input-content__label" for="meister">마이스터 인재전형</label>
 
             <input type="radio"
               class="input-radio"
@@ -54,8 +52,7 @@
             <label class="input-radio-label" for="social">
               <span class="input-radio-span"></span>
             </label>
-            <label class="classification__cover__form__colums__input-content__label"
-            for="social">사회통합전형 / 기초생활수급권자</label>
+            <label class="classification__cover__form__colums__input-content__label" for="social">사회통합전형 / 기초생활수급권자</label>
           </div>
         </div>
 
@@ -72,6 +69,7 @@
               ]"/>
           </div>
         </div>
+
         <div class="classification__cover__form__colums">
           <div class="classification__cover__form__colums__name">
             졸업 구분
@@ -81,23 +79,21 @@
               class="input-radio"
               id="notGraduated"
               :value="false"
-              v-model="entranceModel">
+              v-model="isGraduated">
             <label class="input-radio-label" for="notGraduated">
               <span class="input-radio-span"></span>
             </label>
-            <label class="classification__cover__form__colums__input-content__label"
-            for="notGraduated">졸업 예정자</label>
+            <label class="classification__cover__form__colums__input-content__label" for="notGraduated">졸업 예정자</label>
 
             <input type="radio"
               class="input-radio"
               id="graduated"
               :value="true"
-              v-model="entranceModel">
+              v-model="isGraduated">
             <label class="input-radio-label" for="graduated">
               <span class="input-radio-span"></span>
             </label>
-            <label class="classification__cover__form__colums__input-content__label"
-            for="graduated">졸업자</label>
+            <label class="classification__cover__form__colums__input-content__label" for="graduated">졸업자</label>
           </div>
         </div>
         <div class="classification__cover__form__colums">
@@ -105,8 +101,20 @@
             졸업 연도
           </div>
           <div class="classification__cover__form__colums__input-content">
-            <input type="checkbox" id="input-checkbox">
-            <label class="input-checkbox" for="input-checkbox"></label>
+            <selectbox class="selectbox"
+              v-model="graduationYear"
+              :isEnabled="isGraduated"
+              :options="[
+                {text: '2017', value:'2017'},
+                {text: '2016', value:'2016'},
+                {text: '2015', value:'2015'},
+                {text: '2014', value:'2014'},
+                {text: '2013', value:'2013'},
+                {text: '2012', value:'2012'},
+                {text: '2011', value:'2011'},
+                {text: '2010', value:'2010'},
+              ]"/>
+              년
           </div>
         </div>
         <div class="classification__cover__form__colums">
@@ -114,8 +122,21 @@
             특기사항
           </div>
           <div class="classification__cover__form__colums__input-content">
-            <input type="checkbox" id="input-checkbox">
-            <label class="input-checkbox" for="input-checkbox"></label>
+            <input type="checkbox"
+              class="input-checkbox"
+              id="honor"
+              value="honor"
+              v-model="specialPoints">
+            <label class="input-checkbox-label" for="honor"></label>
+            <label class="classification__cover__form__colums__input-content__label" for="honor">국가 유공자</label>
+
+            <input type="checkbox"
+              class="input-checkbox"
+              id="exception"
+              value="exception"
+              v-model="specialPoints">
+            <label class="input-checkbox-label" for="exception"></label>
+            <label class="classification__cover__form__colums__input-content__label" for="exception">특례 입학 대상자</label>
             <span class="classification__cover__form__colums__input-content__sign">
               * 졸업자의 경우 졸업연도를 선택해주세요
             </span>
