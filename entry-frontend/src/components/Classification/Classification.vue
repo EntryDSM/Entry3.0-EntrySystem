@@ -53,14 +53,25 @@
             <input type="radio"
               class="input-radio"
               id="social"
-              value="social"
+              :value="socialOption"
               v-model="entranceModel">
             <label class="input-radio-label" for="social">
               <span class="input-radio-span"></span>
             </label>
             <label class="classification__cover__form__colums__input-content__label"
               for="social">
-              사회통합전형 / 기초생활수급권자
+              사회통합전형 / {{ socialOption }}
+              <social-option
+                :options="[
+                  {text:'기초생활수급권자', value:'기초생활수급권자'},
+                  {text:'한부모가족 보호대상자', value:'한부모가족 보호대상자'},
+                  {text:'차상위 계층', value:'차상위 계층'},
+                  {text:'차차상위 계층', value:'차차상위 계층'},
+                  {text:'북한이탈주민', value:'북한이탈주민'},
+                  {text:'다문화 가정', value:'다문화 가정'},
+                  {text:'그 외 대상자', value:'그 외 대상자'},
+                ]"
+                v-model="socialOption"/>
             </label>
           </div>
         </div>
@@ -111,6 +122,7 @@
             </label>
           </div>
         </div>
+
         <div class="classification__cover__form__colums">
           <div class="classification__cover__form__colums__name">
             졸업 연도
@@ -132,6 +144,7 @@
               년
           </div>
         </div>
+
         <div class="classification__cover__form__colums">
           <div class="classification__cover__form__colums__name">
             특기사항
@@ -182,6 +195,7 @@ import Headline from '../common/Headline';
 import PrevNextBtn from '../common/PrevNextBtn';
 import EntryFooter from '../common/EntryFooter';
 import Selectbox from '../common/Selectbox';
+import SocialOption from './SocialOption';
 
 export default {
   name: 'classification',
@@ -191,6 +205,7 @@ export default {
     PrevNextBtn,
     EntryFooter,
     Selectbox,
+    SocialOption,
   },
   data() {
     return {
@@ -198,6 +213,7 @@ export default {
       subText: '2019 입학원서 작성',
       isGED: false,
       entranceModel: '',
+      socialOption: '',
       region: '',
       isGraduated: false,
       graduationYear: 0,
@@ -258,6 +274,7 @@ $color-main3: #608a8e;
             color: $color-main3;
           }
           @include e('label') {
+            position: relative;
             display: inline-block;
             min-width: 100px;
             padding: {
