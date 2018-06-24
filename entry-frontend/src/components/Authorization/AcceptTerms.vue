@@ -39,7 +39,8 @@
       </div>
     </div>
     <div class="AcceptTerms__checkbox">
-      <input type="checkbox" class="AcceptTerms__checkbox--input" id="Accept-checkbox"/>
+      <input type="checkbox" class="AcceptTerms__checkbox--input" id="Accept-checkbox"
+      @click="sendAccept"/>
       <label class="AcceptTerms__checkbox--label" for="Accept-checkbox"></label>
       개인정보 이용약관에 동의합니다
     </div>
@@ -48,7 +49,11 @@
 
 <script>
 export default {
-
+  methods: {
+    sendAccept() {
+      this.$parent.$emit('OkayEvent');
+    },
+  },
 };
 </script>
 
@@ -56,6 +61,7 @@ export default {
 @import '../../style/setting.scss';
 
   .AcceptTerms{
+    height: 369px;
     @include e(box){
       position: relative;
       height: 300px;
@@ -100,6 +106,7 @@ export default {
       }
     }
     @include e(checkbox){
+      height: 69px;
       margin-top: 25px;
       float: right;
       @include m(input){
