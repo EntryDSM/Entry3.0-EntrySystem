@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import IntroduceNPlan from '../components/GradeInput/IntroduceNPlan';
+import IntroduceNPlan from '../components/IntroNPlan/IntroduceNPlan';
 import Classification from '../components/Classification/Classification';
 import Authorization from './../components/Authorization/Authorization';
 
