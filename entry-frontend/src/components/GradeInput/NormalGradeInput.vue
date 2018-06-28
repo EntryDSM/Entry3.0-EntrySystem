@@ -62,8 +62,21 @@
           </td>
         </tr>
       </table>
+
       <h3>미이수 학기 선택</h3>
+      <table class="discomplete-table">
+      </table>
+
+      <h3>성적입력</h3>
+      <table class="grade-input-table">
+      </table>
     </div>
+    <prev-next-btn :prevShow="1"
+                   :nextShow="1"
+                   @toPrevPage="movePrev"
+                   @toNextPage="moveNext"
+    />
+    <entry-footer />
   </div>
 </template>
 
@@ -89,6 +102,14 @@ export default {
       lateness: 0,
       missingClass: 0,
     };
+  },
+  methods: {
+    movePrev() {
+      this.$router.push('/');
+    },
+    moveNext() {
+      this.$router.push('/');
+    },
   },
 };
 </script>
@@ -206,6 +227,14 @@ $input-color: #5f8a90;
         }
       }
     }
+  }
+
+  .discomplete-table {
+    height: 150px;
+  }
+
+  .grade-input-table {
+    height: 675px;
   }
 }
 </style>
