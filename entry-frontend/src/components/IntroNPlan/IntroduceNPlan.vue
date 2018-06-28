@@ -144,6 +144,7 @@ $intro-plan: #5f8a90;
     min-height: 390px;
     resize: vertical;
     border-radius: 10px;
+    line-height: 1.3;
     border: 1px solid $intro-plan;
     margin-top: 10px;
     font-size: 18px;
