@@ -1,7 +1,7 @@
 <template>
   <div>
     <navigation />
-    <headline :subText="'2019 입학원서 작성'" title="성적 입력" />
+    <headline :subText="'2019 입학원서 작성'" title="자기소개서&학업계획서" />
     <div class="intro-plan-cover">
       <h3>자기소개서</h3>
       <div class="underline"></div>
@@ -16,6 +16,11 @@
                 maxlength="1600"
                 ref="introWrite"
       ></textarea>
+      <div class="intro-plan-check">
+        <span class="intro-plan-check__text">
+          {{ introLength }} / 1600
+        </span>
+      </div>
 
       <h3>학업계획서</h3>
       <div class="underline"></div>
@@ -30,6 +35,11 @@
                 maxlength="1600"
                 ref="planWrite"
       ></textarea>
+      <div class="intro-plan-check">
+        <span class="intro-plan-check__text">
+          {{ planLength }} / 1600
+        </span>
+      </div>
     </div>
     <prev-next-btn :prevShow="1"
                    :nextShow="1"
@@ -66,7 +76,7 @@ export default {
     resize(t) {
       const target = t;
       target.style.height = '1px';
-      target.style.height = `${10 + target.scrollHeight}px`;
+      target.style.height = `${30 + target.scrollHeight}px`;
     },
     movePrev() {
       this.$router.push('/');
@@ -93,9 +103,12 @@ export default {
 <style lang="scss" scoped>
 @import '../../style/setting';
 
+$intro-plan: #5f8a90;
+
 .intro-plan-cover {
   width: 1140px;
   margin: 0 auto;
+  position: relative;
 
   h3 {
     font-size: 24px;
@@ -131,12 +144,36 @@ export default {
     min-height: 390px;
     resize: vertical;
     border-radius: 10px;
-    border: 1px solid #5f8a90;
+    border: 1px solid $intro-plan;
     margin-top: 10px;
     font-size: 18px;
     padding: 7.5px;
     box-sizing: border-box;
     outline: none;
+  }
+
+  .intro-plan-check {
+    width: 100%;
+    height: 35px;
+    background-color: #c6e0df;
+    border-radius: 0 0 10px 10px;
+    position: absolute;
+    margin-top: -34px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    border: {
+      left: 1px solid $intro-plan;
+      bottom: 1px solid $intro-plan;
+      right: 1px solid $intro-plan;
+    }
+
+    @include e('text') {
+      font-size: 16px;
+      letter-spacing: 0.2px;
+      padding-right: 13px;
+    }
   }
 }
 </style>
