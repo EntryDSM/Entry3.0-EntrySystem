@@ -1,0 +1,57 @@
+$color-main1: #769b9f;
+$color-main2: #eff3f4;
+$color-main3: #608a8e;
+
+.form {
+  @include e('cover') {
+    width: 1140px;
+    margin: 0 auto;
+    @include e('form') {
+      border: {
+        top: solid 1px $color-main1;
+        bottom: solid 1px $color-main1;
+      }
+      @include e('colums') {
+        height: 75px;
+        line-height: 75px;
+        font-size: 0;
+        border: {
+          bottom: solid 1px $color-main2;
+        }
+        @include e('name') {
+          font-size: 20px;
+          height: 100%;
+          width: 15%;
+          text-align: center;
+          display: inline-block;
+        }
+        @include e('input-content') {
+          font-size: 0px;
+          padding-left: 30px;
+          box-sizing: border-box;
+          width: 85%;
+          height: 100%;
+          display: inline-block;
+          position: relative;
+          user-select: none;
+          @include e('sign') {
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 14px;
+            color: $color-main3;
+          }
+          @include e('label') {
+            font-size: 18px;
+            display: inline-block;
+            min-width: 100px;
+            padding: {
+              left: 10px;
+              right: 50px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
