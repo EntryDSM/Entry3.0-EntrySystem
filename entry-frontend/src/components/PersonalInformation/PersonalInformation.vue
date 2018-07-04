@@ -11,7 +11,10 @@
             이름
           </div>
           <div class="form__cover__form__colums__input-content">
-            <input type="text" class="input-text input-text-name" v-model="name">
+            <input type="text"
+              class="input-text input-text-name"
+              :value="name"
+              @input="name = $event.target.value">
           </div>
         </div>
         <div class="form__cover__form__colums">
@@ -100,7 +103,10 @@
             중학교명
           </div>
           <div class="form__cover__form__colums__input-content">
-            <input type="text" class="input-text input-text-school-name" v-model="schoolName">
+            <input type="text"
+              class="input-text input-text-school-name"
+              :value="schoolName"
+              @input="schoolName = $event.target.value">
             <button class="button button-search">검색</button>
           </div>
         </div>
@@ -109,7 +115,10 @@
             보호자명
           </div>
           <div class="form__cover__form__colums__input-content">
-            <input type="text" class="input-text input-text-guardian-name" v-model="guardianName">
+            <input type="text"
+              class="input-text input-text-guardian-name"
+              :value="guardianName"
+              @input="guardianName = $event.target.value">
           </div>
         </div>
         <div class="form__cover__form__colums">
@@ -154,18 +163,21 @@
           <div class="form__cover__form__colums__input-content">
             <input type="text"
               class="input-text input-text-zip"
-              v-model="zip"
-              placeholder="우편번호">
+              placeholder="우편번호"
+              :value="zip"
+              @input="zip = $event.target.value">
             <input type="text"
               class="input-text input-text-address"
-              v-model="zip"
-              placeholder="기본주소">
+              placeholder="기본주소"
+              :value="address"
+              @input="address = $event.target.value">
             <button class="button button-search-address">주소 검색</button>
             <br>
             <input type="text"
               class="input-text input-text-detailed-address"
-              v-model="detailedAddress"
-              placeholder="상세주소">
+              placeholder="상세주소"
+              :value="detailedAddress"
+              @input="detailedAddress = $event.target.value">
           </div>
         </div>
       </div>
@@ -216,6 +228,7 @@ export default {
       guardianContact: null,
       contact: null,
       zip: null,
+      address: null,
       detailedAddress: null,
     };
   },
