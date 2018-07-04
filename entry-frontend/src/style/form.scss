@@ -12,43 +12,46 @@ $color-main3: #608a8e;
         bottom: solid 1px $color-main1;
       }
       @include e('colums') {
-        height: 75px;
-        line-height: 75px;
+        line-height: 40px;
         font-size: 0;
+        display: flex;
         border: {
           bottom: solid 1px $color-main2;
+        }
+        padding: {
+          top: 18px;
+          bottom: 17px;
         }
         @include e('name') {
           font-size: 20px;
           height: 100%;
           width: 15%;
           text-align: center;
-          display: inline-block;
         }
         @include e('input-content') {
           font-size: 0px;
           padding-left: 30px;
           box-sizing: border-box;
           width: 85%;
-          height: 100%;
-          display: inline-block;
           position: relative;
           user-select: none;
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          @include e('label') {
+            font-size: 18px;
+            min-width: 100px;
+            padding: {
+              left: 10px;
+              right: 50px;
+            }
+          }
           @include e('sign') {
             position: absolute;
             right: 0;
             top: 0;
             font-size: 14px;
             color: $color-main3;
-          }
-          @include e('label') {
-            font-size: 18px;
-            display: inline-block;
-            min-width: 100px;
-            padding: {
-              left: 10px;
-              right: 50px;
-            }
           }
         }
       }
