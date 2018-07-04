@@ -1,45 +1,87 @@
 <template>
-  <div class="InfoInput">
-    <div class="InfoInput__wapper">
-      <div class="InfoInput__wapper__title">
-        이메일
+  <div class="InfoInput --false" v-if="!isAccept">
+    <div>
+      <div class="InfoInput__wapper --false">
+        <div class="InfoInput__wapper__title --false">
+          이메일
+        </div>
+        <div class="InfoInput__wapper__inputBox --false">
+          <input type="text" class="InfoInput__wapper__inputBox__input --false"
+          placeholder="example@dsmhs.kr" v-model="email" readonly/>
+        </div>
       </div>
-      <div class="InfoInput__wapper__inputBox">
-        <input type="text" class="InfoInput__wapper__inputBox__input"
-        placeholder="example@dsmhs.kr" v-model="email"/>
+      <div class="InfoInput__wapper --false">
+        <div class="InfoInput__wapper__title --false">
+          비밀번호
+        </div>
+        <div class="InfoInput__wapper__inputBox --false">
+          <input type="password" class="InfoInput__wapper__inputBox__input --false"
+          placeholder="●●●●●●●●●●●●" v-model="pw" readonly/>
+        </div>
+        <span class="InfoInput__wapper__inputBox__warning --false">
+            * 영문(대소문자 구분), 숫자 포함 8자리 이상, 특수기호 가능
+        </span>
+      </div>
+      <div class="InfoInput__wapper pwcheck --false">
+        <div class="InfoInput__wapper__title --false">
+          비밀번호 확인
+        </div>
+        <div class="InfoInput__wapper__inputBox --false">
+          <input type="password" class="InfoInput__wapper__inputBox__input --false"
+          placeholder="●●●●●●●●●●●●" v-model="pwcheck" readonly/>
+        </div>
+      </div>
+    </div>
+    <div class="btn">
+      <button type="button"
+            class="input-btn input-btn--next input-btn input-btn--next--false"
+      >
+        <span class="input-btn__arrow input-btn__arrow--right
+        input-btn__arrow--right--false">〉</span>
+        <span class="input-btn__text input-btn__text--next
+        input-btn__text--false">인증하기</span>
+      </button>
+    </div>
+  </div>
+  <div class="InfoInput" v-else>
+    <div>
+      <div class="InfoInput__wapper">
+        <div class="InfoInput__wapper__title">
+          이메일
+        </div>
+        <div class="InfoInput__wapper__inputBox">
+          <input type="text" class="InfoInput__wapper__inputBox__input"
+          placeholder="example@dsmhs.kr" v-model="email"/>
+        </div>
         <div class="InfoInput__wapper__inputBox__check" v-if="verifi[0]">
-          ✓
+            ✓
         </div>
       </div>
-    </div>
-    <div class="InfoInput__wapper">
-      <div class="InfoInput__wapper__title">
-        비밀번호
-      </div>
-      <div class="InfoInput__wapper__inputBox">
-        <input type="password" class="InfoInput__wapper__inputBox__input"
-        placeholder="●●●●●●●●●●●●" v-model="pw"/>
-        <div class="InfoInput__wapper__inputBox__check" v-if="verifi[1]">
-          ✓
+      <div class="InfoInput__wapper">
+        <div class="InfoInput__wapper__title">
+          비밀번호
         </div>
-      </div>
-      <span class="InfoInput__wapper__inputBox__warning">
-          * 영문(대소문자 구분), 숫자 포함 8자리 이상, 특수기호 가능
-      </span>
-    </div>
-    <div class="InfoInput__wapper pwcheck">
-      <div class="InfoInput__wapper__title">
-        비밀번호 확인
-      </div>
-      <div class="InfoInput__wapper__inputBox">
-        <input type="password" class="InfoInput__wapper__inputBox__input"
-        placeholder="●●●●●●●●●●●●" v-model="pwcheck"/>
-        <div class="InfoInput__wapper__inputBox__check" v-if="verifi[2]">
-          ✓
+        <div class="InfoInput__wapper__inputBox">
+          <input type="password" class="InfoInput__wapper__inputBox__input"
+          placeholder="●●●●●●●●●●●●" v-model="pw"/>
+          <div class="InfoInput__wapper__inputBox__check" v-if="verifi[1]">
+            ✓
+          </div>
         </div>
-        <div class="InfoInput__wapper__inputBox--wrong"
-        v-if="(pw !== pwcheck)">
-          비밀번호를 정확히 입력해주세요
+        <span class="InfoInput__wapper__inputBox__warning">
+            * 영문(대소문자 구분), 숫자 포함 8자리 이상, 특수기호 가능
+        </span>
+      </div>
+      <div class="InfoInput__wapper pwcheck">
+        <div class="InfoInput__wapper__title">
+          비밀번호 확인
+        </div>
+        <div class="InfoInput__wapper__inputBox">
+          <input type="password" class="InfoInput__wapper__inputBox__input"
+          placeholder="●●●●●●●●●●●●" v-model="pwcheck"/>
+          <div class="InfoInput__wapper__inputBox__check " v-if="verifi[2]">
+            ✓
+          </div>
         </div>
       </div>
     </div>
@@ -105,7 +147,7 @@ export default {
         return this.$store.state.auth.pwcheck;
       },
       set(value) {
-        const RegResult = this.$store.state.auth.pw === value;
+        const RegResult = this.$store.state.auth.pw === value && pwReg.test(value);
         this.$store.commit('updatePwCheck', value);
         if (this.$store.state.auth.verifi[2] !== RegResult &&
         value !== '') {
@@ -139,17 +181,18 @@ export default {
   position: relative;
   width: 1140px;
   height: 226px;
-  &::before, &::after{
+  &::before, &::after {
     content: '';
     display: block;
     width: 1140px;
     height: 1px;
     position: absolute;
-    background: -webkit-linear-gradient(left, transparent 0%, #a7a7a7 50%, transparent 100%);
-    background: -moz-linear-gradient(left, transparent 0%, #a7a7a7 50%, transparent 100%);
-    background: -ms-linear-gradient(left, transparent 0%, #a7a7a7 50%, transparent 100%);
-    background: -o-linear-gradient(left, transparent 0%, #a7a7a7 50%, transparent 100%);
-    background: linear-gradient(left, transparent 0%, #a7a7a7 50%, transparent 100%);
+    background: linear-gradient(left, transparent 0%, #769b9f 50%, transparent 100%);
+  }
+  &.--false{
+    &::before, &::after{
+      background: linear-gradient(left, transparent 0%, #a7a7a7 50%, transparent 100%);
+    }
   }
   &::after{
     bottom: 0;
@@ -158,6 +201,11 @@ export default {
     position: relative;
     &:not(.pwcheck){
       border-bottom: 1px solid #5f8a90;
+    }
+    &.--false{
+      &:not(.pwcheck){
+        border-color: #a7a7a7;
+      }
     }
       @include e(title){
       position: relative;
@@ -169,6 +217,9 @@ export default {
       text-align: center;
       line-height: 75px;
       float: left;
+      &.--false{
+        color: #939393;
+      }
     }
     @include e(inputBox){
       position: relative;
@@ -191,6 +242,14 @@ export default {
         }
         &:focus{
           outline: none;
+        }
+        &.--false{
+          background-color: #fcfcfc;
+          border: solid 0.5px #959595;
+          &::placeholder{
+            color: #e2e2e2;
+            font-weight: 300;
+          }
         }
       }
       @include e(check){
