@@ -97,7 +97,7 @@
             중학교명
           </div>
           <div class="form__cover__form__colums__input-content">
-            <input type="text" class="input-text input-text-middle-school" v-model="middleSchool">
+            <input type="text" class="input-text input-text-school-name" v-model="schoolName">
             <button class="button button-search">검색</button>
           </div>
         </div>
@@ -200,9 +200,21 @@ export default {
       subText: '2019 입학원서 작성',
       yearOptions: [],
       monthOptions: [],
-      year: 0,
-      month: 0,
-      day: 0,
+      name: null,
+      sex: null,
+      year: null,
+      month: null,
+      day: null,
+      schoolGrade: null,
+      schoolClass: null,
+      schoolnumber: null,
+      schoolName: null,
+      guardianName: null,
+      schoolContact: null,
+      guardianContact: null,
+      contact: null,
+      zip: null,
+      detailedAddress: null,
     };
   },
   computed: {
@@ -293,7 +305,7 @@ export default {
   &-name, &-guardian-name, &-zip {
     width: 150px;
   }
-  &-middle-school, &-school-contact, &-guardian-contact, &-contact {
+  &-school-name, &-school-contact, &-guardian-contact, &-contact {
     width: 250px;
   }
   &-address {
