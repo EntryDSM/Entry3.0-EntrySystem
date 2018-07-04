@@ -115,6 +115,9 @@
           </div>
           <div class="form__cover__form__colums__input-content">
             <input type="text" class="input-text input-text-school-contact" v-model="schoolContact">
+            <span class="form__cover__form__colums__input-content__sign">
+              * ‘-’ 문자를 제외한 숫자만 입력해주세요.
+            </span>
           </div>
         </div>
         <div class="form__cover__form__colums">
@@ -125,6 +128,9 @@
             <input type="text"
               class="input-text input-text-guardian-contact"
               v-model="guardianContact">
+            <span class="form__cover__form__colums__input-content__sign">
+              * ‘-’ 문자를 제외한 숫자만 입력해주세요.
+            </span>
           </div>
         </div>
         <div class="form__cover__form__colums">
@@ -133,6 +139,9 @@
           </div>
           <div class="form__cover__form__colums__input-content">
             <input type="text" class="input-text input-text-contact" v-model="contact">
+            <span class="form__cover__form__colums__input-content__sign">
+              * ‘-’ 문자를 제외한 숫자만 입력해주세요.
+            </span>
           </div>
         </div>
         <div class="form__cover__form__colums">
