@@ -1,12 +1,18 @@
 <template>
   <div class="Authorization">
-    <headline title="2019 지원자 본인인증"/>
-    <accept-terms />
-    <info-input/>
+    <navigation />
+    <div class="Authorization__wrapper">
+      <headline title="2019 지원자 본인인증"/>
+      <accept-terms />
+      <info-input/>
+    </div>
+    <entry-footer />
   </div>
 </template>
 
 <script>
+import Navigation from '../common/Navigation';
+import EntryFooter from '../common/EntryFooter';
 import Headline from '../common/Headline';
 import AcceptTerms from './AcceptTerms';
 import InfoInput from './InfoInput';
@@ -14,6 +20,8 @@ import InfoInput from './InfoInput';
 export default {
   name: 'Authorization',
   components: {
+    Navigation,
+    EntryFooter,
     Headline,
     AcceptTerms,
     InfoInput,
@@ -25,8 +33,10 @@ export default {
 @import '../../style/setting.scss';
 
 .Authorization{
-  width: 1140px;
-  height: 1065px;
-  margin: 0 auto;
+  @include e(wrapper){
+    width: 1140px;
+    height: 1065px;
+    margin: 0 auto;
+  }
 }
 </style>
