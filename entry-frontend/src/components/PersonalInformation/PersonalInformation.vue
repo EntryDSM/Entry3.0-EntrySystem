@@ -78,7 +78,10 @@
             학번
           </div>
           <div class="form__cover__form__colums__input-content">
-            <input type="text" class="input-text input-text-school-grade" v-model="schoolGrade">
+            <input type="text"
+              class="input-text input-text-school-grade"
+              value="3"
+              disabled>
             <label class="title--input">
               학년
             </label>
@@ -205,7 +208,6 @@ export default {
       year: null,
       month: null,
       day: null,
-      schoolGrade: null,
       schoolClass: null,
       schoolnumber: null,
       schoolName: null,
