@@ -2,6 +2,7 @@
   <div class="modal" v-if="index !== 0">
     <div class="modal__background" @click="closeModal"></div>
     <div class="modal__contants">
+      <div class="modal__contants__close" @click="closeModal"></div>
       <login v-if="index === 1"/>
     </div>
   </div>
@@ -46,15 +47,12 @@ $M-close-color: #dee8e9;
   justify-content: center;
   align-items: center;
   @include e('background'){
-    position: fixed;
-    z-index: 10;
     width: 100%;
     height: 100%;
     background-color: rgba($color: #8C8C8C, $alpha: 0.3);
   }
   @include e('contants'){
     position: fixed;
-    z-index: 11;
     width: 400px;
     height: 450px;
     background-color: #FFF;
@@ -62,6 +60,30 @@ $M-close-color: #dee8e9;
     justify-content: center;
     align-items: center;
     color: $M-modal-color;
+    @include e('close'){
+        position: absolute;
+        top: 18px;
+        right: 14px;
+        width: 12px;
+        height: 12px;
+        &::before, &::after{
+          position: relative;
+          content: "";
+          display: block;
+          z-index: 7;
+          width: 12px;
+          height: 2px;
+          border-radius: 10px;
+          background-color: $M-close-color;
+        }
+        &::before{
+          transform: rotate(-45deg);
+          top: 2px;
+        }
+        &::after{
+          transform: rotate(45deg);
+        }
+    }
   }
 }
 

@@ -74,7 +74,6 @@ export default {
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        margin-left: 15px;
         @include m(img) {
           height: 30px;
         }
