@@ -88,11 +88,17 @@
             <label class="title--input">
               학년
             </label>
-            <input type="text" class="input-text input-text-school-class" v-model="schoolClass">
+            <input type="text"
+              class="input-text input-text-school-class"
+              v-model="schoolClass"
+              @keydown="onlyNumber">
             <label class="title--input">
               반
             </label>
-            <input type="text" class="input-text input-text-school-number" v-model="schoolnumber">
+            <input type="text"
+              class="input-text input-text-school-number"
+              v-model="schoolnumber"
+              @keydown="onlyNumber">
             <label class="title--input">
               번
             </label>
@@ -126,7 +132,10 @@
             학교 연락처
           </div>
           <div class="form__cover__form__colums__input-content">
-            <input type="text" class="input-text input-text-school-contact" v-model="schoolContact">
+            <input type="text"
+              class="input-text input-text-school-contact"
+              v-model="schoolContact"
+              @keydown="onlyNumber">
             <span class="form__cover__form__colums__input-content__sign">
               * ‘-’ 문자를 제외한 숫자만 입력해주세요.
             </span>
@@ -139,7 +148,8 @@
           <div class="form__cover__form__colums__input-content">
             <input type="text"
               class="input-text input-text-guardian-contact"
-              v-model="guardianContact">
+              v-model="guardianContact"
+              @keydown="onlyNumber">
             <span class="form__cover__form__colums__input-content__sign">
               * ‘-’ 문자를 제외한 숫자만 입력해주세요.
             </span>
@@ -150,7 +160,10 @@
             본인 연락처
           </div>
           <div class="form__cover__form__colums__input-content">
-            <input type="text" class="input-text input-text-contact" v-model="contact">
+            <input type="text"
+              class="input-text input-text-contact"
+              v-model="contact"
+              @keydown="onlyNumber">
             <span class="form__cover__form__colums__input-content__sign">
               * ‘-’ 문자를 제외한 숫자만 입력해주세요.
             </span>
@@ -287,6 +300,16 @@ export default {
     this.monthOptions = monthArray;
   },
   methods: {
+    onlyNumber(e) {
+      const keyCode = e.keyCode;
+      // 숫자와 기능키, DELETE키 허용
+      if ((keyCode > 31 && (keyCode < 48 || keyCode > 57)) &&
+        keyCode !== 46 &&
+        keyCode !== 37 &&
+        keyCode !== 39) {
+        e.preventDefault();
+      }
+    },
     movePrev() {
       this.$router.push('/');
     },
