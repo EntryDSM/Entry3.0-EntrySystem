@@ -360,6 +360,7 @@ export default {
     &-grade, &-class, &-number {
       width: 50px;
       text-align: center;
+      padding: 0;
     }
   }
 }
