@@ -9,7 +9,7 @@
           <td class="table-data-text">봉사시간</td>
           <td class="table-data-text">
             <input type="number"
-                   v-model="volunteer"
+                   v-model.number="volunteerNAttendance.volunteer"
                    min="0"
                    class="input-text table-data-text__input"
             >
@@ -23,7 +23,7 @@
               <td class="table-data-text__row__data">전체 무단 결석 일수</td>
               <td class="table-data-text__row__data">
                 <input type="number"
-                       v-model="absence"
+                       v-model.number="volunteerNAttendance.absence"
                        min="0"
                        class="input-text table-data-text__input"
                 >
@@ -32,7 +32,7 @@
               <td class="table-data-text__row__data">전체 무단 조퇴 일수</td>
               <td class="table-data-text__row__data">
                 <input type="number"
-                       v-model="earlyLeave"
+                       v-model.number="volunteerNAttendance.earlyLeave"
                        min="0"
                        class="input-text table-data-text__input"
                 >
@@ -43,7 +43,7 @@
               <td class="table-data-text__row__data">전체 무단 지각 일수</td>
               <td class="table-data-text__row__data">
                 <input type="number"
-                       v-model="lateness"
+                       v-model.number="volunteerNAttendance.lateness"
                        min="0"
                        class="input-text table-data-text__input"
                 >
@@ -52,7 +52,7 @@
               <td class="table-data-text__row__data">전체 무단 결과 일수</td>
               <td class="table-data-text__row__data">
                 <input type="number"
-                       v-model="missingClass"
+                       v-model.number="volunteerNAttendance.missingClass"
                        min="0"
                        class="input-text table-data-text__input"
                 >
@@ -65,6 +65,58 @@
 
       <h3>미이수 학기 선택</h3>
       <table class="discomplete-table">
+        <tr class="table-row">
+          <td class="table-row__first-grade">1학년</td>
+          <td class="table-row__second-grade">2학년</td>
+          <td class="table-row__third-grade">3학년</td>
+        </tr>
+        <tr class="table-row">
+          <td class="table-row__first-semester">
+            <input type="checkbox"
+                   class="input-checkbox"
+                   id="input-first-first"
+                   v-model="semesters.firstFirstSemester"
+            />
+            <label class="input-checkbox-label" for="input-first-first"></label>
+            <span class="table-row__semester-text">1학기</span>
+          </td>
+          <td class="table-row__first-semester">
+            <input type="checkbox"
+                   class="input-checkbox"
+                   id="input-first-second"
+                   v-model="semesters.firstSecondSemester"
+            />
+            <label class="input-checkbox-label" for="input-first-second"></label>
+            <span class="table-row__semester-text">2학기</span>
+          </td>
+          <td class="table-row__second-semester">
+            <input type="checkbox"
+                   class="input-checkbox"
+                   id="input-second-first"
+                   v-model="semesters.secondFirstSemester"
+            />
+            <label class="input-checkbox-label" for="input-second-first"></label>
+            <span class="table-row__semester-text">1학기</span>
+          </td>
+          <td class="table-row__second-semester">
+            <input type="checkbox"
+                   class="input-checkbox"
+                   id="input-second-second"
+                   v-model="semesters.secondSecondSemester"
+            />
+            <label class="input-checkbox-label" for="input-second-second"></label>
+            <span class="table-row__semester-text">2학기</span>
+          </td>
+          <td class="table-row__third-semester">
+            <input type="checkbox"
+                   class="input-checkbox"
+                   id="input-third-first"
+                   v-model="semesters.thirdFirstSemester"
+            />
+            <label class="input-checkbox-label" for="input-third-first"></label>
+            <span class="table-row__semester-text">1학기</span>
+          </td>
+        </tr>
       </table>
 
       <h3>성적입력</h3>
@@ -96,11 +148,20 @@ export default {
   },
   data() {
     return {
-      volunteer: 0,
-      absence: 0,
-      earlyLeave: 0,
-      lateness: 0,
-      missingClass: 0,
+      volunteerNAttendance: {
+        volunteer: 0,
+        absence: 0,
+        earlyLeave: 0,
+        lateness: 0,
+        missingClass: 0,
+      },
+      semesters: {
+        firstFirstSemester: false,
+        firstSecondSemester: false,
+        secondFirstSemester: false,
+        secondSecondSemester: false,
+        thirdFirstSemester: false,
+      },
     };
   },
   methods: {
@@ -118,8 +179,9 @@ export default {
 @import '../../style/setting';
 
 $table-border: #769b9f;
-$table-inner: #f3f3f3;
+$table-inner: #f2f2f2;
 $input-color: #5f8a90;
+$table-background: #f7fbfc;
 
 .grade-input-cover {
   width: 1140px;
@@ -230,7 +292,66 @@ $input-color: #5f8a90;
   }
 
   .discomplete-table {
+    width: 100%;
     height: 150px;
+
+    .table-row {
+      height: calc(100% / 2);
+
+      &:first-of-type {
+        background: linear-gradient(left, transparent 0%,
+        $table-background 10%, $table-background 90%, transparent 100%);
+      }
+
+      & > td {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        font-size: 20px;
+        box-sizing: border-box;
+      }
+
+      @include e('first-grade') {
+        width: 455.6px;
+        border-right: 1px solid $table-inner;
+      }
+
+      @include e('second-grade') {
+        width: 453.6px;
+        border-right: 1px solid $table-inner;
+      }
+
+      @include e('third-grade') {
+        width: calc(100% - 909.2px);
+      }
+
+      @include e('first-semester') {
+        width: 227.8px;
+        height: 100%;
+        border-right: 1px solid $table-inner;
+      }
+
+      @include e('second-semester') {
+        width: 226.8px;
+        height: 100%;
+        border-right: 1px solid $table-inner;
+      }
+
+      @include e('third-semester') {
+        width: calc(100% - 909.2px);
+        height: 100%;
+      }
+
+      @include e('semester-text') {
+        font-size: 18px;
+        padding-left: 7px;
+      }
+
+      .input-checkbox-label {
+        margin-top: -7px;
+      }
+    }
   }
 
   .grade-input-table {

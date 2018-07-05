@@ -91,7 +91,7 @@ $white: #fff;
 
 footer {
   height: 178px;
-  background-color: #8fc6cc;
+  background-color: #78C2CA;
 
   .footer-cover {
     width: 1140px;
