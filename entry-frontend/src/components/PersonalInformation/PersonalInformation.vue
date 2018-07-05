@@ -178,7 +178,8 @@
               class="input-text input-text-zip"
               placeholder="우편번호"
               :value="zip"
-              @input="zip = $event.target.value">
+              @input="zip = $event.target.value"
+              @keydown="onlyNumber">
             <input type="text"
               class="input-text input-text-address"
               placeholder="기본주소"
@@ -302,7 +303,7 @@ export default {
   methods: {
     onlyNumber(e) {
       const keyCode = e.keyCode;
-      // 숫자와 기능키, DELETE키 허용
+      // 숫자와 기능키, DELETE키, Left, Right 허용
       if ((keyCode > 31 && (keyCode < 48 || keyCode > 57)) &&
         keyCode !== 46 &&
         keyCode !== 37 &&
