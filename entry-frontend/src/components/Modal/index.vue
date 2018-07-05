@@ -116,8 +116,13 @@ $M-close-color: #dee8e9;
   font-size: 14px;
 }
 .error-msg{
+  position: absolute;
+  top: 30px;
+  left: 46px;
+  z-index: 6;
+  display: block;
   animation: errormsg 4s normal;
-  display: none;
+  opacity: 0;
 }
 
 .input-shake{
@@ -142,30 +147,20 @@ $M-close-color: #dee8e9;
 }
 @keyframes errormsg {
   0% {
-    display: block;
     opacity: 0;
-    position: relative;
-    top: 30px;
+    top: 60px;
   }
   10%{
-    display: block;
     opacity: 1;
-    position: relative;
-    top: 0px;
+    top: 30px;
   }
   75%{
-    display: block;
     opacity: 1;
-    position: relative;
-    top: 0px;
-  }
-  99%{
-    opacity: 0;
-    position: relative;
-    top: -30px;
+    top: 30px;
   }
   100%{
-    display: none;
+    opacity: 0;
+    top: 0px;
   }
 }
 </style>
