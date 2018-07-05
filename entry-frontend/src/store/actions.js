@@ -4,7 +4,7 @@ export const actions = {
   updateEmail: context => context.commit('updateEmail'),
   updatePw: context => context.commit('updateEmail'),
   updatePwCheck: context => context.commit('updateEmail'),
-  updateVerifi: context => context.commit('updateVerifi'),
+  updateverify: context => context.commit('updateverify'),
 };
 
 export default actions;

@@ -11,8 +11,8 @@ export const mutations = {
   updatePwCheck: (state, payload) => {
     state.auth.pwcheck = payload;
   },
-  updateVerifi: (state, payload) => {
-    state.auth.verifi[payload.index] = payload.data;
+  updateverify: (state, payload) => {
+    state.auth.verify[payload.index] = payload.data;
   },
 };
 

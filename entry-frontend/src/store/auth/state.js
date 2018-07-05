@@ -3,7 +3,7 @@ export const auth = {
   email: '',
   pw: '',
   pwcheck: '',
-  verifi: [
+  verify: [
     // email 검증
     false,
     // password 검증

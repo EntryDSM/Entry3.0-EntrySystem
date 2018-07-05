@@ -53,7 +53,7 @@
           <input type="text" class="InfoInput__wapper__inputBox__input"
           placeholder="example@dsmhs.kr" v-model="email"/>
         </div>
-        <div class="InfoInput__wapper__inputBox__check" v-if="verifi[0]">
+        <div class="InfoInput__wapper__inputBox__check" v-if="verify[0]">
             ✓
         </div>
       </div>
@@ -64,7 +64,7 @@
         <div class="InfoInput__wapper__inputBox">
           <input type="password" class="InfoInput__wapper__inputBox__input"
           placeholder="●●●●●●●●●●●●" v-model="pw"/>
-          <div class="InfoInput__wapper__inputBox__check" v-if="verifi[1]">
+          <div class="InfoInput__wapper__inputBox__check" v-if="verify[1]">
             ✓
           </div>
         </div>
@@ -79,8 +79,12 @@
         <div class="InfoInput__wapper__inputBox">
           <input type="password" class="InfoInput__wapper__inputBox__input"
           placeholder="●●●●●●●●●●●●" v-model="pwcheck"/>
-          <div class="InfoInput__wapper__inputBox__check " v-if="verifi[2]">
+          <div class="InfoInput__wapper__inputBox__check " v-if="verify[2]">
             ✓
+          </div>
+          <div class="InfoInput__wapper__inputBox--wrong"
+          v-if="(pw !== pwcheck)">
+            비밀번호를 정확히 입력해주세요
           </div>
         </div>
       </div>
@@ -88,7 +92,7 @@
     <div class="btn">
       <button type="button"
             class="input-btn input-btn--next"
-            v-if="(isAccept && verifi[0] && verifi[1] && verifi[2])"
+            v-if="(isAccept && verify[0] && verify[1] && verify[2])"
             @click="moveToNextPage"
       >
         <span class="input-btn__arrow input-btn__arrow--right">〉</span>
@@ -119,8 +123,8 @@ export default {
       set(value) {
         const RegResult = emailReg.test(value);
         this.$store.commit('updateEmail', value);
-        if (this.$store.state.auth.verifi[0] !== RegResult) {
-          this.$store.commit('updateVerifi', {
+        if (this.$store.state.auth.verify[0] !== RegResult) {
+          this.$store.commit('updateverify', {
             index: 0,
             data: RegResult,
           });
@@ -134,8 +138,8 @@ export default {
       set(value) {
         const RegResult = pwReg.test(value);
         this.$store.commit('updatePw', value);
-        if (this.$store.state.auth.verifi[1] !== RegResult) {
-          this.$store.commit('updateVerifi', {
+        if (this.$store.state.auth.verify[1] !== RegResult) {
+          this.$store.commit('updateverify', {
             index: 1,
             data: RegResult,
           });
@@ -149,17 +153,17 @@ export default {
       set(value) {
         const RegResult = this.$store.state.auth.pw === value && pwReg.test(value);
         this.$store.commit('updatePwCheck', value);
-        if (this.$store.state.auth.verifi[2] !== RegResult &&
+        if (this.$store.state.auth.verify[2] !== RegResult &&
         value !== '') {
-          this.$store.commit('updateVerifi', {
+          this.$store.commit('updateverify', {
             index: 2,
             data: RegResult,
           });
         }
       },
     },
-    verifi() {
-      return this.$store.state.auth.verifi;
+    verify() {
+      return this.$store.state.auth.verify;
     },
     isAccept() {
       return this.$store.state.auth.isAccept;
