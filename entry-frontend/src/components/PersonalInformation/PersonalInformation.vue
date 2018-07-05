@@ -90,15 +90,15 @@
             </label>
             <input type="text"
               class="input-text input-text-school-class"
-              v-model="schoolClass"
-              @keydown="onlyNumber">
+              :value="schoolClass"
+              @input="onlyNumber">
             <label class="title--input">
               반
             </label>
             <input type="text"
               class="input-text input-text-school-number"
-              v-model="schoolnumber"
-              @keydown="onlyNumber">
+              :value="schoolnumber"
+              @input="onlyNumber">
             <label class="title--input">
               번
             </label>
@@ -134,8 +134,8 @@
           <div class="form__cover__form__colums__input-content">
             <input type="text"
               class="input-text input-text-school-contact"
-              v-model="schoolContact"
-              @keydown="onlyNumber">
+              :value="schoolContact"
+              @input="onlyNumber">
             <span class="form__cover__form__colums__input-content__sign">
               * ‘-’ 문자를 제외한 숫자만 입력해주세요.
             </span>
@@ -148,8 +148,8 @@
           <div class="form__cover__form__colums__input-content">
             <input type="text"
               class="input-text input-text-guardian-contact"
-              v-model="guardianContact"
-              @keydown="onlyNumber">
+              :value="guardianContact"
+              @input="onlyNumber">
             <span class="form__cover__form__colums__input-content__sign">
               * ‘-’ 문자를 제외한 숫자만 입력해주세요.
             </span>
@@ -162,8 +162,8 @@
           <div class="form__cover__form__colums__input-content">
             <input type="text"
               class="input-text input-text-contact"
-              v-model="contact"
-              @keydown="onlyNumber">
+              :value="contact"
+              @input="onlyNumber">
             <span class="form__cover__form__colums__input-content__sign">
               * ‘-’ 문자를 제외한 숫자만 입력해주세요.
             </span>
@@ -178,8 +178,7 @@
               class="input-text input-text-zip"
               placeholder="우편번호"
               :value="zip"
-              @input="zip = $event.target.value"
-              @keydown="onlyNumber">
+              @input="onlyNumber">
             <input type="text"
               class="input-text input-text-address"
               placeholder="기본주소"
@@ -302,14 +301,8 @@ export default {
   },
   methods: {
     onlyNumber(e) {
-      const keyCode = e.keyCode;
-      // 숫자와 기능키, DELETE키, Left, Right 허용
-      if ((keyCode > 31 && (keyCode < 48 || keyCode > 57)) &&
-        keyCode !== 46 &&
-        keyCode !== 37 &&
-        keyCode !== 39) {
-        e.preventDefault();
-      }
+      // 숫자만 입력 가능
+      e.target.value = e.target.value.replace(/[^\d]/g, '');
     },
     movePrev() {
       this.$router.push('/');
