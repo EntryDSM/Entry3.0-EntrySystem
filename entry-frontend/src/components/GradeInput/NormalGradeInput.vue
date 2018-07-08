@@ -121,6 +121,21 @@
 
       <h3>성적입력</h3>
       <table class="grade-input-table">
+        <div class="all-grade-reset-cover">
+          <div class="all-grade-reset-cover__box">
+            <span class="all-grade-reset-cover__box__text">
+              전체 성적이 {{ allGrade }} 로 초기화 됩니다.
+            </span>
+          </div>
+          <div class="all-grade-reset-cover__reset">
+            <span class="all-grade-reset-cover__reset__text">전체 성적 초기화: </span>
+            <button type="button" @click="resetGrade">A</button>
+            <button type="button" @click="resetGrade">B</button>
+            <button type="button" @click="resetGrade">C</button>
+            <button type="button" @click="resetGrade">D</button>
+            <button type="button" @click="resetGrade">E</button>
+          </div>
+        </div>
       </table>
     </div>
     <prev-next-btn :prevShow="1"
@@ -148,6 +163,7 @@ export default {
   },
   data() {
     return {
+      // 봉사 및 출석
       volunteerNAttendance: {
         volunteer: 0,
         absence: 0,
@@ -155,6 +171,7 @@ export default {
         lateness: 0,
         missingClass: 0,
       },
+      // 미이수 학기 선택
       semesters: {
         firstFirstSemester: false,
         firstSecondSemester: false,
@@ -162,6 +179,8 @@ export default {
         secondSecondSemester: false,
         thirdFirstSemester: false,
       },
+      // 모든 학기 초기화
+      allGrade: '',
     };
   },
   methods: {
@@ -170,6 +189,9 @@ export default {
     },
     moveNext() {
       this.$router.push('/');
+    },
+    resetGrade({ target }) {
+      this.allGrade = target.textContent;
     },
   },
 };
@@ -182,6 +204,7 @@ $table-border: #769b9f;
 $table-inner: #f2f2f2;
 $input-color: #5f8a90;
 $table-background: #f7fbfc;
+$button-color: #edf5f6;
 
 .grade-input-cover {
   width: 1140px;
@@ -356,6 +379,64 @@ $table-background: #f7fbfc;
 
   .grade-input-table {
     height: 675px;
+
+    .all-grade-reset-cover {
+      width: 200px;
+      height: 60px;
+      box-sizing: border-box;
+      position: absolute;
+      right: 0;
+      margin-top: -60px;
+
+      @include e('box') {
+        width: 175px;
+        height: 24px;
+        border: 1px solid $input-color;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        float: right;
+
+        @include e('text') {
+          font-size: 11px;
+          color: #26484c;
+        }
+      }
+
+      @include e('reset') {
+        margin-top: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        float: right;
+
+        @include e('text') {
+          font-size: 11px;
+        }
+
+        button {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background-color: transparent;
+          font-size: 14px;
+          border: 0;
+          margin: {
+            left: 2px;
+            top: -3px;
+          }
+          cursor: pointer;
+          outline: none;
+          transition: background-color 0.3s;
+
+          &:hover {
+            background-color: $button-color;
+          }
+        }
+      }
+    }
   }
 }
 </style>
