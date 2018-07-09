@@ -95,7 +95,7 @@ $color-main4: #f7fbfc;
 $modal-z-index: 5;
 
 .search-school-modal {
-  $modal-width: 400px;
+  $modal-width: 600px;
   $modal-height: 500px;
   position: fixed;
   top: 50%;
