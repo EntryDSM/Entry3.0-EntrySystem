@@ -1,14 +1,30 @@
 <template>
   <div class="search-school-modal">
     <button class="search-school-modal__close-btn">&times;</button>
-    <input type="text" class="search-school-modal__input">
+    <input type="text"
+      class="search-school-modal__input"
+      :placeholder="placeholder">
     <ul class="search-school-modal__list">
-      <li class="search-school-modal__list__item">
+      <li class="
+        search-school-modal__list__item
+        search-school-modal__list__item--head">
         <span class="search-school-modal__list__item__name">
           학교 이름
         </span>
         <span class="search-school-modal__list__item__address">
-          학교 주소
+          지역
+        </span>
+      </li>
+      <li class="
+        search-school-modal__list__item
+        search-school-modal__list__item--instance">
+        <span class="
+          search-school-modal__list__item__name
+          search-school-modal__list__item--instance__name">
+          대전중학교
+        </span>
+        <span class="search-school-modal__list__item__address">
+          대전광역시
         </span>
       </li>
     </ul>
@@ -23,6 +39,11 @@
 <script>
 export default {
   name: 'search-school-modal',
+  data() {
+    return {
+      placeholder: '검색어 입력',
+    };
+  },
 };
 </script>
 
@@ -84,19 +105,29 @@ $modal-z-index: 5;
     margin-top: 10px;
     overflow-y: scroll;
     @include e('item') {
-      line-height: 50px;
-      height: 50px;
       box-sizing: border-box;
       padding-left: 10px;
       border-bottom: 1px solid $color-main2;
       position: relative;
+      @include m('head') {
+        background-color: $color-main4;
+        color: $color-main3;
+        height: 30px;
+        line-height: 30px;
+      }
+      @include m('instance') {
+        height: 50px;
+        line-height: 50px;
+        @include e('name') {
+          cursor: pointer;
+          &:hover {
+            color: $color-main3;
+            border-bottom: 1px solid $color-main3;
+          }
+        }
+      }
       @include e('name') {
         font-size: 18px;
-        cursor: pointer;
-        &:hover {
-          color: $color-main3;
-          border-bottom: 1px solid $color-main3;
-        }
       }
       @include e('address') {
         font-size: 15px;
