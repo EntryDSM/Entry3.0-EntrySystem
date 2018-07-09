@@ -241,6 +241,7 @@ export default {
         lateness: 0,
         missingClass: 0,
       },
+
       // 미이수 학기 선택
       semesters: {
         firstFirstSemester: false,
@@ -249,8 +250,65 @@ export default {
         secondSecondSemester: false,
         thirdFirstSemester: false,
       },
+
       // 모든 학기 초기화
       resetAllGrade: '',
+
+      // 전체 학기 선택
+      grades: [
+        // 학년은 배열 인덱스로 구분
+        {
+          firstSemester: {
+            korean: { score: '', decided: false },
+            society: { score: '', decided: false },
+            history: { score: '', decided: false },
+            math: { score: '', decided: false },
+            science: { score: '', decided: false },
+            technologyHome: { score: '', decided: false },
+            english: { score: '', decided: false },
+          },
+          secondSemester: {
+            korean: { score: '', decided: false },
+            society: { score: '', decided: false },
+            history: { score: '', decided: false },
+            math: { score: '', decided: false },
+            science: { score: '', decided: false },
+            technologyHome: { score: '', decided: false },
+            english: { score: '', decided: false },
+          },
+        },
+        {
+          firstSemester: {
+            korean: { score: '', decided: false },
+            society: { score: '', decided: false },
+            history: { score: '', decided: false },
+            math: { score: '', decided: false },
+            science: { score: '', decided: false },
+            technologyHome: { score: '', decided: false },
+            english: { score: '', decided: false },
+          },
+          secondSemester: {
+            korean: { score: '', decided: false },
+            society: { score: '', decided: false },
+            history: { score: '', decided: false },
+            math: { score: '', decided: false },
+            science: { score: '', decided: false },
+            technologyHome: { score: '', decided: false },
+            english: { score: '', decided: false },
+          },
+        },
+        {
+          firstSemester: {
+            korean: { score: '', decided: false },
+            society: { score: '', decided: false },
+            history: { score: '', decided: false },
+            math: { score: '', decided: false },
+            science: { score: '', decided: false },
+            technologyHome: { score: '', decided: false },
+            english: { score: '', decided: false },
+          },
+        },
+      ],
     };
   },
   methods: {
@@ -263,6 +321,9 @@ export default {
     resetGrade({ target }) {
       this.resetAllGrade = target.textContent;
     },
+  },
+  mounted() {
+    console.log(this.grades);
   },
 };
 </script>
@@ -543,6 +604,7 @@ $button-color: #edf5f6;
         &:nth-of-type(1) {
           width: 163px;
           background-color: $table-background;
+          font-size: 20px;
           border: {
             top: 1px solid $table-inner;
             right: 1px solid $table-inner;
