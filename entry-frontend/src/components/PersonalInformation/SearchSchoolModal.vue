@@ -6,7 +6,9 @@
     </button>
     <input type="text"
       class="search-school-modal__input"
-      :placeholder="placeholder">
+      :placeholder="placeholder"
+      v-model="keyword"
+      @keydown.enter="getSchools">
     <ul class="search-school-modal__list">
       <li class="
         search-school-modal__list__item
@@ -14,38 +16,72 @@
         <span class="search-school-modal__list__item__name">
           학교 이름
         </span>
-        <span class="search-school-modal__list__item__address">
+        <span class="search-school-modal__list__item__region">
           지역
         </span>
       </li>
       <li class="
         search-school-modal__list__item
-        search-school-modal__list__item--instance">
+        search-school-modal__list__item--instance"
+        v-for="school in schools"
+        :key="school.seq">
         <span class="
           search-school-modal__list__item__name
           search-school-modal__list__item--instance__name">
-          대전중학교
+          {{ school.schoolName }}
         </span>
-        <span class="search-school-modal__list__item__address">
-          대전광역시
+        <span class="search-school-modal__list__item__region">
+          {{ school.region }}
         </span>
       </li>
     </ul>
     <div class="search-school-modal__pagination">
-      <div class="search-school-modal__pagination__number">이전</div>
-      <div class="search-school-modal__pagination__number">1</div>
-      <div class="search-school-modal__pagination__number">다음</div>
+      <div class="search-school-modal__pagination__number"
+        @click="current > 1 ? prevPage : ''">이전</div>
+      <div class="search-school-modal__pagination__number">
+        {{ current }}
+      </div>
+      <div class="search-school-modal__pagination__number"
+        @click="nextPage">다음</div>
     </div>
   </div>
 </template>
 
 <script>
+import config from '../../config';
+
 export default {
   name: 'search-school-modal',
   data() {
     return {
-      placeholder: '검색어 입력',
+      placeholder: '학교명 입력',
+      keyword: '',
+      current: 1,
+      schools: [],
     };
+  },
+  methods: {
+    search() {
+      this.current = 1;
+      this.getSchools();
+    },
+    getSchools() {
+      const pageCount = 10; // 한 페이지에 보여질 건수
+      const keyword = encodeURI(this.keyword);
+      const dataURI = `http://www.career.go.kr/cnet/openapi/getOpenApi?apiKey=${config.appKey}&svcType=api&svcCode=SCHOOL&contentType=json&gubun=midd_list&thisPage=${this.current}&perPage=${pageCount}&searchSchulNm=${keyword}`;
+      this.$axios.get(dataURI)
+        .then((result) => {
+          this.schools = result.data.dataSearch.content;
+        });
+    },
+    prevPage() {
+      this.current -= 1;
+      this.getSchools();
+    },
+    nextPage() {
+      this.current += 1;
+      this.getSchools();
+    },
   },
 };
 </script>
@@ -133,7 +169,7 @@ $modal-z-index: 5;
       @include e('name') {
         font-size: 18px;
       }
-      @include e('address') {
+      @include e('region') {
         font-size: 15px;
         position: absolute;
         right: 0;
