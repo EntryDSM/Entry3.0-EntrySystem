@@ -1,7 +1,7 @@
 <template>
   <div class="personal-information form">
     <!-- 학교 검색 모달창 -->
-    <search-school-modal v-show="isOpen"/>
+    <search-school-modal v-show="isOpen" @close="isOpen = false"/>
 
     <navigation />
     <headline :title="title" :subText="subText" />

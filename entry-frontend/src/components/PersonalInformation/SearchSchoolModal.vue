@@ -1,6 +1,9 @@
 <template>
   <div class="search-school-modal">
-    <button class="search-school-modal__close-btn">&times;</button>
+    <button class="search-school-modal__close-btn"
+      @click="$emit('close')">
+      &times;
+    </button>
     <input type="text"
       class="search-school-modal__input"
       :placeholder="placeholder">
@@ -87,6 +90,7 @@ $modal-z-index: 5;
     top: 5px;
     right: 5px;
     color: $color-main3;
+    outline: none;
   }
   @include e('input') {
     display: block;
