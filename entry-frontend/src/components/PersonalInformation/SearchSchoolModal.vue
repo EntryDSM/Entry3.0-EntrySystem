@@ -4,11 +4,13 @@
       @click="$emit('close')">
       &times;
     </button>
+
     <input type="text"
       class="search-school-modal__input"
       :placeholder="placeholder"
       v-model="keyword"
       @keydown.enter="getSchools">
+
     <ul class="search-school-modal__list">
       <li class="
         search-school-modal__list__item
@@ -20,6 +22,7 @@
           지역
         </span>
       </li>
+
       <li class="
         search-school-modal__list__item
         search-school-modal__list__item--instance"
@@ -27,7 +30,8 @@
         :key="school.seq">
         <span class="
           search-school-modal__list__item__name
-          search-school-modal__list__item--instance__name">
+          search-school-modal__list__item--instance__name"
+          @click="selectSchool(school.schoolName, school.region)">
           {{ school.schoolName }}
         </span>
         <span class="search-school-modal__list__item__region">
@@ -35,9 +39,10 @@
         </span>
       </li>
     </ul>
+
     <div class="search-school-modal__pagination">
       <div class="search-school-modal__pagination__number"
-        @click="current > 1 ? prevPage : ''">이전</div>
+        @click="current > 1 ? prevPage() : ''">이전</div>
       <div class="search-school-modal__pagination__number">
         {{ current }}
       </div>
@@ -73,6 +78,10 @@ export default {
         .then((result) => {
           this.schools = result.data.dataSearch.content;
         });
+    },
+    selectSchool(name, region) {
+      this.$emit('selectSchool', `${name} (${region}`);
+      this.$emit('close');
     },
     prevPage() {
       this.current -= 1;

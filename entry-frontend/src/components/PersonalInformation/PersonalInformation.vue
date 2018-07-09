@@ -1,7 +1,9 @@
 <template>
   <div class="personal-information form">
     <!-- 학교 검색 모달창 -->
-    <search-school-modal v-show="isOpen" @close="isOpen = false"/>
+    <search-school-modal v-show="isOpen"
+      @close="isOpen = false"
+      @selectSchool="name => this.schoolName = name"/>
 
     <navigation />
     <headline :title="title" :subText="subText" />
