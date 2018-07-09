@@ -152,59 +152,80 @@
         </tr>
         <tr class="grade-input-table__row">
           <td>국어</td>
-          <td>A</td>
-          <td>B</td>
-          <td>C</td>
-          <td>D</td>
-          <td>E</td>
+          <td v-for="n in 5" :key="n">
+            <button type="button"
+                    v-for="arr in scores"
+                    :key="arr"
+            >
+              {{ arr }}
+            </button>
+          </td>
         </tr>
         <tr class="grade-input-table__row">
           <td>사회</td>
-          <td>A</td>
-          <td>B</td>
-          <td>C</td>
-          <td>D</td>
-          <td>E</td>
+          <td v-for="n in 5" :key="n">
+            <button type="button"
+                    v-for="arr in scores"
+                    :key="arr"
+            >
+              {{ arr }}
+            </button>
+          </td>
         </tr>
         <tr class="grade-input-table__row">
           <td>역사</td>
-          <td>A</td>
-          <td>B</td>
-          <td>C</td>
-          <td>D</td>
-          <td>E</td>
+          <td v-for="n in 5" :key="n">
+            <button type="button"
+                    v-for="arr in scores"
+                    :key="arr"
+            >
+              {{ arr }}
+            </button>
+          </td>
         </tr>
         <tr class="grade-input-table__row">
           <td>수학</td>
-          <td>A</td>
-          <td>B</td>
-          <td>C</td>
-          <td>D</td>
-          <td>E</td>
+          <td v-for="n in 5" :key="n">
+            <button type="button"
+                    v-for="arr in scores"
+                    :key="arr"
+            >
+              {{ arr }}
+            </button>
+          </td>
         </tr>
         <tr class="grade-input-table__row">
           <td>과학</td>
-          <td>A</td>
-          <td>B</td>
-          <td>C</td>
-          <td>D</td>
-          <td>E</td>
+          <td v-for="n in 5" :key="n">
+            <button type="button"
+                    v-for="arr in scores"
+                    :key="arr"
+            >
+              {{ arr }}
+            </button>
+          </td>
         </tr>
         <tr class="grade-input-table__row">
           <td>기술・가정</td>
-          <td>A</td>
-          <td>B</td>
-          <td>C</td>
-          <td>D</td>
-          <td>E</td>
+          <td v-for="n in 5" :key="n">
+            <button type="button"
+                    v-for="arr in scores"
+                    :key="arr"
+            >
+              {{ arr }}
+            </button>
+          </td>
         </tr>
         <tr class="grade-input-table__row">
           <td>영어</td>
-          <td>A</td>
-          <td>B</td>
-          <td>C</td>
-          <td>D</td>
-          <td>E</td>
+          <td v-for="n in 5" :key="n">
+            <button type="button"
+                    v-for="arr in scores"
+                    :key="arr"
+            >
+              {{ arr }}
+            </button>
+          </td>
         </tr>
       </table>
     </div>
@@ -253,6 +274,9 @@ export default {
 
       // 모든 학기 초기화
       resetAllGrade: '',
+
+      // 렌더링을 위한 점수
+      scores: ['A', 'B', 'C', 'D', 'E', 'X'],
 
       // 전체 학기 선택
       grades: [
@@ -321,9 +345,6 @@ export default {
     resetGrade({ target }) {
       this.resetAllGrade = target.textContent;
     },
-  },
-  mounted() {
-    console.log(this.grades);
   },
 };
 </script>
