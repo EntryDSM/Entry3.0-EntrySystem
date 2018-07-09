@@ -124,7 +124,7 @@
         <div class="all-grade-reset-cover">
           <div class="all-grade-reset-cover__box">
             <span class="all-grade-reset-cover__box__text">
-              전체 성적이 {{ allGrade }} 로 초기화 됩니다.
+              전체 성적이 {{ resetAllGrade }} 로 초기화 됩니다.
             </span>
           </div>
           <div class="all-grade-reset-cover__reset">
@@ -136,6 +136,76 @@
             <button type="button" @click="resetGrade">E</button>
           </div>
         </div>
+        <tr class="grade-input-table__row">
+          <td class="empty-space"></td>
+          <td class="first-grade row-grades" colspan="2">1학년</td>
+          <td class="second-grade row-grades" colspan="2">2학년</td>
+          <td class="third-grade row-grades">3학년</td>
+        </tr>
+        <tr class="grade-input-table__row">
+          <td class="empty-space"></td>
+          <td>1학기</td>
+          <td>2학기</td>
+          <td>1학기</td>
+          <td>2학기</td>
+          <td>1학기</td>
+        </tr>
+        <tr class="grade-input-table__row">
+          <td>국어</td>
+          <td>A</td>
+          <td>B</td>
+          <td>C</td>
+          <td>D</td>
+          <td>E</td>
+        </tr>
+        <tr class="grade-input-table__row">
+          <td>사회</td>
+          <td>A</td>
+          <td>B</td>
+          <td>C</td>
+          <td>D</td>
+          <td>E</td>
+        </tr>
+        <tr class="grade-input-table__row">
+          <td>역사</td>
+          <td>A</td>
+          <td>B</td>
+          <td>C</td>
+          <td>D</td>
+          <td>E</td>
+        </tr>
+        <tr class="grade-input-table__row">
+          <td>수학</td>
+          <td>A</td>
+          <td>B</td>
+          <td>C</td>
+          <td>D</td>
+          <td>E</td>
+        </tr>
+        <tr class="grade-input-table__row">
+          <td>과학</td>
+          <td>A</td>
+          <td>B</td>
+          <td>C</td>
+          <td>D</td>
+          <td>E</td>
+        </tr>
+        <tr class="grade-input-table__row">
+          <td>기술・가정</td>
+          <td>A</td>
+          <td>B</td>
+          <td>C</td>
+          <td>D</td>
+          <td>E</td>
+        </tr>
+        <tr class="grade-input-table__row">
+          <td>영어</td>
+          <td>A</td>
+          <td>B</td>
+          <td>C</td>
+          <td>D</td>
+          <td>E</td>
+        </tr>
       </table>
     </div>
     <prev-next-btn :prevShow="1"
@@ -180,7 +250,7 @@ export default {
         thirdFirstSemester: false,
       },
       // 모든 학기 초기화
-      allGrade: '',
+      resetAllGrade: '',
     };
   },
   methods: {
@@ -191,7 +261,7 @@ export default {
       this.$router.push('/');
     },
     resetGrade({ target }) {
-      this.allGrade = target.textContent;
+      this.resetAllGrade = target.textContent;
     },
   },
 };
@@ -386,7 +456,7 @@ $button-color: #edf5f6;
       box-sizing: border-box;
       position: absolute;
       right: 0;
-      margin-top: -60px;
+      margin-top: -64px;
 
       @include e('box') {
         width: 175px;
@@ -400,20 +470,20 @@ $button-color: #edf5f6;
         float: right;
 
         @include e('text') {
-          font-size: 11px;
+          font-size: 10px;
           color: #26484c;
         }
       }
 
       @include e('reset') {
-        margin-top: 12px;
+        margin-top: 13px;
         display: flex;
         align-items: center;
         justify-content: flex-end;
         float: right;
 
         @include e('text') {
-          font-size: 11px;
+          font-size: 10px;
         }
 
         button {
@@ -423,10 +493,7 @@ $button-color: #edf5f6;
           background-color: transparent;
           font-size: 14px;
           border: 0;
-          margin: {
-            left: 2px;
-            top: -3px;
-          }
+          margin-left: 1px;
           cursor: pointer;
           outline: none;
           transition: background-color 0.3s;
@@ -434,6 +501,68 @@ $button-color: #edf5f6;
           &:hover {
             background-color: $button-color;
           }
+
+          &:last-of-type {
+            margin-right: -5px;
+          }
+        }
+      }
+    }
+
+    @include e('row') {
+      width: 100%;
+      height: 75px;
+
+      &:first-of-type {
+        height: 75px;
+        font-size: 20px;
+        background-color: $table-background;
+      }
+
+      &:nth-of-type(2) {
+        height: 73px;
+        background-color: $table-background;
+        border-bottom: 1px solid $table-inner;
+
+        td {
+          border-right: 1px solid $table-inner;
+          &:last-of-type { border-right: 0; }
+          font-size: 20px;
+        }
+      }
+
+      td {
+        vertical-align: middle;
+        text-align: center;
+        font-size: 18px;
+        border: {
+          right: 1px solid $table-inner;
+          bottom: 1px solid $table-inner;
+        }
+
+        &:nth-of-type(1) {
+          width: 163px;
+          background-color: $table-background;
+          border: {
+            top: 1px solid $table-inner;
+            right: 1px solid $table-inner;
+          }
+        }
+
+        &:last-of-type { border-right: 0; }
+
+        &.empty-space {
+          border: {
+            top: 0;
+            bottom: 0;
+          }
+        }
+        &.first-grade,
+        &.second-grade { border-right: 1px solid $table-inner; }
+        &.third-grade { border-right: 0; }
+        &.row-grades {
+          border-bottom: 1px solid $table-inner;
+          font-size: 20px;
         }
       }
     }
