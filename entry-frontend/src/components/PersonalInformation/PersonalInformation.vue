@@ -1,5 +1,8 @@
 <template>
   <div class="personal-information form">
+    <!-- 학교 검색 모달창 -->
+    <search-school-modal v-show="isOpen"/>
+
     <navigation />
     <headline :title="title" :subText="subText" />
     <div class="form__cover">
@@ -113,7 +116,9 @@
               class="input-text input-text-school-name"
               :value="schoolName"
               @input="schoolName = $event.target.value">
-            <button class="button button-search">검색</button>
+            <button class="button button-search" @click="isOpen = true">
+              검색
+            </button>
           </div>
         </div>
         <div class="form__cover__form__colums">
@@ -214,6 +219,7 @@ import Headline from '../common/Headline';
 import PrevNextBtn from '../common/PrevNextBtn';
 import EntryFooter from '../common/EntryFooter';
 import Selectbox from '../common/Selectbox';
+import SearchSchoolModal from './SearchSchoolModal';
 
 export default {
   name: 'personalInformation',
@@ -223,9 +229,11 @@ export default {
     PrevNextBtn,
     EntryFooter,
     Selectbox,
+    SearchSchoolModal,
   },
   data() {
     return {
+      isOpen: false, // 학교 검색 모달창 열림 여부
       title: '인적 사항',
       subText: '2019 입학원서 작성',
       yearOptions: [],
