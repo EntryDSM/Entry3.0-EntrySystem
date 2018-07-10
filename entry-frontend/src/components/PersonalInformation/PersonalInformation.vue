@@ -11,6 +11,7 @@
 
       <!-- form -->
       <div class="form__cover__form">
+        <attach-image style="position: absolute; top:0; right:0;"/>
         <div class="form__cover__form__colums">
           <div class="form__cover__form__colums__name">
             이름
@@ -220,6 +221,7 @@ import Headline from '../common/Headline';
 import PrevNextBtn from '../common/PrevNextBtn';
 import EntryFooter from '../common/EntryFooter';
 import Selectbox from '../common/Selectbox';
+import AttachImage from './AttachImage';
 import SearchSchoolModal from './SearchSchoolModal';
 
 export default {
@@ -230,6 +232,7 @@ export default {
     PrevNextBtn,
     EntryFooter,
     Selectbox,
+    AttachImage,
     SearchSchoolModal,
   },
   data() {
