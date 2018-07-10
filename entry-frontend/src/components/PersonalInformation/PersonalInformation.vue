@@ -1,6 +1,6 @@
 <template>
   <div class="personal-information form">
-    <!-- 학교 검색 모달창 -->
+    <!-- 학교 검색 모달 -->
     <search-school-modal v-show="isOpen"
       @close="isOpen = false"
       @selectSchool="name => this.schoolName = name"/>
@@ -11,6 +11,8 @@
 
       <!-- form -->
       <div class="form__cover__form">
+
+        <!-- 이미지 첨부 컴포넌트 -->
         <attach-image style="position: absolute; top:0; right:0;"/>
         <div class="form__cover__form__colums">
           <div class="form__cover__form__colums__name">
@@ -242,28 +244,30 @@ export default {
       subText: '2019 입학원서 작성',
       yearOptions: [],
       monthOptions: [],
-      name: null,
-      sex: null,
-      year: null,
-      month: null,
-      day: null,
-      schoolClass: null,
-      schoolnumber: null,
-      schoolName: null,
-      guardianName: null,
-      schoolContact: null,
-      guardianContact: null,
-      contact: null,
-      zip: null,
-      address: null,
-      detailedAddress: null,
+      name: null, // 이름
+      sex: null, // 성별
+      year: null, // 생년
+      month: null, // 생월
+      day: null, // 생일
+      schoolClass: null, // 학급 반
+      schoolnumber: null, //  학급 번호
+      schoolName: null, // 중학교명
+      guardianName: null, // 보호자명
+      schoolContact: null, // 학교 연락처
+      guardianContact: null, // 보호자 연락처
+      contact: null, // 본인 연락처
+      zip: null, // 우편번호
+      address: null, // 기본주소
+      detailedAddress: null, // 상세주소
     };
   },
   computed: {
+    // 생년월일에서 '월' 선택에 따라 '일' 옵션 변경
+    // 30일, 31일인지를 파악하고, 윤년을 계산한다
     dayOptions() {
       let count;
       const year = this.year;
-      // 윤년
+      // 윤년 계산
       const isLeapYear = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 
       switch (this.month) {
@@ -289,9 +293,9 @@ export default {
     },
   },
   created() {
-    // year options
+    // '년'옵션 생성
     const lastYear = 2005;
-    const count = 20;
+    const count = 20; // '년'옵션의 개수
     const yearArray = [];
     for (let i = 0; i < count; i += 1) {
       const year = lastYear - i;
@@ -302,7 +306,7 @@ export default {
     }
     this.yearOptions = yearArray;
 
-    // month options
+    // '달'옵션 생성
     const monthArray = [];
     for (let i = 1; i <= 12; i += 1) {
       const pad = i >= 10 ? '' : '0';
@@ -314,8 +318,9 @@ export default {
     this.monthOptions = monthArray;
   },
   methods: {
+    // 숫자만 입력가능하도록
     onlyNumber(e) {
-      // 숫자만 입력 가능
+      // 입력 데이터를 숫자만으로 바꾼다
       e.target.value = e.target.value.replace(/[^\d]/g, '');
     },
     openSearchAdress() {
