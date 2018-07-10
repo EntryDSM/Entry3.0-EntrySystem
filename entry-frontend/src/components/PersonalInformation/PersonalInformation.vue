@@ -114,10 +114,9 @@
             중학교명
           </div>
           <div class="form__cover__form__colums__input-content">
-            <input type="text"
-              class="input-text input-text-school-name"
-              :value="schoolName"
-              @input="schoolName = $event.target.value">
+            <input class="input-text input-text-school-name"
+              v-model="schoolName"
+              disabled>
             <button class="button button-search" @click="isOpen = true">
               검색
             </button>
