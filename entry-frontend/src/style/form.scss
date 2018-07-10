@@ -14,13 +14,13 @@ $color-main3: #608a8e;
       position: relative;
       @include e('colums') {
         line-height: 40px;
-        font-size: 0;
+        box-sizing: border-box;
         display: flex;
         border: {
           bottom: solid 1px $color-main2;
         }
         padding: {
-          top: 18px;
+          top: 17px;
           bottom: 17px;
         }
         @include e('name') {
