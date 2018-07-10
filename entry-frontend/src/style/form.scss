@@ -11,6 +11,7 @@ $color-main3: #608a8e;
         top: solid 1px $color-main1;
         bottom: solid 1px $color-main1;
       }
+      position: relative;
       @include e('colums') {
         line-height: 40px;
         font-size: 0;
