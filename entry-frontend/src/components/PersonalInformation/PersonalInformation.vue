@@ -115,7 +115,7 @@
           </div>
           <div class="form__cover__form__colums__input-content">
             <input class="input-text input-text-school-name"
-              v-model="schoolName"
+              :value="schoolName"
               disabled>
             <button class="button button-search" @click="isOpen = true">
               검색
@@ -181,15 +181,15 @@
           </div>
           <div class="form__cover__form__colums__input-content">
             <input type="text"
+              disabled
               class="input-text input-text-zip"
               placeholder="우편번호"
-              :value="zip"
-              @input="onlyNumber">
+              :value="zip">
             <input type="text"
+              disabled
               class="input-text input-text-address"
               placeholder="기본주소"
-              :value="address"
-              @input="address = $event.target.value">
+              :value="address">
             <button class="button button-search-address" @click="openSearchAdress">
               주소 검색
             </button>

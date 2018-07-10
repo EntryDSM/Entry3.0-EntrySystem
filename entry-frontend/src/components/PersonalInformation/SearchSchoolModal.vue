@@ -80,8 +80,7 @@ export default {
         });
     },
     selectSchool(name, region) {
-      const shortString = `${name}(${region})`.slice(0, 12);
-      this.$emit('selectSchool', `${shortString}..`);
+      this.$emit('selectSchool', `${name}(${region})`);
       this.$emit('close');
     },
     prevPage() {
