@@ -13,7 +13,8 @@
       <div class="form__cover__form">
 
         <!-- 이미지 첨부 컴포넌트 -->
-        <attach-image style="position: absolute; top:0; right:0;"/>
+        <attach-image class="form__cover__form__attach-image"
+          @upload="file => this.image = file"/>
         <div class="form__cover__form__colums">
           <div class="form__cover__form__colums__name">
             이름
@@ -259,6 +260,7 @@ export default {
       zip: null, // 우편번호
       address: null, // 기본주소
       detailedAddress: null, // 상세주소
+      image: null, // 이미지
     };
   },
   computed: {
@@ -426,6 +428,18 @@ export default {
   }
   &-month, &-day {
     width: 75px;
+  }
+}
+
+.form {
+  @include e('cover') {
+    @include e('form') {
+      @include e('attach-image') {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
   }
 }
 </style>
