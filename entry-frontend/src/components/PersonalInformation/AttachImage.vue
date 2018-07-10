@@ -1,6 +1,12 @@
 <template>
   <div class="attach-image">
-    <label class="attach-image__label">
+    <input type="file"
+      id="image"
+      style="display: none"
+      @change="onFileChange">
+    <label class="attach-image__label"
+      for="image"
+      :style="{backgroundImage: `url(${this.imageURL})`}">
     </label>
   </div>
 </template>
@@ -8,6 +14,17 @@
 <script>
 export default {
   name: 'attach-image',
+  data() {
+    return {
+      imageURL: '',
+    };
+  },
+  methods: {
+    onFileChange(e) {
+      const file = e.target.files[0];
+      this.imageURL = URL.createObjectURL(file);
+    },
+  },
 };
 </script>
 
@@ -34,8 +51,11 @@ export default {
     height: 100%;
     display: block;
     box-sizing: border-box;
-    background-color: #f7fbfc;
     border: solid 0.5px #8aaaad;
+    background-color: #f7fbfc;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
   }
 }
 
