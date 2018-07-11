@@ -430,18 +430,693 @@
         </tr>
         <tr class="grade-input-table__row">
           <td>역사</td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`history-first-first-${k}`"
+                   v-model="historyScores[0].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`history-first-first-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="history-first-first-null"
+                   v-model="historyScores[0].score"
+            >
+            <label for="history-first-first-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`history-first-second-${k}`"
+                   v-model="historyScores[1].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`history-first-second-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="history-first-second-null"
+                   v-model="historyScores[1].score"
+            >
+            <label for="history-first-second-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`history-second-first-${k}`"
+                   v-model="historyScores[2].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`history-second-first-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="history-second-first-null"
+                   v-model="historyScores[2].score"
+            >
+            <label for="history-second-first-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`history-second-second-${k}`"
+                   v-model="historyScores[3].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`history-second-second-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="history-second-second-null"
+                   v-model="historyScores[3].score"
+            >
+            <label for="history-second-second-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`history-third-first-${k}`"
+                   v-model="historyScores[4].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`history-third-first-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="history-third-first-null"
+                   v-model="historyScores[4].score"
+            >
+            <label for="history-third-first-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
         </tr>
         <tr class="grade-input-table__row">
           <td>수학</td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`math-first-first-${k}`"
+                   v-model="mathScores[0].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`math-first-first-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="math-first-first-null"
+                   v-model="mathScores[0].score"
+            >
+            <label for="math-first-first-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`math-first-second-${k}`"
+                   v-model="mathScores[1].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`math-first-second-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="math-first-second-null"
+                   v-model="mathScores[1].score"
+            >
+            <label for="math-first-second-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`math-second-first-${k}`"
+                   v-model="mathScores[2].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`math-second-first-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="math-second-first-null"
+                   v-model="mathScores[2].score"
+            >
+            <label for="math-second-first-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`math-second-second-${k}`"
+                   v-model="mathScores[3].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`math-second-second-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="math-second-second-null"
+                   v-model="mathScores[3].score"
+            >
+            <label for="math-second-second-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`math-third-first-${k}`"
+                   v-model="mathScores[4].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`math-third-first-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="math-third-first-null"
+                   v-model="mathScores[4].score"
+            >
+            <label for="math-third-first-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
         </tr>
         <tr class="grade-input-table__row">
           <td>과학</td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`science-first-first-${k}`"
+                   v-model="scienceScores[0].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`science-first-first-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="science-first-first-null"
+                   v-model="scienceScores[0].score"
+            >
+            <label for="science-first-first-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`science-first-second-${k}`"
+                   v-model="scienceScores[1].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`science-first-second-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="science-first-second-null"
+                   v-model="scienceScores[1].score"
+            >
+            <label for="science-first-second-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`science-second-first-${k}`"
+                   v-model="scienceScores[2].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`science-second-first-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="science-second-first-null"
+                   v-model="scienceScores[2].score"
+            >
+            <label for="science-second-first-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`science-second-second-${k}`"
+                   v-model="scienceScores[3].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`science-second-second-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="science-second-second-null"
+                   v-model="scienceScores[3].score"
+            >
+            <label for="science-second-second-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`science-third-first-${k}`"
+                   v-model="scienceScores[4].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`science-third-first-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="science-third-first-null"
+                   v-model="scienceScores[4].score"
+            >
+            <label for="science-third-first-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
         </tr>
         <tr class="grade-input-table__row">
           <td>기술・가정</td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`tech-home-first-first-${k}`"
+                   v-model="techAndHomeScores[0].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`tech-home-first-first-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="tech-home-first-first-null"
+                   v-model="techAndHomeScores[0].score"
+            >
+            <label for="tech-home-first-first-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`tech-home-first-second-${k}`"
+                   v-model="techAndHomeScores[1].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`tech-home-first-second-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="tech-home-first-second-null"
+                   v-model="techAndHomeScores[1].score"
+            >
+            <label for="tech-home-first-second-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`tech-home-second-first-${k}`"
+                   v-model="techAndHomeScores[2].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`tech-home-second-first-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="tech-home-second-first-null"
+                   v-model="techAndHomeScores[2].score"
+            >
+            <label for="tech-home-second-first-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`tech-home-second-second-${k}`"
+                   v-model="techAndHomeScores[3].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`tech-home-second-second-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="tech-home-second-second-null"
+                   v-model="techAndHomeScores[3].score"
+            >
+            <label for="tech-home-second-second-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`tech-home-third-first-${k}`"
+                   v-model="techAndHomeScores[4].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`tech-home-third-first-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="tech-home-third-first-null"
+                   v-model="techAndHomeScores[4].score"
+            >
+            <label for="tech-home-third-first-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
         </tr>
         <tr class="grade-input-table__row">
           <td>영어</td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`english-first-first-${k}`"
+                   v-model="englishScores[0].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`english-first-first-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="english-first-first-null"
+                   v-model="englishScores[0].score"
+            >
+            <label for="english-first-first-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`english-first-second-${k}`"
+                   v-model="englishScores[1].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`english-first-second-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="english-first-second-null"
+                   v-model="englishScores[1].score"
+            >
+            <label for="english-first-second-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`english-second-first-${k}`"
+                   v-model="englishScores[2].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`english-second-first-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="english-second-first-null"
+                   v-model="englishScores[2].score"
+            >
+            <label for="english-second-first-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`english-second-second-${k}`"
+                   v-model="englishScores[3].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`english-second-second-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="english-second-second-null"
+                   v-model="englishScores[3].score"
+            >
+            <label for="english-second-second-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`english-third-first-${k}`"
+                   v-model="englishScores[4].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`english-third-first-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="english-third-first-null"
+                   v-model="englishScores[4].score"
+            >
+            <label for="english-third-first-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
         </tr>
       </table>
     </div>
