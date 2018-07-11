@@ -129,11 +129,13 @@
           </div>
           <div class="all-grade-reset-cover__reset">
             <span class="all-grade-reset-cover__reset__text">전체 성적 초기화: </span>
-            <button type="button" @click="resetGrade">A</button>
-            <button type="button" @click="resetGrade">B</button>
-            <button type="button" @click="resetGrade">C</button>
-            <button type="button" @click="resetGrade">D</button>
-            <button type="button" @click="resetGrade">E</button>
+            <button type="button"
+                    v-for="reset in scores"
+                    :key="reset"
+                    @click="resetGrade"
+            >
+              {{ reset.toUpperCase() }}
+            </button>
           </div>
         </div>
         <tr class="grade-input-table__row">
@@ -152,80 +154,294 @@
         </tr>
         <tr class="grade-input-table__row">
           <td>국어</td>
-          <td v-for="n in 5" :key="n">
-            <button type="button"
-                    v-for="arr in scores"
-                    :key="arr"
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`korean-first-first-${k}`"
+                   v-model="koreanScores[0].score"
             >
-              {{ arr }}
-            </button>
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`korean-first-first-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="korean-first-first-null"
+                   v-model="koreanScores[0].score"
+            >
+            <label for="korean-first-first-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`korean-first-second-${k}`"
+                   v-model="koreanScores[1].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`korean-first-second-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="korean-first-second-null"
+                   v-model="koreanScores[1].score"
+            >
+            <label for="korean-first-second-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`korean-second-first-${k}`"
+                   v-model="koreanScores[2].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`korean-second-first-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="korean-second-first-null"
+                   v-model="koreanScores[2].score"
+            >
+            <label for="korean-second-first-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`korean-second-second-${k}`"
+                   v-model="koreanScores[3].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`korean-second-second-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="korean-second-second-null"
+                   v-model="koreanScores[3].score"
+            >
+            <label for="korean-second-second-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`korean-third-first-${k}`"
+                   v-model="koreanScores[4].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`korean-third-first-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="korean-third-first-null"
+                   v-model="koreanScores[4].score"
+            >
+            <label for="korean-third-first-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
           </td>
         </tr>
         <tr class="grade-input-table__row">
           <td>사회</td>
-          <td v-for="n in 5" :key="n">
-            <button type="button"
-                    v-for="arr in scores"
-                    :key="arr"
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`society-first-first-${k}`"
+                   v-model="societyScores[0].score"
             >
-              {{ arr }}
-            </button>
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`society-first-first-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="society-first-first-null"
+                   v-model="societyScores[0].score"
+            >
+            <label for="society-first-first-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`society-first-second-${k}`"
+                   v-model="societyScores[1].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`society-first-second-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="society-first-second-null"
+                   v-model="societyScores[1].score"
+            >
+            <label for="society-first-second-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`society-second-first-${k}`"
+                   v-model="societyScores[2].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`society-second-first-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="society-second-first-null"
+                   v-model="societyScores[2].score"
+            >
+            <label for="society-second-first-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`society-second-second-${k}`"
+                   v-model="societyScores[3].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`society-second-second-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="society-second-second-null"
+                   v-model="societyScores[3].score"
+            >
+            <label for="society-second-second-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
+          </td>
+          <td>
+            <input type="radio"
+                   v-for="k in scores"
+                   :key="k"
+                   :value="k.toUpperCase()"
+                   :id="`society-third-first-${k}`"
+                   v-model="societyScores[4].score"
+            >
+            <label v-for="(k, index) in scores"
+                   :key="index"
+                   :for="`society-third-first-${k}`"
+                   class="input-grade-label"
+            >
+              {{ k.toUpperCase() }}
+            </label>
+            <div class="button-side-line"></div>
+            <input type="radio"
+                   value="X"
+                   id="society-third-first-null"
+                   v-model="societyScores[4].score"
+            >
+            <label for="society-third-first-null" class="input-grade-label">X</label>
+            <img src="../../assets/GradeInput/no-score-test.png"
+                 alt="성적없음"
+                 class="no-score-img"
+            >
           </td>
         </tr>
         <tr class="grade-input-table__row">
           <td>역사</td>
-          <td v-for="n in 5" :key="n">
-            <button type="button"
-                    v-for="arr in scores"
-                    :key="arr"
-            >
-              {{ arr }}
-            </button>
-          </td>
         </tr>
         <tr class="grade-input-table__row">
           <td>수학</td>
-          <td v-for="n in 5" :key="n">
-            <button type="button"
-                    v-for="arr in scores"
-                    :key="arr"
-            >
-              {{ arr }}
-            </button>
-          </td>
         </tr>
         <tr class="grade-input-table__row">
           <td>과학</td>
-          <td v-for="n in 5" :key="n">
-            <button type="button"
-                    v-for="arr in scores"
-                    :key="arr"
-            >
-              {{ arr }}
-            </button>
-          </td>
         </tr>
         <tr class="grade-input-table__row">
           <td>기술・가정</td>
-          <td v-for="n in 5" :key="n">
-            <button type="button"
-                    v-for="arr in scores"
-                    :key="arr"
-            >
-              {{ arr }}
-            </button>
-          </td>
         </tr>
         <tr class="grade-input-table__row">
           <td>영어</td>
-          <td v-for="n in 5" :key="n">
-            <button type="button"
-                    v-for="arr in scores"
-                    :key="arr"
-            >
-              {{ arr }}
-            </button>
-          </td>
         </tr>
       </table>
     </div>
@@ -275,63 +491,71 @@ export default {
       // 모든 학기 초기화
       resetAllGrade: '',
 
-      // 렌더링을 위한 점수
-      scores: ['A', 'B', 'C', 'D', 'E', 'X'],
+      // 초기화 점수
+      scores: ['a', 'b', 'c', 'd', 'e'],
 
-      // 전체 학기 선택
-      grades: [
-        // 학년은 배열 인덱스로 구분
-        {
-          firstSemester: {
-            korean: { score: '', decided: false },
-            society: { score: '', decided: false },
-            history: { score: '', decided: false },
-            math: { score: '', decided: false },
-            science: { score: '', decided: false },
-            technologyHome: { score: '', decided: false },
-            english: { score: '', decided: false },
-          },
-          secondSemester: {
-            korean: { score: '', decided: false },
-            society: { score: '', decided: false },
-            history: { score: '', decided: false },
-            math: { score: '', decided: false },
-            science: { score: '', decided: false },
-            technologyHome: { score: '', decided: false },
-            english: { score: '', decided: false },
-          },
-        },
-        {
-          firstSemester: {
-            korean: { score: '', decided: false },
-            society: { score: '', decided: false },
-            history: { score: '', decided: false },
-            math: { score: '', decided: false },
-            science: { score: '', decided: false },
-            technologyHome: { score: '', decided: false },
-            english: { score: '', decided: false },
-          },
-          secondSemester: {
-            korean: { score: '', decided: false },
-            society: { score: '', decided: false },
-            history: { score: '', decided: false },
-            math: { score: '', decided: false },
-            science: { score: '', decided: false },
-            technologyHome: { score: '', decided: false },
-            english: { score: '', decided: false },
-          },
-        },
-        {
-          firstSemester: {
-            korean: { score: '', decided: false },
-            society: { score: '', decided: false },
-            history: { score: '', decided: false },
-            math: { score: '', decided: false },
-            science: { score: '', decided: false },
-            technologyHome: { score: '', decided: false },
-            english: { score: '', decided: false },
-          },
-        },
+      /* 점수 실제 설정 */
+      // 국어
+      koreanScores: [
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+      ],
+
+      // 사회
+      societyScores: [
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+      ],
+
+      // 역사
+      historyScores: [
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+      ],
+
+      // 수학
+      mathScores: [
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+      ],
+
+      // 과학
+      scienceScores: [
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+      ],
+
+      // 기술 - 가정
+      techAndHomeScores: [
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+      ],
+
+      // 영어
+      englishScores: [
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: true },
       ],
     };
   },
@@ -343,7 +567,7 @@ export default {
       this.$router.push('/');
     },
     resetGrade({ target }) {
-      this.resetAllGrade = target.textContent;
+      this.resetAllGrade = target.textContent.trim();
     },
   },
 };
@@ -371,6 +595,39 @@ $button-color: #edf5f6;
     &:first-of-type {
       margin-top: 0;
     }
+  }
+
+  input[type=radio] {
+    display: none;
+  }
+
+  button, .input-grade-label {
+    border-radius: 50%;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $button-color;
+    }
+  }
+
+  button {
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+  }
+
+  .input-grade-label {
+    width: 21px;
+    height: 21px;
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 2px;
   }
 
   table {
@@ -569,20 +826,7 @@ $button-color: #edf5f6;
         }
 
         button {
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          background-color: transparent;
-          font-size: 14px;
-          border: 0;
           margin-left: 1px;
-          cursor: pointer;
-          outline: none;
-          transition: background-color 0.3s;
-
-          &:hover {
-            background-color: $button-color;
-          }
 
           &:last-of-type {
             margin-right: -5px;
@@ -647,6 +891,38 @@ $button-color: #edf5f6;
           border-bottom: 1px solid $table-inner;
           font-size: 20px;
         }
+      }
+
+      // 버튼 스타일
+      input[value="X"] + label{
+        margin-left: 2px;
+
+        &:hover + .no-score-img {
+          opacity: 1;
+        }
+      }
+
+      .no-score-img {
+        width: 145px;
+        height: 45px;
+        object-fit: cover;
+        position: absolute;
+        opacity: 0;
+        transition: opacity 0.3s;
+        margin: {
+          left: -86px;
+          top: -45px;
+        }
+      }
+
+      .button-side-line {
+        width: 2px;
+        height: 18px;
+        background-color: #cfdee0;
+        display: inline-flex;
+        vertical-align: middle;
+        position: relative;
+        top: -1px;
       }
     }
   }
