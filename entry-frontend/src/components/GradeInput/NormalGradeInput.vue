@@ -75,8 +75,10 @@
             <input type="checkbox"
                    class="input-checkbox"
                    id="input-first-first"
+                   :value="`${semesters.firstFirstSemester}`"
                    v-model="semesters.firstFirstSemester"
-            />
+                   @change="discompleteSemester"
+            >
             <label class="input-checkbox-label" for="input-first-first"></label>
             <span class="table-row__semester-text">1학기</span>
           </td>
@@ -84,8 +86,10 @@
             <input type="checkbox"
                    class="input-checkbox"
                    id="input-first-second"
+                   :value="`${semesters.firstSecondSemester}`"
                    v-model="semesters.firstSecondSemester"
-            />
+                   @change="discompleteSemester"
+            >
             <label class="input-checkbox-label" for="input-first-second"></label>
             <span class="table-row__semester-text">2학기</span>
           </td>
@@ -93,8 +97,10 @@
             <input type="checkbox"
                    class="input-checkbox"
                    id="input-second-first"
+                   :value="`${semesters.secondFirstSemester}`"
                    v-model="semesters.secondFirstSemester"
-            />
+                   @change="discompleteSemester"
+            >
             <label class="input-checkbox-label" for="input-second-first"></label>
             <span class="table-row__semester-text">1학기</span>
           </td>
@@ -102,8 +108,10 @@
             <input type="checkbox"
                    class="input-checkbox"
                    id="input-second-second"
+                   :value="`${semesters.secondSecondSemester}`"
                    v-model="semesters.secondSecondSemester"
-            />
+                   @change="discompleteSemester"
+            >
             <label class="input-checkbox-label" for="input-second-second"></label>
             <span class="table-row__semester-text">2학기</span>
           </td>
@@ -111,8 +119,10 @@
             <input type="checkbox"
                    class="input-checkbox"
                    id="input-third-first"
+                   :value="`${semesters.thirdFirstSemester}`"
                    v-model="semesters.thirdFirstSemester"
-            />
+                   @change="discompleteSemester"
+            >
             <label class="input-checkbox-label" for="input-third-first"></label>
             <span class="table-row__semester-text">1학기</span>
           </td>
@@ -176,7 +186,7 @@
                    v-model="koreanScores[0].score"
             >
             <label for="korean-first-first-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -203,7 +213,7 @@
                    v-model="koreanScores[1].score"
             >
             <label for="korean-first-second-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -230,7 +240,7 @@
                    v-model="koreanScores[2].score"
             >
             <label for="korean-second-first-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -257,7 +267,7 @@
                    v-model="koreanScores[3].score"
             >
             <label for="korean-second-second-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -284,7 +294,7 @@
                    v-model="koreanScores[4].score"
             >
             <label for="korean-third-first-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -314,7 +324,7 @@
                    v-model="societyScores[0].score"
             >
             <label for="society-first-first-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -341,7 +351,7 @@
                    v-model="societyScores[1].score"
             >
             <label for="society-first-second-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -368,7 +378,7 @@
                    v-model="societyScores[2].score"
             >
             <label for="society-second-first-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -395,7 +405,7 @@
                    v-model="societyScores[3].score"
             >
             <label for="society-second-second-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -422,7 +432,7 @@
                    v-model="societyScores[4].score"
             >
             <label for="society-third-first-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -452,7 +462,7 @@
                    v-model="historyScores[0].score"
             >
             <label for="history-first-first-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -479,7 +489,7 @@
                    v-model="historyScores[1].score"
             >
             <label for="history-first-second-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -506,7 +516,7 @@
                    v-model="historyScores[2].score"
             >
             <label for="history-second-first-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -533,7 +543,7 @@
                    v-model="historyScores[3].score"
             >
             <label for="history-second-second-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -560,7 +570,7 @@
                    v-model="historyScores[4].score"
             >
             <label for="history-third-first-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -590,7 +600,7 @@
                    v-model="mathScores[0].score"
             >
             <label for="math-first-first-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -617,7 +627,7 @@
                    v-model="mathScores[1].score"
             >
             <label for="math-first-second-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -644,7 +654,7 @@
                    v-model="mathScores[2].score"
             >
             <label for="math-second-first-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -671,7 +681,7 @@
                    v-model="mathScores[3].score"
             >
             <label for="math-second-second-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -698,7 +708,7 @@
                    v-model="mathScores[4].score"
             >
             <label for="math-third-first-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -728,7 +738,7 @@
                    v-model="scienceScores[0].score"
             >
             <label for="science-first-first-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -755,7 +765,7 @@
                    v-model="scienceScores[1].score"
             >
             <label for="science-first-second-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -782,7 +792,7 @@
                    v-model="scienceScores[2].score"
             >
             <label for="science-second-first-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -809,7 +819,7 @@
                    v-model="scienceScores[3].score"
             >
             <label for="science-second-second-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -836,7 +846,7 @@
                    v-model="scienceScores[4].score"
             >
             <label for="science-third-first-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -866,7 +876,7 @@
                    v-model="techAndHomeScores[0].score"
             >
             <label for="tech-home-first-first-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -893,7 +903,7 @@
                    v-model="techAndHomeScores[1].score"
             >
             <label for="tech-home-first-second-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -920,7 +930,7 @@
                    v-model="techAndHomeScores[2].score"
             >
             <label for="tech-home-second-first-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -947,7 +957,7 @@
                    v-model="techAndHomeScores[3].score"
             >
             <label for="tech-home-second-second-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -974,7 +984,7 @@
                    v-model="techAndHomeScores[4].score"
             >
             <label for="tech-home-third-first-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -1004,7 +1014,7 @@
                    v-model="englishScores[0].score"
             >
             <label for="english-first-first-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -1031,7 +1041,7 @@
                    v-model="englishScores[1].score"
             >
             <label for="english-first-second-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -1058,7 +1068,7 @@
                    v-model="englishScores[2].score"
             >
             <label for="english-second-first-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -1085,7 +1095,7 @@
                    v-model="englishScores[3].score"
             >
             <label for="english-second-second-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -1112,7 +1122,7 @@
                    v-model="englishScores[4].score"
             >
             <label for="english-third-first-null" class="input-grade-label">X</label>
-            <img src="../../assets/GradeInput/no-score-test.png"
+            <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
@@ -1266,12 +1276,14 @@ export default {
     // 실제 점수 초기화
     setGrades() {
       const allGrades = this.grades;
+
       for (let i = 0; i < allGrades.length; i += 1) {
         for (let j = 0; j < allGrades[i].length; j += 1) {
           const resetAll = allGrades[i][j];
           // 초기화 - 점수 및 클릭 여부
           resetAll.score = this.resetAllGrade;
           resetAll.decided = true;
+          resetAll.passed = true;
         }
       }
     },
@@ -1279,6 +1291,47 @@ export default {
     resetGrade({ target }) {
       this.setButton(target);
       this.setGrades();
+    },
+
+    // 미이수 설정
+    discompleteSemester({ target }) {
+      // 학기별 null로 초기화
+      function reset(all, index) {
+        for (let i = 0; i < all.length; i += 1) {
+          const allScores = all[i];
+
+          if (target.value === 'true') {
+            allScores[index].score = '';
+            allScores[index].passed = false;
+            allScores[index].decided = false;
+          } else {
+            allScores[index].score = 'X';
+            allScores[index].passed = false;
+            allScores[index].decided = true;
+          }
+        }
+      }
+      // 학급 불러오기
+      const allGrades = this.grades;
+
+      switch (target.id) {
+        case 'input-first-first':
+          reset(allGrades, 0);
+          break;
+        case 'input-first-second':
+          reset(allGrades, 1);
+          break;
+        case 'input-second-first':
+          reset(allGrades, 2);
+          break;
+        case 'input-second-second':
+          reset(allGrades, 3);
+          break;
+        case 'input-third-first':
+          reset(allGrades, 4);
+          break;
+        default: break;
+      }
     },
   },
 };
@@ -1614,15 +1667,15 @@ $button-color: #edf5f6;
       }
 
       .no-score-img {
-        width: 145px;
-        height: 45px;
+        width: 125px;
+        height: 30px;
         object-fit: cover;
         position: absolute;
         opacity: 0;
         transition: opacity 0.3s;
         margin: {
-          left: -86px;
-          top: -45px;
+          left: -76px;
+          top: -34px;
         }
       }
 
