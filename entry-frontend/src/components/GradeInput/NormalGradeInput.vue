@@ -1234,15 +1234,51 @@ export default {
       ],
     };
   },
+  computed: {
+    grades() {
+      const allGrades = [
+        this.koreanScores,
+        this.societyScores,
+        this.historyScores,
+        this.mathScores,
+        this.scienceScores,
+        this.techAndHomeScores,
+        this.englishScores,
+      ];
+
+      return allGrades;
+    },
+  },
   methods: {
     movePrev() {
       this.$router.push('/');
     },
+
     moveNext() {
       this.$router.push('/');
     },
+
+    // 초기화 버튼 설정
+    setButton(t) {
+      this.resetAllGrade = t.textContent.trim();
+    },
+
+    // 실제 점수 초기화
+    setGrades() {
+      const allGrades = this.grades;
+      for (let i = 0; i < allGrades.length; i += 1) {
+        for (let j = 0; j < allGrades[i].length; j += 1) {
+          const resetAll = allGrades[i][j];
+          // 초기화 - 점수 및 클릭 여부
+          resetAll.score = this.resetAllGrade;
+          resetAll.decided = true;
+        }
+      }
+    },
+
     resetGrade({ target }) {
-      this.resetAllGrade = target.textContent.trim();
+      this.setButton(target);
+      this.setGrades();
     },
   },
 };
