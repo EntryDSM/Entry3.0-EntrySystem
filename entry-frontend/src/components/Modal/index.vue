@@ -1,25 +1,34 @@
 <template>
   <div class="modal" v-if="index !== 0">
-    <div class="modal__background" @click="closeModal"></div>
+    <div class="modal__background" @dblclick="closeModal"></div>
     <div class="modal__contants">
       <div class="modal__contants__close" @click="closeModal"></div>
       <login v-if="index === 1"/>
+      <reset-pw v-if="index >= 2"/>
     </div>
   </div>
 </template>
 
 <script>
 import Login from './Login';
+import ResetPw from './ResetPw';
 
 export default {
   name: 'Modal',
   components: {
     Login,
+    ResetPw,
   },
-  props: ['index'],
+  computed: {
+    index() {
+      return this.$store.state.modal.index;
+    },
+  },
   methods: {
     closeModal() {
-      this.$parent.$emit('CloseModal');
+      this.$store.commit('changeIndex', {
+        index: 0,
+      });
     },
   },
 };
@@ -33,7 +42,7 @@ $M-input-color: #26484c;
 $M-btn-background: #eff7f8;
 $M-btn-color: #296169;
 $M-modal-color: #5a8f97;
-$M-error-color: #000;
+$M-title-color: #000;
 $M-close-color: #dee8e9;
 
 .modal{
@@ -125,6 +134,22 @@ $M-close-color: #dee8e9;
   opacity: 0;
 }
 
+.modal-title{
+  position: relative;
+  color: $M-title-color;
+  font-size: 24px;
+  text-align: center;
+  &::after{
+    content: '';
+    display: block;
+    position: relative;
+    top: 17px;
+    margin: 0 auto;
+    width: 100px;
+    height: 1px;
+    background-color: #70b1ba;
+  }
+}
 .input-shake{
   animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
   transform: translate3d(0, 0, 0);

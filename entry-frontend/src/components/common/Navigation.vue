@@ -25,13 +25,13 @@
         </li>
         <li class="nav__wrapper__contants__list__link
         nav__wrapper__contants__list__link--login"
-        @click="index = 1">
+        @click="changeIndex">
           로그인
         </li>
       </ul>
       </div>
     </nav>
-    <modal v-bind:index="index"/>
+    <modal/>
   </div>
 </template>
 
@@ -43,13 +43,22 @@ export default {
   components: {
     Modal,
   },
-  data: () => ({
-    index: 0,
-  }),
   created() {
     this.$on('CloseModal', () => {
       this.index = 0;
     });
+  },
+  computed: {
+    index() {
+      return this.$store.state.modal.index;
+    },
+  },
+  methods: {
+    changeIndex() {
+      this.$store.commit('changeIndex', {
+        index: 1,
+      });
+    },
   },
 };
 </script>

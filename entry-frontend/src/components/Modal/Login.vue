@@ -30,7 +30,7 @@
         <router-link to="auth">
           <span class="login__links__link">아직 원서작성을 시작하지 않으셨나요?</span>
         </router-link>
-        <span class="login__links__link" >비밀번호 재설정</span>
+        <span class="login__links__link" @click="changeIndex">비밀번호 재설정</span>
       </div>
   </div>
 </template>
@@ -50,18 +50,37 @@ export default {
       if (id === '') {
         this.idwrong = true;
         this.pwwrong = false;
+        setTimeout(() => {
+          this.idwrong = false;
+        }, 5000);
+      } else if (pw === '') {
+        this.pwwrong = true;
+        this.idwrong = false;
+        setTimeout(() => {
+          this.pwwrong = false;
+        }, 5000);
       } else {
         this.$axios.post('/login', { id, pw }).then(({ data }) => {
           if (data.type) {
             this.$cookies.set('JWT', data.token, '4d');
-            this.$parent.$emit('CloseModal');
+            this.$store.commit('changeIndex', {
+              index: 0,
+            });
           } else {
             this.pw = '';
             this.pwwrong = true;
             this.idwrong = false;
+            setTimeout(() => {
+              this.pwwrong = false;
+            }, 5000);
           }
         });
       }
+    },
+    changeIndex() {
+      this.$store.commit('changeIndex', {
+        index: 2,
+      });
     },
   },
   computed: {
