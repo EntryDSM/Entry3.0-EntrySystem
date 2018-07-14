@@ -171,6 +171,8 @@
                    :value="k.toUpperCase()"
                    :id="`korean-first-first-${k}`"
                    v-model="koreanScores[0].score"
+                   :checked="koreanScores[0].decided"
+                   @click="changeDecided($event, koreanScores[0])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -184,6 +186,8 @@
                    value="X"
                    id="korean-first-first-null"
                    v-model="koreanScores[0].score"
+                   :checked="koreanScores[0].decided"
+                   @click="changeDecided($event, koreanScores[0])"
             >
             <label for="korean-first-first-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -198,6 +202,8 @@
                    :value="k.toUpperCase()"
                    :id="`korean-first-second-${k}`"
                    v-model="koreanScores[1].score"
+                   :checked="koreanScores[1].decided"
+                   @click="changeDecided($event, koreanScores[1])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -211,6 +217,8 @@
                    value="X"
                    id="korean-first-second-null"
                    v-model="koreanScores[1].score"
+                   :checked="koreanScores[1].decided"
+                   @click="changeDecided($event, koreanScores[1])"
             >
             <label for="korean-first-second-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -225,6 +233,8 @@
                    :value="k.toUpperCase()"
                    :id="`korean-second-first-${k}`"
                    v-model="koreanScores[2].score"
+                   :checked="koreanScores[2].decided"
+                   @click="changeDecided($event, koreanScores[2])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -238,6 +248,8 @@
                    value="X"
                    id="korean-second-first-null"
                    v-model="koreanScores[2].score"
+                   :checked="koreanScores[2].decided"
+                   @click="changeDecided($event, koreanScores[2])"
             >
             <label for="korean-second-first-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -252,6 +264,8 @@
                    :value="k.toUpperCase()"
                    :id="`korean-second-second-${k}`"
                    v-model="koreanScores[3].score"
+                   :checked="koreanScores[3].decided"
+                   @click="changeDecided($event, koreanScores[3])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -265,6 +279,8 @@
                    value="X"
                    id="korean-second-second-null"
                    v-model="koreanScores[3].score"
+                   :checked="koreanScores[3].decided"
+                   @click="changeDecided($event, koreanScores[3])"
             >
             <label for="korean-second-second-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -279,6 +295,8 @@
                    :value="k.toUpperCase()"
                    :id="`korean-third-first-${k}`"
                    v-model="koreanScores[4].score"
+                   :checked="koreanScores[4].decided"
+                   @click="changeDecided($event, koreanScores[4])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -292,6 +310,8 @@
                    value="X"
                    id="korean-third-first-null"
                    v-model="koreanScores[4].score"
+                   :checked="koreanScores[4].decided"
+                   @click="changeDecided($event, koreanScores[4])"
             >
             <label for="korean-third-first-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -309,6 +329,8 @@
                    :value="k.toUpperCase()"
                    :id="`society-first-first-${k}`"
                    v-model="societyScores[0].score"
+                   :checked="societyScores[0].decided"
+                   @click="changeDecided($event, societyScores[0])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -322,6 +344,8 @@
                    value="X"
                    id="society-first-first-null"
                    v-model="societyScores[0].score"
+                   :checked="societyScores[0].decided"
+                   @click="changeDecided($event, societyScores[0])"
             >
             <label for="society-first-first-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -336,6 +360,8 @@
                    :value="k.toUpperCase()"
                    :id="`society-first-second-${k}`"
                    v-model="societyScores[1].score"
+                   :checked="societyScores[1].decided"
+                   @click="changeDecided($event, societyScores[1])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -349,6 +375,8 @@
                    value="X"
                    id="society-first-second-null"
                    v-model="societyScores[1].score"
+                   :checked="societyScores[1].decided"
+                   @click="changeDecided($event, societyScores[1])"
             >
             <label for="society-first-second-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -363,6 +391,8 @@
                    :value="k.toUpperCase()"
                    :id="`society-second-first-${k}`"
                    v-model="societyScores[2].score"
+                   :checked="societyScores[2].decided"
+                   @click="changeDecided($event, societyScores[2])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -376,6 +406,8 @@
                    value="X"
                    id="society-second-first-null"
                    v-model="societyScores[2].score"
+                   :checked="societyScores[2].decided"
+                   @click="changeDecided($event, societyScores[2])"
             >
             <label for="society-second-first-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -390,6 +422,8 @@
                    :value="k.toUpperCase()"
                    :id="`society-second-second-${k}`"
                    v-model="societyScores[3].score"
+                   :checked="societyScores[3].decided"
+                   @click="changeDecided($event, societyScores[3])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -403,6 +437,8 @@
                    value="X"
                    id="society-second-second-null"
                    v-model="societyScores[3].score"
+                   :checked="societyScores[3].decided"
+                   @click="changeDecided($event, societyScores[3])"
             >
             <label for="society-second-second-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -417,6 +453,8 @@
                    :value="k.toUpperCase()"
                    :id="`society-third-first-${k}`"
                    v-model="societyScores[4].score"
+                   :checked="societyScores[4].decided"
+                   @click="changeDecided($event, societyScores[4])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -430,6 +468,8 @@
                    value="X"
                    id="society-third-first-null"
                    v-model="societyScores[4].score"
+                   :checked="societyScores[4].decided"
+                   @click="changeDecided($event, societyScores[4])"
             >
             <label for="society-third-first-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -447,6 +487,8 @@
                    :value="k.toUpperCase()"
                    :id="`history-first-first-${k}`"
                    v-model="historyScores[0].score"
+                   :checked="historyScores[0].decided"
+                   @click="changeDecided($event, historyScores[0])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -460,6 +502,8 @@
                    value="X"
                    id="history-first-first-null"
                    v-model="historyScores[0].score"
+                   :checked="historyScores[0].decided"
+                   @click="changeDecided($event, historyScores[0])"
             >
             <label for="history-first-first-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -474,6 +518,8 @@
                    :value="k.toUpperCase()"
                    :id="`history-first-second-${k}`"
                    v-model="historyScores[1].score"
+                   :checked="historyScores[1].decided"
+                   @click="changeDecided($event, historyScores[1])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -487,6 +533,8 @@
                    value="X"
                    id="history-first-second-null"
                    v-model="historyScores[1].score"
+                   :checked="historyScores[1].decided"
+                   @click="changeDecided($event, historyScores[1])"
             >
             <label for="history-first-second-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -501,6 +549,8 @@
                    :value="k.toUpperCase()"
                    :id="`history-second-first-${k}`"
                    v-model="historyScores[2].score"
+                   :checked="historyScores[2].decided"
+                   @click="changeDecided($event, historyScores[2])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -514,6 +564,8 @@
                    value="X"
                    id="history-second-first-null"
                    v-model="historyScores[2].score"
+                   :checked="historyScores[2].decided"
+                   @click="changeDecided($event, historyScores[2])"
             >
             <label for="history-second-first-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -528,6 +580,8 @@
                    :value="k.toUpperCase()"
                    :id="`history-second-second-${k}`"
                    v-model="historyScores[3].score"
+                   :checked="historyScores[3].decided"
+                   @click="changeDecided($event, historyScores[3])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -541,6 +595,8 @@
                    value="X"
                    id="history-second-second-null"
                    v-model="historyScores[3].score"
+                   :checked="historyScores[3].decided"
+                   @click="changeDecided($event, historyScores[3])"
             >
             <label for="history-second-second-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -555,6 +611,8 @@
                    :value="k.toUpperCase()"
                    :id="`history-third-first-${k}`"
                    v-model="historyScores[4].score"
+                   :checked="historyScores[4].decided"
+                   @click="changeDecided($event, historyScores[4])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -568,6 +626,8 @@
                    value="X"
                    id="history-third-first-null"
                    v-model="historyScores[4].score"
+                   :checked="historyScores[4].decided"
+                   @click="changeDecided($event, historyScores[4])"
             >
             <label for="history-third-first-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -585,6 +645,8 @@
                    :value="k.toUpperCase()"
                    :id="`math-first-first-${k}`"
                    v-model="mathScores[0].score"
+                   :checked="mathScores[0].decided"
+                   @click="changeDecided($event, mathScores[0])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -598,6 +660,8 @@
                    value="X"
                    id="math-first-first-null"
                    v-model="mathScores[0].score"
+                   :checked="mathScores[0].decided"
+                   @click="changeDecided($event, mathScores[0])"
             >
             <label for="math-first-first-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -612,6 +676,8 @@
                    :value="k.toUpperCase()"
                    :id="`math-first-second-${k}`"
                    v-model="mathScores[1].score"
+                   :checked="mathScores[1].decided"
+                   @click="changeDecided($event, mathScores[1])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -625,6 +691,8 @@
                    value="X"
                    id="math-first-second-null"
                    v-model="mathScores[1].score"
+                   :checked="mathScores[1].decided"
+                   @click="changeDecided($event, mathScores[1])"
             >
             <label for="math-first-second-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -639,6 +707,8 @@
                    :value="k.toUpperCase()"
                    :id="`math-second-first-${k}`"
                    v-model="mathScores[2].score"
+                   :checked="mathScores[2].decided"
+                   @click="changeDecided($event, mathScores[2])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -652,6 +722,8 @@
                    value="X"
                    id="math-second-first-null"
                    v-model="mathScores[2].score"
+                   :checked="mathScores[2].decided"
+                   @click="changeDecided($event, mathScores[2])"
             >
             <label for="math-second-first-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -666,6 +738,8 @@
                    :value="k.toUpperCase()"
                    :id="`math-second-second-${k}`"
                    v-model="mathScores[3].score"
+                   :checked="mathScores[3].decided"
+                   @click="changeDecided($event, mathScores[3])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -679,6 +753,8 @@
                    value="X"
                    id="math-second-second-null"
                    v-model="mathScores[3].score"
+                   :checked="mathScores[3].decided"
+                   @click="changeDecided($event, mathScores[3])"
             >
             <label for="math-second-second-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -693,6 +769,8 @@
                    :value="k.toUpperCase()"
                    :id="`math-third-first-${k}`"
                    v-model="mathScores[4].score"
+                   :checked="mathScores[4].decided"
+                   @click="changeDecided($event, mathScores[4])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -706,6 +784,8 @@
                    value="X"
                    id="math-third-first-null"
                    v-model="mathScores[4].score"
+                   :checked="mathScores[4].decided"
+                   @click="changeDecided($event, mathScores[4])"
             >
             <label for="math-third-first-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -723,6 +803,8 @@
                    :value="k.toUpperCase()"
                    :id="`science-first-first-${k}`"
                    v-model="scienceScores[0].score"
+                   :checked="scienceScores[0].decided"
+                   @click="changeDecided($event, scienceScores[0])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -736,6 +818,8 @@
                    value="X"
                    id="science-first-first-null"
                    v-model="scienceScores[0].score"
+                   :checked="scienceScores[0].decided"
+                   @click="changeDecided($event, scienceScores[0])"
             >
             <label for="science-first-first-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -750,6 +834,8 @@
                    :value="k.toUpperCase()"
                    :id="`science-first-second-${k}`"
                    v-model="scienceScores[1].score"
+                   :checked="scienceScores[1].decided"
+                   @click="changeDecided($event, scienceScores[1])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -763,6 +849,8 @@
                    value="X"
                    id="science-first-second-null"
                    v-model="scienceScores[1].score"
+                   :checked="scienceScores[1].decided"
+                   @click="changeDecided($event, scienceScores[1])"
             >
             <label for="science-first-second-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -777,6 +865,8 @@
                    :value="k.toUpperCase()"
                    :id="`science-second-first-${k}`"
                    v-model="scienceScores[2].score"
+                   :checked="scienceScores[2].decided"
+                   @click="changeDecided($event, scienceScores[2])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -790,6 +880,8 @@
                    value="X"
                    id="science-second-first-null"
                    v-model="scienceScores[2].score"
+                   :checked="scienceScores[2].decided"
+                   @click="changeDecided($event, scienceScores[2])"
             >
             <label for="science-second-first-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -804,6 +896,8 @@
                    :value="k.toUpperCase()"
                    :id="`science-second-second-${k}`"
                    v-model="scienceScores[3].score"
+                   :checked="scienceScores[3].decided"
+                   @click="changeDecided($event, scienceScores[3])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -817,6 +911,8 @@
                    value="X"
                    id="science-second-second-null"
                    v-model="scienceScores[3].score"
+                   :checked="scienceScores[3].decided"
+                   @click="changeDecided($event, scienceScores[3])"
             >
             <label for="science-second-second-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -831,6 +927,8 @@
                    :value="k.toUpperCase()"
                    :id="`science-third-first-${k}`"
                    v-model="scienceScores[4].score"
+                   :checked="scienceScores[4].decided"
+                   @click="changeDecided($event, scienceScores[4])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -844,6 +942,8 @@
                    value="X"
                    id="science-third-first-null"
                    v-model="scienceScores[4].score"
+                   :checked="scienceScores[4].decided"
+                   @click="changeDecided($event, scienceScores[4])"
             >
             <label for="science-third-first-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -861,6 +961,8 @@
                    :value="k.toUpperCase()"
                    :id="`tech-home-first-first-${k}`"
                    v-model="techAndHomeScores[0].score"
+                   :checked="techAndHomeScores[0].decided"
+                   @click="changeDecided($event, techAndHomeScores[0])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -874,6 +976,8 @@
                    value="X"
                    id="tech-home-first-first-null"
                    v-model="techAndHomeScores[0].score"
+                   :checked="techAndHomeScores[0].decided"
+                   @click="changeDecided($event, techAndHomeScores[0])"
             >
             <label for="tech-home-first-first-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -888,6 +992,8 @@
                    :value="k.toUpperCase()"
                    :id="`tech-home-first-second-${k}`"
                    v-model="techAndHomeScores[1].score"
+                   :checked="techAndHomeScores[1].decided"
+                   @click="changeDecided($event, techAndHomeScores[1])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -901,6 +1007,8 @@
                    value="X"
                    id="tech-home-first-second-null"
                    v-model="techAndHomeScores[1].score"
+                   :checked="techAndHomeScores[1].decided"
+                   @click="changeDecided($event, techAndHomeScores[1])"
             >
             <label for="tech-home-first-second-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -915,6 +1023,8 @@
                    :value="k.toUpperCase()"
                    :id="`tech-home-second-first-${k}`"
                    v-model="techAndHomeScores[2].score"
+                   :checked="techAndHomeScores[2].decided"
+                   @click="changeDecided($event, techAndHomeScores[2])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -928,6 +1038,8 @@
                    value="X"
                    id="tech-home-second-first-null"
                    v-model="techAndHomeScores[2].score"
+                   :checked="techAndHomeScores[2].decided"
+                   @click="changeDecided($event, techAndHomeScores[2])"
             >
             <label for="tech-home-second-first-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -942,6 +1054,8 @@
                    :value="k.toUpperCase()"
                    :id="`tech-home-second-second-${k}`"
                    v-model="techAndHomeScores[3].score"
+                   :checked="techAndHomeScores[3].decided"
+                   @click="changeDecided($event, techAndHomeScores[3])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -955,6 +1069,8 @@
                    value="X"
                    id="tech-home-second-second-null"
                    v-model="techAndHomeScores[3].score"
+                   :checked="techAndHomeScores[3].decided"
+                   @click="changeDecided($event, techAndHomeScores[3])"
             >
             <label for="tech-home-second-second-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -969,6 +1085,8 @@
                    :value="k.toUpperCase()"
                    :id="`tech-home-third-first-${k}`"
                    v-model="techAndHomeScores[4].score"
+                   :checked="techAndHomeScores[4].decided"
+                   @click="changeDecided($event, techAndHomeScores[4])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -982,6 +1100,8 @@
                    value="X"
                    id="tech-home-third-first-null"
                    v-model="techAndHomeScores[4].score"
+                   :checked="techAndHomeScores[4].decided"
+                   @click="changeDecided($event, techAndHomeScores[4])"
             >
             <label for="tech-home-third-first-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -999,6 +1119,8 @@
                    :value="k.toUpperCase()"
                    :id="`english-first-first-${k}`"
                    v-model="englishScores[0].score"
+                   :checked="englishScores[0].decided"
+                   @click="changeDecided($event, englishScores[0])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -1012,6 +1134,8 @@
                    value="X"
                    id="english-first-first-null"
                    v-model="englishScores[0].score"
+                   :checked="englishScores[0].decided"
+                   @click="changeDecided($event, englishScores[0])"
             >
             <label for="english-first-first-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -1026,6 +1150,8 @@
                    :value="k.toUpperCase()"
                    :id="`english-first-second-${k}`"
                    v-model="englishScores[1].score"
+                   :checked="englishScores[1].decided"
+                   @click="changeDecided($event, englishScores[1])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -1039,6 +1165,8 @@
                    value="X"
                    id="english-first-second-null"
                    v-model="englishScores[1].score"
+                   :checked="englishScores[1].decided"
+                   @click="changeDecided($event, englishScores[1])"
             >
             <label for="english-first-second-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -1053,6 +1181,8 @@
                    :value="k.toUpperCase()"
                    :id="`english-second-first-${k}`"
                    v-model="englishScores[2].score"
+                   :checked="englishScores[2].decided"
+                   @click="changeDecided($event, englishScores[2])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -1066,6 +1196,8 @@
                    value="X"
                    id="english-second-first-null"
                    v-model="englishScores[2].score"
+                   :checked="englishScores[2].decided"
+                   @click="changeDecided($event, englishScores[2])"
             >
             <label for="english-second-first-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -1080,6 +1212,8 @@
                    :value="k.toUpperCase()"
                    :id="`english-second-second-${k}`"
                    v-model="englishScores[3].score"
+                   :checked="englishScores[3].decided"
+                   @click="changeDecided($event, englishScores[3])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -1093,6 +1227,8 @@
                    value="X"
                    id="english-second-second-null"
                    v-model="englishScores[3].score"
+                   :checked="englishScores[3].decided"
+                   @click="changeDecided($event, englishScores[3])"
             >
             <label for="english-second-second-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -1107,6 +1243,8 @@
                    :value="k.toUpperCase()"
                    :id="`english-third-first-${k}`"
                    v-model="englishScores[4].score"
+                   :checked="englishScores[4].decided"
+                   @click="changeDecided($event, englishScores[4])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
@@ -1120,6 +1258,8 @@
                    value="X"
                    id="english-third-first-null"
                    v-model="englishScores[4].score"
+                   :checked="englishScores[4].decided"
+                   @click="changeDecided($event, englishScores[4])"
             >
             <label for="english-third-first-null" class="input-grade-label">X</label>
             <img src="../../assets/GradeInput/no-score.png"
@@ -1182,65 +1322,65 @@ export default {
       /* 점수 실제 설정 */
       // 국어
       koreanScores: [
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
       ],
 
       // 사회
       societyScores: [
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
       ],
 
       // 역사
       historyScores: [
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
       ],
 
       // 수학
       mathScores: [
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
       ],
 
       // 과학
       scienceScores: [
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
       ],
 
       // 기술 - 가정
       techAndHomeScores: [
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
       ],
 
       // 영어
       englishScores: [
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
-        { score: '', decided: false, passed: true },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
       ],
     };
   },
@@ -1332,6 +1472,14 @@ export default {
           break;
         default: break;
       }
+    },
+
+    // 점수를 눌렀을 시의 이벤트
+    changeDecided({ target }, val) {
+      const v = val;
+      v.decided = !v.decided;
+      v.passed = target.value === 'X' ? false : !v.passed;
+      v.score = v.decided ? v.score : '';
     },
   },
 };
