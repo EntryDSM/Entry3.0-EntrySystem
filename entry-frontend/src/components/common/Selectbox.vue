@@ -35,7 +35,6 @@ export default {
       required: true,
     },
     value: {
-      type: Number,
       required: true,
     },
     isEnabled: {
