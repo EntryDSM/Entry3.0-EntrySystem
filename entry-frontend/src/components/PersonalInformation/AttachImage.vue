@@ -48,6 +48,7 @@ export default {
     bottom: 15px;
   }
   @include e('label') {
+    cursor: pointer;
     width: 100%;
     height: 100%;
     display: block;
