@@ -130,7 +130,7 @@
       </table>
 
       <h3>성적입력</h3>
-      <table class="grade-input-table">
+      <table class="grade-input-table" ref="grade-table">
         <div class="all-grade-reset-cover">
           <div class="all-grade-reset-cover__box">
             <span class="all-grade-reset-cover__box__text">
@@ -172,12 +172,12 @@
                    :id="`korean-first-first-${k}`"
                    v-model="koreanScores[0].score"
                    :checked="koreanScores[0].decided"
-                   @click="changeDecided($event, koreanScores[0])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`korean-first-first-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, koreanScores[0])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -187,9 +187,11 @@
                    id="korean-first-first-null"
                    v-model="koreanScores[0].score"
                    :checked="koreanScores[0].decided"
-                   @click="changeDecided($event, koreanScores[0])"
             >
-            <label for="korean-first-first-null" class="input-grade-label">X</label>
+            <label for="korean-first-first-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, koreanScores[0])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -203,12 +205,12 @@
                    :id="`korean-first-second-${k}`"
                    v-model="koreanScores[1].score"
                    :checked="koreanScores[1].decided"
-                   @click="changeDecided($event, koreanScores[1])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`korean-first-second-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, koreanScores[1])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -218,9 +220,11 @@
                    id="korean-first-second-null"
                    v-model="koreanScores[1].score"
                    :checked="koreanScores[1].decided"
-                   @click="changeDecided($event, koreanScores[1])"
             >
-            <label for="korean-first-second-null" class="input-grade-label">X</label>
+            <label for="korean-first-second-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, koreanScores[1])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -234,12 +238,12 @@
                    :id="`korean-second-first-${k}`"
                    v-model="koreanScores[2].score"
                    :checked="koreanScores[2].decided"
-                   @click="changeDecided($event, koreanScores[2])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`korean-second-first-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, koreanScores[2])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -249,9 +253,11 @@
                    id="korean-second-first-null"
                    v-model="koreanScores[2].score"
                    :checked="koreanScores[2].decided"
-                   @click="changeDecided($event, koreanScores[2])"
             >
-            <label for="korean-second-first-null" class="input-grade-label">X</label>
+            <label for="korean-second-first-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, koreanScores[2])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -265,12 +271,12 @@
                    :id="`korean-second-second-${k}`"
                    v-model="koreanScores[3].score"
                    :checked="koreanScores[3].decided"
-                   @click="changeDecided($event, koreanScores[3])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`korean-second-second-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, koreanScores[3])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -280,9 +286,11 @@
                    id="korean-second-second-null"
                    v-model="koreanScores[3].score"
                    :checked="koreanScores[3].decided"
-                   @click="changeDecided($event, koreanScores[3])"
             >
-            <label for="korean-second-second-null" class="input-grade-label">X</label>
+            <label for="korean-second-second-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, koreanScores[3])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -296,12 +304,12 @@
                    :id="`korean-third-first-${k}`"
                    v-model="koreanScores[4].score"
                    :checked="koreanScores[4].decided"
-                   @click="changeDecided($event, koreanScores[4])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`korean-third-first-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, koreanScores[4])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -311,9 +319,11 @@
                    id="korean-third-first-null"
                    v-model="koreanScores[4].score"
                    :checked="koreanScores[4].decided"
-                   @click="changeDecided($event, koreanScores[4])"
             >
-            <label for="korean-third-first-null" class="input-grade-label">X</label>
+            <label for="korean-third-first-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, koreanScores[4])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -330,12 +340,12 @@
                    :id="`society-first-first-${k}`"
                    v-model="societyScores[0].score"
                    :checked="societyScores[0].decided"
-                   @click="changeDecided($event, societyScores[0])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`society-first-first-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, societyScores[0])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -345,9 +355,11 @@
                    id="society-first-first-null"
                    v-model="societyScores[0].score"
                    :checked="societyScores[0].decided"
-                   @click="changeDecided($event, societyScores[0])"
             >
-            <label for="society-first-first-null" class="input-grade-label">X</label>
+            <label for="society-first-first-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, societyScores[0])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -361,12 +373,12 @@
                    :id="`society-first-second-${k}`"
                    v-model="societyScores[1].score"
                    :checked="societyScores[1].decided"
-                   @click="changeDecided($event, societyScores[1])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`society-first-second-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, societyScores[1])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -376,9 +388,11 @@
                    id="society-first-second-null"
                    v-model="societyScores[1].score"
                    :checked="societyScores[1].decided"
-                   @click="changeDecided($event, societyScores[1])"
             >
-            <label for="society-first-second-null" class="input-grade-label">X</label>
+            <label for="society-first-second-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, societyScores[1])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -392,12 +406,12 @@
                    :id="`society-second-first-${k}`"
                    v-model="societyScores[2].score"
                    :checked="societyScores[2].decided"
-                   @click="changeDecided($event, societyScores[2])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`society-second-first-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, societyScores[2])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -407,9 +421,11 @@
                    id="society-second-first-null"
                    v-model="societyScores[2].score"
                    :checked="societyScores[2].decided"
-                   @click="changeDecided($event, societyScores[2])"
             >
-            <label for="society-second-first-null" class="input-grade-label">X</label>
+            <label for="society-second-first-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, societyScores[2])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -423,12 +439,12 @@
                    :id="`society-second-second-${k}`"
                    v-model="societyScores[3].score"
                    :checked="societyScores[3].decided"
-                   @click="changeDecided($event, societyScores[3])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`society-second-second-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, societyScores[3])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -438,9 +454,11 @@
                    id="society-second-second-null"
                    v-model="societyScores[3].score"
                    :checked="societyScores[3].decided"
-                   @click="changeDecided($event, societyScores[3])"
             >
-            <label for="society-second-second-null" class="input-grade-label">X</label>
+            <label for="society-second-second-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, societyScores[3])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -454,12 +472,12 @@
                    :id="`society-third-first-${k}`"
                    v-model="societyScores[4].score"
                    :checked="societyScores[4].decided"
-                   @click="changeDecided($event, societyScores[4])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`society-third-first-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, societyScores[4])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -469,9 +487,11 @@
                    id="society-third-first-null"
                    v-model="societyScores[4].score"
                    :checked="societyScores[4].decided"
-                   @click="changeDecided($event, societyScores[4])"
             >
-            <label for="society-third-first-null" class="input-grade-label">X</label>
+            <label for="society-third-first-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, societyScores[4])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -488,12 +508,12 @@
                    :id="`history-first-first-${k}`"
                    v-model="historyScores[0].score"
                    :checked="historyScores[0].decided"
-                   @click="changeDecided($event, historyScores[0])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`history-first-first-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, historyScores[0])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -503,9 +523,11 @@
                    id="history-first-first-null"
                    v-model="historyScores[0].score"
                    :checked="historyScores[0].decided"
-                   @click="changeDecided($event, historyScores[0])"
             >
-            <label for="history-first-first-null" class="input-grade-label">X</label>
+            <label for="history-first-first-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, historyScores[0])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -519,12 +541,12 @@
                    :id="`history-first-second-${k}`"
                    v-model="historyScores[1].score"
                    :checked="historyScores[1].decided"
-                   @click="changeDecided($event, historyScores[1])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`history-first-second-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, historyScores[1])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -534,9 +556,11 @@
                    id="history-first-second-null"
                    v-model="historyScores[1].score"
                    :checked="historyScores[1].decided"
-                   @click="changeDecided($event, historyScores[1])"
             >
-            <label for="history-first-second-null" class="input-grade-label">X</label>
+            <label for="history-first-second-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, historyScores[1])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -550,12 +574,12 @@
                    :id="`history-second-first-${k}`"
                    v-model="historyScores[2].score"
                    :checked="historyScores[2].decided"
-                   @click="changeDecided($event, historyScores[2])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`history-second-first-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, historyScores[2])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -565,9 +589,11 @@
                    id="history-second-first-null"
                    v-model="historyScores[2].score"
                    :checked="historyScores[2].decided"
-                   @click="changeDecided($event, historyScores[2])"
             >
-            <label for="history-second-first-null" class="input-grade-label">X</label>
+            <label for="history-second-first-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, historyScores[2])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -581,12 +607,12 @@
                    :id="`history-second-second-${k}`"
                    v-model="historyScores[3].score"
                    :checked="historyScores[3].decided"
-                   @click="changeDecided($event, historyScores[3])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`history-second-second-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, historyScores[3])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -596,9 +622,11 @@
                    id="history-second-second-null"
                    v-model="historyScores[3].score"
                    :checked="historyScores[3].decided"
-                   @click="changeDecided($event, historyScores[3])"
             >
-            <label for="history-second-second-null" class="input-grade-label">X</label>
+            <label for="history-second-second-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, historyScores[3])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -612,12 +640,12 @@
                    :id="`history-third-first-${k}`"
                    v-model="historyScores[4].score"
                    :checked="historyScores[4].decided"
-                   @click="changeDecided($event, historyScores[4])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`history-third-first-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, historyScores[4])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -627,9 +655,11 @@
                    id="history-third-first-null"
                    v-model="historyScores[4].score"
                    :checked="historyScores[4].decided"
-                   @click="changeDecided($event, historyScores[4])"
             >
-            <label for="history-third-first-null" class="input-grade-label">X</label>
+            <label for="history-third-first-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, historyScores[4])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -646,12 +676,12 @@
                    :id="`math-first-first-${k}`"
                    v-model="mathScores[0].score"
                    :checked="mathScores[0].decided"
-                   @click="changeDecided($event, mathScores[0])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`math-first-first-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, mathScores[0])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -661,9 +691,11 @@
                    id="math-first-first-null"
                    v-model="mathScores[0].score"
                    :checked="mathScores[0].decided"
-                   @click="changeDecided($event, mathScores[0])"
             >
-            <label for="math-first-first-null" class="input-grade-label">X</label>
+            <label for="math-first-first-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, mathScores[0])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -677,12 +709,12 @@
                    :id="`math-first-second-${k}`"
                    v-model="mathScores[1].score"
                    :checked="mathScores[1].decided"
-                   @click="changeDecided($event, mathScores[1])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`math-first-second-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, mathScores[1])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -692,9 +724,11 @@
                    id="math-first-second-null"
                    v-model="mathScores[1].score"
                    :checked="mathScores[1].decided"
-                   @click="changeDecided($event, mathScores[1])"
             >
-            <label for="math-first-second-null" class="input-grade-label">X</label>
+            <label for="math-first-second-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, mathScores[1])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -708,12 +742,12 @@
                    :id="`math-second-first-${k}`"
                    v-model="mathScores[2].score"
                    :checked="mathScores[2].decided"
-                   @click="changeDecided($event, mathScores[2])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`math-second-first-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, mathScores[2])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -723,9 +757,11 @@
                    id="math-second-first-null"
                    v-model="mathScores[2].score"
                    :checked="mathScores[2].decided"
-                   @click="changeDecided($event, mathScores[2])"
             >
-            <label for="math-second-first-null" class="input-grade-label">X</label>
+            <label for="math-second-first-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, mathScores[2])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -739,12 +775,12 @@
                    :id="`math-second-second-${k}`"
                    v-model="mathScores[3].score"
                    :checked="mathScores[3].decided"
-                   @click="changeDecided($event, mathScores[3])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`math-second-second-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, mathScores[3])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -754,9 +790,11 @@
                    id="math-second-second-null"
                    v-model="mathScores[3].score"
                    :checked="mathScores[3].decided"
-                   @click="changeDecided($event, mathScores[3])"
             >
-            <label for="math-second-second-null" class="input-grade-label">X</label>
+            <label for="math-second-second-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, mathScores[3])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -770,12 +808,12 @@
                    :id="`math-third-first-${k}`"
                    v-model="mathScores[4].score"
                    :checked="mathScores[4].decided"
-                   @click="changeDecided($event, mathScores[4])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`math-third-first-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, mathScores[4])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -785,9 +823,11 @@
                    id="math-third-first-null"
                    v-model="mathScores[4].score"
                    :checked="mathScores[4].decided"
-                   @click="changeDecided($event, mathScores[4])"
             >
-            <label for="math-third-first-null" class="input-grade-label">X</label>
+            <label for="math-third-first-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, mathScores[4])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -804,12 +844,12 @@
                    :id="`science-first-first-${k}`"
                    v-model="scienceScores[0].score"
                    :checked="scienceScores[0].decided"
-                   @click="changeDecided($event, scienceScores[0])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`science-first-first-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, scienceScores[0])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -819,9 +859,11 @@
                    id="science-first-first-null"
                    v-model="scienceScores[0].score"
                    :checked="scienceScores[0].decided"
-                   @click="changeDecided($event, scienceScores[0])"
             >
-            <label for="science-first-first-null" class="input-grade-label">X</label>
+            <label for="science-first-first-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, scienceScores[0])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -835,12 +877,12 @@
                    :id="`science-first-second-${k}`"
                    v-model="scienceScores[1].score"
                    :checked="scienceScores[1].decided"
-                   @click="changeDecided($event, scienceScores[1])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`science-first-second-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, scienceScores[1])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -850,9 +892,11 @@
                    id="science-first-second-null"
                    v-model="scienceScores[1].score"
                    :checked="scienceScores[1].decided"
-                   @click="changeDecided($event, scienceScores[1])"
             >
-            <label for="science-first-second-null" class="input-grade-label">X</label>
+            <label for="science-first-second-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, scienceScores[1])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -866,12 +910,12 @@
                    :id="`science-second-first-${k}`"
                    v-model="scienceScores[2].score"
                    :checked="scienceScores[2].decided"
-                   @click="changeDecided($event, scienceScores[2])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`science-second-first-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, scienceScores[2])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -881,9 +925,11 @@
                    id="science-second-first-null"
                    v-model="scienceScores[2].score"
                    :checked="scienceScores[2].decided"
-                   @click="changeDecided($event, scienceScores[2])"
             >
-            <label for="science-second-first-null" class="input-grade-label">X</label>
+            <label for="science-second-first-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, scienceScores[2])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -897,12 +943,12 @@
                    :id="`science-second-second-${k}`"
                    v-model="scienceScores[3].score"
                    :checked="scienceScores[3].decided"
-                   @click="changeDecided($event, scienceScores[3])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`science-second-second-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, scienceScores[3])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -912,9 +958,11 @@
                    id="science-second-second-null"
                    v-model="scienceScores[3].score"
                    :checked="scienceScores[3].decided"
-                   @click="changeDecided($event, scienceScores[3])"
             >
-            <label for="science-second-second-null" class="input-grade-label">X</label>
+            <label for="science-second-second-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, scienceScores[3])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -928,12 +976,12 @@
                    :id="`science-third-first-${k}`"
                    v-model="scienceScores[4].score"
                    :checked="scienceScores[4].decided"
-                   @click="changeDecided($event, scienceScores[4])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`science-third-first-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, scienceScores[4])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -943,9 +991,11 @@
                    id="science-third-first-null"
                    v-model="scienceScores[4].score"
                    :checked="scienceScores[4].decided"
-                   @click="changeDecided($event, scienceScores[4])"
             >
-            <label for="science-third-first-null" class="input-grade-label">X</label>
+            <label for="science-third-first-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, scienceScores[4])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -962,12 +1012,12 @@
                    :id="`tech-home-first-first-${k}`"
                    v-model="techAndHomeScores[0].score"
                    :checked="techAndHomeScores[0].decided"
-                   @click="changeDecided($event, techAndHomeScores[0])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`tech-home-first-first-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, techAndHomeScores[0])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -977,9 +1027,11 @@
                    id="tech-home-first-first-null"
                    v-model="techAndHomeScores[0].score"
                    :checked="techAndHomeScores[0].decided"
-                   @click="changeDecided($event, techAndHomeScores[0])"
             >
-            <label for="tech-home-first-first-null" class="input-grade-label">X</label>
+            <label for="tech-home-first-first-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, techAndHomeScores[0])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -993,12 +1045,12 @@
                    :id="`tech-home-first-second-${k}`"
                    v-model="techAndHomeScores[1].score"
                    :checked="techAndHomeScores[1].decided"
-                   @click="changeDecided($event, techAndHomeScores[1])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`tech-home-first-second-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, techAndHomeScores[1])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -1008,9 +1060,11 @@
                    id="tech-home-first-second-null"
                    v-model="techAndHomeScores[1].score"
                    :checked="techAndHomeScores[1].decided"
-                   @click="changeDecided($event, techAndHomeScores[1])"
             >
-            <label for="tech-home-first-second-null" class="input-grade-label">X</label>
+            <label for="tech-home-first-second-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, techAndHomeScores[1])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -1024,12 +1078,12 @@
                    :id="`tech-home-second-first-${k}`"
                    v-model="techAndHomeScores[2].score"
                    :checked="techAndHomeScores[2].decided"
-                   @click="changeDecided($event, techAndHomeScores[2])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`tech-home-second-first-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, techAndHomeScores[2])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -1039,9 +1093,11 @@
                    id="tech-home-second-first-null"
                    v-model="techAndHomeScores[2].score"
                    :checked="techAndHomeScores[2].decided"
-                   @click="changeDecided($event, techAndHomeScores[2])"
             >
-            <label for="tech-home-second-first-null" class="input-grade-label">X</label>
+            <label for="tech-home-second-first-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, techAndHomeScores[2])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -1055,12 +1111,12 @@
                    :id="`tech-home-second-second-${k}`"
                    v-model="techAndHomeScores[3].score"
                    :checked="techAndHomeScores[3].decided"
-                   @click="changeDecided($event, techAndHomeScores[3])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`tech-home-second-second-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, techAndHomeScores[3])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -1070,9 +1126,11 @@
                    id="tech-home-second-second-null"
                    v-model="techAndHomeScores[3].score"
                    :checked="techAndHomeScores[3].decided"
-                   @click="changeDecided($event, techAndHomeScores[3])"
             >
-            <label for="tech-home-second-second-null" class="input-grade-label">X</label>
+            <label for="tech-home-second-second-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, techAndHomeScores[3])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -1086,12 +1144,12 @@
                    :id="`tech-home-third-first-${k}`"
                    v-model="techAndHomeScores[4].score"
                    :checked="techAndHomeScores[4].decided"
-                   @click="changeDecided($event, techAndHomeScores[4])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`tech-home-third-first-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, techAndHomeScores[4])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -1101,9 +1159,11 @@
                    id="tech-home-third-first-null"
                    v-model="techAndHomeScores[4].score"
                    :checked="techAndHomeScores[4].decided"
-                   @click="changeDecided($event, techAndHomeScores[4])"
             >
-            <label for="tech-home-third-first-null" class="input-grade-label">X</label>
+            <label for="tech-home-third-first-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, techAndHomeScores[4])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -1120,12 +1180,12 @@
                    :id="`english-first-first-${k}`"
                    v-model="englishScores[0].score"
                    :checked="englishScores[0].decided"
-                   @click="changeDecided($event, englishScores[0])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`english-first-first-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, englishScores[0])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -1135,9 +1195,11 @@
                    id="english-first-first-null"
                    v-model="englishScores[0].score"
                    :checked="englishScores[0].decided"
-                   @click="changeDecided($event, englishScores[0])"
             >
-            <label for="english-first-first-null" class="input-grade-label">X</label>
+            <label for="english-first-first-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, englishScores[0])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -1151,12 +1213,12 @@
                    :id="`english-first-second-${k}`"
                    v-model="englishScores[1].score"
                    :checked="englishScores[1].decided"
-                   @click="changeDecided($event, englishScores[1])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`english-first-second-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, englishScores[1])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -1166,9 +1228,11 @@
                    id="english-first-second-null"
                    v-model="englishScores[1].score"
                    :checked="englishScores[1].decided"
-                   @click="changeDecided($event, englishScores[1])"
             >
-            <label for="english-first-second-null" class="input-grade-label">X</label>
+            <label for="english-first-second-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, englishScores[1])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -1182,12 +1246,12 @@
                    :id="`english-second-first-${k}`"
                    v-model="englishScores[2].score"
                    :checked="englishScores[2].decided"
-                   @click="changeDecided($event, englishScores[2])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`english-second-first-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, englishScores[2])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -1197,9 +1261,11 @@
                    id="english-second-first-null"
                    v-model="englishScores[2].score"
                    :checked="englishScores[2].decided"
-                   @click="changeDecided($event, englishScores[2])"
             >
-            <label for="english-second-first-null" class="input-grade-label">X</label>
+            <label for="english-second-first-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, englishScores[2])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -1213,12 +1279,12 @@
                    :id="`english-second-second-${k}`"
                    v-model="englishScores[3].score"
                    :checked="englishScores[3].decided"
-                   @click="changeDecided($event, englishScores[3])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`english-second-second-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, englishScores[3])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -1228,9 +1294,11 @@
                    id="english-second-second-null"
                    v-model="englishScores[3].score"
                    :checked="englishScores[3].decided"
-                   @click="changeDecided($event, englishScores[3])"
             >
-            <label for="english-second-second-null" class="input-grade-label">X</label>
+            <label for="english-second-second-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, englishScores[3])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -1244,12 +1312,12 @@
                    :id="`english-third-first-${k}`"
                    v-model="englishScores[4].score"
                    :checked="englishScores[4].decided"
-                   @click="changeDecided($event, englishScores[4])"
             >
             <label v-for="(k, index) in scores"
                    :key="index"
                    :for="`english-third-first-${k}`"
                    class="input-grade-label"
+                   @click="changeDecided($event, englishScores[4])"
             >
               {{ k.toUpperCase() }}
             </label>
@@ -1259,9 +1327,11 @@
                    id="english-third-first-null"
                    v-model="englishScores[4].score"
                    :checked="englishScores[4].decided"
-                   @click="changeDecided($event, englishScores[4])"
             >
-            <label for="english-third-first-null" class="input-grade-label">X</label>
+            <label for="english-third-first-null"
+                   class="input-grade-label"
+                   @click="changeDecided($event, englishScores[4])"
+            >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
@@ -1428,7 +1498,18 @@ export default {
       }
     },
 
+    // 미이수 체크 해제
+    resetDiscomplete() {
+      const s = this.semesters;
+      s.firstFirstSemester = false;
+      s.firstSecondSemester = false;
+      s.secondFirstSemester = false;
+      s.secondSecondSemester = false;
+      s.thirdFirstSemester = false;
+    },
+
     resetGrade({ target }) {
+      this.resetDiscomplete();
       this.setButton(target);
       this.setGrades();
     },
@@ -1480,6 +1561,30 @@ export default {
       v.decided = !v.decided;
       v.passed = target.value === 'X' ? false : !v.passed;
       v.score = v.decided ? v.score : '';
+    },
+  },
+  watch: {
+    grades: {
+      handler(val) {
+        const gradeTable = this.$refs['grade-table'];
+        const [,,, ...gradePart] = gradeTable.children;
+        const compareArr = [];
+        let pushTdArr = [];
+
+        // computed의 grades와 1:1로 대응하기 위해 설정
+        for (let i = 0; i < gradePart.length; i += 1) {
+          const grade = gradePart[i];
+          for (let j = 1; j < grade.children.length; j += 1) {
+            pushTdArr.push(grade.children[j]);
+          }
+
+          compareArr.push(pushTdArr);
+          pushTdArr = [];
+        }
+
+        console.log(compareArr);
+      },
+      deep: true,
     },
   },
 };
@@ -1540,6 +1645,7 @@ $button-color: #edf5f6;
     align-items: center;
     justify-content: center;
     margin-right: 2px;
+    transition: 0.5s;
   }
 
   table {
