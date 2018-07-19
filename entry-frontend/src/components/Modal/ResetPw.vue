@@ -46,16 +46,17 @@ export default {
         this.$store.commit('changeIndex', {
           index: 3,
         });
-        /*this.$axios.post('/ResetPW', { email }).then(({ data }) => {
-          if (data.type) {
-            
-          } else {
-            this.notInput = true;
-            setTimeout(() => {
-              this.notInput = false;
-            }, 2000);
-          }
-        });*/
+        /*
+          this.$axios.post('/ResetPW', { email }).then(({ data }) => {
+            if (data.type) {
+            } else {
+              this.notInput = true;
+              setTimeout(() => {
+                this.notInput = false;
+              }, 2000);
+            }
+          });
+        */
       }
     },
     reset() {
