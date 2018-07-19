@@ -35,7 +35,6 @@ export default {
       required: true,
     },
     value: {
-      type: Number,
       required: true,
     },
     isEnabled: {
@@ -55,8 +54,7 @@ export default {
     },
     changeValue(value, index) {
       this.selected = index;
-      this.value = value;
-      this.$emit('input', this.value);
+      this.$emit('input', value);
       this.isFocused = false;
     },
   },
