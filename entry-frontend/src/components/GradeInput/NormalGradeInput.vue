@@ -164,7 +164,7 @@
         </tr>
         <tr class="grade-input-table__row">
           <td>국어</td>
-          <td>
+          <td :class="changeBackground(koreanScores[0].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -199,7 +199,7 @@
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(koreanScores[1].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -213,10 +213,11 @@
                    :for="`korean-first-second-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, koreanScores[1])"
+                   :class="complete(koreanScores[1].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!koreanScores[1].score"></div>
             <input type="radio"
                    value="X"
                    id="korean-first-second-null"
@@ -226,13 +227,14 @@
             <label for="korean-first-second-null"
                    class="input-grade-label"
                    @click="changeDecided($event, koreanScores[1])"
+                   :class="discomplete(koreanScores[1].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(koreanScores[2].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -246,10 +248,11 @@
                    :for="`korean-second-first-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, koreanScores[2])"
+                   :class="complete(koreanScores[2].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!koreanScores[2].score"></div>
             <input type="radio"
                    value="X"
                    id="korean-second-first-null"
@@ -259,13 +262,14 @@
             <label for="korean-second-first-null"
                    class="input-grade-label"
                    @click="changeDecided($event, koreanScores[2])"
+                   :class="discomplete(koreanScores[2].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(koreanScores[3].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -279,10 +283,11 @@
                    :for="`korean-second-second-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, koreanScores[3])"
+                   :class="complete(koreanScores[3].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!koreanScores[3].score"></div>
             <input type="radio"
                    value="X"
                    id="korean-second-second-null"
@@ -292,13 +297,14 @@
             <label for="korean-second-second-null"
                    class="input-grade-label"
                    @click="changeDecided($event, koreanScores[3])"
+                   :class="discomplete(koreanScores[3].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(koreanScores[4].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -312,10 +318,11 @@
                    :for="`korean-third-first-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, koreanScores[4])"
+                   :class="complete(koreanScores[4].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!koreanScores[4].score"></div>
             <input type="radio"
                    value="X"
                    id="korean-third-first-null"
@@ -325,6 +332,7 @@
             <label for="korean-third-first-null"
                    class="input-grade-label"
                    @click="changeDecided($event, koreanScores[4])"
+                   :class="discomplete(koreanScores[4].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
@@ -334,7 +342,7 @@
         </tr>
         <tr class="grade-input-table__row">
           <td>사회</td>
-          <td>
+          <td :class="changeBackground(societyScores[0].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -348,10 +356,11 @@
                    :for="`society-first-first-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, societyScores[0])"
+                   :class="complete(societyScores[0].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!societyScores[0].score"></div>
             <input type="radio"
                    value="X"
                    id="society-first-first-null"
@@ -361,13 +370,14 @@
             <label for="society-first-first-null"
                    class="input-grade-label"
                    @click="changeDecided($event, societyScores[0])"
+                   :class="discomplete(societyScores[0].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(societyScores[1].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -381,10 +391,11 @@
                    :for="`society-first-second-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, societyScores[1])"
+                   :class="complete(societyScores[1].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!societyScores[1].score"></div>
             <input type="radio"
                    value="X"
                    id="society-first-second-null"
@@ -394,13 +405,14 @@
             <label for="society-first-second-null"
                    class="input-grade-label"
                    @click="changeDecided($event, societyScores[1])"
+                   :class="discomplete(societyScores[1].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(societyScores[2].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -414,10 +426,11 @@
                    :for="`society-second-first-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, societyScores[2])"
+                   :class="complete(societyScores[2].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!societyScores[2].score"></div>
             <input type="radio"
                    value="X"
                    id="society-second-first-null"
@@ -427,13 +440,14 @@
             <label for="society-second-first-null"
                    class="input-grade-label"
                    @click="changeDecided($event, societyScores[2])"
+                   :class="discomplete(societyScores[2].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(societyScores[3].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -447,10 +461,11 @@
                    :for="`society-second-second-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, societyScores[3])"
+                   :class="complete(societyScores[3].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!societyScores[3].score"></div>
             <input type="radio"
                    value="X"
                    id="society-second-second-null"
@@ -460,13 +475,14 @@
             <label for="society-second-second-null"
                    class="input-grade-label"
                    @click="changeDecided($event, societyScores[3])"
+                   :class="discomplete(societyScores[3].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(societyScores[4].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -480,10 +496,11 @@
                    :for="`society-third-first-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, societyScores[4])"
+                   :class="complete(societyScores[4].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!societyScores[4].score"></div>
             <input type="radio"
                    value="X"
                    id="society-third-first-null"
@@ -493,6 +510,7 @@
             <label for="society-third-first-null"
                    class="input-grade-label"
                    @click="changeDecided($event, societyScores[4])"
+                   :class="discomplete(societyScores[4].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
@@ -502,7 +520,7 @@
         </tr>
         <tr class="grade-input-table__row">
           <td>역사</td>
-          <td>
+          <td :class="changeBackground(historyScores[0].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -516,10 +534,11 @@
                    :for="`history-first-first-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, historyScores[0])"
+                   :class="complete(historyScores[0].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!historyScores[0].score"></div>
             <input type="radio"
                    value="X"
                    id="history-first-first-null"
@@ -529,13 +548,14 @@
             <label for="history-first-first-null"
                    class="input-grade-label"
                    @click="changeDecided($event, historyScores[0])"
+                   :class="discomplete(historyScores[0].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(historyScores[1].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -549,10 +569,11 @@
                    :for="`history-first-second-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, historyScores[1])"
+                   :class="complete(historyScores[1].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!historyScores[1].score"></div>
             <input type="radio"
                    value="X"
                    id="history-first-second-null"
@@ -562,13 +583,14 @@
             <label for="history-first-second-null"
                    class="input-grade-label"
                    @click="changeDecided($event, historyScores[1])"
+                   :class="discomplete(historyScores[1].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(historyScores[2].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -582,10 +604,11 @@
                    :for="`history-second-first-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, historyScores[2])"
+                   :class="complete(historyScores[2].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!historyScores[2].score"></div>
             <input type="radio"
                    value="X"
                    id="history-second-first-null"
@@ -595,13 +618,14 @@
             <label for="history-second-first-null"
                    class="input-grade-label"
                    @click="changeDecided($event, historyScores[2])"
+                   :class="discomplete(historyScores[2].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(historyScores[3].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -615,10 +639,11 @@
                    :for="`history-second-second-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, historyScores[3])"
+                   :class="complete(historyScores[3].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!historyScores[3].score"></div>
             <input type="radio"
                    value="X"
                    id="history-second-second-null"
@@ -628,13 +653,14 @@
             <label for="history-second-second-null"
                    class="input-grade-label"
                    @click="changeDecided($event, historyScores[3])"
+                   :class="discomplete(historyScores[3].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(historyScores[4].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -648,10 +674,11 @@
                    :for="`history-third-first-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, historyScores[4])"
+                   :class="complete(historyScores[4].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!historyScores[4].score"></div>
             <input type="radio"
                    value="X"
                    id="history-third-first-null"
@@ -661,6 +688,7 @@
             <label for="history-third-first-null"
                    class="input-grade-label"
                    @click="changeDecided($event, historyScores[4])"
+                   :class="discomplete(historyScores[4].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
@@ -670,7 +698,7 @@
         </tr>
         <tr class="grade-input-table__row">
           <td>수학</td>
-          <td>
+          <td :class="changeBackground(mathScores[0].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -684,10 +712,11 @@
                    :for="`math-first-first-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, mathScores[0])"
+                   :class="complete(mathScores[0].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!mathScores[0].score"></div>
             <input type="radio"
                    value="X"
                    id="math-first-first-null"
@@ -697,13 +726,14 @@
             <label for="math-first-first-null"
                    class="input-grade-label"
                    @click="changeDecided($event, mathScores[0])"
+                   :class="discomplete(mathScores[0].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(mathScores[1].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -717,10 +747,11 @@
                    :for="`math-first-second-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, mathScores[1])"
+                   :class="complete(mathScores[1].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!mathScores[1].score"></div>
             <input type="radio"
                    value="X"
                    id="math-first-second-null"
@@ -730,13 +761,14 @@
             <label for="math-first-second-null"
                    class="input-grade-label"
                    @click="changeDecided($event, mathScores[1])"
+                   :class="discomplete(mathScores[1].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(mathScores[2].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -750,10 +782,11 @@
                    :for="`math-second-first-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, mathScores[2])"
+                   :class="complete(mathScores[2].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!mathScores[2].score"></div>
             <input type="radio"
                    value="X"
                    id="math-second-first-null"
@@ -763,13 +796,14 @@
             <label for="math-second-first-null"
                    class="input-grade-label"
                    @click="changeDecided($event, mathScores[2])"
+                   :class="discomplete(mathScores[2].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(mathScores[3].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -783,10 +817,11 @@
                    :for="`math-second-second-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, mathScores[3])"
+                   :class="complete(mathScores[3].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!mathScores[3].score"></div>
             <input type="radio"
                    value="X"
                    id="math-second-second-null"
@@ -796,13 +831,14 @@
             <label for="math-second-second-null"
                    class="input-grade-label"
                    @click="changeDecided($event, mathScores[3])"
+                   :class="discomplete(mathScores[3].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(mathScores[4].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -816,10 +852,11 @@
                    :for="`math-third-first-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, mathScores[4])"
+                   :class="complete(mathScores[4].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!mathScores[4].score"></div>
             <input type="radio"
                    value="X"
                    id="math-third-first-null"
@@ -829,6 +866,7 @@
             <label for="math-third-first-null"
                    class="input-grade-label"
                    @click="changeDecided($event, mathScores[4])"
+                   :class="discomplete(mathScores[4].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
@@ -838,7 +876,7 @@
         </tr>
         <tr class="grade-input-table__row">
           <td>과학</td>
-          <td>
+          <td :class="changeBackground(scienceScores[0].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -852,10 +890,11 @@
                    :for="`science-first-first-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, scienceScores[0])"
+                   :class="complete(scienceScores[0].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!scienceScores[0].score"></div>
             <input type="radio"
                    value="X"
                    id="science-first-first-null"
@@ -865,13 +904,14 @@
             <label for="science-first-first-null"
                    class="input-grade-label"
                    @click="changeDecided($event, scienceScores[0])"
+                   :class="discomplete(scienceScores[0].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(scienceScores[1].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -885,10 +925,11 @@
                    :for="`science-first-second-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, scienceScores[1])"
+                   :class="complete(scienceScores[1].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!scienceScores[1].score"></div>
             <input type="radio"
                    value="X"
                    id="science-first-second-null"
@@ -898,13 +939,14 @@
             <label for="science-first-second-null"
                    class="input-grade-label"
                    @click="changeDecided($event, scienceScores[1])"
+                   :class="discomplete(scienceScores[1].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(scienceScores[2].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -918,10 +960,11 @@
                    :for="`science-second-first-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, scienceScores[2])"
+                   :class="complete(scienceScores[2].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!scienceScores[2].score"></div>
             <input type="radio"
                    value="X"
                    id="science-second-first-null"
@@ -931,13 +974,14 @@
             <label for="science-second-first-null"
                    class="input-grade-label"
                    @click="changeDecided($event, scienceScores[2])"
+                   :class="discomplete(scienceScores[2].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(scienceScores[3].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -951,10 +995,11 @@
                    :for="`science-second-second-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, scienceScores[3])"
+                   :class="complete(scienceScores[3].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!scienceScores[3].score"></div>
             <input type="radio"
                    value="X"
                    id="science-second-second-null"
@@ -964,13 +1009,14 @@
             <label for="science-second-second-null"
                    class="input-grade-label"
                    @click="changeDecided($event, scienceScores[3])"
+                   :class="discomplete(scienceScores[3].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(scienceScores[4].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -984,10 +1030,11 @@
                    :for="`science-third-first-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, scienceScores[4])"
+                   :class="complete(scienceScores[4].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!scienceScores[4].score"></div>
             <input type="radio"
                    value="X"
                    id="science-third-first-null"
@@ -997,6 +1044,7 @@
             <label for="science-third-first-null"
                    class="input-grade-label"
                    @click="changeDecided($event, scienceScores[4])"
+                   :class="discomplete(scienceScores[4].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
@@ -1006,7 +1054,7 @@
         </tr>
         <tr class="grade-input-table__row">
           <td>기술・가정</td>
-          <td>
+          <td :class="changeBackground(techAndHomeScores[0].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -1020,10 +1068,11 @@
                    :for="`tech-home-first-first-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, techAndHomeScores[0])"
+                   :class="complete(techAndHomeScores[0].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!techAndHomeScores[0].score"></div>
             <input type="radio"
                    value="X"
                    id="tech-home-first-first-null"
@@ -1033,13 +1082,14 @@
             <label for="tech-home-first-first-null"
                    class="input-grade-label"
                    @click="changeDecided($event, techAndHomeScores[0])"
+                   :class="discomplete(techAndHomeScores[0].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(techAndHomeScores[1].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -1053,10 +1103,11 @@
                    :for="`tech-home-first-second-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, techAndHomeScores[1])"
+                   :class="complete(techAndHomeScores[1].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!techAndHomeScores[1].score"></div>
             <input type="radio"
                    value="X"
                    id="tech-home-first-second-null"
@@ -1066,13 +1117,14 @@
             <label for="tech-home-first-second-null"
                    class="input-grade-label"
                    @click="changeDecided($event, techAndHomeScores[1])"
+                   :class="discomplete(techAndHomeScores[1].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(techAndHomeScores[2].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -1086,10 +1138,11 @@
                    :for="`tech-home-second-first-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, techAndHomeScores[2])"
+                   :class="complete(techAndHomeScores[2].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!techAndHomeScores[2].score"></div>
             <input type="radio"
                    value="X"
                    id="tech-home-second-first-null"
@@ -1099,13 +1152,14 @@
             <label for="tech-home-second-first-null"
                    class="input-grade-label"
                    @click="changeDecided($event, techAndHomeScores[2])"
+                   :class="discomplete(techAndHomeScores[2].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(techAndHomeScores[3].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -1119,10 +1173,11 @@
                    :for="`tech-home-second-second-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, techAndHomeScores[3])"
+                   :class="complete(techAndHomeScores[3].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!techAndHomeScores[3].score"></div>
             <input type="radio"
                    value="X"
                    id="tech-home-second-second-null"
@@ -1132,13 +1187,14 @@
             <label for="tech-home-second-second-null"
                    class="input-grade-label"
                    @click="changeDecided($event, techAndHomeScores[3])"
+                   :class="discomplete(techAndHomeScores[3].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(techAndHomeScores[4].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -1152,10 +1208,11 @@
                    :for="`tech-home-third-first-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, techAndHomeScores[4])"
+                   :class="complete(techAndHomeScores[4].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!techAndHomeScores[4].score"></div>
             <input type="radio"
                    value="X"
                    id="tech-home-third-first-null"
@@ -1165,6 +1222,7 @@
             <label for="tech-home-third-first-null"
                    class="input-grade-label"
                    @click="changeDecided($event, techAndHomeScores[4])"
+                   :class="discomplete(techAndHomeScores[4].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
@@ -1174,7 +1232,7 @@
         </tr>
         <tr class="grade-input-table__row">
           <td>영어</td>
-          <td>
+          <td :class="changeBackground(englishScores[0].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -1188,10 +1246,11 @@
                    :for="`english-first-first-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, englishScores[0])"
+                   :class="complete(englishScores[0].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!englishScores[0].score"></div>
             <input type="radio"
                    value="X"
                    id="english-first-first-null"
@@ -1201,13 +1260,14 @@
             <label for="english-first-first-null"
                    class="input-grade-label"
                    @click="changeDecided($event, englishScores[0])"
+                   :class="discomplete(englishScores[0].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(englishScores[1].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -1221,10 +1281,11 @@
                    :for="`english-first-second-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, englishScores[1])"
+                   :class="complete(englishScores[1].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!englishScores[1].score"></div>
             <input type="radio"
                    value="X"
                    id="english-first-second-null"
@@ -1234,13 +1295,14 @@
             <label for="english-first-second-null"
                    class="input-grade-label"
                    @click="changeDecided($event, englishScores[1])"
+                   :class="discomplete(englishScores[1].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(englishScores[2].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -1254,10 +1316,11 @@
                    :for="`english-second-first-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, englishScores[2])"
+                   :class="complete(englishScores[2].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!englishScores[2].score"></div>
             <input type="radio"
                    value="X"
                    id="english-second-first-null"
@@ -1267,13 +1330,14 @@
             <label for="english-second-first-null"
                    class="input-grade-label"
                    @click="changeDecided($event, englishScores[2])"
+                   :class="discomplete(englishScores[2].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(englishScores[3].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -1287,10 +1351,11 @@
                    :for="`english-second-second-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, englishScores[3])"
+                   :class="complete(englishScores[3].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!englishScores[3].score"></div>
             <input type="radio"
                    value="X"
                    id="english-second-second-null"
@@ -1300,13 +1365,14 @@
             <label for="english-second-second-null"
                    class="input-grade-label"
                    @click="changeDecided($event, englishScores[3])"
+                   :class="discomplete(englishScores[3].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
                  class="no-score-img"
             >
           </td>
-          <td>
+          <td :class="changeBackground(englishScores[4].score)">
             <input type="radio"
                    v-for="k in scores"
                    :key="k"
@@ -1320,10 +1386,11 @@
                    :for="`english-third-first-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, englishScores[4])"
+                   :class="complete(englishScores[4].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!englishScores[4].score"></div>
             <input type="radio"
                    value="X"
                    id="english-third-first-null"
@@ -1333,6 +1400,7 @@
             <label for="english-third-first-null"
                    class="input-grade-label"
                    @click="changeDecided($event, englishScores[4])"
+                   :class="discomplete(englishScores[4].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
@@ -1471,6 +1539,17 @@ export default {
       return allGrades;
     },
   },
+  /* watch: {
+    grades: {
+      handler(val) {
+        const s = this.semesters;
+        for (let i = 0; i < this.grades.length; i += 1) {
+          const g = this.grades[i];
+        }
+      },
+      deep: true,
+    },
+  }, */
   methods: {
     movePrev() {
       this.$router.push('/');
@@ -1569,12 +1648,20 @@ export default {
     complete(current, compare) {
       return {
         decide: current !== compare && current !== '',
+        underline: current !== '',
       };
     },
 
     discomplete(current) {
       return {
         decide: current !== 'X' && current !== '',
+        underline: current !== '',
+      };
+    },
+
+    changeBackground(current) {
+      return {
+        background: current === 'X',
       };
     },
   },
@@ -1638,6 +1725,8 @@ $button-color: #edf5f6;
     position: relative;
     margin-right: 2px;
     transition: 0.5s;
+    border-style: solid;
+    border-color: #cfdee0;
   }
 
   table {
@@ -1871,6 +1960,7 @@ $button-color: #edf5f6;
         vertical-align: middle;
         text-align: center;
         font-size: 18px;
+        transition: 0.4s;
         border: {
           right: 1px solid $table-inner;
           bottom: 1px solid $table-inner;
@@ -1938,6 +2028,19 @@ $button-color: #edf5f6;
       // 점수 선택되었을 시의 애니메이션
       .decide {
         display: none;
+      }
+
+      .underline {
+        border-bottom: 1px solid #cfdee0;
+        border-radius: 0;
+
+        &:hover {
+          border-radius: 50%;
+        }
+      }
+
+      .background {
+        background-color: $table-background;
       }
     }
   }
