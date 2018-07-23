@@ -116,6 +116,14 @@ $border-color: #8aaaad;
       top: 11px;
       bottom: 10px;
     }
+    &::after {
+      content: '▼';
+      font-size: 12px;
+      color: $border-color;
+      position: absolute;
+      right: 16px;
+      top: 10px;
+    }
   }
   @include e('wrapper') {
     background-color: #fff;
