@@ -178,10 +178,11 @@
                    :for="`korean-first-first-${k}`"
                    class="input-grade-label"
                    @click="changeDecided($event, koreanScores[0])"
+                   :class="complete(koreanScores[0].score, k.toUpperCase())"
             >
               {{ k.toUpperCase() }}
             </label>
-            <div class="button-side-line"></div>
+            <div class="button-side-line" v-show="!koreanScores[0].score"></div>
             <input type="radio"
                    value="X"
                    id="korean-first-first-null"
@@ -191,6 +192,7 @@
             <label for="korean-first-first-null"
                    class="input-grade-label"
                    @click="changeDecided($event, koreanScores[0])"
+                   :class="discomplete(koreanScores[0].score)"
             >X</label>
             <img src="../../assets/GradeInput/no-score.png"
                  alt="성적없음"
@@ -1559,32 +1561,21 @@ export default {
     changeDecided({ target }, val) {
       const v = val;
       v.decided = !v.decided;
-      v.passed = target.value === 'X' ? false : !v.passed;
+      v.passed = target.innerText === 'X' ? false : !v.passed;
       v.score = v.decided ? v.score : '';
     },
-  },
-  watch: {
-    grades: {
-      handler(val) {
-        const gradeTable = this.$refs['grade-table'];
-        const [,,, ...gradePart] = gradeTable.children;
-        const compareArr = [];
-        let pushTdArr = [];
 
-        // computed의 grades와 1:1로 대응하기 위해 설정
-        for (let i = 0; i < gradePart.length; i += 1) {
-          const grade = gradePart[i];
-          for (let j = 1; j < grade.children.length; j += 1) {
-            pushTdArr.push(grade.children[j]);
-          }
+    // 애니메이션을 위한 Class Binding
+    complete(current, compare) {
+      return {
+        decide: current !== compare && current !== '',
+      };
+    },
 
-          compareArr.push(pushTdArr);
-          pushTdArr = [];
-        }
-
-        console.log(compareArr);
-      },
-      deep: true,
+    discomplete(current) {
+      return {
+        decide: current !== 'X' && current !== '',
+      };
     },
   },
 };
@@ -1644,6 +1635,7 @@ $button-color: #edf5f6;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    position: relative;
     margin-right: 2px;
     transition: 0.5s;
   }
@@ -1941,6 +1933,11 @@ $button-color: #edf5f6;
         vertical-align: middle;
         position: relative;
         top: -1px;
+      }
+
+      // 점수 선택되었을 시의 애니메이션
+      .decide {
+        display: none;
       }
     }
   }
