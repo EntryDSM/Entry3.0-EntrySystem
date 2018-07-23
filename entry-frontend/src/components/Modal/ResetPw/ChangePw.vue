@@ -25,7 +25,7 @@
         <div class="modal--btn ChangePw__btns__btn" @click="submit">
           완료
         </div>
-      </div> 
+      </div>
       <span class="ChangePw--hint">비밀번호 생성규칙</span>
       <div class="ChangePw__hover">
         <div class="ChangePw__hover__bubble">
@@ -35,7 +35,6 @@
         </div>
       </div>
     </div>
-    
   </div>
 </template>
 
@@ -54,8 +53,7 @@ export default {
       const pwcheck = this.pwcheck;
       this.isSame = (pw === pwcheck);
       this.Checkpw = pwReg.test(pw);
-      
-      if(this.isSame && this.Checkpw){
+      if (this.isSame && this.Checkpw) {
         /*
           this.$axios.post('/ChangePw', {  }).then(({ data }) => {
             if (data.type) {
@@ -67,21 +65,17 @@ export default {
             }
           });
         */
-        console.log("비밀변호 변경");
         this.$store.commit('changeIndex', {
           index: 1,
         });
-        return ;
+        return;
       }
-      else{
-        setTimeout(() => {
-          this.isSame = true;
-          this.Checkpw = true;
-        },4000);
-      }
-      return ;
+      setTimeout(() => {
+        this.isSame = true;
+        this.Checkpw = true;
+      }, 4000);
     },
-  }
+  },
 };
 </script>
 
@@ -223,5 +217,3 @@ export default {
   }
 }
 </style>
-
-
