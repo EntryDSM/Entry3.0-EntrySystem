@@ -85,7 +85,7 @@
             </label>
           </div>
         </div>
-        <div class="form__cover__form__colums">
+        <div class="form__cover__form__colums" v-if="!isGED">
           <div class="form__cover__form__colums__name">
             학번
           </div>
@@ -113,7 +113,7 @@
             </label>
           </div>
         </div>
-        <div class="form__cover__form__colums">
+        <div class="form__cover__form__colums" v-if="!isGED">
           <div class="form__cover__form__colums__name">
             중학교명
           </div>
@@ -137,7 +137,7 @@
               @input="guardianName = $event.target.value">
           </div>
         </div>
-        <div class="form__cover__form__colums">
+        <div class="form__cover__form__colums" v-if="!isGED">
           <div class="form__cover__form__colums__name">
             학교 연락처
           </div>
@@ -240,6 +240,7 @@ export default {
   },
   data() {
     return {
+      isGED: true, // 검정고시 여부
       isOpen: false, // 학교 검색 모달창 열림 여부
       title: '인적 사항',
       subText: '2019 입학원서 작성',
