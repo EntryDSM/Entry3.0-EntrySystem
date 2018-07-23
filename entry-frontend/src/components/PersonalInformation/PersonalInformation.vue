@@ -248,9 +248,9 @@ export default {
       monthOptions: [],
       name: null, // 이름
       sex: null, // 성별
-      year: null, // 생년
-      month: null, // 생월
-      day: null, // 생일
+      year: 2003, // 생년
+      month: '01', // 생월
+      day: '01', // 생일
       schoolClass: null, // 학급 반
       schoolnumber: null, //  학급 번호
       schoolName: null, // 중학교명
@@ -289,7 +289,7 @@ export default {
 
         dayArray[i - 1] = {
           text: day,
-          value: i,
+          value: day,
         };
       }
       return dayArray;
@@ -315,7 +315,7 @@ export default {
       const pad = i >= 10 ? '' : '0';
       monthArray[i - 1] = {
         text: pad + i,
-        value: i,
+        value: pad + i,
       };
     }
     this.monthOptions = monthArray;
