@@ -20,18 +20,21 @@
     </div>
     <certify-number v-if="index === 3" :email="email"/>
     <change-pw v-if="index === 4" :email="email"/>
+    <change-success v-if="index === 5" :email="email"/>
   </div>
 </template>
 
 <script>
 import CertifyNumber from './ResetPw/CertifyNumber';
 import ChangePw from './ResetPw/ChangePw';
+import ChangeSuccess from './ResetPw/ChangeSuccess';
 
 const emailReg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,5}$/i;
 export default {
   components: {
     CertifyNumber,
     ChangePw,
+    ChangeSuccess,
   },
   data: () => ({
     email: '',

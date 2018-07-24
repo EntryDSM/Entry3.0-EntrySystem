@@ -4,7 +4,7 @@ import com.entry.entrydsm.tempuser.TempUserRepository;
 import com.entry.entrydsm.mail.EmailServiceImpl;
 import com.entry.entrydsm.security.ApiProvider;
 import com.entry.entrydsm.security.ApiUser;
-import com.entry.entrydsm.Domain.DTO.TempUserDTO;
+import com.entry.entrydsm.tempuser.TempUserDTO;
 import com.entry.entrydsm.security.Crypto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

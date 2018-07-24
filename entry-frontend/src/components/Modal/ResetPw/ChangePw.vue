@@ -66,7 +66,7 @@ export default {
           });
         */
         this.$store.commit('changeIndex', {
-          index: 1,
+          index: 5,
         });
         return;
       }

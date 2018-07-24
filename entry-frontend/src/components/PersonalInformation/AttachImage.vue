@@ -5,8 +5,10 @@
       style="display: none"
       @change="onFileChange">
     <label class="attach-image__label"
-      for="image"
-      :style="{backgroundImage: `url(${this.imageURL})`}">
+      for="image">
+      <div class="attach-image__label__preview"
+        :style="{backgroundImage: `url(${this.imageURL})`}">
+      </div>
     </label>
   </div>
 </template>
@@ -55,9 +57,14 @@ export default {
     box-sizing: border-box;
     border: solid 0.5px #8aaaad;
     background-color: #f7fbfc;
+    background-image: url('../../assets/PersonalInformation/attach_image.png');
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: contain;
+    @include e('preview') {
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain;
+    }
   }
 }
 
