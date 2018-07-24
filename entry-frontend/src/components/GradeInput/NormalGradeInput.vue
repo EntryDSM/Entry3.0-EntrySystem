@@ -1719,14 +1719,22 @@ $button-color: #edf5f6;
     width: 21px;
     height: 21px;
     font-size: 18px;
-    display: inline-flex;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    margin-right: 2px;
-    transition: 0.5s;
+    position: absolute;
+    left: 27px;
+    transition: 0.35s ease-in-out;
     border-style: solid;
     border-color: #cfdee0;
+
+    @for $i from 1 through 5 {
+      &:nth-of-type(#{$i + 1}) {
+        left: calc(27px + (23px * #{$i}));
+      }
+    }
   }
 
   table {
@@ -1957,17 +1965,20 @@ $button-color: #edf5f6;
       }
 
       td {
+        width: calc(977px / 6);
         vertical-align: middle;
         text-align: center;
         font-size: 18px;
         transition: 0.4s;
+        position: relative;
+
         border: {
           right: 1px solid $table-inner;
           bottom: 1px solid $table-inner;
         }
 
         &:nth-of-type(1) {
-          width: 163px;
+          width: 163px !important;
           background-color: $table-background;
           font-size: 20px;
           border: {
@@ -2010,7 +2021,7 @@ $button-color: #edf5f6;
         opacity: 0;
         transition: opacity 0.3s;
         margin: {
-          left: -76px;
+          left: -1px;
           top: -34px;
         }
       }
@@ -2019,20 +2030,22 @@ $button-color: #edf5f6;
         width: 2px;
         height: 18px;
         background-color: #cfdee0;
-        display: inline-flex;
-        vertical-align: middle;
-        position: relative;
-        top: -1px;
+        position: absolute;
+        display: none;
       }
 
       // 점수 선택되었을 시의 애니메이션
       .decide {
-        display: none;
+        left: 50%;
+        opacity: 0;
+        visibility: hidden;
       }
 
       .underline {
         border-bottom: 1px solid #cfdee0;
         border-radius: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
 
         &:hover {
           border-radius: 50%;
