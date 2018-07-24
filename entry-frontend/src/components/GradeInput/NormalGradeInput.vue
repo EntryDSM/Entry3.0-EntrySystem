@@ -1399,17 +1399,6 @@ export default {
       return allGrades;
     },
   },
-  /* watch: {
-    grades: {
-      handler(val) {
-        const s = this.semesters;
-        for (let i = 0; i < this.grades.length; i += 1) {
-          const g = this.grades[i];
-        }
-      },
-      deep: true,
-    },
-  }, */
   methods: {
     movePrev() {
       this.$router.push('/');
@@ -1585,15 +1574,18 @@ $button-color: #edf5f6;
     align-items: center;
     justify-content: center;
     position: absolute;
-    left: 27px;
+    left: 22px;
     transition: 0.35s ease-in-out;
     border-style: solid;
     border-color: #cfdee0;
 
-    @for $i from 1 through 5 {
+    @for $i from 1 through 4 {
       &:nth-of-type(#{$i + 1}) {
-        left: calc(27px + (23px * #{$i}));
+        left: calc(22px + (23px * #{$i}));
       }
+    }
+    &:nth-of-type(6) {
+      left: 145px;
     }
   }
 
@@ -1904,7 +1896,9 @@ $button-color: #edf5f6;
         height: 18px;
         background-color: #cfdee0;
         position: absolute;
-        display: none;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 47px;
       }
 
       // 점수 선택되었을 시의 애니메이션
