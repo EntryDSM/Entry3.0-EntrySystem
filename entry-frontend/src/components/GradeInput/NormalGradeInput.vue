@@ -9,7 +9,8 @@
           <td class="table-data-text">봉사시간</td>
           <td class="table-data-text">
             <input type="number"
-                   v-model.number="volunteerNAttendance.volunteer"
+                   :value="volunteerNAttendance.volunteer"
+                   @input="onlyNumber"
                    min="0"
                    class="input-text table-data-text__input"
             >
@@ -23,7 +24,8 @@
               <td class="table-data-text__row__data">전체 무단 결석 일수</td>
               <td class="table-data-text__row__data">
                 <input type="number"
-                       v-model.number="volunteerNAttendance.absence"
+                       :value="volunteerNAttendance.absence"
+                       @input="onlyNumber"
                        min="0"
                        class="input-text table-data-text__input"
                 >
@@ -32,7 +34,8 @@
               <td class="table-data-text__row__data">전체 무단 조퇴 일수</td>
               <td class="table-data-text__row__data">
                 <input type="number"
-                       v-model.number="volunteerNAttendance.earlyLeave"
+                       :value="volunteerNAttendance.earlyLeave"
+                       @input="onlyNumber"
                        min="0"
                        class="input-text table-data-text__input"
                 >
@@ -43,7 +46,8 @@
               <td class="table-data-text__row__data">전체 무단 지각 일수</td>
               <td class="table-data-text__row__data">
                 <input type="number"
-                       v-model.number="volunteerNAttendance.lateness"
+                       :value="volunteerNAttendance.lateness"
+                       @input="onlyNumber"
                        min="0"
                        class="input-text table-data-text__input"
                 >
@@ -52,7 +56,8 @@
               <td class="table-data-text__row__data">전체 무단 결과 일수</td>
               <td class="table-data-text__row__data">
                 <input type="number"
-                       v-model.number="volunteerNAttendance.missingClass"
+                       :value="volunteerNAttendance.missingClass"
+                       @input="onlyNumber"
                        min="0"
                        class="input-text table-data-text__input"
                 >
@@ -1512,6 +1517,11 @@ export default {
       return {
         background: current === 'X',
       };
+    },
+
+    // 봉사 및 출석 Input Value 체크
+    onlyNumber({ target }) {
+      target.value = target.value.replace(/[^\d]/g, '');
     },
   },
 };
