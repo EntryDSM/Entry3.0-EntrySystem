@@ -194,10 +194,6 @@
                    @click="changeDecided($event, koreanScores[0])"
                    :class="discomplete(koreanScores[0].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(koreanScores[1].score)">
             <input type="radio"
@@ -229,10 +225,6 @@
                    @click="changeDecided($event, koreanScores[1])"
                    :class="discomplete(koreanScores[1].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(koreanScores[2].score)">
             <input type="radio"
@@ -264,10 +256,6 @@
                    @click="changeDecided($event, koreanScores[2])"
                    :class="discomplete(koreanScores[2].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(koreanScores[3].score)">
             <input type="radio"
@@ -299,10 +287,6 @@
                    @click="changeDecided($event, koreanScores[3])"
                    :class="discomplete(koreanScores[3].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(koreanScores[4].score)">
             <input type="radio"
@@ -334,10 +318,6 @@
                    @click="changeDecided($event, koreanScores[4])"
                    :class="discomplete(koreanScores[4].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
         </tr>
         <tr class="grade-input-table__row">
@@ -372,10 +352,6 @@
                    @click="changeDecided($event, societyScores[0])"
                    :class="discomplete(societyScores[0].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(societyScores[1].score)">
             <input type="radio"
@@ -407,10 +383,6 @@
                    @click="changeDecided($event, societyScores[1])"
                    :class="discomplete(societyScores[1].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(societyScores[2].score)">
             <input type="radio"
@@ -442,10 +414,6 @@
                    @click="changeDecided($event, societyScores[2])"
                    :class="discomplete(societyScores[2].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(societyScores[3].score)">
             <input type="radio"
@@ -477,10 +445,6 @@
                    @click="changeDecided($event, societyScores[3])"
                    :class="discomplete(societyScores[3].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(societyScores[4].score)">
             <input type="radio"
@@ -512,10 +476,6 @@
                    @click="changeDecided($event, societyScores[4])"
                    :class="discomplete(societyScores[4].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
         </tr>
         <tr class="grade-input-table__row">
@@ -550,10 +510,6 @@
                    @click="changeDecided($event, historyScores[0])"
                    :class="discomplete(historyScores[0].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(historyScores[1].score)">
             <input type="radio"
@@ -585,10 +541,6 @@
                    @click="changeDecided($event, historyScores[1])"
                    :class="discomplete(historyScores[1].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(historyScores[2].score)">
             <input type="radio"
@@ -620,10 +572,6 @@
                    @click="changeDecided($event, historyScores[2])"
                    :class="discomplete(historyScores[2].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(historyScores[3].score)">
             <input type="radio"
@@ -655,10 +603,6 @@
                    @click="changeDecided($event, historyScores[3])"
                    :class="discomplete(historyScores[3].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(historyScores[4].score)">
             <input type="radio"
@@ -690,10 +634,6 @@
                    @click="changeDecided($event, historyScores[4])"
                    :class="discomplete(historyScores[4].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
         </tr>
         <tr class="grade-input-table__row">
@@ -728,10 +668,6 @@
                    @click="changeDecided($event, mathScores[0])"
                    :class="discomplete(mathScores[0].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(mathScores[1].score)">
             <input type="radio"
@@ -763,10 +699,6 @@
                    @click="changeDecided($event, mathScores[1])"
                    :class="discomplete(mathScores[1].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(mathScores[2].score)">
             <input type="radio"
@@ -798,10 +730,6 @@
                    @click="changeDecided($event, mathScores[2])"
                    :class="discomplete(mathScores[2].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(mathScores[3].score)">
             <input type="radio"
@@ -833,10 +761,6 @@
                    @click="changeDecided($event, mathScores[3])"
                    :class="discomplete(mathScores[3].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(mathScores[4].score)">
             <input type="radio"
@@ -868,10 +792,6 @@
                    @click="changeDecided($event, mathScores[4])"
                    :class="discomplete(mathScores[4].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
         </tr>
         <tr class="grade-input-table__row">
@@ -906,10 +826,6 @@
                    @click="changeDecided($event, scienceScores[0])"
                    :class="discomplete(scienceScores[0].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(scienceScores[1].score)">
             <input type="radio"
@@ -941,10 +857,6 @@
                    @click="changeDecided($event, scienceScores[1])"
                    :class="discomplete(scienceScores[1].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(scienceScores[2].score)">
             <input type="radio"
@@ -976,10 +888,6 @@
                    @click="changeDecided($event, scienceScores[2])"
                    :class="discomplete(scienceScores[2].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(scienceScores[3].score)">
             <input type="radio"
@@ -1011,10 +919,6 @@
                    @click="changeDecided($event, scienceScores[3])"
                    :class="discomplete(scienceScores[3].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(scienceScores[4].score)">
             <input type="radio"
@@ -1046,10 +950,6 @@
                    @click="changeDecided($event, scienceScores[4])"
                    :class="discomplete(scienceScores[4].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
         </tr>
         <tr class="grade-input-table__row">
@@ -1084,10 +984,6 @@
                    @click="changeDecided($event, techAndHomeScores[0])"
                    :class="discomplete(techAndHomeScores[0].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(techAndHomeScores[1].score)">
             <input type="radio"
@@ -1119,10 +1015,6 @@
                    @click="changeDecided($event, techAndHomeScores[1])"
                    :class="discomplete(techAndHomeScores[1].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(techAndHomeScores[2].score)">
             <input type="radio"
@@ -1154,10 +1046,6 @@
                    @click="changeDecided($event, techAndHomeScores[2])"
                    :class="discomplete(techAndHomeScores[2].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(techAndHomeScores[3].score)">
             <input type="radio"
@@ -1189,10 +1077,6 @@
                    @click="changeDecided($event, techAndHomeScores[3])"
                    :class="discomplete(techAndHomeScores[3].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(techAndHomeScores[4].score)">
             <input type="radio"
@@ -1224,10 +1108,6 @@
                    @click="changeDecided($event, techAndHomeScores[4])"
                    :class="discomplete(techAndHomeScores[4].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
         </tr>
         <tr class="grade-input-table__row">
@@ -1262,10 +1142,6 @@
                    @click="changeDecided($event, englishScores[0])"
                    :class="discomplete(englishScores[0].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(englishScores[1].score)">
             <input type="radio"
@@ -1297,10 +1173,6 @@
                    @click="changeDecided($event, englishScores[1])"
                    :class="discomplete(englishScores[1].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(englishScores[2].score)">
             <input type="radio"
@@ -1332,10 +1204,6 @@
                    @click="changeDecided($event, englishScores[2])"
                    :class="discomplete(englishScores[2].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(englishScores[3].score)">
             <input type="radio"
@@ -1367,10 +1235,6 @@
                    @click="changeDecided($event, englishScores[3])"
                    :class="discomplete(englishScores[3].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
           <td :class="changeBackground(englishScores[4].score)">
             <input type="radio"
@@ -1402,10 +1266,6 @@
                    @click="changeDecided($event, englishScores[4])"
                    :class="discomplete(englishScores[4].score)"
             >X</label>
-            <img src="../../assets/GradeInput/no-score.png"
-                 alt="성적없음"
-                 class="no-score-img"
-            >
           </td>
         </tr>
       </table>
@@ -1752,6 +1612,7 @@ $button-color: #edf5f6;
       transform: translateX(-50%);
       background: linear-gradient(left, transparent 0%,
       $table-border 15%, $table-border 85%, transparent 100%);
+      z-index: 99;
     }
 
     &::before { top: 0; }
@@ -2008,8 +1869,25 @@ $button-color: #edf5f6;
       input[value="X"] + label{
         margin-left: 2px;
 
-        &:hover + .no-score-img {
+        &::before {
+          content: '';
+          position: absolute;
+          width: 125px;
+          height: 30px;
+          background-image: url(../../assets/GradeInput/no-score.png);
+          background-size: cover;
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.3s;
+          margin: {
+            left: -1px;
+            top: -30px;
+          }
+        }
+
+        &:hover::before {
           opacity: 1;
+          visibility: visible;
         }
       }
 
@@ -2017,13 +1895,8 @@ $button-color: #edf5f6;
         width: 125px;
         height: 30px;
         object-fit: cover;
-        position: absolute;
-        opacity: 0;
+        opacity: 1;
         transition: opacity 0.3s;
-        margin: {
-          left: -1px;
-          top: -34px;
-        }
       }
 
       .button-side-line {
