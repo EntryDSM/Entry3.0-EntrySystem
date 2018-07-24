@@ -1291,7 +1291,7 @@ import PrevNextBtn from '../common/PrevNextBtn';
 import EntryFooter from '../common/EntryFooter';
 
 export default {
-  name: 'name-grade-input',
+  name: 'normal-grade-input-scheduled',
   components: {
     Navigation,
     Headline,
@@ -1521,7 +1521,8 @@ export default {
 
     // 봉사 및 출석 Input Value 체크
     onlyNumber({ target }) {
-      target.value = target.value.replace(/[^\d]/g, '');
+      const t = target;
+      t.value = t.value.replace(/[^\d]/g, '');
     },
   },
 };

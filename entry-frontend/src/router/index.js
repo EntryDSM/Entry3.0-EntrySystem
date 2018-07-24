@@ -3,7 +3,8 @@ import Router from 'vue-router';
 import IntroduceNPlan from '../components/IntroNPlan/IntroduceNPlan';
 import Classification from '../components/Classification/Classification';
 import Authorization from '../components/Authorization/Authorization';
-import NormalGradeInput from '../components/GradeInput/NormalGradeInput';
+import NormalGradeInputScheduled from '../components/GradeInput/NormalGradeInputScheduled';
+import GedGradeInput from '../components/GradeInput/GedGradeInput';
 
 Vue.use(Router);
 
@@ -28,9 +29,14 @@ export default new Router({
       component: Authorization,
     },
     {
-      path: '/normal-grade',
-      name: 'normal-grade-input',
-      component: NormalGradeInput,
+      path: '/normal-grade-scheduled',
+      name: 'normal-grade-input-scheduled',
+      component: NormalGradeInputScheduled,
+    },
+    {
+      path: '/ged-grade-input',
+      name: 'ged-grade-input',
+      component: GedGradeInput,
     },
   ],
 });
