@@ -76,6 +76,11 @@ $input-pseudo: #608a8e;
   &::placeholder {
     color: #acbec1;
   }
+  &[disabled] {
+    background-color: #f9f9f9;
+    border-color: #a7a7a7;
+    color: #a7a7a7;
+  }
 }
 
 // 라디오 버튼 공통 스타일
