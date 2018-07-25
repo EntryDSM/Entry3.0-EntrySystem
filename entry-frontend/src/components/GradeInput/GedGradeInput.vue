@@ -11,6 +11,7 @@
         <div class="total-input-part">
           <input type="number"
                  v-model.number="totalScore"
+                 @keydown="onlyNumber"
                  min="0"
                  max="100"
                  class="total-input-part--score"
@@ -54,6 +55,23 @@ export default {
 
     moveNext() {
       this.$router.push('/');
+    },
+
+    onlyNumber(e) {
+      if (!(e.keyCode >= 48 && e.keyCode <= 57)) {
+        switch (e.key) {
+          case 'Backspace':
+          case 'ArrowLeft':
+          case 'ArrowRight':
+          case 'Delete': break;
+          default: e.preventDefault();
+        }
+      }
+    },
+  },
+  watch: {
+    totalScore(val) {
+      if (val > 100) this.totalScore = 100;
     },
   },
 };
