@@ -2,15 +2,16 @@ package com.entry.entrydsm.user;
 
 import com.entry.entrydsm.graduate.info.GraduateInfo;
 import com.entry.entrydsm.info.Info;
+import com.entry.entrydsm.tempuser.TempUser;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-
 @Entity
 @NoArgsConstructor
 @Getter
@@ -42,10 +43,17 @@ public class User {
 //    @OneToOne(mappedBy = "user_id", cascade = CascadeType.ALL)
 //    private GraduateInfo graduateInfo;
 
+    public User(TempUser tempUser) {
+        this.email = tempUser.getEmail();
+        this.password = tempUser.getPassword();
+        this.createdAt = LocalDateTime.now();
+    }
+
     @Builder
     public User(String email, String password) {
         this.email = email;
         this.password = password;
         this.createdAt = LocalDateTime.now();
     }
+
 }

@@ -1,6 +1,5 @@
 package com.entry.entrydsm.tempuser;
 
-import com.entry.entrydsm.tempuser.TempUser;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
