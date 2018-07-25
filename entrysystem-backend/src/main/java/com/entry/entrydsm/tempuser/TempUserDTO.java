@@ -8,14 +8,14 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 public class TempUserDTO {
-    public String principal; // 이메일
-    public String credentials; // 비밀번호
+    public String email;
+    public String password;
     public String code;
 
     public TempUser toEntity(){
         return TempUser.builder()
-                .email(this.getPrincipal())
-                .password(this.getCredentials())
+                .email(this.getEmail())
+                .password(this.getPassword())
                 .code(this.getCode())
                 .build();
     }
