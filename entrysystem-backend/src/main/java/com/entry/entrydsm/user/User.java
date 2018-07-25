@@ -1,12 +1,9 @@
 package com.entry.entrydsm.user;
 
-import com.entry.entrydsm.graduate.info.GraduateInfo;
-import com.entry.entrydsm.info.Info;
 import com.entry.entrydsm.tempuser.TempUser;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 

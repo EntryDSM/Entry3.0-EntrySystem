@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class Crypto implements PasswordEncoder, InitializingBean {
 
+    // TODO : Salt 값 정해지면 그때 변경
     private Object salt = null;
     private ShaPasswordEncoder shaPasswordEncoder;
 

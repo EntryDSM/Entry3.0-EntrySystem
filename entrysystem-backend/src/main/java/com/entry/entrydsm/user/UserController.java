@@ -1,59 +1,65 @@
 package com.entry.entrydsm.user;
 
-import com.entry.entrydsm.tempuser.TempUserRepository;
-import com.entry.entrydsm.mail.EmailServiceImpl;
-import com.entry.entrydsm.security.ApiProvider;
-import com.entry.entrydsm.security.ApiUser;
-import com.entry.entrydsm.tempuser.TempUserDTO;
+import com.entry.entrydsm.exception.BadRequestException;
+import com.entry.entrydsm.jwt.Jwt;
 import com.entry.entrydsm.security.Crypto;
+import com.entry.entrydsm.tempuser.TempUserDTO;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
-import java.util.UUID;
+import java.util.Map;
 
 @RestController
-@RequestMapping(value = "/api/users")
+@RequestMapping(value = "/user/guarantee")
 public class UserController {
 
-    @Autowired
-    private ApiProvider apiProvider;
+    @Value("${redisTable}")
+    private String redisTable;
+    private final UserRepository userRepo;
+    private final RedisTemplate<String, String> redisTemplate;
+    private final Jwt jwt;
+    private final Crypto crypto;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private EmailServiceImpl emailService;
-
-    @Autowired
-    private TempUserRepository tempUserRepository;
-
-    @Autowired
-    private Crypto crypto;
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<Object> createToken(@RequestBody TempUserDTO requestToken) {
-
-        Authentication authentication = new ApiUser(requestToken.getPrincipal(), requestToken.getCredentials(), null);
-        authentication = apiProvider.authenticate(authentication);
-        return new ResponseEntity<>(authentication, HttpStatus.OK);
+    public UserController(UserRepository userRepo, RedisTemplate<String, String> redisTemplate, Jwt jwt, Crypto crypto) {
+        this.userRepo = userRepo;
+        this.redisTemplate = redisTemplate;
+        this.jwt = jwt;
+        this.crypto = crypto;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    private void signup(@RequestBody TempUserDTO tempUserDTO, HttpServletResponse response) {
-        if (userRepository.existsUserByEmail(String.valueOf(tempUserDTO.getPrincipal())) || tempUserRepository.existsTempUserByEmail(String.valueOf(tempUserDTO.getPrincipal()))) {
-            response.setStatus(403);
-            return;
+    @ApiOperation(value = "로그인 API", response = ResponseToken.class)
+    @RequestMapping(value = "/auth", method = RequestMethod.POST)
+    public ResponseEntity<ResponseToken> createToken(@RequestBody TempUserDTO tempUserDTO) throws Exception {
+        User user = userRepo.findByEmailAndPassword(tempUserDTO.getEmail(), crypto.encode(tempUserDTO.getPassword()))
+                .orElseThrow(() -> new BadRequestException("User Login Failed"));
+
+        String accessToken = jwt.createToken(user.getId());
+        return new ResponseEntity<>(new ResponseToken(accessToken, jwt.createRefreshToken(accessToken)), HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "AccessToken 재발급", response = ResponseToken.class)
+    @RequestMapping(value = "/refresh", method = RequestMethod.POST)
+    public ResponseEntity<ResponseToken> refreshToken(@RequestHeader(value = "Authorization") String refreshToken) throws Exception {
+        String token = refreshToken.split(" ")[1];
+        if (redisTemplate.opsForSet().isMember(redisTable, token)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-        tempUserDTO.setCredentials(crypto.encode(tempUserDTO.getCredentials()));
-        tempUserDTO.setCode(UUID.randomUUID().toString().substring(0, 6));
-        emailService.sendMessage(tempUserDTO.getPrincipal(), "EntryDSM 인증 메일", "인증 코드 : " + tempUserDTO.getCode());
-        tempUserRepository.save(tempUserDTO.toEntity());
+        Map<String, Object> map = jwt.authToken(token);
+        ResponseToken obj = new ResponseToken();
+        obj.setAccess_token(jwt.createToken(String.valueOf(map.get("userId"))));
+        return new ResponseEntity<>(obj, HttpStatus.OK);
+
+    }
+    @ApiOperation(value = "로그아웃")
+    @RequestMapping(value = "/logout", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> logout(@RequestHeader(value = "Authorization") String refreshToken) {
+        redisTemplate.opsForSet().add(redisTable, refreshToken.split(" ")[1]);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
