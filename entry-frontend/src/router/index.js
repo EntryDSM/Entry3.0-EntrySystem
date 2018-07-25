@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Main from '../components/Main/Main';
+import MainPage from '../components/MainPage/MainPage';
 import IntroduceNPlan from '../components/IntroNPlan/IntroduceNPlan';
 import Classification from '../components/Classification/Classification';
 import PersonalInformation from '../components/PersonalInformation/PersonalInformation';
@@ -15,8 +15,8 @@ export default new Router({
     },
     {
       path: '/main',
-      name: 'main',
-      component: Main,
+      name: 'main-page',
+      component: MainPage,
     },
     {
       path: '/introduce',
