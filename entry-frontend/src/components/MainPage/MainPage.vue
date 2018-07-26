@@ -3,7 +3,7 @@
     <navigation />
     <div class="main-page__hider">
       <transition name="page-move">
-        <div class="main-page__hider__cover" v-show="!activeSchedulePage">
+        <div class="main-page__hider__cover" v-if="!activeSchedulePage">
           <div class="main-page__hider__cover__content">
             <h4 class="main-page__hider__cover__content__sub-text">
               대덕소프트웨어마이스터고등학교
@@ -20,8 +20,8 @@
           </div>
         </div>
       </transition>
-      <transition name="page-move">
-        <div class="main-page__hider__cover" v-show="activeSchedulePage">
+      <transition name="page-move" @after-enter="isDisplaySchedule = true">
+        <div class="main-page__hider__cover" v-if="activeSchedulePage">
           <div class="main-page__hider__cover__content">
             <h4 class="main-page__hider__cover__content__sub-text">
               대덕소프트웨어마이스터고등학교
@@ -36,6 +36,7 @@
               전형요강
             </a>
           </div>
+          <!-- <schedule v-show="isDisplaySchedule"/> -->
         </div>
       </transition>
     </div>
@@ -46,16 +47,19 @@
 <script>
 import Navigation from '../common/Navigation';
 import EntryFooter from '../common/EntryFooter';
+import Schedule from './Schedule';
 
 export default {
   name: 'main-page',
   components: {
     Navigation,
     EntryFooter,
+    Schedule,
   },
   data() {
     return {
       activeSchedulePage: false,
+      isDisplaySchedule: false,
     };
   },
 };
@@ -139,6 +143,6 @@ export default {
 }
 
 .page-move-enter-active, .page-move-leave-active {
-  transition: left 1s ease-in-out;
+  transition: left 1s cubic-bezier(0.8, 0, 0.4, 1);
 }
 </style>
