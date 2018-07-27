@@ -136,6 +136,7 @@ export default {
             line-height: 50px;
             text-align: center;
             margin-left: 25px;
+            text-decoration: none;
           }
         }
       }
@@ -145,31 +146,35 @@ export default {
 
 // animation
 
-.page-move-enter {
-  left: 100%;
+.page-move {
+  &-enter {
+    left: 100%;
+  }
+
+  &-enter-to, &-leave {
+    left: 0;
+  }
+
+  &-leave-to {
+    left: -100%;
+  }
+
+  &-enter-active, &-leave-active {
+    transition: left 1s cubic-bezier(0.8, 0, 0.4, 1);
+  }
 }
 
-.page-move-enter-to, .page-move-leave {
-  left: 0;
-}
+.appear {
+  &-enter {
+    opacity: 0;
+  }
 
-.page-move-leave-to {
-  left: -100%;
-}
+  &-enter-to {
+    opacity: 1;
+  }
 
-.page-move-enter-active, .page-move-leave-active {
-  transition: left 1s cubic-bezier(0.8, 0, 0.4, 1);
-}
-
-.appear-enter {
-  opacity: 0;
-}
-
-.appear-enter-to {
-  opacity: 1;
-}
-
-.appear-enter-active {
-  transition: opacity .5s;
+  &-enter-active {
+    transition: opacity .5s;
+  }
 }
 </style>
