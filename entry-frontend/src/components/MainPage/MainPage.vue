@@ -11,16 +11,19 @@
             <h1 class="main-page__hider__cover__content__title">
               2019 신입생 모집
             </h1>
-            <a class="main-page__hider__cover__content__link">
-              원서작성
-            </a>
-            <a class="main-page__hider__cover__content__link" @click="activeSchedulePage = true">
-              모집일정
-            </a>
+            <div class="main-page__hider__cover__content__title__link-box">
+              <a class="main-page__hider__cover__content__link-box__link">
+                원서작성
+              </a>
+              <a class="main-page__hider__cover__content__link-box__link"
+                @click="activeSchedulePage = true">
+                모집일정
+              </a>
+            </div>
           </div>
         </div>
       </transition>
-      <transition name="page-move" @after-enter="isDisplaySchedule = true">
+      <transition name="page-move" @after-enter="isAppearSchedule = true">
         <div class="main-page__hider__cover" v-if="activeSchedulePage">
           <div class="main-page__hider__cover__content">
             <h4 class="main-page__hider__cover__content__sub-text">
@@ -29,14 +32,20 @@
             <h1 class="main-page__hider__cover__content__title">
               2019 신입생 모집일정
             </h1>
-            <a class="main-page__hider__cover__content__link">
-              원서작성
-            </a>
-            <a class="main-page__hider__cover__content__link">
-              전형요강
-            </a>
+            <transition name="appear">
+              <template v-if="isAppearSchedule">
+                <div class="main-page__hider__cover__content__title__link-box">
+                  <a class="main-page__hider__cover__content__link-box__link">
+                    원서작성
+                  </a>
+                  <a class="main-page__hider__cover__content__link-box__link">
+                    전형요강
+                  </a>
+                </div>
+              </template>
+            </transition>
+            <schedule v-if="isAppearSchedule"/>
           </div>
-          <!-- <schedule v-show="isDisplaySchedule"/> -->
         </div>
       </transition>
     </div>
@@ -58,8 +67,8 @@ export default {
   },
   data() {
     return {
-      activeSchedulePage: false,
-      isDisplaySchedule: false,
+      activeSchedulePage: false, // to animate
+      isAppearSchedule: false, // to animate
     };
   },
 };
@@ -88,7 +97,6 @@ export default {
       left: 0;
       @include e('content') {
         width: 1140px;
-        height: 150px;
         font-size: 0;
         display: flex;
         flex-wrap: wrap;
@@ -108,20 +116,25 @@ export default {
           font-size: 54px;
           font-weight: normal;
           flex: 1;
+          margin: {
+            bottom: 51px;
+          }
         }
-        @include e('link') {
-          height: 50px;
-          width: 175px;
-          border-radius: 30px;
-          background-image: linear-gradient(101deg, #82cdca, #5db3b6);
-          box-shadow: 1px 25px 20px -15px #9ff0eb;
-          font-size: 22px;
-          color: #fff;
-          border: none;
-          cursor: pointer;
-          line-height: 50px;
-          text-align: center;
-          &:last-child {
+        @include e('link-box') {
+          font-size: 0;
+          @include e('link') {
+            height: 50px;
+            display: inline-block;
+            width: 175px;
+            border-radius: 30px;
+            background-image: linear-gradient(101deg, #82cdca, #5db3b6);
+            box-shadow: 1px 25px 20px -15px #9ff0eb;
+            font-size: 22px;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            line-height: 50px;
+            text-align: center;
             margin-left: 25px;
           }
         }
@@ -129,6 +142,8 @@ export default {
     }
   }
 }
+
+// animation
 
 .page-move-enter {
   left: 100%;
@@ -144,5 +159,17 @@ export default {
 
 .page-move-enter-active, .page-move-leave-active {
   transition: left 1s cubic-bezier(0.8, 0, 0.4, 1);
+}
+
+.appear-enter {
+  opacity: 0;
+}
+
+.appear-enter-to {
+  opacity: 1;
+}
+
+.appear-enter-active {
+  transition: opacity .5s;
 }
 </style>
