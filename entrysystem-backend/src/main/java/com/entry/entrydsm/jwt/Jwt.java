@@ -1,11 +1,11 @@
 package com.entry.entrydsm.jwt;
 
 import com.auth0.jwt.Algorithm;
-import com.auth0.jwt.internal.org.apache.commons.codec.binary.Base64;
 import com.auth0.jwt.JWTSigner;
 import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.internal.org.apache.commons.codec.binary.Base64;
+import com.entry.entrydsm.user.User;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -40,6 +40,10 @@ public class Jwt {
         options.setIssuedAt(true);
         options.setExpirySeconds(exp);
         return options;
+    }
+
+    public String createToken(User user) {
+        return createToken(user.getId());
     }
 
     public String createToken(String userId) {

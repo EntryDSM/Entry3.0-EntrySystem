@@ -52,7 +52,7 @@ public class UserController {
         }
         Map<String, Object> map = jwt.authToken(token);
         ResponseToken obj = new ResponseToken();
-        obj.setAccess_token(jwt.createToken(String.valueOf(map.get("userId"))));
+        obj.setAccessToken(jwt.createToken(String.valueOf(map.get("userId"))));
         return new ResponseEntity<>(obj, HttpStatus.OK);
 
     }
