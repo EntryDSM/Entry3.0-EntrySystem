@@ -7,8 +7,8 @@
             지금은 <span class="text-deco--1">원서작성</span> 기간입니다.
           </p>
           <p class="schedule__content__text">
-            오늘은 <span class="text-deco--2">18년 {{ thisMonth }}월 {{ today }}일</span>이며
-            마감일까지 <span class="text-deco--2">{{ restOfDay }}일 {{ restOfMinute }}분</span> 남았습니다.
+            오늘은 <span class="text-deco--2">{{ thisYear }}년 {{ thisMonth }}월 {{ thisDate }}일</span>이며
+            마감일까지 <span class="text-deco--2">{{ restOfDateText }}</span> 남았습니다.
           </p>
           <process-bar/>
           <p class="schedule__content__text">
@@ -26,6 +26,8 @@
 <script>
 import ProcessBar from './ProcessBar';
 
+const week = ['일', '월', '화', '수', '목', '금', '토'];
+
 export default {
   name: 'schedule',
   components: {
@@ -34,13 +36,47 @@ export default {
   data() {
     return {
       isAppear: false, // to animate
-      thisMonth: '01',
-      today: '01',
-      restOfDay: '01',
-      restOfMinute: '01',
-      startDateText: '2018. 10. 23 (월) 09:00',
-      endDateText: '2018. 10. 26 (목) 17:00',
+      startDate: [2018, 9, 23, 9, 0],
+      endDate: [2018, 9, 26, 17, 0],
+      date: null, // Date Object
     };
+  },
+  created() {
+    this.date = new Date();
+  },
+  computed: {
+    thisYear() { return this.date.getFullYear().toString().slice(-2); },
+    thisMonth() { return this.pad(this.date.getMonth() + 1, 2); },
+    thisDate() { return this.pad(this.date.getDate(), 2); },
+    restOfDateText() {
+      const endDate = new Date(...this.endDate);
+
+      // date constant
+      const HOUR = 1000 * 60 * 60;
+      const DAY = HOUR * 24;
+
+      // calculate diffrance
+      const diff = endDate - this.date;
+      let dateDiff = parseInt(diff / DAY, 10);
+      let hourDiff = parseInt((diff / HOUR) % 24, 10);
+
+      // pad
+      dateDiff = this.pad(dateDiff, 2);
+      hourDiff = this.pad(hourDiff, 2);
+      return `${dateDiff}일 ${hourDiff}시간`;
+    },
+    startDateText() { return this.formatDateText(this.startDate); },
+    endDateText() { return this.formatDateText(this.endDate); },
+  },
+  methods: {
+    pad(text, n) {
+      return '0'.repeat(n - 1).concat(text).slice(-n);
+    },
+    formatDateText(array) {
+      const date = new Date(...array);
+      return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}
+        (${week[date.getDay()]}) ${this.pad(date.getHours(), 2)}:${this.pad(date.getMinutes(), 2)}`;
+    },
   },
 };
 </script>

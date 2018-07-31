@@ -84,7 +84,8 @@ export default {
   @include e('hider') {
     overflow-x: hidden;
     width: 100%;
-    height: 1020px;
+    // 네비게이션, 푸터 제외
+    height: calc(100vh - 60px);
     position: relative;
     @include e('cover') {
       width: 100%;
