@@ -4,17 +4,18 @@
       <transition name="appear-content">
         <div class="schedule__content" v-if="isAppear">
           <p class="schedule__content__text">
-            지금은 <span class="text-deco--1">원서작성</span> 기간입니다.
+            지금은 <span class="text-deco--1">{{ scheduleName }}</span> 기간입니다.
           </p>
           <p class="schedule__content__text">
             오늘은 <span class="text-deco--2">{{ thisYear }}년 {{ thisMonth }}월 {{ thisDate }}일</span>이며
-            마감일까지 <span class="text-deco--2">{{ restOfDateText }}</span> 남았습니다.
+            {{ word }}까지 <span class="text-deco--2">{{ restOfDateText }}</span> 남았습니다.
           </p>
           <process-bar class="schedule__content__process-bar"
             :captions="captions"
-            @change="value => current = value"/>
+            :ahead="todayIndex"
+            @change="changeCurrent"/>
           <p class="schedule__content__text">
-            {{ startDateText }} ~ {{ endDateText }}
+            {{ scheduleDateText }}
           </p>
           <a href="" class="schedule__content__link">
             원서작성 하러가기
@@ -38,8 +39,6 @@ export default {
   data() {
     return {
       isAppear: false, // to animate
-      startDate: [2018, 9, 23, 9, 0],
-      endDate: [2018, 9, 26, 17, 0],
       date: null, // Date Object
       captions: [
         '원서작성',
@@ -48,11 +47,17 @@ export default {
         '2차 발표',
         '합격자 등록',
       ],
-      current: 0,
+      startDate: [],
+      endDate: [],
+      todayIndex: 0,
+      scheduleName: '',
+      word: '',
+      scheduleDateText: '',
     };
   },
   created() {
     this.date = new Date();
+    this.changeCurrent(0);
   },
   computed: {
     thisYear() { return this.date.getFullYear().toString().slice(-2); },
@@ -75,8 +80,6 @@ export default {
       hourDiff = this.pad(hourDiff, 2);
       return `${dateDiff}일 ${hourDiff}시간`;
     },
-    startDateText() { return this.formatDateText(this.startDate); },
-    endDateText() { return this.formatDateText(this.endDate); },
   },
   methods: {
     pad(text, n) {
@@ -86,6 +89,30 @@ export default {
       const date = new Date(...array);
       return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}
         (${week[date.getDay()]}) ${this.pad(date.getHours(), 2)}:${this.pad(date.getMinutes(), 2)}`;
+    },
+    changeCurrent(current) {
+      let contents;
+      switch (current) {
+        case 0: contents = ['원서작성', '마감일', [2018, 9, 26, 17, 0], [2018, 9, 23, 9, 0]]; break;
+        case 1:
+        case 2: contents = ['1차 발표', '발표일', [2018, 9, 31, 10, 0]]; break;
+        case 3:
+        case 4: contents = ['면접', '면접일', [2018, 10, 3, 8, 30]]; break;
+        case 5:
+        case 6: contents = ['2차 발표', '발표일', [2018, 10, 9, 10, 0]]; break;
+        case 7:
+        case 8: contents = ['합격자 등록', '마감일', [2018, 10, 14, 17, 0], [2018, 10, 9, 10, 0]]; break;
+        default: break;
+      }
+      this.setContent(...contents);
+    },
+    setContent(scheduleName, word, endDate, startDate) {
+      this.scheduleName = scheduleName;
+      this.word = word;
+      this.endDate = endDate;
+      this.startDate = startDate;
+      if (startDate) this.scheduleDateText = `${this.formatDateText(startDate)} ~ ${this.formatDateText(endDate)}`;
+      else this.scheduleDateText = this.formatDateText(endDate);
     },
   },
 };

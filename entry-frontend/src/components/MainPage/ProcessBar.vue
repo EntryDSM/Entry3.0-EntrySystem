@@ -15,7 +15,8 @@
       <div class="process-bar__gap-cover__gap"
         v-for="index in (captions.length - 1)"
         :key="`g${index}`"
-        @click="changeCurrent((index * 2) - 1)">
+        @click="changeCurrent((index * 2) - 1)"
+        :class="{'current': current == (index * 2) - 1}">
       </div>
     </div>
   </div>
@@ -29,6 +30,10 @@ export default {
       type: Array,
       required: true,
     },
+    ahead: {
+      type: Number,
+      default: 0,
+    },
   },
   data() {
     return {
@@ -40,6 +45,9 @@ export default {
       this.current = clickIndex;
       this.$emit('change', this.current);
     },
+  },
+  created() {
+    this.current = this.ahead;
   },
 };
 </script>
@@ -97,8 +105,12 @@ export default {
     justify-content: space-evenly;
     height: 100%;
     @include e('gap') {
+      margin-left: 50px;
       flex: 1;
       cursor: pointer;
+      &:last-child {
+        margin-right: 50px;
+      }
     }
   }
 }
