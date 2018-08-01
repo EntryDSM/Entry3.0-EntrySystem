@@ -10,7 +10,9 @@
             오늘은 <span class="text-deco--2">{{ thisYear }}년 {{ thisMonth }}월 {{ thisDate }}일</span>이며
             마감일까지 <span class="text-deco--2">{{ restOfDateText }}</span> 남았습니다.
           </p>
-          <process-bar/>
+          <process-bar class="schedule__content__process-bar"
+            :captions="captions"
+            @change="value => current = value"/>
           <p class="schedule__content__text">
             {{ startDateText }} ~ {{ endDateText }}
           </p>
@@ -39,6 +41,14 @@ export default {
       startDate: [2018, 9, 23, 9, 0],
       endDate: [2018, 9, 26, 17, 0],
       date: null, // Date Object
+      captions: [
+        '원서작성',
+        '1차 발표',
+        '면접',
+        '2차 발표',
+        '합격자 등록',
+      ],
+      current: 0,
     };
   },
   created() {
@@ -94,6 +104,14 @@ export default {
   @include e('content') {
     margin: {
       top: 90px;
+    }
+    @include e('process-bar') {
+      margin: {
+        top: 100px;
+        bottom: 60px;
+        left: auto;
+        right: auto;
+      }
     }
     text-align: center;
     @include e('text') {
