@@ -122,16 +122,18 @@ export default {
 @import '../../style/setting';
 
 .schedule {
-  height: 580px;
+  max-height: 580px;
+  min-height: 480px;
+  height: 60vh;
   width: 100%;
   background-color: #fff;
   border: {
     top: solid 6px #6ab7b7;
   }
+  display: flex;
+  align-items: center;
+  justify-content: center;
   @include e('content') {
-    margin: {
-      top: 90px;
-    }
     @include e('process-bar') {
       margin: {
         top: 100px;
@@ -186,15 +188,17 @@ export default {
 
 .open-schedule {
   &-enter-active {
-    transition: height .5s ease-in-out;
+    transition: all .5s ease-in-out;
   }
 
   &-enter {
-    height: 0;
+    min-height: 0;
+    max-height: 0;
   }
 
   &-enter-to {
-    height: 580px;
+    max-height: 580px;
+    min-height: 480px;
   }
 }
 
