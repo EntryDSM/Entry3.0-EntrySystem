@@ -2,8 +2,9 @@
   <div class="main-page">
     <navigation />
     <div class="main-page__hider">
-      <transition name="page-move">
-        <div class="main-page__hider__cover" v-if="!activeSchedulePage">
+      <transition name="page1">
+        <div class="main-page__hider__cover main-page__hider__cover--page1"
+          v-if="!activeSchedulePage">
           <div class="main-page__hider__cover__content">
             <h4 class="main-page__hider__cover__content__sub-text">
               대덕소프트웨어마이스터고등학교
@@ -23,8 +24,9 @@
           </div>
         </div>
       </transition>
-      <transition name="page-move" @after-enter="isAppearSchedule = true">
-        <div class="main-page__hider__cover" v-if="activeSchedulePage">
+      <transition name="page2" @after-enter="isAppearSchedule = true">
+        <div class="main-page__hider__cover main-page__hider__cover--page2"
+          v-if="activeSchedulePage">
           <div class="main-page__hider__cover__content">
             <h4 class="main-page__hider__cover__content__sub-text">
               대덕소프트웨어마이스터고등학교
@@ -97,7 +99,12 @@ export default {
       align-items: center;
       position: absolute;
       top: 0;
-      left: 0;
+      @include m('page1') {
+        right: 0;
+      }
+      @include m('page2') {
+        left: 0;
+      }
       @include e('content') {
         width: 1140px;
         font-size: 0;
@@ -149,7 +156,25 @@ export default {
 
 // animation
 
-.page-move {
+.page1 {
+  &-enter {
+    right: 100%;
+  }
+
+  &-enter-to, &-leave {
+    right: 0;
+  }
+
+  &-leave-to {
+    right: 100%;
+  }
+
+  &-enter-active, &-leave-active {
+    transition: right 1s cubic-bezier(0.8, 0, 0.4, 1);
+  }
+}
+
+.page2 {
   &-enter {
     left: 100%;
   }
@@ -159,7 +184,7 @@ export default {
   }
 
   &-leave-to {
-    left: -100%;
+    left: 100%;
   }
 
   &-enter-active, &-leave-active {
