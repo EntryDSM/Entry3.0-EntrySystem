@@ -7,7 +7,7 @@
             지금은 <span class="text-deco--1">{{ scheduleName }}</span> 기간입니다.
           </p>
           <p class="schedule__content__text">
-            오늘은 <span class="text-deco--2">{{ thisYear }}년 {{ thisMonth }}월 {{ thisDate }}일</span>이며
+            오늘은 <span class="text-deco--2">{{ thisDateText }}</span>이며
             {{ word }}까지 <span class="text-deco--2">{{ restOfDateText }}</span> 남았습니다.
           </p>
           <process-bar class="schedule__content__process-bar"
@@ -89,9 +89,13 @@ export default {
     this.changeCurrent(this.todayIndex);
   },
   computed: {
-    thisYear() { return this.date.getFullYear().toString().slice(-2); },
-    thisMonth() { return this.pad(this.date.getMonth() + 1, 2); },
-    thisDate() { return this.pad(this.date.getDate(), 2); },
+    thisDateText() {
+      return (
+        `${this.date.getFullYear().toString().slice(-2)}년
+        ${this.pad(this.date.getMonth() + 1, 2)}월
+        ${this.pad(this.date.getDate(), 2)}일`
+      );
+    },
     restOfDateText() {
       const endDate = new Date(...this.endDate);
 
