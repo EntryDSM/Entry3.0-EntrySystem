@@ -44,7 +44,8 @@
                 </div>
               </template>
             </transition>
-            <schedule v-if="isAppearSchedule"/>
+            <schedule v-if="isAppearSchedule"
+              @close="activeSchedulePage = isAppearSchedule = false"/>
           </div>
         </div>
       </transition>

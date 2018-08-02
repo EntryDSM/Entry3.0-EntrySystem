@@ -1,6 +1,10 @@
 <template>
   <transition name="open-schedule" @after-enter="isAppear = true">
     <div class="schedule">
+      <button class="schedule__close-btn"
+        @click="$emit('close')">
+        &times;
+      </button>
       <transition name="appear-content">
         <div class="schedule__content" v-if="isAppear">
           <p class="schedule__content__text">
@@ -169,12 +173,26 @@ export default {
   height: 60vh;
   width: 100%;
   background-color: #fff;
-  border: {
-    top: solid 6px #6ab7b7;
-  }
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  border: {
+    top: solid 6px #6ab7b7;
+  }
+  @include e('close-btn') {
+    color: #6ab7b7;
+    font-size: 40px;
+    height: 20px;
+    line-height: 20px;
+    position: absolute;
+    top: 19px;
+    right: 23px;
+    border: none;
+    background: none;
+    font-weight: lighter;
+    outline: none;
+  }
   @include e('content') {
     @include e('process-bar') {
       margin: {
