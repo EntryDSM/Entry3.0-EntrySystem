@@ -1,22 +1,24 @@
 <template>
   <div class="process-bar">
     <div class="process-bar__moment-cover">
+      <!-- index will be [0.5, 1.5, 2.5, 3.5, 4.5] -->
       <div class="process-bar__moment-cover__moment"
         v-for="(caption, index) in captions"
         :key="`m${index}`"
-        @click="changeCurrent(index * 2)"
-        :class="{'current': current == index * 2}">
+        @click="changeCurrent(index + 0.5)"
+        :class="{'current': current == index + 0.5}">
         <div class="process-bar__moment-cover__moment__caption">
           {{ caption }}
         </div>
       </div>
     </div>
     <div class="process-bar__gap-cover">
+      <!-- index will be [1, 2, 3, 4] -->
       <div class="process-bar__gap-cover__gap"
         v-for="index in (captions.length - 1)"
         :key="`g${index}`"
-        @click="changeCurrent((index * 2) - 1)"
-        :class="{'current': current == (index * 2) - 1}">
+        @click="changeCurrent(index)"
+        :class="{'current': current == index}">
       </div>
     </div>
   </div>

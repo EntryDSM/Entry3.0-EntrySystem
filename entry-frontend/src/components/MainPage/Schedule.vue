@@ -30,6 +30,35 @@
 import ProcessBar from './ProcessBar';
 
 const week = ['일', '월', '화', '수', '목', '금', '토'];
+const scheduleData = [
+  {
+    scheduleName: '원서작성',
+    word: '마감일',
+    endDate: [2018, 9, 26, 17, 0],
+    startDate: [2018, 9, 23, 9, 0],
+  },
+  {
+    scheduleName: '1차 발표',
+    word: '발표일',
+    endDate: [2018, 9, 31, 10, 0],
+  },
+  {
+    scheduleName: '면접',
+    word: '면접일',
+    endDate: [2018, 10, 3, 8, 30],
+  },
+  {
+    scheduleName: '2차 발표',
+    word: '발표일',
+    endDate: [2018, 10, 9, 10, 0],
+  },
+  {
+    scheduleName: '합격자 등록',
+    word: '마감일',
+    endDate: [2018, 10, 14, 17, 0],
+    startDate: [2018, 10, 9, 10, 0],
+  },
+];
 
 export default {
   name: 'schedule',
@@ -40,13 +69,7 @@ export default {
     return {
       isAppear: false, // to animate
       date: null, // Date Object
-      captions: [
-        '원서작성',
-        '1차 발표',
-        '면접',
-        '2차 발표',
-        '합격자 등록',
-      ],
+      captions: [],
       startDate: [],
       endDate: [],
       todayIndex: 0,
@@ -57,6 +80,7 @@ export default {
   },
   created() {
     this.date = new Date();
+    this.captions = scheduleData.map(data => data.scheduleName);
     this.changeCurrent(0);
   },
   computed: {
@@ -87,23 +111,17 @@ export default {
     },
     formatDateText(array) {
       const date = new Date(...array);
+
+      // 'yyyy, mm, dd, (d) hh:mm'
       return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}
         (${week[date.getDay()]}) ${this.pad(date.getHours(), 2)}:${this.pad(date.getMinutes(), 2)}`;
     },
     changeCurrent(current) {
-      let contents;
-      switch (current) {
-        case 0: contents = ['원서작성', '마감일', [2018, 9, 26, 17, 0], [2018, 9, 23, 9, 0]]; break;
-        case 1:
-        case 2: contents = ['1차 발표', '발표일', [2018, 9, 31, 10, 0]]; break;
-        case 3:
-        case 4: contents = ['면접', '면접일', [2018, 10, 3, 8, 30]]; break;
-        case 5:
-        case 6: contents = ['2차 발표', '발표일', [2018, 10, 9, 10, 0]]; break;
-        case 7:
-        case 8: contents = ['합격자 등록', '마감일', [2018, 10, 14, 17, 0], [2018, 10, 9, 10, 0]]; break;
-        default: break;
-      }
+      // current index의 객체 참조
+      let contents = scheduleData[parseInt(current, 10)];
+      // contents 객체의 배열화
+      contents = Object.values(contents);
+      // contents 적용
       this.setContent(...contents);
     },
     setContent(scheduleName, word, endDate, startDate) {
