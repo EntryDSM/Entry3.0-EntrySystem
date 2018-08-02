@@ -34,12 +34,12 @@ export default {
     },
     ahead: {
       type: Number,
-      default: 0,
+      default: 0.5,
     },
   },
   data() {
     return {
-      current: 0,
+      current: 0.5,
     };
   },
   methods: {
