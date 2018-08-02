@@ -72,7 +72,7 @@ export default {
       captions: [],
       startDate: [],
       endDate: [],
-      todayIndex: 0,
+      todayIndex: 0.5,
       scheduleName: '',
       word: '',
       scheduleDateText: '',
@@ -80,8 +80,13 @@ export default {
   },
   created() {
     this.date = new Date();
-    this.captions = scheduleData.map(data => data.scheduleName);
-    this.changeCurrent(0);
+
+    // captions 데이터 할당
+    // ["원서작성", "1차 발표", "면접", "2차 발표", "합격자 등록"]
+    this.captions = Array.from(scheduleData, data => data.scheduleName);
+
+    this.todayIndex = this.checkCurrent();
+    this.changeCurrent(this.todayIndex);
   },
   computed: {
     thisYear() { return this.date.getFullYear().toString().slice(-2); },
@@ -106,6 +111,21 @@ export default {
     },
   },
   methods: {
+    checkCurrent() {
+      let current;
+      scheduleData.some((data, index) => {
+        const endDate = new Date(...data.endDate);
+        const diff = endDate - this.date;
+        if (diff > 0) {
+          current = index;
+        } else if (diff === 0) {
+          current = index + 0.5;
+        }
+        return diff >= 0;
+      });
+      if (current === 0) current = 0.5;
+      return current;
+    },
     pad(text, n) {
       return '0'.repeat(n - 1).concat(text).slice(-n);
     },
