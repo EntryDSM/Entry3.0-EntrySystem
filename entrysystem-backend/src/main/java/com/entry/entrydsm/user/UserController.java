@@ -1,8 +1,8 @@
 package com.entry.entrydsm.user;
 
+import com.entry.entrydsm.common.security.Crypto;
+import com.entry.entrydsm.common.security.jwt.Jwt;
 import com.entry.entrydsm.exception.BadRequestException;
-import com.entry.entrydsm.jwt.Jwt;
-import com.entry.entrydsm.security.Crypto;
 import com.entry.entrydsm.tempuser.TempUserDTO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +56,7 @@ public class UserController {
         return new ResponseEntity<>(obj, HttpStatus.OK);
 
     }
+
     @ApiOperation(value = "로그아웃")
     @RequestMapping(value = "/logout", method = RequestMethod.DELETE)
     public ResponseEntity<Void> logout(@RequestHeader(value = "Authorization") String refreshToken) {

@@ -1,4 +1,4 @@
-package com.entry.entrydsm.jwt;
+package com.entry.entrydsm.common.security.jwt;
 
 import com.auth0.jwt.Algorithm;
 import com.auth0.jwt.JWTSigner;
@@ -6,34 +6,40 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.internal.org.apache.commons.codec.binary.Base64;
 import com.entry.entrydsm.user.User;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
 
-@Service
+@Component
 public class Jwt {
 
     @Value("${issuer}")
     private String issuer;
+
     @Value("${clientId}")
     private String clientId;
+
     @Value("${exp}")
     private int exp;
+
     @Value("${refreshExp}")
     private int refreshExp;
+
+    @Value("{jwt.secret}")
+    private String secret;
 
     private JWTSigner signer;
     private JWTVerifier jwtVerifier;
 
     @PostConstruct
     public void initPropertiesSetting() {
-        signer = new JWTSigner(Base64.decodeBase64("들어갈 Key"));
-        jwtVerifier = new JWTVerifier(Base64.decodeBase64("들어갈 Key"), clientId, issuer);
+        signer = new JWTSigner(Base64.decodeBase64(secret));
+        jwtVerifier = new JWTVerifier(Base64.decodeBase64(secret), clientId, issuer);
     }
 
-    private JWTSigner.Options initSeting(Integer exp) {
+    private JWTSigner.Options initSetting(Integer exp) {
         JWTSigner.Options options = new JWTSigner.Options();
         options.setAlgorithm(Algorithm.HS512);
         options.setJwtId(true);
@@ -50,7 +56,7 @@ public class Jwt {
         Map<String, Object> map = new HashMap<>();
         map.put("iss", issuer);
         map.put("userId", userId);
-        return signer.sign(map, initSeting(exp));
+        return signer.sign(map, initSetting(exp));
     }
 
     public String createRefreshToken(String token) throws Exception {
@@ -58,10 +64,23 @@ public class Jwt {
         claims.remove("exp");
         claims.remove("iat");
         claims.remove("jti");
-        return signer.sign(claims, initSeting(refreshExp));
+        return signer.sign(claims, initSetting(refreshExp));
     }
 
     public Map<String, Object> authToken(String token) throws Exception {
         return jwtVerifier.verify(token);
+    }
+
+    public boolean validation(String token) {
+        try {
+            jwtVerifier.verify(token);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public String getUserId(String token) throws Exception {
+        return (String) jwtVerifier.verify(token).get("userId");
     }
 }

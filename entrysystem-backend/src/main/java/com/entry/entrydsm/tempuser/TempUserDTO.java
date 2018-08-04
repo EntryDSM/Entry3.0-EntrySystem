@@ -12,7 +12,7 @@ public class TempUserDTO {
     public String password;
     public String code;
 
-    public TempUser toEntity(){
+    public TempUser toEntity() {
         return TempUser.builder()
                 .email(this.getEmail())
                 .password(this.getPassword())

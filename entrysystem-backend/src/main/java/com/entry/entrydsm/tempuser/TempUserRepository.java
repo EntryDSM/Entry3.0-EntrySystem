@@ -6,5 +6,6 @@ import java.util.Optional;
 
 public interface TempUserRepository extends JpaRepository<TempUser, String> {
     boolean existsTempUserByEmail(String email);
+
     Optional<TempUser> findByCode(String code);
 }

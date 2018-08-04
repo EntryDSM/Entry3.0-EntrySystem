@@ -1,4 +1,4 @@
-package com.entry.entrydsm.swagger;
+package com.entry.entrydsm.common.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
 
     @Bean
-    public Docket docket(){
+    public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.any())

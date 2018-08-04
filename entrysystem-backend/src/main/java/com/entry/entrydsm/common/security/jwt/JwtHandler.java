@@ -1,4 +1,4 @@
-package com.entry.entrydsm.jwt;
+package com.entry.entrydsm.common.security.jwt;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;

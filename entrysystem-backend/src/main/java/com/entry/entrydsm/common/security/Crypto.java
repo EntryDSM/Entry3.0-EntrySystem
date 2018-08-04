@@ -1,7 +1,7 @@
-package com.entry.entrydsm.security;
+package com.entry.entrydsm.common.security;
 
-import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
