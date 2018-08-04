@@ -1,4 +1,4 @@
-package com.entry.entrydsm.info;
+package com.entry.entrydsm.info.domain;
 
 public enum AdmissionDetail {
     DEFAULT,

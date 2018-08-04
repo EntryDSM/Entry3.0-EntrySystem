@@ -1,10 +1,11 @@
-package com.entry.entrydsm.info;
+package com.entry.entrydsm.info.domain;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 public class Info {
@@ -19,9 +20,11 @@ public class Info {
     private String addressDetail;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Admission admission;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private AdmissionDetail admissionDetail;
 
     @Column(length = 6)
@@ -47,6 +50,7 @@ public class Info {
     private Boolean region;
 
     @Column
+    @Enumerated(EnumType.STRING)
     private Sex sex;
 
     @Column(length = 1600, nullable = false)
@@ -67,5 +71,16 @@ public class Info {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Info info = (Info) o;
+        return Objects.equals(userId, info.userId);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId);
+    }
 }

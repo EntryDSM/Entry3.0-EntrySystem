@@ -1,5 +1,6 @@
 package com.entry.entrydsm.user;
 
+import com.entry.entrydsm.info.domain.Info;
 import com.entry.entrydsm.tempuser.TempUser;
 import lombok.Builder;
 import lombok.Getter;
@@ -36,8 +37,9 @@ public class User {
     private GraduateType graduateType;
 
     // TODO
-//    @OneToOne(mappedBy = "user_id", cascade = CascadeType.ALL)
-//    private Info info;
+    @OneToOne
+    @JoinColumn(name = "id")
+    private Info info;
 //
 //    @OneToOne(mappedBy = "user_id", cascade = CascadeType.ALL)
 //    private GraduateInfo graduateInfo;
