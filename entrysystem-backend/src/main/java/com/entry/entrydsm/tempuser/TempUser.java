@@ -20,7 +20,7 @@ public class TempUser {
     @Column(nullable = false, length = 50)
     private String password;
 
-    @Column(unique = true, length = 32)
+    @Column(nullable = false, unique = true, length = 32)
     private String code;
 
     @Builder

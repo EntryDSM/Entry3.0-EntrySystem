@@ -1,11 +1,19 @@
 package com.entry.entrydsm.graduate.grade;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.io.Serializable;
 
 public class GradeInfoId implements Serializable {
     @Column(length = 32)
     private String userId;
-    private Integer semeter;
+
+    @Embedded
+    private Semester semeter;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Subject subject;
 }

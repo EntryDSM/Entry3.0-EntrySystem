@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class InfoService {
 
     public Info getMyInfo(User user) {
-        return user.getInfo();
+        return null;
     }
 
 }

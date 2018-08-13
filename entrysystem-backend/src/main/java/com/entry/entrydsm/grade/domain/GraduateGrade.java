@@ -1,17 +1,19 @@
-package com.entry.entrydsm.graduate.grade;
+package com.entry.entrydsm.grade.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 
 @Entity
-public class GraduateGrade {
-    @Id
-    @Column(length = 32)
-    private String userId;
+public class GraduateGrade extends Grade {
 
     @Column(nullable = false)
-    private Double finalScore;
+    private Double firstGrade;
+
+    @Column(nullable = false)
+    private Double secondGrade;
+
+    @Column(nullable = false)
+    private Double thirdGrade;
 
     @Column(nullable = false, length = 10)
     private Integer volunteerTime;

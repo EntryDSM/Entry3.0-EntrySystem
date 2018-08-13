@@ -63,6 +63,9 @@ public class Info {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer receiptCode;
 
+    @Column(nullable = false)
+    private LocalDateTime birth;
+
     @Column
     @CreationTimestamp
     private LocalDateTime createdAt;

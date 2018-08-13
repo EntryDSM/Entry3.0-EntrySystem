@@ -9,9 +9,9 @@ public class GradeInfo {
     private GradeInfoId infoId;
 
     @Column(nullable = false)
-    private Boolean isPass;
+    private Boolean isPass = true;
 
     @Enumerated(EnumType.STRING)
-    private Score score;
+    private Score score = null;
 
 }
