@@ -1,5 +1,7 @@
 package com.entry.entrydsm.info.domain;
 
+import com.entry.entrydsm.user.User;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -7,6 +9,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@NoArgsConstructor
 @Entity
 public class Info {
     @Id
@@ -14,18 +17,18 @@ public class Info {
     private String userId;
 
     @Column(length = 100, nullable = false)
-    private String addressBase;
+    private String addressBase = "";
 
     @Column(length = 50, nullable = false)
-    private String addressDetail;
+    private String addressDetail = "";
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private Admission admission;
+    private Admission admission = Admission.NORMAL;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private AdmissionDetail admissionDetail;
+    private AdmissionDetail admissionDetail = AdmissionDetail.DEFAULT;
 
     @Column(length = 6)
     private String examCode;
@@ -35,36 +38,36 @@ public class Info {
 
 
     @Column(length = 15, nullable = false)
-    private String myTel;
+    private String myTel = "";
 
     @Column(length = 20, nullable = false)
-    private String name;
+    private String name = "";
 
     @Column(length = 20, nullable = false)
-    private String parentName;
+    private String parentName = "";
 
     @Column(length = 15, nullable = false)
-    private String parentTel;
+    private String parentTel = "";
 
     @Column(nullable = false)
-    private Boolean region;
+    private Boolean region = false;
 
     @Column
     @Enumerated(EnumType.STRING)
-    private Sex sex;
+    private Sex sex = Sex.MALE;
 
     @Column(length = 1600, nullable = false)
-    private String introduce;
+    private String introduce = "";
 
     @Column(length = 1600, nullable = false)
-    private String studyPlan;
+    private String studyPlan = "";
 
     @Column(length = 3)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer receiptCode;
 
     @Column(nullable = false)
-    private LocalDateTime birth;
+    private LocalDateTime birth = LocalDateTime.now();
 
     @Column
     @CreationTimestamp
@@ -85,5 +88,9 @@ public class Info {
     @Override
     public int hashCode() {
         return Objects.hash(userId);
+    }
+
+    public Info(User user) {
+        this.userId = user.getId();
     }
 }
