@@ -71,12 +71,12 @@
       <h3>미이수 학기 선택</h3>
       <table class="discomplete-table">
         <tr class="table-row">
-          <td class="table-row__first-grade">1학년</td>
-          <td class="table-row__second-grade">2학년</td>
-          <td class="table-row__third-grade">3학년</td>
+          <td class="table-row__first-grade grade-names">1학년</td>
+          <td class="table-row__second-grade grade-names">2학년</td>
+          <td class="table-row__third-grade grade-names">3학년</td>
         </tr>
         <tr class="table-row">
-          <td class="table-row__first-semester">
+          <td class="table-row__first-semester semester-checkboxes">
             <input type="checkbox"
                    class="input-checkbox"
                    id="input-first-first"
@@ -87,7 +87,7 @@
             <label class="input-checkbox-label" for="input-first-first"></label>
             <span class="table-row__semester-text">1학기</span>
           </td>
-          <td class="table-row__first-semester">
+          <td class="table-row__first-semester semester-checkboxes">
             <input type="checkbox"
                    class="input-checkbox"
                    id="input-first-second"
@@ -98,7 +98,7 @@
             <label class="input-checkbox-label" for="input-first-second"></label>
             <span class="table-row__semester-text">2학기</span>
           </td>
-          <td class="table-row__second-semester">
+          <td class="table-row__second-semester semester-checkboxes">
             <input type="checkbox"
                    class="input-checkbox"
                    id="input-second-first"
@@ -109,7 +109,7 @@
             <label class="input-checkbox-label" for="input-second-first"></label>
             <span class="table-row__semester-text">1학기</span>
           </td>
-          <td class="table-row__second-semester">
+          <td class="table-row__second-semester semester-checkboxes">
             <input type="checkbox"
                    class="input-checkbox"
                    id="input-second-second"
@@ -120,7 +120,7 @@
             <label class="input-checkbox-label" for="input-second-second"></label>
             <span class="table-row__semester-text">2학기</span>
           </td>
-          <td class="table-row__third-semester">
+          <td class="table-row__third-semester semester-checkboxes">
             <input type="checkbox"
                    class="input-checkbox"
                    id="input-third-first"
@@ -131,7 +131,7 @@
             <label class="input-checkbox-label" for="input-third-first"></label>
             <span class="table-row__semester-text">1학기</span>
           </td>
-          <td class="table-row__third-semester">
+          <td class="table-row__third-semester semester-checkboxes">
             <input type="checkbox"
                    class="input-checkbox"
                    id="input-third-second"
@@ -168,7 +168,7 @@
           <td class="empty-space"></td>
           <td class="first-grade row-grades" colspan="2">1학년</td>
           <td class="second-grade row-grades" colspan="2">2학년</td>
-          <td class="third-grade row-grades">3학년</td>
+          <td class="third-grade row-grades" colspan="2">3학년</td>
         </tr>
         <tr class="grade-input-table__row">
           <td class="empty-space"></td>
@@ -1832,18 +1832,18 @@ $button-color: #edf5f6;
     align-items: center;
     justify-content: center;
     position: absolute;
-    left: 22px;
+    left: 14px;
     transition: 0.35s ease-in-out;
     border-style: solid;
     border-color: #cfdee0;
 
     @for $i from 1 through 4 {
       &:nth-of-type(#{$i + 1}) {
-        left: calc(22px + (23px * #{$i}));
+        left: calc(14px + (22px * #{$i}));
       }
     }
     &:nth-of-type(6) {
-      left: 145px;
+      left: 128px;
     }
   }
 
@@ -1962,35 +1962,29 @@ $button-color: #edf5f6;
         box-sizing: border-box;
       }
 
+      .grade-names {
+        width: calc(100% / 3);
+      }
+
       @include e('first-grade') {
-        width: 455.6px;
         border-right: 1px solid $table-inner;
       }
 
       @include e('second-grade') {
-        width: 453.6px;
         border-right: 1px solid $table-inner;
       }
 
-      @include e('third-grade') {
-        width: calc(100% - 909.2px);
-      }
-
-      @include e('first-semester') {
-        width: 227.8px;
+      .semester-checkboxes {
+        width: calc(100% / 6);
         height: 100%;
-        border-right: 1px solid $table-inner;
-      }
 
-      @include e('second-semester') {
-        width: 226.8px;
-        height: 100%;
-        border-right: 1px solid $table-inner;
-      }
+        &:nth-of-type(n) {
+          border-right: 1px solid $table-inner;
+        }
 
-      @include e('third-semester') {
-        width: calc(100% - 909.2px);
-        height: 100%;
+        &:last-of-type {
+          border-right: 0;
+        }
       }
 
       @include e('semester-text') {
@@ -2156,7 +2150,7 @@ $button-color: #edf5f6;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        right: 47px;
+        right: 35px;
       }
 
       // 점수 선택되었을 시의 애니메이션
