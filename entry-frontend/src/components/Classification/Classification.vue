@@ -160,23 +160,27 @@
             특기사항
           </div>
           <div class="form__cover__form__colums__input-content">
-            <input type="checkbox"
-              class="input-checkbox"
+            <input type="radio"
+              class="input-radio"
               id="honor"
               value="honor"
               v-model="specialPoints">
-            <label class="input-checkbox-label" for="honor"></label>
+            <label class="input-radio-label" for="honor">
+              <span class="input-radio-span"></span>
+            </label>
             <label class="form__cover__form__colums__input-content__label"
               for="honor">
               국가 유공자
-              </label>
+            </label>
 
-            <input type="checkbox"
-              class="input-checkbox"
+            <input type="radio"
+              class="input-radio"
               id="exception"
               value="exception"
               v-model="specialPoints">
-            <label class="input-checkbox-label" for="exception"></label>
+            <label class="input-radio-label" for="exception">
+              <span class="input-radio-span"></span>
+            </label>
             <label class="form__cover__form__colums__input-content__label"
               for="exception">
               특례 입학 대상자
