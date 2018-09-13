@@ -90,8 +90,8 @@ export default {
 $white: #fff;
 
 footer {
-  height: 195px;
-  background-color: #8fc6cc;
+  height: 178px;
+  background-color: #78C2CA;
 
   .footer-cover {
     width: 1140px;
