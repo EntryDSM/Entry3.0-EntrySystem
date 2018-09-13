@@ -1,51 +1,98 @@
 <template>
-  <div class="InfoInput">
-    <div class="InfoInput__wapper">
-      <div class="InfoInput__wapper__title">
-        이메일
+  <div class="InfoInput --false" v-if="!isAccept">
+    <div>
+      <div class="InfoInput__wapper --false">
+        <div class="InfoInput__wapper__title --false">
+          이메일
+        </div>
+        <div class="InfoInput__wapper__inputBox --false">
+          <input type="text" class="InfoInput__wapper__inputBox__input --false"
+          placeholder="example@dsmhs.kr" v-model="email" readonly/>
+        </div>
       </div>
-      <div class="InfoInput__wapper__inputBox">
-        <input type="text" class="InfoInput__wapper__inputBox__input"
-        placeholder="example@dsmhs.kr" v-model="email"/>
-        <div class="InfoInput__wapper__inputBox__check" v-if="emailICheck">
-          ✓
+      <div class="InfoInput__wapper --false">
+        <div class="InfoInput__wapper__title --false">
+          비밀번호
+        </div>
+        <div class="InfoInput__wapper__inputBox --false">
+          <input type="password" class="InfoInput__wapper__inputBox__input --false"
+          placeholder="●●●●●●●●●●●●" v-model="pw" readonly/>
+        </div>
+        <span class="InfoInput__wapper__inputBox__warning --false">
+            * 영문(대소문자 구분), 숫자 포함 8자리 이상, 특수기호 가능
+        </span>
+      </div>
+      <div class="InfoInput__wapper pwcheck --false">
+        <div class="InfoInput__wapper__title --false">
+          비밀번호 확인
+        </div>
+        <div class="InfoInput__wapper__inputBox --false">
+          <input type="password" class="InfoInput__wapper__inputBox__input --false"
+          placeholder="●●●●●●●●●●●●" v-model="pwcheck" readonly/>
         </div>
       </div>
     </div>
-    <div class="InfoInput__wapper">
-      <div class="InfoInput__wapper__title">
-        비밀번호
-      </div>
-      <div class="InfoInput__wapper__inputBox">
-        <input type="password" class="InfoInput__wapper__inputBox__input"
-        placeholder="●●●●●●●●●●●●" v-model="pw"/>
-        <div class="InfoInput__wapper__inputBox__check" v-if="pwICheck">
-          ✓
-        </div>
-      </div>
-      <span class="InfoInput__wapper__inputBox__warning">
-          * 영문(대소문자 구분), 숫자 포함 8자리 이상, 특수기호 가능
-      </span>
+    <div class="btn">
+      <button type="button"
+            class="input-btn input-btn--next input-btn input-btn--next--false"
+      >
+        <span class="input-btn__arrow input-btn__arrow--right
+        input-btn__arrow--right--false">〉</span>
+        <span class="input-btn__text input-btn__text--next
+        input-btn__text--false">인증하기</span>
+      </button>
     </div>
-    <div class="InfoInput__wapper pwcheck">
-      <div class="InfoInput__wapper__title">
-        비밀번호 확인
-      </div>
-      <div class="InfoInput__wapper__inputBox">
-        <input type="password" class="InfoInput__wapper__inputBox__input"
-        placeholder="●●●●●●●●●●●●" v-model="pwcheck"/>
-        <div class="InfoInput__wapper__inputBox__check" v-if="pwcIChack">
-          ✓
+  </div>
+  <div class="InfoInput" v-else>
+    <div>
+      <div class="InfoInput__wapper">
+        <div class="InfoInput__wapper__title">
+          이메일
         </div>
-        <div class="InfoInput__wapper__inputBox--wrong" v-if="(this.pw !== this.pwcheck)">
-          비밀번호를 정확히 입력해주세요
+        <div class="InfoInput__wapper__inputBox">
+          <input type="text" class="InfoInput__wapper__inputBox__input"
+          placeholder="example@dsmhs.kr" v-model="email"/>
+        </div>
+        <div class="InfoInput__wapper__inputBox__check" v-if="verify[0]">
+            ✓
+        </div>
+      </div>
+      <div class="InfoInput__wapper">
+        <div class="InfoInput__wapper__title">
+          비밀번호
+        </div>
+        <div class="InfoInput__wapper__inputBox">
+          <input type="password" class="InfoInput__wapper__inputBox__input"
+          placeholder="●●●●●●●●●●●●" v-model="pw"/>
+          <div class="InfoInput__wapper__inputBox__check" v-if="verify[1]">
+            ✓
+          </div>
+        </div>
+        <span class="InfoInput__wapper__inputBox__warning">
+            * 영문(대소문자 구분), 숫자 포함 8자리 이상, 특수기호 가능
+        </span>
+      </div>
+      <div class="InfoInput__wapper pwcheck">
+        <div class="InfoInput__wapper__title">
+          비밀번호 확인
+        </div>
+        <div class="InfoInput__wapper__inputBox">
+          <input type="password" class="InfoInput__wapper__inputBox__input"
+          placeholder="●●●●●●●●●●●●" v-model="pwcheck"/>
+          <div class="InfoInput__wapper__inputBox__check " v-if="verify[2]">
+            ✓
+          </div>
+          <div class="InfoInput__wapper__inputBox--wrong"
+          v-if="(pw !== pwcheck)">
+            비밀번호를 정확히 입력해주세요
+          </div>
         </div>
       </div>
     </div>
     <div class="btn">
       <button type="button"
             class="input-btn input-btn--next"
-            v-if="(isOkay && isInputOkay)"
+            v-if="(isAccept && verify[0] && verify[1] && verify[2])"
             @click="moveToNextPage"
       >
         <span class="input-btn__arrow input-btn__arrow--right">〉</span>
@@ -53,7 +100,7 @@
       </button>
       <button type="button"
             class="input-btn input-btn--next input-btn input-btn--next--false"
-            v-if="!(isOkay && isInputOkay)"
+            v-else
       >
         <span class="input-btn__arrow input-btn__arrow--right
         input-btn__arrow--right--false">〉</span>
@@ -68,25 +115,58 @@
 const emailReg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,5}$/i;
 const pwReg = /^(?=.*?[A-Z])*(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])*.{8,}$/;
 export default {
-  data: () => ({
-    email: '',
-    pw: '',
-    pwcheck: '',
-  }),
-  props: ['isOkay'],
   computed: {
-    emailICheck() {
-      return emailReg.test(this.email);
+    email: {
+      get() {
+        return this.$store.state.auth.email;
+      },
+      set(value) {
+        const RegResult = emailReg.test(value);
+        this.$store.commit('updateEmail', value);
+        if (this.$store.state.auth.verify[0] !== RegResult) {
+          this.$store.commit('updateverify', {
+            index: 0,
+            data: RegResult,
+          });
+        }
+      },
     },
-    pwICheck() {
-      return pwReg.test(this.pw);
+    pw: {
+      get() {
+        return this.$store.state.auth.pw;
+      },
+      set(value) {
+        const RegResult = pwReg.test(value);
+        this.$store.commit('updatePw', value);
+        if (this.$store.state.auth.verify[1] !== RegResult) {
+          this.$store.commit('updateverify', {
+            index: 1,
+            data: RegResult,
+          });
+        }
+      },
     },
-    pwcIChack() {
-      return (this.pw === this.pwcheck && this.pwcheck !== '');
+    pwcheck: {
+      get() {
+        return this.$store.state.auth.pwcheck;
+      },
+      set(value) {
+        const RegResult = this.$store.state.auth.pw === value && pwReg.test(value);
+        this.$store.commit('updatePwCheck', value);
+        if (this.$store.state.auth.verify[2] !== RegResult &&
+        value !== '') {
+          this.$store.commit('updateverify', {
+            index: 2,
+            data: RegResult,
+          });
+        }
+      },
     },
-    isInputOkay() {
-      const check = (emailReg.test(this.email) && pwReg.test(this.pw) && this.pw === this.pwcheck && this.pwcheck !== '');
-      return (check);
+    verify() {
+      return this.$store.state.auth.verify;
+    },
+    isAccept() {
+      return this.$store.state.auth.isAccept;
     },
   },
   methods: {
@@ -105,17 +185,18 @@ export default {
   position: relative;
   width: 1140px;
   height: 226px;
-  &::before, &::after{
+  &::before, &::after {
     content: '';
     display: block;
     width: 1140px;
     height: 1px;
     position: absolute;
-    background: -webkit-linear-gradient(left, transparent 0%, #a7a7a7 50%, transparent 100%);
-    background: -moz-linear-gradient(left, transparent 0%, #a7a7a7 50%, transparent 100%);
-    background: -ms-linear-gradient(left, transparent 0%, #a7a7a7 50%, transparent 100%);
-    background: -o-linear-gradient(left, transparent 0%, #a7a7a7 50%, transparent 100%);
-    background: linear-gradient(left, transparent 0%, #a7a7a7 50%, transparent 100%);
+    background: linear-gradient(left, transparent 0%, #769b9f 50%, transparent 100%);
+  }
+  &.--false{
+    &::before, &::after{
+      background: linear-gradient(left, transparent 0%, #a7a7a7 50%, transparent 100%);
+    }
   }
   &::after{
     bottom: 0;
@@ -124,6 +205,11 @@ export default {
     position: relative;
     &:not(.pwcheck){
       border-bottom: 1px solid #5f8a90;
+    }
+    &.--false{
+      &:not(.pwcheck){
+        border-color: #a7a7a7;
+      }
     }
       @include e(title){
       position: relative;
@@ -135,6 +221,9 @@ export default {
       text-align: center;
       line-height: 75px;
       float: left;
+      &.--false{
+        color: #939393;
+      }
     }
     @include e(inputBox){
       position: relative;
@@ -157,6 +246,14 @@ export default {
         }
         &:focus{
           outline: none;
+        }
+        &.--false{
+          background-color: #fcfcfc;
+          border: solid 0.5px #959595;
+          &::placeholder{
+            color: #e2e2e2;
+            font-weight: 300;
+          }
         }
       }
       @include e(check){
