@@ -35,7 +35,6 @@ export default {
       required: true,
     },
     value: {
-      type: Number,
       required: true,
     },
     isEnabled: {
@@ -55,8 +54,7 @@ export default {
     },
     changeValue(value, index) {
       this.selected = index;
-      this.value = value;
-      this.$emit('input', this.value);
+      this.$emit('input', value);
       this.isFocused = false;
     },
   },
@@ -117,6 +115,14 @@ $border-color: #8aaaad;
       left: 16px;
       top: 11px;
       bottom: 10px;
+    }
+    &::after {
+      content: '▼';
+      font-size: 12px;
+      color: $border-color;
+      position: absolute;
+      right: 16px;
+      top: 10px;
     }
   }
   @include e('wrapper') {

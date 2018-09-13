@@ -1,38 +1,39 @@
 <template>
-  <div class="classification">
+  <div class="classification form">
     <navigation />
     <headline :title="title" :subText="subText" />
-    <div class="classification__cover">
+    <div class="form__cover">
 
       <!-- form -->
-      <div class="classification__cover__form">
-        <div class="classification__cover__form__colums">
-          <div class="classification__cover__form__colums__name">
+      <div class="form__cover__form">
+        <div class="form__cover__form__colums">
+          <div class="form__cover__form__colums__name">
             검정고시 지원여부
           </div>
-          <div class="classification__cover__form__colums__input-content">
+          <div class="form__cover__form__colums__input-content">
             <input type="checkbox" class="input-checkbox" id="isGED" v-model="isGED">
             <label class="input-checkbox-label" for="isGED"></label>
-            <span class="classification__cover__form__colums__input-content__sign">
+            <span class="form__cover__form__colums__input-content__sign">
               * 검정고시를 통하여 지원하실 경우 체크해주세요
             </span>
           </div>
         </div>
 
-        <div class="classification__cover__form__colums">
-          <div class="classification__cover__form__colums__name">
+        <div class="form__cover__form__colums">
+          <div class="form__cover__form__colums__name">
             전형 선택
           </div>
-          <div class="classification__cover__form__colums__input-content">
+          <div class="form__cover__form__colums__input-content">
             <input type="radio"
               class="input-radio"
               id="general"
               value="general"
+              @click="isOpen = false"
               v-model="entranceModel">
             <label class="input-radio-label" for="general">
               <span class="input-radio-span"></span>
             </label>
-            <label class="classification__cover__form__colums__input-content__label"
+            <label class="form__cover__form__colums__input-content__label"
               for="general">
               일반전형
             </label>
@@ -41,11 +42,12 @@
               class="input-radio"
               id="meister"
               value="meister"
+              @click="isOpen = false"
               v-model="entranceModel">
             <label class="input-radio-label" for="meister">
               <span class="input-radio-span"></span>
             </label>
-            <label class="classification__cover__form__colums__input-content__label"
+            <label class="form__cover__form__colums__input-content__label"
               for="meister">
               마이스터 인재전형
             </label>
@@ -70,20 +72,23 @@
                 {text:'그 외 대상자', value:'그 외 대상자'},
               ]"
               v-model="socialOption"
-              :style="{display: isOpen ? 'inline-block' : 'none'}"
+              v-show="isOpen"
               @close="isOpen = false"/>
-            <label class="classification__cover__form__colums__input-content__label"
+            <label class="form__cover__form__colums__input-content__label"
               for="social">
-              사회통합전형 / {{ socialOption }}
+              사회통합전형
+              <span v-show="socialOption">/ {{ socialOption }}
+                <span class="point-color">▾</span>
+              </span>
             </label>
           </div>
         </div>
 
-        <div class="classification__cover__form__colums">
-          <div class="classification__cover__form__colums__name">
+        <div class="form__cover__form__colums">
+          <div class="form__cover__form__colums__name">
             지역 선택
           </div>
-          <div class="classification__cover__form__colums__input-content">
+          <div class="form__cover__form__colums__input-content">
             <selectbox class="selectbox"
               v-model="region"
               :options="[
@@ -93,88 +98,94 @@
           </div>
         </div>
 
-        <div class="classification__cover__form__colums">
-          <div class="classification__cover__form__colums__name">
-            졸업 구분
-          </div>
-          <div class="classification__cover__form__colums__input-content">
-            <input type="radio"
-              class="input-radio"
-              id="notGraduated"
-              :value="false"
-              v-model="isGraduated">
-            <label class="input-radio-label" for="notGraduated">
-              <span class="input-radio-span"></span>
-            </label>
-            <label class="classification__cover__form__colums__input-content__label"
-              for="notGraduated">
-              졸업 예정자
-            </label>
+        <div v-show="!isGED">
+          <div class="form__cover__form__colums">
+            <div class="form__cover__form__colums__name">
+              졸업 구분
+            </div>
+            <div class="form__cover__form__colums__input-content">
+              <input type="radio"
+                class="input-radio"
+                id="notGraduated"
+                :value="false"
+                v-model="isGraduated">
+              <label class="input-radio-label" for="notGraduated">
+                <span class="input-radio-span"></span>
+              </label>
+              <label class="form__cover__form__colums__input-content__label"
+                for="notGraduated">
+                졸업 예정자
+              </label>
 
-            <input type="radio"
-              class="input-radio"
-              id="graduated"
-              :value="true"
-              v-model="isGraduated">
-            <label class="input-radio-label" for="graduated">
-              <span class="input-radio-span"></span>
-            </label>
-            <label class="classification__cover__form__colums__input-content__label"
-              for="graduated">
-              졸업자
-            </label>
+              <input type="radio"
+                class="input-radio"
+                id="graduated"
+                :value="true"
+                v-model="isGraduated">
+              <label class="input-radio-label" for="graduated">
+                <span class="input-radio-span"></span>
+              </label>
+              <label class="form__cover__form__colums__input-content__label"
+                for="graduated">
+                졸업자
+              </label>
+            </div>
+          </div>
+
+          <div class="form__cover__form__colums">
+            <div class="form__cover__form__colums__name">
+              졸업 연도
+            </div>
+            <div class="form__cover__form__colums__input-content">
+              <selectbox class="selectbox"
+                v-model="graduationYear"
+                :isEnabled="isGraduated"
+                :options="[
+                  {text: '2017', value:'2017'},
+                  {text: '2016', value:'2016'},
+                  {text: '2015', value:'2015'},
+                  {text: '2014', value:'2014'},
+                  {text: '2013', value:'2013'},
+                  {text: '2012', value:'2012'},
+                  {text: '2011', value:'2011'},
+                  {text: '2010', value:'2010'},
+                ]"/>
+                년
+            </div>
           </div>
         </div>
 
-        <div class="classification__cover__form__colums">
-          <div class="classification__cover__form__colums__name">
-            졸업 연도
-          </div>
-          <div class="classification__cover__form__colums__input-content">
-            <selectbox class="selectbox"
-              v-model="graduationYear"
-              :isEnabled="isGraduated"
-              :options="[
-                {text: '2017', value:'2017'},
-                {text: '2016', value:'2016'},
-                {text: '2015', value:'2015'},
-                {text: '2014', value:'2014'},
-                {text: '2013', value:'2013'},
-                {text: '2012', value:'2012'},
-                {text: '2011', value:'2011'},
-                {text: '2010', value:'2010'},
-              ]"/>
-              년
-          </div>
-        </div>
-
-        <div class="classification__cover__form__colums">
-          <div class="classification__cover__form__colums__name">
+        <div class="form__cover__form__colums">
+          <div class="form__cover__form__colums__name">
             특기사항
           </div>
-          <div class="classification__cover__form__colums__input-content">
-            <input type="checkbox"
-              class="input-checkbox"
+          <div class="form__cover__form__colums__input-content">
+            <input type="radio"
+              class="input-radio"
               id="honor"
               value="honor"
               v-model="specialPoints">
-            <label class="input-checkbox-label" for="honor"></label>
-            <label class="classification__cover__form__colums__input-content__label"
+            <label class="input-radio-label" for="honor">
+              <span class="input-radio-span"></span>
+            </label>
+            <label class="form__cover__form__colums__input-content__label"
               for="honor">
               국가 유공자
-              </label>
+            </label>
 
-            <input type="checkbox"
-              class="input-checkbox"
+            <input type="radio"
+              class="input-radio"
               id="exception"
               value="exception"
               v-model="specialPoints">
-            <label class="input-checkbox-label" for="exception"></label>
-            <label class="classification__cover__form__colums__input-content__label"
+            <label class="input-radio-label" for="exception">
+              <span class="input-radio-span"></span>
+            </label>
+            <label class="form__cover__form__colums__input-content__label"
               for="exception">
               특례 입학 대상자
             </label>
-            <span class="classification__cover__form__colums__input-content__sign">
+            <span class="form__cover__form__colums__input-content__sign">
               * 졸업자의 경우 졸업연도를 선택해주세요
             </span>
           </div>
@@ -221,7 +232,7 @@ export default {
       isGraduated: false,
       graduationYear: 0,
       specialPoints: [],
-      isOpen: true,
+      isOpen: false,
     };
   },
   methods: {
@@ -234,62 +245,8 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../style/setting';
-$color-main1: #769b9f;
-$color-main2: #eff3f4;
-$color-main3: #608a8e;
-
-.classification {
-  @include e('cover') {
-    width: 1140px;
-    margin: 0 auto;
-    @include e('form') {
-      border: {
-        top: solid 1px $color-main1;
-        bottom: solid 1px $color-main1;
-      }
-      @include e('colums') {
-        height: 75px;
-        line-height: 75px;
-        font-size: 0;
-        border: {
-          bottom: solid 1px $color-main2;
-        }
-        @include e('name') {
-          font-size: 20px;
-          height: 100%;
-          width: 15%;
-          text-align: center;
-          display: inline-block;
-        }
-        @include e('input-content') {
-          font-size: 0px;
-          padding-left: 30px;
-          box-sizing: border-box;
-          width: 85%;
-          height: 100%;
-          display: inline-block;
-          position: relative;
-          user-select: none;
-          @include e('sign') {
-            position: absolute;
-            right: 0;
-            top: 0;
-            font-size: 14px;
-            color: $color-main3;
-          }
-          @include e('label') {
-            font-size: 18px;
-            display: inline-block;
-            min-width: 100px;
-            padding: {
-              left: 10px;
-              right: 50px;
-            }
-          }
-        }
-      }
-    }
-  }
+.point-color {
+  color: #799da1;
 }
 
 .selectbox {

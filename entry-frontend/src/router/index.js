@@ -6,6 +6,8 @@ import Authorization from '../components/Authorization/Authorization';
 import NormalGradeInputScheduled from '../components/GradeInput/NormalGradeInputScheduled';
 import NormalGradeInputGraduated from '../components/GradeInput/NormalGradeInputGraduated';
 import GedGradeInput from '../components/GradeInput/GedGradeInput';
+import PersonalInformation from '../components/PersonalInformation/PersonalInformation';
+import Authorization from './../components/Authorization/Authorization';
 
 Vue.use(Router);
 
@@ -43,6 +45,11 @@ export default new Router({
       path: '/ged-grade-input',
       name: 'ged-grade-input',
       component: GedGradeInput,
+    },
+    {
+      path: '/personal',
+      name: 'personal-information',
+      component: PersonalInformation,
     },
   ],
 });
