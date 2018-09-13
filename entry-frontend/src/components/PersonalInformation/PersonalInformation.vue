@@ -99,15 +99,15 @@
             </label>
             <input type="text"
               class="input-text input-text-school-class"
-              :value="schoolClass"
-              @input="onlyNumber">
+              v-model="schoolClass"
+              @keydown="onlyNumber">
             <label class="title--input">
               반
             </label>
             <input type="text"
               class="input-text input-text-school-number"
-              :value="schoolnumber"
-              @input="onlyNumber">
+              v-model="schoolnumber"
+              @keydown="onlyNumber">
             <label class="title--input">
               번
             </label>
@@ -144,8 +144,8 @@
           <div class="form__cover__form__colums__input-content">
             <input type="text"
               class="input-text input-text-school-contact"
-              :value="schoolContact"
-              @input="onlyNumber">
+              v-model="schoolContact"
+              @keydown="onlyNumber">
             <span class="form__cover__form__colums__input-content__sign">
               * ‘-’ 문자를 제외한 숫자만 입력해주세요.
             </span>
@@ -158,8 +158,8 @@
           <div class="form__cover__form__colums__input-content">
             <input type="text"
               class="input-text input-text-guardian-contact"
-              :value="guardianContact"
-              @input="onlyNumber">
+              v-model="guardianContact"
+              @keydown="onlyNumber">
             <span class="form__cover__form__colums__input-content__sign">
               * ‘-’ 문자를 제외한 숫자만 입력해주세요.
             </span>
@@ -172,8 +172,8 @@
           <div class="form__cover__form__colums__input-content">
             <input type="text"
               class="input-text input-text-contact"
-              :value="contact"
-              @input="onlyNumber">
+              v-model="contact"
+              @keydown="onlyNumber">
             <span class="form__cover__form__colums__input-content__sign">
               * ‘-’ 문자를 제외한 숫자만 입력해주세요.
             </span>
@@ -240,7 +240,7 @@ export default {
   },
   data() {
     return {
-      isGED: true, // 검정고시 여부
+      isGED: false, // 검정고시 여부
       isOpen: false, // 학교 검색 모달창 열림 여부
       title: '인적 사항',
       subText: '2019 입학원서 작성',
@@ -321,10 +321,17 @@ export default {
     this.monthOptions = monthArray;
   },
   methods: {
-    // 숫자만 입력가능하도록
+    // 숫자, 백스페이스가 아닐 경우 이벤트 막기
     onlyNumber(e) {
-      // 입력 데이터를 숫자만으로 바꾼다
-      e.target.value = e.target.value.replace(/[^\d]/g, '');
+      if (!(e.keyCode >= 48 && e.keyCode <= 57)) {
+        switch (e.key) {
+          case 'Backspace':
+          case 'ArrowLeft':
+          case 'ArrowRight':
+          case 'Delete': break;
+          default: e.preventDefault();
+        }
+      }
     },
     openSearchAdress() {
       const vueObject = this;
