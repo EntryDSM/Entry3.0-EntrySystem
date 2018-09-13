@@ -25,7 +25,7 @@ export default {
     onFileChange(e) {
       const file = e.target.files[0];
       this.imageURL = URL.createObjectURL(file);
-      this.$emit('upload', this.imageURL);
+      this.$emit('upload', file);
     },
   },
 };
@@ -61,9 +61,11 @@ export default {
     background-repeat: no-repeat;
     background-position: center center;
     @include e('preview') {
+      width: 100%;
+      height: 100%;
       background-repeat: no-repeat;
       background-position: center center;
-      background-size: contain;
+      background-size: cover;
     }
   }
 }
