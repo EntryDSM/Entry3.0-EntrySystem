@@ -3,7 +3,6 @@ import Router from 'vue-router';
 import MainPage from '../components/MainPage/MainPage';
 import IntroduceNPlan from '../components/IntroNPlan/IntroduceNPlan';
 import Classification from '../components/Classification/Classification';
-import Authorization from '../components/Authorization/Authorization';
 import NormalGradeInputScheduled from '../components/GradeInput/NormalGradeInputScheduled';
 import NormalGradeInputGraduated from '../components/GradeInput/NormalGradeInputGraduated';
 import GedGradeInput from '../components/GradeInput/GedGradeInput';
