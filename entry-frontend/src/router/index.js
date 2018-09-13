@@ -15,16 +15,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-    },
-    {
-      path: '/main',
       name: 'main-page',
       component: MainPage,
     },
     {
-      path: '/introduce',
-      name: 'introduce',
-      component: IntroduceNPlan,
+      path: '/auth',
+      name: 'authorization',
+      component: Authorization,
     },
     {
       path: '/classify',
@@ -32,9 +29,9 @@ export default new Router({
       component: Classification,
     },
     {
-      path: '/auth',
-      name: 'authorization',
-      component: Authorization,
+      path: '/personal',
+      name: 'personal-information',
+      component: PersonalInformation,
     },
     {
       path: '/normal-grade-scheduled',
@@ -52,9 +49,9 @@ export default new Router({
       component: GedGradeInput,
     },
     {
-      path: '/personal',
-      name: 'personal-information',
-      component: PersonalInformation,
+      path: '/intro',
+      name: 'introduce',
+      component: IntroduceNPlan,
     },
   ],
 });

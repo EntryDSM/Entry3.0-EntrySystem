@@ -14,7 +14,7 @@
 
         <!-- 이미지 첨부 컴포넌트 -->
         <attach-image class="form__cover__form__attach-image"
-          @upload="file => this.image = file"/>
+          @upload="file => image = file"/>
         <div class="form__cover__form__colums">
           <div class="form__cover__form__colums__name">
             이름
@@ -209,10 +209,10 @@
       <!-- form end -->
 
       <prev-next-btn
-      :prevShow="1"
-      :nextShow="1"
-      @toPrevPage="movePrev"
-      @toNextPage="moveNext"/>
+        :prevShow="1"
+        :nextShow="1"
+        @toPrevPage="movePrev"
+        @toNextPage="moveNext"/>
     </div>
     <entry-footer />
   </div>
@@ -361,10 +361,10 @@ export default {
       }).open();
     },
     movePrev() {
-      this.$router.push('/');
+      history.back();
     },
     moveNext() {
-      this.$router.push('/');
+      this.$router.push('/normal-grade-scheduled');
     },
   },
 };

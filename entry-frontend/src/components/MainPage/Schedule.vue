@@ -21,9 +21,9 @@
           <p class="schedule__content__text">
             {{ scheduleDateText }}
           </p>
-          <a href="" class="schedule__content__link">
+          <router-link to="/classify" class="schedule__content__link">
             원서작성 하러가기
-          </a>
+          </router-link>
         </div>
       </transition>
     </div>

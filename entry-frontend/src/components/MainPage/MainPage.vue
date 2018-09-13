@@ -13,9 +13,10 @@
               2019 신입생 모집
             </h1>
             <div class="main-page__hider__cover__content__title__link-box">
-              <a class="main-page__hider__cover__content__link-box__link">
+              <router-link class="main-page__hider__cover__content__link-box__link"
+                to="/classify">
                 원서작성
-              </a>
+              </router-link>
               <a class="main-page__hider__cover__content__link-box__link"
                 @click="activeSchedulePage = true">
                 모집일정
@@ -37,12 +38,14 @@
             <transition name="appear">
               <template v-if="isAppearSchedule">
                 <div class="main-page__hider__cover__content__title__link-box">
-                  <a class="main-page__hider__cover__content__link-box__link">
+                  <router-link class="main-page__hider__cover__content__link-box__link"
+                    to="/classify">
                     원서작성
-                  </a>
-                  <a class="main-page__hider__cover__content__link-box__link">
+                  </router-link>
+                  <router-link class="main-page__hider__cover__content__link-box__link"
+                    to="">
                     전형요강
-                  </a>
+                  </router-link>
                 </div>
               </template>
             </transition>

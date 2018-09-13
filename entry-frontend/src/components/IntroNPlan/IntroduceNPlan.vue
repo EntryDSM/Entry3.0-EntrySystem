@@ -79,7 +79,7 @@ export default {
       target.style.height = `${30 + target.scrollHeight}px`;
     },
     movePrev() {
-      this.$router.push('/');
+      history.back();
     },
     moveNext() {
       this.$router.push('/');

@@ -50,11 +50,11 @@ export default {
   },
   methods: {
     movePrev() {
-      this.$router.push('/');
+      history.back();
     },
 
     moveNext() {
-      this.$router.push('/');
+      this.$router.push('/intro');
     },
 
     onlyNumber(e) {

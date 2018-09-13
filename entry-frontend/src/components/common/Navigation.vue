@@ -12,10 +12,10 @@
       </div>
       <ul class="nav__wrapper__contants__list">
         <li class="nav__wrapper__contants__list__link">
-          <router-link to="/explain">시스템 소개</router-link>
+          <router-link to="">시스템 소개</router-link>
         </li>
         <li class="nav__wrapper__contants__list__link">
-          <router-link to="/write">원서작성</router-link>
+          <router-link to="/auth">원서작성</router-link>
         </li>
         <li class="nav__wrapper__contants__list__link">
           <router-link to="/summary">전형요강</router-link>

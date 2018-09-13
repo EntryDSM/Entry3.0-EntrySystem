@@ -237,7 +237,7 @@ export default {
   },
   methods: {
     moveNext() {
-      this.$router.push('/');
+      this.$router.push('/personal');
     },
   },
 };

@@ -1406,11 +1406,11 @@ export default {
   },
   methods: {
     movePrev() {
-      this.$router.push('/');
+      history.back();
     },
 
     moveNext() {
-      this.$router.push('/');
+      this.$router.push('/intro');
     },
 
     // 초기화 버튼 설정

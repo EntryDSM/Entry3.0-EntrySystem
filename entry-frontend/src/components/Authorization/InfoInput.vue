@@ -38,8 +38,10 @@
       >
         <span class="input-btn__arrow input-btn__arrow--right
         input-btn__arrow--right--false">〉</span>
-        <span class="input-btn__text input-btn__text--next
-        input-btn__text--false">인증하기</span>
+        <router-link to="/">
+          <span class="input-btn__text input-btn__text--next
+          input-btn__text--false">인증하기</span>
+        </router-link>
       </button>
     </div>
   </div>
