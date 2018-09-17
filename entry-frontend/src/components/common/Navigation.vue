@@ -25,12 +25,15 @@
         @click="$emit('on-schedule')">
         <router-link to="/">모집일정</router-link>
       </li>
-      <li class="nav__wrapper__contants__list__link nav__wrapper__contants__list__link--login">
-        로그인
-      </li>
+      <li class="nav__wrapper__contants__list__link
+        nav__wrapper__contants__list__link--login"
+        @click="changeIndex">
+          로그인
+        </li>
     </ul>
     </div>
   </nav>
+  <modal/>
   </div>
 </template>
 

@@ -49,7 +49,7 @@ $inner-btn: #296169;
 // 전체 감싸는 부분
 .prev-next-btn-cover {
   width: 1140px;
-  height: 200px;
+  height: 25vh;
   margin: 0 auto;
   position: relative;
 
