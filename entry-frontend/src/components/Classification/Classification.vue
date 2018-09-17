@@ -143,6 +143,9 @@
                   {text: '2010', value:'2010'},
                 ]"/>
                 년
+                <span class="form__cover__form__colums__input-content__sign">
+              * 졸업자의 경우 졸업연도를 선택해주세요
+            </span>
             </div>
           </div>
         </div>
@@ -154,8 +157,21 @@
           <div class="form__cover__form__colums__input-content">
             <input type="radio"
               class="input-radio"
+              id="NONE"
+              value="NONE"
+              v-model="specialPoints">
+            <label class="input-radio-label" for="NONE">
+              <span class="input-radio-span"></span>
+            </label>
+            <label class="form__cover__form__colums__input-content__label"
+              for="NONE">
+              해당없음
+            </label>
+
+            <input type="radio"
+              class="input-radio"
               id="honor"
-              value="honor"
+              value="NATIONAL_MERIT"
               v-model="specialPoints">
             <label class="input-radio-label" for="honor">
               <span class="input-radio-span"></span>
@@ -168,7 +184,7 @@
             <input type="radio"
               class="input-radio"
               id="exception"
-              value="exception"
+              value="SPECIAL_ADMISSION"
               v-model="specialPoints">
             <label class="input-radio-label" for="exception">
               <span class="input-radio-span"></span>
@@ -177,9 +193,6 @@
               for="exception">
               특례 입학 대상자
             </label>
-            <span class="form__cover__form__colums__input-content__sign">
-              * 졸업자의 경우 졸업연도를 선택해주세요
-            </span>
           </div>
         </div>
       </div>
@@ -217,7 +230,7 @@ export default {
       title: '전형 구분 선택',
       subText: '2019 입학원서 작성',
       isGED: false,
-      entranceModel: '',
+      entranceModel: 'NORMAL',
       socialOptions: [
         { text: '기초생활수급권자', value: 'BENEFICIARY' },
         { text: '한부모가족 보호대상자', value: 'ONE_PARENT' },
@@ -231,7 +244,7 @@ export default {
       region: '',
       isGraduated: false,
       graduationYear: 0,
-      specialPoints: [],
+      specialPoints: 'NONE',
       isOpen: false,
       nextLink: '/personal',
     };
