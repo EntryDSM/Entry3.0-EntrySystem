@@ -209,10 +209,9 @@
       <!-- form end -->
 
       <prev-next-btn
-      :prevShow="1"
-      :nextShow="1"
-      @toPrevPage="movePrev"
-      @toNextPage="moveNext"/>
+        :prevShow="true"
+        :nextShow="true"
+        :link="nextLink"/>
     </div>
     <entry-footer />
   </div>
@@ -262,6 +261,7 @@ export default {
       address: null, // 기본주소
       detailedAddress: null, // 상세주소
       image: null, // 이미지
+      nextLink: 'grade-scheduled',
     };
   },
   computed: {
@@ -359,12 +359,6 @@ export default {
           vueObject.address = fullRoadAddr;
         },
       }).open();
-    },
-    movePrev() {
-      this.$router.push('/');
-    },
-    moveNext() {
-      this.$router.push('/');
     },
   },
 };

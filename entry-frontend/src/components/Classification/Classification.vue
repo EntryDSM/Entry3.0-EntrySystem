@@ -27,7 +27,7 @@
             <input type="radio"
               class="input-radio"
               id="general"
-              value="general"
+              value="NORMAL"
               @click="isOpen = false"
               v-model="entranceModel">
             <label class="input-radio-label" for="general">
@@ -41,7 +41,7 @@
             <input type="radio"
               class="input-radio"
               id="meister"
-              value="meister"
+              value="MEISTER"
               @click="isOpen = false"
               v-model="entranceModel">
             <label class="input-radio-label" for="meister">
@@ -55,29 +55,21 @@
             <input type="radio"
               class="input-radio"
               id="social"
-              value="social"
+              value="SOCIAL"
               v-model="entranceModel"
               @click="isOpen = true">
             <label class="input-radio-label" for="social">
               <span class="input-radio-span"></span>
             </label>
             <social-option
-              :options="[
-                {text:'기초생활수급권자', value:'기초생활수급권자'},
-                {text:'한부모가족 보호대상자', value:'한부모가족 보호대상자'},
-                {text:'차상위 계층', value:'차상위 계층'},
-                {text:'차차상위 계층', value:'차차상위 계층'},
-                {text:'북한이탈주민', value:'북한이탈주민'},
-                {text:'다문화 가정', value:'다문화 가정'},
-                {text:'그 외 대상자', value:'그 외 대상자'},
-              ]"
+              :options="socialOptions"
               v-model="socialOption"
               v-show="isOpen"
               @close="isOpen = false"/>
             <label class="form__cover__form__colums__input-content__label"
               for="social">
               사회통합전형
-              <span v-show="socialOption">/ {{ socialOption }}
+              <span v-show="socialOption">/ {{ socialOption ? socialOption.text : '' }}
                 <span class="point-color">▾</span>
               </span>
             </label>
@@ -92,8 +84,8 @@
             <selectbox class="selectbox"
               v-model="region"
               :options="[
-                {text: '전국', value:'전국'},
-                {text: '대전', value:'대전'}
+                {text: '전국', value:false},
+                {text: '대전', value:true}
               ]"/>
           </div>
         </div>
@@ -194,10 +186,9 @@
       <!-- form end -->
 
       <prev-next-btn
-        :prevShow="0"
-        :nextShow="1"
-        @toNextPage="moveNext"
-      />
+        :prevShow="false"
+        :nextShow="true"
+        :link="nextLink"/>
     </div>
     <entry-footer />
   </div>
@@ -227,13 +218,41 @@ export default {
       subText: '2019 입학원서 작성',
       isGED: false,
       entranceModel: '',
-      socialOption: '',
+      socialOptions: [
+        { text: '기초생활수급권자', value: 'BENEFICIARY' },
+        { text: '한부모가족 보호대상자', value: 'ONE_PARENT' },
+        { text: '차상위 계층', value: 'CHA_UPPER' },
+        { text: '차차상위 계층', value: 'CHACHA_UPPER' },
+        { text: '북한이탈주민', value: 'FROM_NORTH' },
+        { text: '다문화 가정', value: 'MULTI_CULTURE' },
+        { text: '그 외 대상자', value: 'ETC' },
+      ],
+      socialOption: null,
       region: '',
       isGraduated: false,
       graduationYear: 0,
       specialPoints: [],
       isOpen: false,
+      nextLink: '/personal',
     };
+  },
+  computed: {
+    graduateType() {
+      if (this.isGED) {
+        return 'GED';
+      } else if (!this.isGraduated) {
+        return 'WILL';
+      } else if (this.isGraduated) {
+        return 'DONE';
+      }
+      return null;
+    },
+    admissionDetail() {
+      if (this.entranceModel === 'SOCIAL') {
+        return this.socialOption.value;
+      }
+      return 'NONE';
+    },
   },
   methods: {
     moveNext() {
