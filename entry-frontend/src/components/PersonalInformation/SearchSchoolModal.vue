@@ -53,11 +53,7 @@
 </template>
 
 <script>
-// import config from '../../config';
-// 오류 때문에 임시적으로 적어놓은 것
-const config = {
-  appKey: 'Test Key',
-};
+import config from '../../config';
 
 export default {
   name: 'search-school-modal',
