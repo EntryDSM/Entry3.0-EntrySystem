@@ -1,6 +1,7 @@
 package com.entry.entrydsm.info.domain;
 
 import com.entry.entrydsm.common.domain.BaseTimeEntity;
+import com.entry.entrydsm.info.dto.InfoDTO;
 import com.entry.entrydsm.user.domain.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
@@ -18,6 +19,12 @@ public class Info extends BaseTimeEntity {
     @Column(length = 32)
     @JsonIgnore
     private String userId;
+
+    @MapsId
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
 
     @Column(length = 20, nullable = false)
     private String name;
@@ -55,16 +62,16 @@ public class Info extends BaseTimeEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Info info = (Info) o;
-        return Objects.equals(userId, info.userId);
+        return Objects.equals(user, info.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId);
+        return Objects.hash(user);
     }
 
     public Info(User user) {
-        this.userId = user.getId();
+        this.user = user;
         this.addressBase = "";
         this.myTel = "";
         this.addressDetail = "";
@@ -72,6 +79,19 @@ public class Info extends BaseTimeEntity {
         this.parentName = "";
         this.parentTel = "";
         this.zipCode = "";
-        this.birth = LocalDate.now();
+        this.birth = LocalDate.of(2002, 1, 1);
+    }
+
+    public void update(InfoDTO infoDTO) {
+        this.name = infoDTO.getName();
+        this.sex = infoDTO.getSex();
+        this.birth = infoDTO.getBirth();
+        this.myTel = infoDTO.getMyTel();
+        this.parentName = infoDTO.getParentName();
+        this.parentTel = infoDTO.getParentTel();
+        this.addressBase = infoDTO.getAddressBase();
+        this.addressDetail = infoDTO.getAddressDetail();
+        this.zipCode = infoDTO.getZipCode();
+        this.imgPath = infoDTO.getImgPath();
     }
 }

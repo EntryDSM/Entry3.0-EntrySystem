@@ -1,4 +1,7 @@
 export const mutations = {
+  changeIndex: (state, payload) => {
+    state.modal.index = payload.index;
+  },
   updateAccept: (state, payload) => {
     state.auth.isAccept = payload;
   },
