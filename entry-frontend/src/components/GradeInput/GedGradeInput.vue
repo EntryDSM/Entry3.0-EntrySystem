@@ -20,11 +20,10 @@
         </div>
       </div>
     </div>
-    <prev-next-btn :prevShow="1"
-                   :nextShow="1"
-                   @toPrevPage="movePrev"
-                   @toNextPage="moveNext"
-    />
+    <prev-next-btn
+      :prevShow="true"
+      :nextShow="true"
+      :link="nextLink"/>
     <entry-footer />
   </div>
 </template>
@@ -46,17 +45,10 @@ export default {
   data() {
     return {
       totalScore: 0,
+      nextLink: '/intro',
     };
   },
   methods: {
-    movePrev() {
-      this.$router.push('/');
-    },
-
-    moveNext() {
-      this.$router.push('/');
-    },
-
     onlyNumber(e) {
       if (!(e.keyCode >= 48 && e.keyCode <= 57)) {
         switch (e.key) {

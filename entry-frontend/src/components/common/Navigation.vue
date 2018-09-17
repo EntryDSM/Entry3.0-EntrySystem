@@ -4,6 +4,7 @@
       <div class="nav__contants__logo">
       <router-link to="/">
         <img
+          @click="$emit('on-main')"
           class="nav__contants__logo--img"
           src="./../../assets/entry_logo.png"
           alt="EntryDSM 로고">
@@ -11,16 +12,17 @@
     </div>
     <ul class="nav__contants__list">
       <li class="nav__contants__list__link">
-        <router-link to="/explain">시스템 소개</router-link>
+        <router-link to="/info-system">시스템 소개</router-link>
       </li>
       <li class="nav__contants__list__link">
-        <router-link to="/write">원서작성</router-link>
+        <router-link to="/classify">원서작성</router-link>
       </li>
       <li class="nav__contants__list__link">
-        <router-link to="/summary">전형요강</router-link>
+        <router-link to="/info-summary">전형요강</router-link>
       </li>
-      <li class="nav__contants__list__link">
-        <router-link to="/schedule">모집일정</router-link>
+      <li class="nav__contants__list__link"
+        @click="$emit('on-schedule')">
+        <router-link to="/">모집일정</router-link>
       </li>
       <li class="nav__contants__list__link nav__contants__list__link--login">
         로그인
