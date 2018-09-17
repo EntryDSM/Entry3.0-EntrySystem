@@ -1275,11 +1275,10 @@
         </tr>
       </table>
     </div>
-    <prev-next-btn :prevShow="1"
-                   :nextShow="1"
-                   @toPrevPage="movePrev"
-                   @toNextPage="moveNext"
-    />
+    <prev-next-btn
+      :prevShow="true"
+      :nextShow="true"
+      :link="nextLink"/>
     <entry-footer />
   </div>
 </template>
@@ -1387,6 +1386,7 @@ export default {
         { score: '', decided: false, passed: false },
         { score: '', decided: false, passed: false },
       ],
+      nextLink: '/intro',
     };
   },
   computed: {
@@ -1405,14 +1405,6 @@ export default {
     },
   },
   methods: {
-    movePrev() {
-      this.$router.push('/');
-    },
-
-    moveNext() {
-      this.$router.push('/');
-    },
-
     // 초기화 버튼 설정
     setButton(t) {
       this.resetAllGrade = t.textContent.trim();

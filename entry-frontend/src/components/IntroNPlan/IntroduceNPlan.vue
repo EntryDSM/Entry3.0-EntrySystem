@@ -41,11 +41,10 @@
         </span>
       </div>
     </div>
-    <prev-next-btn :prevShow="1"
-                   :nextShow="1"
-                   @toPrevPage="movePrev"
-                   @toNextPage="moveNext"
-    />
+    <prev-next-btn
+      :prevShow="true"
+      :nextShow="true"
+      :link="nextLink"/>
     <entry-footer />
   </div>
 </template>
@@ -70,6 +69,7 @@ export default {
       introLength: 0,
       plan: '',
       planLength: 0,
+      nextLink: '/preview',
     };
   },
   methods: {
@@ -77,12 +77,6 @@ export default {
       const target = t;
       target.style.height = '1px';
       target.style.height = `${30 + target.scrollHeight}px`;
-    },
-    movePrev() {
-      this.$router.push('/');
-    },
-    moveNext() {
-      this.$router.push('/');
     },
   },
   watch: {

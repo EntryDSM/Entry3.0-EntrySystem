@@ -194,10 +194,9 @@
       <!-- form end -->
 
       <prev-next-btn
-        :prevShow="0"
-        :nextShow="1"
-        @toNextPage="moveNext"
-      />
+        :prevShow="false"
+        :nextShow="true"
+        :link="nextLink"/>
     </div>
     <entry-footer />
   </div>
@@ -233,12 +232,8 @@ export default {
       graduationYear: 0,
       specialPoints: [],
       isOpen: false,
+      nextLink: '/personal',
     };
-  },
-  methods: {
-    moveNext() {
-      this.$router.push('/');
-    },
   },
 };
 </script>
