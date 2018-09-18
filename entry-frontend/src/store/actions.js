@@ -14,7 +14,7 @@ export const actions = {
   updateRegion: context => context.commit('updateRegion'),
   updateIsGraduated: context => context.commit('updateIsGraduated'),
   updateGraduationYear: context => context.commit('updateGraduationYear'),
-  updateadditionalType: context => context.commit('updateAdditionalTypes'),
+  updateAdditionalType: context => context.commit('updateAdditionalType'),
   // PersonInfo 관련 action
   updatePersonName: context => context.commit('updatePersonName'),
   updateSex: context => context.commit('updateSex'),

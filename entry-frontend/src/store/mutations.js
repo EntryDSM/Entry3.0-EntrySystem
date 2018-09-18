@@ -38,6 +38,9 @@ export const mutations = {
   updateSpecialPoints: (state, payload) => {
     state.classify.specialPoints = payload.data;
   },
+  updateAdditionalType: (state, payload) => {
+    state.classify.AdditionalType = payload.data;
+  },
   // PersonalInformation
   updatePersonName: (state, payload) => {
     state.PersonInfo.PersonName = payload.data;

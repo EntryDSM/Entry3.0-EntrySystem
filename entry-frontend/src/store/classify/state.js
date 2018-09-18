@@ -5,7 +5,7 @@ export const classify = {
   region: null,
   isGraduated: false,
   graduationYear: 0,
-  additionalType: 'NONE',
+  AdditionalType: 'NONE',
 };
 
 export default classify;

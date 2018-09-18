@@ -159,7 +159,7 @@
               class="input-radio"
               id="honor"
               value="NATIONAL_MERIT"
-              v-model="additionalType">
+              v-model="AdditionalType">
             <label class="input-radio-label" for="honor">
               <span class="input-radio-span"></span>
             </label>
@@ -172,7 +172,7 @@
               class="input-radio"
               id="exception"
               value="SPECIAL_ADMISSION"
-              v-model="additionalType">
+              v-model="AdditionalType">
             <label class="input-radio-label" for="exception">
               <span class="input-radio-span"></span>
             </label>
@@ -185,7 +185,7 @@
               class="input-radio"
               id="NONE"
               value="NONE"
-              v-model="additionalType">
+              v-model="AdditionalType">
             <label class="input-radio-label" for="NONE">
               <span class="input-radio-span"></span>
             </label>
@@ -315,6 +315,16 @@ export default {
         });
       },
     },
+    AdditionalType: {
+      get() {
+        return this.$store.state.classify.AdditionalType;
+      },
+      set(value) {
+        this.$store.commit('updateAdditionalType', {
+          data: value,
+        });
+      },
+    },
     graduationYear: {
       get() {
         return this.$store.state.classify.graduationYear;
@@ -325,16 +335,7 @@ export default {
         });
       },
     },
-    additionalType: {
-      get() {
-        return this.$store.state.classify.additionalType;
-      },
-      set(value) {
-        this.$store.commit('updateAdditionalType', {
-          data: value,
-        });
-      },
-    },
+    
   },
   methods: {
     moveNext() {
