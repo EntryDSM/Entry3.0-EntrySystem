@@ -17,6 +17,28 @@ export const mutations = {
   updateverify: (state, payload) => {
     state.auth.verify[payload.index] = payload.data;
   },
+
+  updateisGED: (state, payload) => {
+    state.classify.isGED = payload.data;
+  },
+  updateEntranceModel: (state, payload) => {
+    state.classify.entranceModel = payload.data;
+  },
+  updateSocialOption: (state, payload) => {
+    state.classify.socialOption = payload.data;
+  },
+  updateRegion: (state, payload) => {
+    state.classify.region = payload.data;
+  },
+  updateIsGraduated: (state, payload) => {
+    state.classify.isGraduated = payload.data;
+  },
+  updateGraduationYear: (state, payload) => {
+    state.classify.graduationYear = payload.data;
+  },
+  updateSpecialPoints: (state, payload) => {
+    state.classify.specialPoints = payload.data;
+  },
 };
 
 export default mutations;
