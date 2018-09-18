@@ -12,7 +12,7 @@
       class="input-btn input-btn--next"
       v-if="nextShow">
       <span class="input-btn__arrow input-btn__arrow--right">〉</span>
-      <span class="input-btn__text input-btn__text--next">다음</span>
+      <span class="input-btn__text input-btn__text--next">{{ text }}</span>
     </router-link>
   </div>
 </template>
@@ -28,6 +28,10 @@ export default {
     nextShow: {
       type: Boolean,
       required: true,
+    },
+    text: {
+      type: String,
+      default: '다음',
     },
     link: {
       type: String,
