@@ -1,41 +1,60 @@
 package com.entry.entrydsm.grade.domain.graduate;
 
-import com.entry.entrydsm.grade.domain.Grade;
-import com.entry.entrydsm.user.domain.User;
+import com.entry.entrydsm.common.domain.BaseTimeEntity;
+import com.entry.entrydsm.grade.dto.GraduateGradeDTO;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity
 @NoArgsConstructor
-public class GraduateGrade extends Grade {
+@Getter
+public class GraduateGrade extends BaseTimeEntity {
 
-    @Column(nullable = false)
-    private Double firstGrade = 0.0;
+    @EmbeddedId
+    @JsonUnwrapped
+    private GradeInfoId id;
 
-    @Column(nullable = false)
-    private Double secondGrade = 0.0;
+    @Enumerated(EnumType.STRING)
+    private Grade korean;
+    @Enumerated(EnumType.STRING)
+    private Grade social;
+    @Enumerated(EnumType.STRING)
+    private Grade history;
+    @Enumerated(EnumType.STRING)
+    private Grade math;
+    @Enumerated(EnumType.STRING)
+    private Grade science;
+    @Enumerated(EnumType.STRING)
+    private Grade tech;
+    @Enumerated(EnumType.STRING)
+    private Grade english;
 
-    @Column(nullable = false)
-    private Double thirdGrade = 0.0;
+    @Builder
+    public GraduateGrade(GradeInfoId id, Grade korean, Grade social, Grade history, Grade math, Grade science, Grade tech, Grade english) {
+        this.id = id;
+        this.korean = korean;
+        this.social = social;
+        this.history = history;
+        this.math = math;
+        this.science = science;
+        this.tech = tech;
+        this.english = english;
+    }
 
-    @Column(nullable = false, length = 10)
-    private Integer volunteerTime = 0;
-
-    @Column(nullable = false, length = 10)
-    private Integer periodCut = 0;
-
-    @Column(nullable = false, length = 10)
-    private Integer fullCut = 0;
-
-    @Column(nullable = false, length = 10)
-    private Integer late = 0;
-
-    @Column(nullable = false, length = 10)
-    private Integer earlyLeave = 0;
-
-    public GraduateGrade(User user) {
-        super(user.getId());
+    public void update(GraduateGradeDTO graduateGradeDTO) {
+        this.korean = graduateGradeDTO.getKorean();
+        this.social = graduateGradeDTO.getSocial();
+        this.history = graduateGradeDTO.getHistory();
+        this.math = graduateGradeDTO.getMath();
+        this.science = graduateGradeDTO.getScience();
+        this.tech = graduateGradeDTO.getTech();
+        this.english = graduateGradeDTO.getEnglish();
     }
 }

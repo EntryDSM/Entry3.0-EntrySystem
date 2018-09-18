@@ -69,40 +69,40 @@ export default {
 <style lang="scss" scoped>
 @import '../../style/setting.scss';
 .nav {
-  @include e(wrapper){
+  @include e('wrapper'){
     height: 60px;
     padding: 0 auto;
     box-shadow: 0 2px 10px 0 rgba(99, 141, 147, 0.05);
-    @include e(contants){
+    @include e('contants'){
       position: relative;
       width: 1140px;
       height: 100%;
       margin: 0 auto;
       display: flex;
       flex-direction: row;
-      @include e(logo){
+      @include e('logo'){
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        @include m(img) {
+        @include m('img') {
           height: 30px;
         }
       }
-      @include e(list) {
+      @include e('list') {
         position: absolute;
         display: flex;
         align-items: center;
         height: 100%;
         right: 0;
-        @include e(link){
+        @include e('link'){
           line-height: 60px;
           height: 100%;
           padding: 0 15px;
           margin-left: 15px;
           cursor: pointer;
           display: inline-block;
-          @include m(login){
+          @include m('login'){
             margin-left: 103px;
           }
         }

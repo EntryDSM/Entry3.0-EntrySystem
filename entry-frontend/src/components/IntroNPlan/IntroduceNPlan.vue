@@ -44,6 +44,7 @@
     <prev-next-btn
       :prevShow="true"
       :nextShow="true"
+      :text="btnText"
       :link="nextLink"/>
     <entry-footer />
   </div>
@@ -69,6 +70,7 @@ export default {
       introLength: 0,
       plan: '',
       planLength: 0,
+      btnText: '원서 미리보기',
       nextLink: '/preview',
     };
   },
