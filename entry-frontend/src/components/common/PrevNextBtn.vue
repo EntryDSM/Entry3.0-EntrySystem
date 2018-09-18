@@ -1,21 +1,19 @@
 <template>
   <div class="prev-next-btn-cover">
-    <button type="button"
-            class="input-btn input-btn--prev"
-            v-if="prevShow"
-            @click="moveToPrevPage"
-    >
+    <a @click="toPrevious"
+      type="button"
+      class="input-btn input-btn--prev"
+      v-if="prevShow">
       <span class="input-btn__arrow input-btn__arrow--left">〈</span>
       <span class="input-btn__text input-btn__text--prev">이전</span>
-    </button>
-    <button type="button"
-            class="input-btn input-btn--next"
-            v-if="nextShow"
-            @click="moveToNextPage"
-    >
+    </a>
+    <router-link :to="link"
+      type="button"
+      class="input-btn input-btn--next"
+      v-if="nextShow">
       <span class="input-btn__arrow input-btn__arrow--right">〉</span>
-      <span class="input-btn__text input-btn__text--next">다음</span>
-    </button>
+      <span class="input-btn__text input-btn__text--next">{{ text }}</span>
+    </router-link>
   </div>
 </template>
 
@@ -24,20 +22,25 @@ export default {
   name: 'prev-next-btn',
   props: {
     prevShow: {
-      type: Number,
+      type: Boolean,
       required: true,
     },
     nextShow: {
-      type: Number,
+      type: Boolean,
+      required: true,
+    },
+    text: {
+      type: String,
+      default: '다음',
+    },
+    link: {
+      type: String,
       required: true,
     },
   },
   methods: {
-    moveToPrevPage() {
-      this.$emit('toPrevPage');
-    },
-    moveToNextPage() {
-      this.$emit('toNextPage');
+    toPrevious() {
+      window.history.back();
     },
   },
 };
@@ -60,6 +63,7 @@ $inner-btn: #296169;
     top: 25px;
     width: 150px;
     height: 50px;
+    line-height: 50px;
     border-radius: 5px;
     background-color: #f7fbfc;
     border: 1px solid #5f8a90;

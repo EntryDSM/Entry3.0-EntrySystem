@@ -132,7 +132,7 @@
             </div>
           </div>
 
-          <div class="form__cover__form__colums">
+          <div v-show="isGraduated" class="form__cover__form__colums">
             <div class="form__cover__form__colums__name">
               졸업 연도
             </div>
@@ -151,6 +151,9 @@
                   {text: '2010', value:'2010'},
                 ]"/>
                 년
+              <span class="form__cover__form__colums__input-content__sign">
+                * 졸업자의 경우 졸업연도를 선택해주세요
+              </span>
             </div>
           </div>
         </div>
@@ -185,19 +188,28 @@
               for="exception">
               특례 입학 대상자
             </label>
-            <span class="form__cover__form__colums__input-content__sign">
-              * 졸업자의 경우 졸업연도를 선택해주세요
-            </span>
+
+            <input type="radio"
+              class="input-radio"
+              id="none"
+              value="none"
+              v-model="specialPoints">
+            <label class="input-radio-label" for="none">
+              <span class="input-radio-span"></span>
+            </label>
+            <label class="form__cover__form__colums__input-content__label"
+              for="none">
+              해당 없음
+            </label>
           </div>
         </div>
       </div>
       <!-- form end -->
 
       <prev-next-btn
-        :prevShow="0"
-        :nextShow="1"
-        @toNextPage="moveNext"
-      />
+        :prevShow="false"
+        :nextShow="true"
+        :link="nextLink"/>
     </div>
     <entry-footer />
   </div>
@@ -231,14 +243,10 @@ export default {
       region: '',
       isGraduated: false,
       graduationYear: 0,
-      specialPoints: [],
+      specialPoints: 'none',
       isOpen: false,
+      nextLink: '/personal',
     };
-  },
-  methods: {
-    moveNext() {
-      this.$router.push('/');
-    },
   },
 };
 </script>
