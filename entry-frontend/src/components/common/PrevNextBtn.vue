@@ -65,6 +65,7 @@ $inner-btn: #296169;
     border: 1px solid #5f8a90;
     outline: none;
     cursor: pointer;
+    transition: 0.5s;
     &:active {
       background-color: #D8E6E9;
     }
@@ -111,6 +112,11 @@ $inner-btn: #296169;
         };
       }
     }
+  }
+}
+a[type="button"]{
+  &:hover{
+    background-color: #d5edf0;
   }
 }
 </style>

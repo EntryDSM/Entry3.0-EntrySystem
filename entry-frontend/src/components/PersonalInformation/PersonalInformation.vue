@@ -376,6 +376,10 @@ export default {
   color: #296169;
   margin-left: 15px;
   outline: none;
+  transition: 0.5s;
+  &:hover{
+    background-color: #d5edf0;
+  }
   &:active {
     background-color: #D8E6E9;
   }
