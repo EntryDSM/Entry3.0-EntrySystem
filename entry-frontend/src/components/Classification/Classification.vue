@@ -143,15 +143,9 @@
                   {text: '2010', value:'2010'},
                 ]"/>
                 년
-<<<<<<< HEAD
-                <span class="form__cover__form__colums__input-content__sign">
-              * 졸업자의 경우 졸업연도를 선택해주세요
-            </span>
-=======
               <span class="form__cover__form__colums__input-content__sign">
                 * 졸업자의 경우 졸업연도를 선택해주세요
               </span>
->>>>>>> 552438ece5ccd5af2fbb31d3735f43099caf818e
             </div>
           </div>
         </div>
@@ -161,19 +155,6 @@
             특기사항
           </div>
           <div class="form__cover__form__colums__input-content">
-            <input type="radio"
-              class="input-radio"
-              id="NONE"
-              value="NONE"
-              v-model="additionalType">
-            <label class="input-radio-label" for="NONE">
-              <span class="input-radio-span"></span>
-            </label>
-            <label class="form__cover__form__colums__input-content__label"
-              for="NONE">
-              해당없음
-            </label>
-
             <input type="radio"
               class="input-radio"
               id="honor"
@@ -199,17 +180,18 @@
               for="exception">
               특례 입학 대상자
             </label>
+
             <input type="radio"
               class="input-radio"
-              id="none"
-              value="none"
-              v-model="specialPoints">
-            <label class="input-radio-label" for="none">
+              id="NONE"
+              value="NONE"
+              v-model="additionalType">
+            <label class="input-radio-label" for="NONE">
               <span class="input-radio-span"></span>
             </label>
             <label class="form__cover__form__colums__input-content__label"
-              for="none">
-              해당 없음
+              for="NONE">
+              해당없음
             </label>
           </div>
         </div>
