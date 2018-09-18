@@ -268,22 +268,22 @@ export default {
         this.$store.commit('updateisGED', {
           data: value,
         });
-      }
+      },
     },
     socialOption: {
       get() {
         return this.$store.state.classify.socialOption;
       },
       set(data) {
-        if(typeof(data) === "object"){
+        if (typeof data === 'object') {
           this.$store.commit('updateSocialOption', {
             data: data.value,
           });
         }
         this.$store.commit('updateSocialOption', {
-          data: data,
+          data,
         });
-      }
+      },
     },
     entranceModel: {
       get() {
@@ -293,7 +293,7 @@ export default {
         this.$store.commit('updateEntranceModel', {
           data: value,
         });
-      }
+      },
     },
     region: {
       get() {
@@ -303,7 +303,7 @@ export default {
         this.$store.commit('updateRegion', {
           data: value,
         });
-      }
+      },
     },
     isGraduated: {
       get() {
@@ -313,7 +313,7 @@ export default {
         this.$store.commit('updateIsGraduated', {
           data: value,
         });
-      }
+      },
     },
     graduationYear: {
       get() {
@@ -323,7 +323,7 @@ export default {
         this.$store.commit('updateGraduationYear', {
           data: value,
         });
-      }
+      },
     },
     specialPoints: {
       get() {
@@ -333,7 +333,7 @@ export default {
         this.$store.commit('updateSpecialPoints', {
           data: value,
         });
-      }
+      },
     },
   },
   methods: {
