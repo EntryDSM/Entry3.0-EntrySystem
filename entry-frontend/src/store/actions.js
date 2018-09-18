@@ -14,7 +14,23 @@ export const actions = {
   updateRegion: context => context.commit('updateRegion'),
   updateIsGraduated: context => context.commit('updateIsGraduated'),
   updateGraduationYear: context => context.commit('updateGraduationYear'),
-  updateSpecialPoints: context => context.commit('updateSpecialPoints'),
+  updateadditionalType: context => context.commit('updateAdditionalTypes'),
+  // PersonInfo 관련 action
+  updatePersonName: context => context.commit('updatePersonName'),
+  updateSex: context => context.commit('updateSex'),
+  updateYear: context => context.commit('updateYear'),
+  updateMonth: context => context.commit('updateMonth'),
+  updateDay: context => context.commit('updateDay'),
+  updateSchoolClass: context => context.commit('updateSchoolClass'),
+  updateSchoolnumber: context => context.commit('updateSchoolnumber'),
+  updateSchoolName: context => context.commit('updateSchoolName'),
+  updateGuardianName: context => context.commit('updateGuardianName'),
+  updateSchoolContact: context => context.commit('updateSchoolContact'),
+  updateGuardianContact: context => context.commit('updateGuardianContact'),
+  updateContact: context => context.commit('updateContact'),
+  updateZip: context => context.commit('updateZip'),
+  updateAddress: context => context.commit('updateAddress'),
+  updateDetailedAddress: context => context.commit('updateDetailedAddress'),
 };
 
 export default actions;

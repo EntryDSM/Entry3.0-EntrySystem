@@ -159,7 +159,7 @@
               class="input-radio"
               id="NONE"
               value="NONE"
-              v-model="specialPoints">
+              v-model="additionalType">
             <label class="input-radio-label" for="NONE">
               <span class="input-radio-span"></span>
             </label>
@@ -172,7 +172,7 @@
               class="input-radio"
               id="honor"
               value="NATIONAL_MERIT"
-              v-model="specialPoints">
+              v-model="additionalType">
             <label class="input-radio-label" for="honor">
               <span class="input-radio-span"></span>
             </label>
@@ -185,7 +185,7 @@
               class="input-radio"
               id="exception"
               value="SPECIAL_ADMISSION"
-              v-model="specialPoints">
+              v-model="additionalType">
             <label class="input-radio-label" for="exception">
               <span class="input-radio-span"></span>
             </label>
@@ -325,12 +325,12 @@ export default {
         });
       },
     },
-    specialPoints: {
+    additionalType: {
       get() {
-        return this.$store.state.classify.specialPoints;
+        return this.$store.state.classify.additionalType;
       },
       set(value) {
-        this.$store.commit('updateSpecialPoints', {
+        this.$store.commit('updateAdditionalType', {
           data: value,
         });
       },
