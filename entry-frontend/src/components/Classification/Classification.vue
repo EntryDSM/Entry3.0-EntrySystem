@@ -247,7 +247,6 @@ export default {
     return {
       title: '전형 구분 선택',
       subText: '2019 입학원서 작성',
-<<<<<<< HEAD
       socialOptions: [
         { text: '기초생활수급권자', value: 'BENEFICIARY' },
         { text: '한부모가족 보호대상자', value: 'ONE_PARENT' },
@@ -257,20 +256,10 @@ export default {
         { text: '다문화 가정', value: 'MULTI_CULTURE' },
         { text: '그 외 대상자', value: 'ETC' },
       ],
-=======
-      isGED: false,
-      entranceModel: '',
-      socialOption: '',
-      region: '',
-      isGraduated: false,
-      graduationYear: 0,
-      specialPoints: 'none',
->>>>>>> 552438ece5ccd5af2fbb31d3735f43099caf818e
       isOpen: false,
       nextLink: '/personal',
     };
   },
-<<<<<<< HEAD
   computed: {
     graduateType() {
       if (this.isGED) {
@@ -373,8 +362,6 @@ export default {
       this.socialOption = null;
     },
   },
-=======
->>>>>>> 552438ece5ccd5af2fbb31d3735f43099caf818e
 };
 </script>
 
