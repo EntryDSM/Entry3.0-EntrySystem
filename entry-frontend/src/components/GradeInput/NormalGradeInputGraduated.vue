@@ -148,7 +148,7 @@
       <h3>성적입력</h3>
       <table class="grade-input-table" ref="grade-table">
         <div class="all-grade-reset-cover">
-          <div class="all-grade-reset-cover__box">
+          <div class="all-grade-reset-cover__box" :class="allHoverCheck()">
             <span class="all-grade-reset-cover__box__text">
               전체 성적이 {{ resetAllGrade }} 로 초기화 됩니다.
             </span>
@@ -159,6 +159,8 @@
                     v-for="reset in scores"
                     :key="reset"
                     @click="resetGrade"
+                    @mouseover="setHoverGrade(reset)"
+                    @mouseout="checkHover = false"
             >
               {{ reset.toUpperCase() }}
             </button>
@@ -1528,6 +1530,9 @@ export default {
   },
   data() {
     return {
+      // Hover 체크
+      checkHover: false,
+
       // 봉사 및 출석
       volunteerNAttendance: {
         volunteer: 0,
@@ -1642,6 +1647,12 @@ export default {
     },
   },
   methods: {
+    // 전체 성적 기능
+    setHoverGrade(grade) {
+      this.checkHover = true;
+      this.resetAllGrade = grade.toUpperCase();
+    },
+
     // 초기화 버튼 설정
     setButton(t) {
       this.resetAllGrade = t.textContent.trim();
@@ -1748,6 +1759,13 @@ export default {
     changeBackground(current) {
       return {
         background: current === 'X',
+      };
+    },
+
+    // 전체 성적 Hover를 위한 Class Binding
+    allHoverCheck() {
+      return {
+        'all-hover': this.checkHover,
       };
     },
 
@@ -2011,11 +2029,18 @@ $button-color: #edf5f6;
         justify-content: center;
         box-sizing: border-box;
         float: right;
+        opacity: 0;
+        transition: opacity .4s;
 
         @include e('text') {
           font-size: 10px;
           color: #26484c;
         }
+      }
+
+      // 전체 선택 Class Binding
+      .all-hover {
+        opacity: 1;
       }
 
       @include e('reset') {
