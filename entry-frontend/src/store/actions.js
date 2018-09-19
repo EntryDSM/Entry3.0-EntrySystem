@@ -25,13 +25,14 @@ export const actions = {
   updateSchoolClass: context => context.commit('updateSchoolClass'),
   updateSchoolnumber: context => context.commit('updateSchoolnumber'),
   updateSchoolName: context => context.commit('updateSchoolName'),
-  updateGuardianName: context => context.commit('updateGuardianName'),
+  updateParentName: context => context.commit('updateParentName'),
   updateSchoolContact: context => context.commit('updateSchoolContact'),
-  updateGuardianContact: context => context.commit('updateGuardianContact'),
+  updateParentContact: context => context.commit('updateParentContact'),
   updateContact: context => context.commit('updateContact'),
   updateZip: context => context.commit('updateZip'),
   updateAddress: context => context.commit('updateAddress'),
   updateDetailedAddress: context => context.commit('updateDetailedAddress'),
+  updateImgPath: context => context.commit('updateImgPath'),
 };
 
 export default actions;
