@@ -25,7 +25,7 @@ export default {
     onFileChange(e) {
       const file = e.target.files[0];
       this.imageURL = URL.createObjectURL(file);
-      this.$emit('upload', file);
+      this.$emit('upload', this.imageURL);
     },
   },
 };
