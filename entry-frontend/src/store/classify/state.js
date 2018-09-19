@@ -6,6 +6,7 @@ export const classify = {
   isGraduated: false,
   graduationYear: 0,
   AdditionalType: 'NONE',
+  graduateType: null,
 };
 
 export default classify;

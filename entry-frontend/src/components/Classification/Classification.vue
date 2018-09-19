@@ -268,6 +268,9 @@ export default {
         this.$store.commit('updateisGED', {
           data: value,
         });
+        this.$store.commit('updateGraduateType', {
+          data: this.graduateType,
+        });
       },
     },
     socialOption: {
@@ -312,6 +315,9 @@ export default {
       set(value) {
         this.$store.commit('updateIsGraduated', {
           data: value,
+        });
+        this.$store.commit('updateGraduateType', {
+          data: this.graduateType,
         });
       },
     },
