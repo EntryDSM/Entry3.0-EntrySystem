@@ -80,8 +80,15 @@ export default {
         });
     },
     selectSchool(name, region) {
-      this.$emit('selectSchool', `${name}(${region})`);
-      this.$emit('close');
+      const userRegion = this.$store.state.classify.region;
+      // 대전 지역, 대전 학교를 선택하거나 전국 지역, 전국 학교를 선택하면 통과
+      if ((userRegion && region === '대전광역시') || (!userRegion && region !== '대전광역시')) {
+        this.$emit('selectSchool', `${name}(${region})`);
+        this.$emit('close');
+      } else {
+        // 잘못된 선택 알림
+        this.$toastr.e(`${userRegion ? '전국' : '대전'} 구분 중학교입니다`);
+      }
     },
     prevPage() {
       this.current -= 1;
