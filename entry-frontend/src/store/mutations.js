@@ -41,6 +41,9 @@ export const mutations = {
   updateAdditionalType: (state, payload) => {
     state.classify.AdditionalType = payload.data;
   },
+  updateGraduateType: (state, payload) => {
+    state.classify.graduateType = payload.data;
+  },
   // PersonalInformation
   updatePersonName: (state, payload) => {
     state.PersonInfo.PersonName = payload.data;
