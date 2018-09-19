@@ -12,7 +12,7 @@
       </p>
       <textarea class="intro-plan-write"
                 :value="introduce"
-                @input="introduce = $event.target.value"
+                @input="updateIntroduce"
                 maxlength="1600"
                 ref="introWrite"
       ></textarea>
@@ -31,7 +31,7 @@
       </p>
       <textarea class="intro-plan-write"
                 :value="plan"
-                @input="plan = $event.target.value"
+                @input="updatePlan"
                 maxlength="1600"
                 ref="planWrite"
       ></textarea>
@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import Navigation from '../common/Navigation';
 import Headline from '../common/Headline';
 import PrevNextBtn from '../common/PrevNextBtn';
@@ -66,9 +67,7 @@ export default {
   },
   data() {
     return {
-      introduce: '',
       introLength: 0,
-      plan: '',
       planLength: 0,
       btnText: '원서 미리보기',
       nextLink: '/preview',
@@ -80,6 +79,20 @@ export default {
       target.style.height = '1px';
       target.style.height = `${30 + target.scrollHeight}px`;
     },
+
+    updateIntroduce({ target }) {
+      this.$store.commit('updateIntroduce', target.value);
+    },
+
+    updatePlan({ target }) {
+      this.$store.commit('updatePlan', target.value);
+    },
+  },
+  computed: {
+    ...mapState({
+      introduce: state => state.introNPlan.introduce,
+      plan: state => state.introNPlan.plan,
+    }),
   },
   watch: {
     introduce(val) {

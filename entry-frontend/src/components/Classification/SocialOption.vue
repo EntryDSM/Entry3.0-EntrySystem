@@ -5,7 +5,7 @@
         v-for="(option, index) in options"
         :key="index"
         :class="{'social-option__list__item--focused': selected == option.value}"
-        @click="select(option.value)">
+        @click="select(option)">
         {{ option.text }}
       </li>
     </ul>
@@ -26,9 +26,9 @@ export default {
     };
   },
   methods: {
-    select(value) {
-      this.selected = value;
-      this.$emit('input', value);
+    select(option) {
+      this.selected = option.value;
+      this.$emit('input', option);
       this.$emit('close');
     },
   },

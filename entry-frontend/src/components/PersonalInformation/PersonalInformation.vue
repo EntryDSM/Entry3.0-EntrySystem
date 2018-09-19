@@ -22,8 +22,8 @@
           <div class="form__cover__form__colums__input-content">
             <input type="text"
               class="input-text input-text-name"
-              :value="name"
-              @input="name = $event.target.value">
+              :value="PersonName"
+              @input="PersonName = $event.target.value">
           </div>
         </div>
         <div class="form__cover__form__colums">
@@ -239,28 +239,11 @@ export default {
   },
   data() {
     return {
-      isGED: false, // 검정고시 여부
       isOpen: false, // 학교 검색 모달창 열림 여부
       title: '인적 사항',
       subText: '2019 입학원서 작성',
       yearOptions: [],
       monthOptions: [],
-      name: null, // 이름
-      sex: null, // 성별
-      year: 2003, // 생년
-      month: '01', // 생월
-      day: '01', // 생일
-      schoolClass: null, // 학급 반
-      schoolnumber: null, //  학급 번호
-      schoolName: null, // 중학교명
-      guardianName: null, // 보호자명
-      schoolContact: null, // 학교 연락처
-      guardianContact: null, // 보호자 연락처
-      contact: null, // 본인 연락처
-      zip: null, // 우편번호
-      address: null, // 기본주소
-      detailedAddress: null, // 상세주소
-      image: null, // 이미지
       nextLink: 'grade-scheduled',
     };
   },
@@ -293,6 +276,171 @@ export default {
         };
       }
       return dayArray;
+    },
+    isGED: {
+      get() {
+        return this.$store.state.classify.isGED;
+      },
+    },
+    PersonName: {
+      get() {
+        return this.$store.state.PersonInfo.PersonName;
+      },
+      set(data) {
+        this.$store.commit('updatePersonName', {
+          data,
+        });
+      },
+    },
+    sex: {
+      get() {
+        return this.$store.state.PersonInfo.sex;
+      },
+      set(data) {
+        this.$store.commit('updateSex', {
+          data,
+        });
+      },
+    },
+    year: {
+      get() {
+        return this.$store.state.PersonInfo.year;
+      },
+      set(data) {
+        this.$store.commit('updateYear', {
+          data,
+        });
+      },
+    },
+    month: {
+      get() {
+        return this.$store.state.PersonInfo.month;
+      },
+      set(data) {
+        this.$store.commit('updateMonth', {
+          data,
+        });
+      },
+    },
+    day: {
+      get() {
+        return this.$store.state.PersonInfo.day;
+      },
+      set(data) {
+        this.$store.commit('updateDay', {
+          data,
+        });
+      },
+    },
+    schoolClass: {
+      get() {
+        return this.$store.state.PersonInfo.schoolClass;
+      },
+      set(data) {
+        this.$store.commit('updateSchoolClass', {
+          data,
+        });
+      },
+    },
+    schoolnumber: {
+      get() {
+        return this.$store.state.PersonInfo.schoolnumber;
+      },
+      set(data) {
+        this.$store.commit('updateSchoolnumber', {
+          data,
+        });
+      },
+    },
+    schoolName: {
+      get() {
+        return this.$store.state.PersonInfo.schoolName;
+      },
+      set(data) {
+        this.$store.commit('updateSchoolName', {
+          data,
+        });
+      },
+    },
+    guardianName: {
+      get() {
+        return this.$store.state.PersonInfo.guardianName;
+      },
+      set(data) {
+        this.$store.commit('updateGuardianName', {
+          data,
+        });
+      },
+    },
+    schoolContact: {
+      get() {
+        return this.$store.state.PersonInfo.schoolContact;
+      },
+      set(data) {
+        this.$store.commit('updateSchoolContact', {
+          data,
+        });
+      },
+    },
+    guardianContact: {
+      get() {
+        return this.$store.state.PersonInfo.guardianContact;
+      },
+      set(data) {
+        this.$store.commit('updateGuardianContact', {
+          data,
+        });
+      },
+    },
+    contact: {
+      get() {
+        return this.$store.state.PersonInfo.contact;
+      },
+      set(data) {
+        this.$store.commit('updateContact', {
+          data,
+        });
+      },
+    },
+    zip: {
+      get() {
+        return this.$store.state.PersonInfo.zip;
+      },
+      set(data) {
+        this.$store.commit('updateZip', {
+          data,
+        });
+      },
+    },
+    address: {
+      get() {
+        return this.$store.state.PersonInfo.address;
+      },
+      set(data) {
+        this.$store.commit('updateAddress', {
+          data,
+        });
+      },
+    },
+    detailedAddress: {
+      get() {
+        return this.$store.state.PersonInfo.detailedAddress;
+      },
+      set(data) {
+        this.$store.commit('updateDetailedAddress', {
+          data,
+        });
+      },
+    },
+    image: {
+      get() {
+        return this.$store.state.PersonInfo.image;
+      },
+      set(data) {
+        this.$store.commit('updateImage', {
+          data,
+        });
+      },
     },
   },
   created() {
@@ -376,6 +524,10 @@ export default {
   color: #296169;
   margin-left: 15px;
   outline: none;
+  transition: 0.5s;
+  &:hover{
+    background-color: #d5edf0;
+  }
   &:active {
     background-color: #D8E6E9;
   }

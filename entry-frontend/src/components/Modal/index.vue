@@ -123,6 +123,11 @@ $M-close-color: #dee8e9;
   margin-top: 10px;
   cursor: pointer;
   font-size: 14px;
+  transition: 0.5s;
+  &:hover{
+    background-color: #d5edf0;
+    transition: 0.5s;
+  }
 }
 .error-msg{
   position: absolute;

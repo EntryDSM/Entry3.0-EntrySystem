@@ -7,6 +7,30 @@ export const actions = {
   updatePw: context => context.commit('updateEmail'),
   updatePwCheck: context => context.commit('updateEmail'),
   updateverify: context => context.commit('updateverify'),
+  // classify 관련 action
+  updateisGED: context => context.commit('updateisGED'),
+  updateEntranceModel: context => context.commit('updateEntranceModel'),
+  updateSocialOption: context => context.commit('updateSocialOption'),
+  updateRegion: context => context.commit('updateRegion'),
+  updateIsGraduated: context => context.commit('updateIsGraduated'),
+  updateGraduationYear: context => context.commit('updateGraduationYear'),
+  updateAdditionalType: context => context.commit('updateAdditionalType'),
+  // PersonInfo 관련 action
+  updatePersonName: context => context.commit('updatePersonName'),
+  updateSex: context => context.commit('updateSex'),
+  updateYear: context => context.commit('updateYear'),
+  updateMonth: context => context.commit('updateMonth'),
+  updateDay: context => context.commit('updateDay'),
+  updateSchoolClass: context => context.commit('updateSchoolClass'),
+  updateSchoolnumber: context => context.commit('updateSchoolnumber'),
+  updateSchoolName: context => context.commit('updateSchoolName'),
+  updateGuardianName: context => context.commit('updateGuardianName'),
+  updateSchoolContact: context => context.commit('updateSchoolContact'),
+  updateGuardianContact: context => context.commit('updateGuardianContact'),
+  updateContact: context => context.commit('updateContact'),
+  updateZip: context => context.commit('updateZip'),
+  updateAddress: context => context.commit('updateAddress'),
+  updateDetailedAddress: context => context.commit('updateDetailedAddress'),
 };
 
 export default actions;

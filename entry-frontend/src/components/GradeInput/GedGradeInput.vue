@@ -10,7 +10,7 @@
         </div>
         <div class="total-input-part">
           <input type="number"
-                 v-model.number="totalScore"
+                 v-model.number="zedScore"
                  @keydown="onlyNumber"
                  min="0"
                  max="100"
@@ -44,7 +44,7 @@ export default {
   },
   data() {
     return {
-      totalScore: 0,
+      zedScore: 0,
       nextLink: '/intro',
     };
   },
