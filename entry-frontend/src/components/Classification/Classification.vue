@@ -27,7 +27,7 @@
             <input type="radio"
               class="input-radio"
               id="general"
-              value="general"
+              value="NORMAL"
               @click="isOpen = false"
               v-model="entranceModel">
             <label class="input-radio-label" for="general">
@@ -41,7 +41,7 @@
             <input type="radio"
               class="input-radio"
               id="meister"
-              value="meister"
+              value="MEISTER"
               @click="isOpen = false"
               v-model="entranceModel">
             <label class="input-radio-label" for="meister">
@@ -55,29 +55,21 @@
             <input type="radio"
               class="input-radio"
               id="social"
-              value="social"
+              value="SOCIAL"
               v-model="entranceModel"
               @click="isOpen = true">
             <label class="input-radio-label" for="social">
               <span class="input-radio-span"></span>
             </label>
             <social-option
-              :options="[
-                {text:'기초생활수급권자', value:'기초생활수급권자'},
-                {text:'한부모가족 보호대상자', value:'한부모가족 보호대상자'},
-                {text:'차상위 계층', value:'차상위 계층'},
-                {text:'차차상위 계층', value:'차차상위 계층'},
-                {text:'북한이탈주민', value:'북한이탈주민'},
-                {text:'다문화 가정', value:'다문화 가정'},
-                {text:'그 외 대상자', value:'그 외 대상자'},
-              ]"
+              :options="socialOptions"
               v-model="socialOption"
               v-show="isOpen"
               @close="isOpen = false"/>
             <label class="form__cover__form__colums__input-content__label"
               for="social">
               사회통합전형
-              <span v-show="socialOption">/ {{ socialOption }}
+              <span v-show="socialOption">/ {{ socialOption ? socialOption.text : '' }}
                 <span class="point-color">▾</span>
               </span>
             </label>
@@ -92,8 +84,8 @@
             <selectbox class="selectbox"
               v-model="region"
               :options="[
-                {text: '전국', value:'전국'},
-                {text: '대전', value:'대전'}
+                {text: '전국', value:false},
+                {text: '대전', value:true}
               ]"/>
           </div>
         </div>
@@ -166,8 +158,8 @@
             <input type="radio"
               class="input-radio"
               id="honor"
-              value="honor"
-              v-model="specialPoints">
+              value="NATIONAL_MERIT"
+              v-model="AdditionalType">
             <label class="input-radio-label" for="honor">
               <span class="input-radio-span"></span>
             </label>
@@ -179,8 +171,8 @@
             <input type="radio"
               class="input-radio"
               id="exception"
-              value="exception"
-              v-model="specialPoints">
+              value="SPECIAL_ADMISSION"
+              v-model="AdditionalType">
             <label class="input-radio-label" for="exception">
               <span class="input-radio-span"></span>
             </label>
@@ -191,15 +183,15 @@
 
             <input type="radio"
               class="input-radio"
-              id="none"
-              value="none"
-              v-model="specialPoints">
-            <label class="input-radio-label" for="none">
+              id="NONE"
+              value="NONE"
+              v-model="AdditionalType">
+            <label class="input-radio-label" for="NONE">
               <span class="input-radio-span"></span>
             </label>
             <label class="form__cover__form__colums__input-content__label"
-              for="none">
-              해당 없음
+              for="NONE">
+              해당없음
             </label>
           </div>
         </div>
@@ -237,16 +229,120 @@ export default {
     return {
       title: '전형 구분 선택',
       subText: '2019 입학원서 작성',
-      isGED: false,
-      entranceModel: '',
-      socialOption: '',
-      region: '',
-      isGraduated: false,
-      graduationYear: 0,
-      specialPoints: 'none',
+      socialOptions: [
+        { text: '기초생활수급권자', value: 'BENEFICIARY' },
+        { text: '한부모가족 보호대상자', value: 'ONE_PARENT' },
+        { text: '차상위 계층', value: 'CHA_UPPER' },
+        { text: '차차상위 계층', value: 'CHACHA_UPPER' },
+        { text: '북한이탈주민', value: 'FROM_NORTH' },
+        { text: '다문화 가정', value: 'MULTI_CULTURE' },
+        { text: '그 외 대상자', value: 'ETC' },
+      ],
       isOpen: false,
       nextLink: '/personal',
     };
+  },
+  computed: {
+    graduateType() {
+      if (this.isGED) {
+        return 'GED';
+      } else if (!this.isGraduated) {
+        return 'WILL';
+      } else if (this.isGraduated) {
+        return 'DONE';
+      }
+      return null;
+    },
+    admissionDetail() {
+      if (this.entranceModel === 'SOCIAL') {
+        return this.socialOption.value;
+      }
+      this.socialOptionstoNull();
+      return 'NONE';
+    },
+    isGED: {
+      get() {
+        return this.$store.state.classify.isGED;
+      },
+      set(value) {
+        this.$store.commit('updateisGED', {
+          data: value,
+        });
+      },
+    },
+    socialOption: {
+      get() {
+        return this.$store.state.classify.socialOption;
+      },
+      set(data) {
+        if (typeof data === 'object') {
+          this.$store.commit('updateSocialOption', {
+            data: data.value,
+          });
+        }
+        this.$store.commit('updateSocialOption', {
+          data,
+        });
+      },
+    },
+    entranceModel: {
+      get() {
+        return this.$store.state.classify.entranceModel;
+      },
+      set(value) {
+        this.$store.commit('updateEntranceModel', {
+          data: value,
+        });
+      },
+    },
+    region: {
+      get() {
+        return this.$store.state.classify.region;
+      },
+      set(value) {
+        this.$store.commit('updateRegion', {
+          data: value,
+        });
+      },
+    },
+    isGraduated: {
+      get() {
+        return this.$store.state.classify.isGraduated;
+      },
+      set(value) {
+        this.$store.commit('updateIsGraduated', {
+          data: value,
+        });
+      },
+    },
+    AdditionalType: {
+      get() {
+        return this.$store.state.classify.AdditionalType;
+      },
+      set(value) {
+        this.$store.commit('updateAdditionalType', {
+          data: value,
+        });
+      },
+    },
+    graduationYear: {
+      get() {
+        return this.$store.state.classify.graduationYear;
+      },
+      set(value) {
+        this.$store.commit('updateGraduationYear', {
+          data: value,
+        });
+      },
+    },
+  },
+  methods: {
+    moveNext() {
+      this.$router.push('/');
+    },
+    socialOptionstoNull() {
+      this.socialOption = null;
+    },
   },
 };
 </script>

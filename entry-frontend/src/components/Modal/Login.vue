@@ -27,9 +27,7 @@
         </div>
       </div>
       <div class="login__links">
-        <router-link to="auth">
-          <span class="login__links__link">아직 원서작성을 시작하지 않으셨나요?</span>
-        </router-link>
+        <span class="login__links__link" @click="closeModal">아직 원서작성을 시작하지 않으셨나요?</span>
         <span class="login__links__link" @click="changeIndex">비밀번호 재설정</span>
       </div>
   </div>
@@ -81,6 +79,12 @@ export default {
       this.$store.commit('changeIndex', {
         index: 2,
       });
+    },
+    closeModal() {
+      this.$store.commit('changeIndex', {
+        index: 0,
+      });
+      this.$router.push({ path: '/auth' });
     },
   },
   computed: {
