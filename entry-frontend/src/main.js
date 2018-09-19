@@ -4,10 +4,10 @@ import Vue from 'vue';
 import axios from 'axios';
 import Toastr from 'vue-toastr';
 import vueCookies from 'vue-cookies';
+import 'vue-toastr/dist/vue-toastr.min.css';
 import store from './store';
 import App from './App';
 import router from './router';
-import '../node_modules/vue-toastr/dist/vue-toastr.min.css';
 
 // import toastr scss file: need webpack sass-loader
 
