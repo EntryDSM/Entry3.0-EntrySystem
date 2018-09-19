@@ -1,52 +1,52 @@
 <template>
-  <div class="search-school-modal">
-    <button class="search-school-modal__close-btn"
+  <div class="school-modal">
+    <button class="school-modal__close-btn"
       @click="$emit('close')">
       &times;
     </button>
 
     <input type="text"
-      class="search-school-modal__input"
+      class="school-modal__input"
       :placeholder="placeholder"
       v-model="keyword"
       @keydown.enter="getSchools">
 
-    <ul class="search-school-modal__list">
+    <ul class="school-modal__list">
       <li class="
-        search-school-modal__list__item
-        search-school-modal__list__item--head">
-        <span class="search-school-modal__list__item__name">
+        school-modal__item
+        school-modal__item--head">
+        <span class="school-modal__item__name">
           학교 이름
         </span>
-        <span class="search-school-modal__list__item__region">
+        <span class="school-modal__item__region">
           지역
         </span>
       </li>
 
       <li class="
-        search-school-modal__list__item
-        search-school-modal__list__item--instance"
+        school-modal__item
+        school-modal__item--instance"
         v-for="school in schools"
         :key="school.seq">
         <span class="
-          search-school-modal__list__item__name
-          search-school-modal__list__item--instance__name"
+          school-modal__item__name
+          school-modal__item--instance__name"
           @click="selectSchool(school.schoolName, school.region)">
           {{ school.schoolName }}
         </span>
-        <span class="search-school-modal__list__item__region">
+        <span class="school-modal__item__region">
           {{ school.region }}
         </span>
       </li>
     </ul>
 
-    <div class="search-school-modal__pagination">
-      <div class="search-school-modal__pagination__number"
+    <div class="school-modal__pagination">
+      <div class="school-modal__pagination__number"
         @click="current > 1 ? prevPage() : ''">이전</div>
-      <div class="search-school-modal__pagination__number">
+      <div class="school-modal__pagination__number">
         {{ current }}
       </div>
-      <div class="search-school-modal__pagination__number"
+      <div class="school-modal__pagination__number"
         @click="nextPage">다음</div>
     </div>
   </div>
@@ -56,7 +56,7 @@
 import config from './../../config';
 
 export default {
-  name: 'search-school-modal',
+  name: 'school-modal',
   data() {
     return {
       placeholder: '학교명 입력',
@@ -103,7 +103,7 @@ $color-main3: #5f8a90;
 $color-main4: #f7fbfc;
 $modal-z-index: 5;
 
-.search-school-modal {
+.school-modal {
   $modal-width: 600px;
   $modal-height: 500px;
   position: fixed;
@@ -153,37 +153,37 @@ $modal-z-index: 5;
     height: $modal-height - 150px;
     margin-top: 10px;
     overflow-y: scroll;
-    @include e('item') {
-      box-sizing: border-box;
-      padding-left: 10px;
-      border-bottom: 1px solid $color-main2;
-      position: relative;
-      @include m('head') {
-        background-color: $color-main4;
-        color: $color-main3;
-        height: 30px;
-        line-height: 30px;
-      }
-      @include m('instance') {
-        height: 50px;
-        line-height: 50px;
-        @include e('name') {
-          cursor: pointer;
-          &:hover {
-            color: $color-main3;
-            border-bottom: 1px solid $color-main3;
-          }
+  }
+  @include e('item') {
+    box-sizing: border-box;
+    padding-left: 10px;
+    border-bottom: 1px solid $color-main2;
+    position: relative;
+    @include m('head') {
+      background-color: $color-main4;
+      color: $color-main3;
+      height: 30px;
+      line-height: 30px;
+    }
+    @include m('instance') {
+      height: 50px;
+      line-height: 50px;
+      @include e('name') {
+        cursor: pointer;
+        &:hover {
+          color: $color-main3;
+          border-bottom: 1px solid $color-main3;
         }
       }
-      @include e('name') {
-        font-size: 18px;
-      }
-      @include e('region') {
-        font-size: 15px;
-        position: absolute;
-        right: 0;
-        padding-right: 10px
-      }
+    }
+    @include e('name') {
+      font-size: 18px;
+    }
+    @include e('region') {
+      font-size: 15px;
+      position: absolute;
+      right: 0;
+      padding-right: 10px
     }
   }
   @include e('pagination') {
