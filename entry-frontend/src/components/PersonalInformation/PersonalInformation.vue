@@ -211,7 +211,8 @@
       <prev-next-btn
         :prevShow="true"
         :nextShow="true"
-        :link="nextLink"/>
+        :prevLink="prevLink"
+        :nextLink="nextLink"/>
     </div>
     <entry-footer />
   </div>
@@ -244,6 +245,7 @@ export default {
       subText: '2019 입학원서 작성',
       yearOptions: [],
       monthOptions: [],
+      prevLink: '/classify',
     };
   },
   computed: {
