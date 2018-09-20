@@ -63,11 +63,17 @@ export default {
     },
     isLogin: {
       get() {
-        if (this.$store.state.accessToken !== null && this.$cookies.get('accessToken')) {
+        const token = this.$cookies.get('accessToken');
+        if (this.$store.state.accessToken !== null && typeof token === 'string') {
           return true;
-        } else if (this.$store.state.accessToken === null && this.$cookies.get('accessToken') !== undefined && this.$cookies.get('accessToken') !== null) {
+        } else if (this.$store.state.accessToken === null
+        && token !== undefined
+        && token !== null) {
           this.$store.commit('updateaccessToken', {
-            data: this.$cookies.get('accessToken'),
+            data: token,
+          });
+          this.$store.commit('updateClassify', {
+            token,
           });
           return true;
         }

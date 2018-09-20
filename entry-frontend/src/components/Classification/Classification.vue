@@ -354,6 +354,7 @@ export default {
       this.$router.push('/');
     },
     sendServer() {
+      const token = this.$cookies.get('accessToken');
       const {
         graduateType,
         admission,
@@ -361,45 +362,81 @@ export default {
         region,
         graduateYear,
       } = this.$store.state.classify;
-      const {
-        accessToken,
-      } = this.$store.state;
       const admissionDetail = this.$store.state.classify.admissionDetail.value;
       if (graduateType !== 'GED') {
-        this.$axios.put('http://10.156.145.173:8080/api/me/classification',
-          {
+        this.$axios({
+          method: 'put',
+          url: 'http://10.156.145.173:8080/api/me/classification',
+          headers: { Authorization: `JWT ${token}` },
+          data: {
             graduateType,
-            admissionDetail,
             admission,
             additionalType,
             region,
             graduateYear,
-            header: {
-              Authorization: `JWT ${accessToken}`,
-            },
-          },
-        ).then((res) => {
+          }
+        }).then((res) => {
           if (res.status === 200) {
             this.$toastr.s('서버에 임시저장 되었습니다.');
           } else {
             this.$toastr.e('서버와 통신이 불안정합니다.<br/> 재연결이 필요합니다.');
           }
         });
-      } else {
-        this.$axios.put('http://10.156.145.173:8080/api/me/classification',
-          {
-            data: {
-              graduateType,
-              admissionDetail,
-              admission,
-              additionalType,
-              region,
-            },
-            header: {
-              Authorization: `JWT ${accessToken}`,
-            },
-          },
-        ).then((res) => {
+      } else if(graduateType === 'GED' && admission === 'SOCIAL'){
+        this.$axios({
+          method: 'put',
+          url: 'http://10.156.145.173:8080/api/me/classification',
+          headers: { Authorization: `JWT ${token}` },
+          data: {
+            graduateType,
+            admissionDetail,
+            admission,
+            additionalType,
+            admissionDetail: 'NONE',
+            region,
+          }
+        }).then((res) => {
+          if (res.status === 200) {
+            this.$toastr.s('서버에 임시저장 되었습니다.');
+          } else {
+            this.$toastr.e('서버와 통신이 불안정합니다.<br/> 재연결이 필요합니다.');
+          }
+        });
+      }
+      else if (admission === 'SOCIAL'){
+        this.$axios({
+          method: 'put',
+          url: 'http://10.156.145.173:8080/api/me/classification',
+          headers: { Authorization: `JWT ${token}` },
+          data: {
+            graduateType,
+            admissionDetail,
+            admission,
+            additionalType,
+            region,
+            graduateYear,
+          }
+        }).then((res) => {
+          if (res.status === 200) {
+            this.$toastr.s('서버에 임시저장 되었습니다.');
+          } else {
+            this.$toastr.e('서버와 통신이 불안정합니다.<br/> 재연결이 필요합니다.');
+          }
+        });
+      }
+      else {
+        this.$axios({
+          method: 'put',
+          url: 'http://10.156.145.173:8080/api/me/classification',
+          headers: { Authorization: `JWT ${token}` },
+          data: {
+            graduateType,
+            admission,
+            additionalType,
+            admissionDetail: 'NONE',
+            region,
+          }
+        }).then((res) => {
           if (res.status === 200) {
             this.$toastr.s('서버에 임시저장 되었습니다.');
           } else {
