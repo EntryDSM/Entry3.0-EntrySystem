@@ -29,7 +29,7 @@
               id="general"
               value="NORMAL"
               @click="isOpen = false"
-              v-model="entranceModel">
+              v-model="admission">
             <label class="input-radio-label" for="general">
               <span class="input-radio-span"></span>
             </label>
@@ -43,7 +43,7 @@
               id="meister"
               value="MEISTER"
               @click="isOpen = false"
-              v-model="entranceModel">
+              v-model="admission">
             <label class="input-radio-label" for="meister">
               <span class="input-radio-span"></span>
             </label>
@@ -56,20 +56,20 @@
               class="input-radio"
               id="social"
               value="SOCIAL"
-              v-model="entranceModel"
+              v-model="admission"
               @click="isOpen = true">
             <label class="input-radio-label" for="social">
               <span class="input-radio-span"></span>
             </label>
             <social-option
               :options="socialOptions"
-              v-model="socialOption"
+              v-model="admissionDetail"
               v-show="isOpen"
               @close="isOpen = false"/>
             <label class="form__cover__form__colums__input-content__label"
               for="social">
               사회통합전형
-              <span v-show="socialOption">/ {{ socialOption ? socialOption.text : '' }}
+              <span v-show="admissionDetail">/ {{ admissionDetail ? admissionDetail.text : '' }}
                 <span class="point-color">▾</span>
               </span>
             </label>
@@ -133,6 +133,7 @@
                 v-model="graduationYear"
                 :isEnabled="isGraduated"
                 :options="[
+                  {text: '2018', value:'2018'},
                   {text: '2017', value:'2017'},
                   {text: '2016', value:'2016'},
                   {text: '2015', value:'2015'},
@@ -159,7 +160,7 @@
               class="input-radio"
               id="honor"
               value="NATIONAL_MERIT"
-              v-model="AdditionalType">
+              v-model="additionalType">
             <label class="input-radio-label" for="honor">
               <span class="input-radio-span"></span>
             </label>
@@ -172,7 +173,7 @@
               class="input-radio"
               id="exception"
               value="SPECIAL_ADMISSION"
-              v-model="AdditionalType">
+              v-model="additionalType">
             <label class="input-radio-label" for="exception">
               <span class="input-radio-span"></span>
             </label>
@@ -185,7 +186,7 @@
               class="input-radio"
               id="NONE"
               value="NONE"
-              v-model="AdditionalType">
+              v-model="additionalType">
             <label class="input-radio-label" for="NONE">
               <span class="input-radio-span"></span>
             </label>
@@ -201,7 +202,8 @@
       <prev-next-btn
         :prevShow="false"
         :nextShow="true"
-        :nextLink="nextLink"/>
+        :nextLink="nextLink"
+        :onClick="() => sendServer()"/>
     </div>
     <entry-footer />
   </div>
@@ -245,20 +247,22 @@ export default {
   computed: {
     graduateType() {
       if (this.isGED) {
+        this.$store.commit('updateGraduationYear', {
+          data: null,
+        });
         return 'GED';
       } else if (!this.isGraduated) {
+        this.$store.commit('updateGraduationYear', {
+          data: 2019,
+        });
         return 'WILL';
       } else if (this.isGraduated) {
+        this.$store.commit('updateGraduationYear', {
+          data: null,
+        });
         return 'DONE';
       }
       return null;
-    },
-    admissionDetail() {
-      if (this.entranceModel === 'SOCIAL') {
-        return this.socialOption.value;
-      }
-      this.socialOptionstoNull();
-      return 'NONE';
     },
     isGED: {
       get() {
@@ -273,29 +277,32 @@ export default {
         });
       },
     },
-    socialOption: {
+    admissionDetail: {
       get() {
-        return this.$store.state.classify.socialOption;
+        return this.$store.state.classify.admissionDetail;
       },
       set(data) {
         if (typeof data === 'object') {
-          this.$store.commit('updateSocialOption', {
-            data: data.value,
+          this.$store.commit('updateadmissionDetail', {
+            data,
           });
         }
-        this.$store.commit('updateSocialOption', {
-          data,
-        });
+        return 'NONE';
       },
     },
-    entranceModel: {
+    admission: {
       get() {
-        return this.$store.state.classify.entranceModel;
+        return this.$store.state.classify.admission;
       },
       set(value) {
-        this.$store.commit('updateEntranceModel', {
+        this.$store.commit('updateadmission', {
           data: value,
         });
+        if (this.$store.state.classify.admission !== 'SOCIAL') {
+          this.$store.commit('updateSocialOption', {
+            data: null,
+          });
+        }
       },
     },
     region: {
@@ -321,12 +328,12 @@ export default {
         });
       },
     },
-    AdditionalType: {
+    additionalType: {
       get() {
-        return this.$store.state.classify.AdditionalType;
+        return this.$store.state.classify.additionalType;
       },
       set(value) {
-        this.$store.commit('updateAdditionalType', {
+        this.$store.commit('updateadditionalType', {
           data: value,
         });
       },
@@ -346,8 +353,60 @@ export default {
     moveNext() {
       this.$router.push('/');
     },
-    socialOptionstoNull() {
-      this.socialOption = null;
+    sendServer() {
+      const {
+        graduateType,
+        admission,
+        additionalType,
+        region,
+        graduateYear,
+      } = this.$store.state.classify;
+      const {
+        accessToken,
+      } = this.$store.state;
+      const admissionDetail = this.$store.state.classify.admissionDetail.value;
+      if (graduateType !== 'GED') {
+        this.$axios.put('http://10.156.145.173:8080/api/me/classification',
+          {
+            graduateType,
+            admissionDetail,
+            admission,
+            additionalType,
+            region,
+            graduateYear,
+            header: {
+              Authorization: `JWT ${accessToken}`,
+            },
+          },
+        ).then((res) => {
+          if (res.status === 200) {
+            this.$toastr.s('서버에 임시저장 되었습니다.');
+          } else {
+            this.$toastr.e('서버와 통신이 불안정합니다.<br/> 재연결이 필요합니다.');
+          }
+        });
+      } else {
+        this.$axios.put('http://10.156.145.173:8080/api/me/classification',
+          {
+            data: {
+              graduateType,
+              admissionDetail,
+              admission,
+              additionalType,
+              region,
+            },
+            header: {
+              Authorization: `JWT ${accessToken}`,
+            },
+          },
+        ).then((res) => {
+          if (res.status === 200) {
+            this.$toastr.s('서버에 임시저장 되었습니다.');
+          } else {
+            this.$toastr.e('서버와 통신이 불안정합니다.<br/> 재연결이 필요합니다.');
+          }
+        });
+      }
     },
   },
 };

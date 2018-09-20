@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const mutations = {
   updateGedScore: (state, payload) => {
     state.gradeInput.gedScore = payload;
@@ -94,11 +96,11 @@ export const mutations = {
   updateisGED: (state, payload) => {
     state.classify.isGED = payload.data;
   },
-  updateEntranceModel: (state, payload) => {
-    state.classify.entranceModel = payload.data;
+  updateadmission: (state, payload) => {
+    state.classify.admission = payload.data;
   },
-  updateSocialOption: (state, payload) => {
-    state.classify.socialOption = payload.data;
+  updateadmissionDetail: (state, payload) => {
+    state.classify.admissionDetail = payload.data;
   },
   updateRegion: (state, payload) => {
     state.classify.region = payload.data;
@@ -112,8 +114,8 @@ export const mutations = {
   updateSpecialPoints: (state, payload) => {
     state.classify.specialPoints = payload.data;
   },
-  updateAdditionalType: (state, payload) => {
-    state.classify.AdditionalType = payload.data;
+  updateadditionalType: (state, payload) => {
+    state.classify.additionalType = payload.data;
   },
   updateGraduateType: (state, payload) => {
     state.classify.graduateType = payload.data;
@@ -166,6 +168,62 @@ export const mutations = {
   },
   updateImgPath: (state, payload) => {
     state.PersonInfo.imgPath = payload.data;
+  },
+  updateClassify: (state, payload) => {
+    axios.get('http://10.156.145.173:8080/api/me/classification',
+      { headers: { Authorization: `JWT ${payload.token}` } },
+    ).then((res) => {
+      if (res.status === 200) {
+        const {
+          graduateType,
+          admission,
+          admissionDetail,
+          region,
+          graduateYear,
+          additionalType,
+        } = res.data.data;
+        if (graduateType === 'GED') {
+          state.classify.isGED = true;
+        }
+        state.classify.graduateType = graduateType;
+        state.classify.admission = admission;
+        switch (admissionDetail) {
+          case 'BENEFICIARY' :
+            state.classify.admissionDetail = { text: '기초생활수급권자', value: admissionDetail };
+            break;
+          case 'ONE_PARENT' :
+            state.classify.admissionDetail = { text: '한부모가족 보호대상자', value: admissionDetail };
+            break;
+          case 'CHA_UPPER':
+            state.classify.admissionDetail = { text: '차상위 계층', value: admissionDetail };
+            break;
+          case 'CHACHA_UPPER' :
+            state.classify.admissionDetail = { text: '차차상위 계층', value: admissionDetail };
+            break;
+          case 'FROM_NORTH' :
+            state.classify.admissionDetail = { text: '북한이탈주민', value: admissionDetail };
+            break;
+          case 'MULTI_CULTURE' :
+            state.classify.admissionDetail = { text: '다문화 가정', value: admissionDetail };
+            break;
+          case 'ETC' :
+            state.classify.admissionDetail = { text: '그 외 대상자', value: admissionDetail };
+            break;
+          case 'NONE':
+            state.classify.admissionDetail = { text: '', value: 'NONE' };
+            break;
+          default:
+            state.classify.admissionDetail = { text: '서버에서 오류가 났습니다.', value: 'ERROR' };
+        }
+        state.classify.admissionDetail.value = admissionDetail;
+        state.classify.region = region;
+        state.classify.graduateYear = graduateYear;
+        state.classify.additionalType = additionalType;
+      }
+    });
+  },
+  updateaccessToken: (state, payload) => {
+    state.accessToken = payload.data;
   },
 };
 

@@ -7,13 +7,14 @@
       <span class="input-btn__arrow input-btn__arrow--left">〈</span>
       <span class="input-btn__text input-btn__text--prev">이전</span>
     </router-link>
-    <router-link :to="nextLink"
+    <a
       type="button"
       class="input-btn input-btn--next"
-      v-if="nextShow">
+      v-if="nextShow"
+      @click="gotoNext">
       <span class="input-btn__arrow input-btn__arrow--right">〉</span>
       <span class="input-btn__text input-btn__text--next">{{ text }}</span>
-    </router-link>
+    </a>
   </div>
 </template>
 
@@ -39,6 +40,15 @@ export default {
     nextLink: {
       type: String,
       required: true,
+    },
+  },
+  methods: {
+    toPrevious() {
+      window.history.back();
+    },
+    gotoNext() {
+      this.onClick();
+      this.$router.push(this.nextLink);
     },
   },
 };

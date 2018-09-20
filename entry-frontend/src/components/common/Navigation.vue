@@ -27,9 +27,16 @@
       </li>
       <li class="nav__wrapper__contants__list__link
         nav__wrapper__contants__list__link--login"
+        v-if="!isLogin"
         @click="changeIndex">
           로그인
-        </li>
+      </li>
+      <li class="nav__wrapper__contants__list__link
+        nav__wrapper__contants__list__link--login"
+        v-else
+        @click="logout">
+          로그아웃
+      </li>
     </ul>
     </div>
   </nav>
@@ -54,12 +61,32 @@ export default {
     index() {
       return this.$store.state.modal.index;
     },
+    isLogin: {
+      get() {
+        if (this.$store.state.accessToken !== null && this.$cookies.get('accessToken')) {
+          return true;
+        } else if (this.$store.state.accessToken === null && this.$cookies.get('accessToken') !== undefined && this.$cookies.get('accessToken') !== null) {
+          this.$store.commit('updateaccessToken', {
+            data: this.$cookies.get('accessToken'),
+          });
+          return true;
+        }
+        return false;
+      },
+    },
   },
   methods: {
     changeIndex() {
       this.$store.commit('changeIndex', {
         index: 1,
       });
+    },
+    logout() {
+      this.$cookies.remove('accessToken');
+      this.$store.commit('updateaccessToken', {
+        data: null,
+      });
+      window.location.reload();
     },
   },
 };

@@ -17,11 +17,11 @@
       </div>
       <div class="login__inputs">
         <input type="text" class="modal--input input-shake"
-        v-if="idwrong" v-model="id" placeholder="아이디"/>
-        <input type="text" class="modal--input" v-else v-model="id" placeholder="아이디"/>
+        v-if="idwrong" v-model="email" placeholder="아이디"/>
+        <input type="text" class="modal--input" v-else v-model="email" placeholder="이메일"/>
         <input type="password" class="modal--input input-shake"
-        v-if="pwwrong" v-model="pw" placeholder="비밀번호"/>
-        <input type="password" class="modal--input" v-else v-model="pw" placeholder="비밀번호"/>
+        v-if="pwwrong" v-model="password" placeholder="비밀번호"/>
+        <input type="password" class="modal--input" v-else v-model="password" placeholder="비밀번호"/>
         <div class="modal--btn" v-on:click="login">
           로그인
         </div>
@@ -36,31 +36,37 @@
 <script>
 export default {
   data: () => ({
-    id: '',
-    pw: '',
+    email: '',
+    password: '',
     idwrong: false,
     pwwrong: false,
   }),
   methods: {
     login() {
-      const id = this.id;
-      const pw = this.pw;
-      if (id === '') {
+      const { email, password } = this;
+      if (email === '') {
         this.idwrong = true;
         this.pwwrong = false;
         setTimeout(() => {
           this.idwrong = false;
         }, 5000);
-      } else if (pw === '') {
+      } else if (password === '') {
         this.pwwrong = true;
         this.idwrong = false;
         setTimeout(() => {
           this.pwwrong = false;
         }, 5000);
       } else {
-        this.$axios.post('/login', { id, pw }).then(({ data }) => {
-          if (data.type) {
-            this.$cookies.set('JWT', data.token, '4d');
+        this.$axios.post('http://10.156.145.173:8080/api/signin', { email, password }).then((res) => {
+          if (res.status === 200) {
+            // Promise.all
+            this.$cookies.set('accessToken', res.data.data.accessToken, '4d');
+            this.$store.commit('updateClassify', {
+              token: res.data.data.accessToken,
+            });
+            this.$store.commit('updateaccessToken', {
+              accessToken: res.data.data.accessToken,
+            });
             this.$store.commit('changeIndex', {
               index: 0,
             });
