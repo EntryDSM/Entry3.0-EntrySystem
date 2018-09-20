@@ -202,7 +202,7 @@
       <prev-next-btn
         :prevShow="false"
         :nextShow="true"
-        :link="nextLink"
+        :nextLink="nextLink"
         :onClick="() => sendServer()"/>
     </div>
     <entry-footer />

@@ -1509,7 +1509,8 @@
     <prev-next-btn
       :prevShow="true"
       :nextShow="true"
-      :link="nextLink"/>
+      :prevLink="prevLink"
+      :nextLink="nextLink"/>
     <entry-footer />
   </div>
 </template>
@@ -1628,6 +1629,7 @@ export default {
         { score: '', decided: false, passed: false },
         { score: '', decided: false, passed: false },
       ],
+      prevLink: '/personal',
       nextLink: '/intro',
     };
   },

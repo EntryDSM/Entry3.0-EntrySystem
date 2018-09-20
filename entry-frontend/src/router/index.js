@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import InfoBrochure from '../components/Info/InfoBrochure';
+import InfoSummary from '../components/Info/InfoSummary';
 import MainPage from '../components/MainPage/MainPage';
 import IntroduceNPlan from '../components/IntroNPlan/IntroduceNPlan';
 import Classification from '../components/Classification/Classification';
@@ -23,6 +25,14 @@ export default new Router({
     path: '/auth',
     name: 'authorization',
     component: Authorization,
+  }, {
+    path: '/info-brochure',
+    name: 'info-brochure',
+    component: InfoBrochure,
+  }, {
+    path: '/info-summary',
+    name: 'info-summary',
+    component: InfoSummary,
   }, {
     path: '/classify',
     name: 'classification',

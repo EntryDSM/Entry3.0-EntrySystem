@@ -23,7 +23,8 @@
     <prev-next-btn
       :prevShow="true"
       :nextShow="true"
-      :link="nextLink"/>
+      :prevLink="prevLink"
+      :nextLink="nextLink"/>
     <entry-footer />
   </div>
 </template>
@@ -45,6 +46,7 @@ export default {
   data() {
     return {
       zedScore: 0,
+      prevLink: '/personal',
       nextLink: '/intro',
     };
   },
