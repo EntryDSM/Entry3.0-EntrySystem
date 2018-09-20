@@ -13,16 +13,6 @@ export const GradeInput = {
     missingClass: 0,
   },
 
-  // 미이수 학기 선택
-  semesters: {
-    firstFirstSemester: false,
-    firstSecondSemester: false,
-    secondFirstSemester: false,
-    secondSecondSemester: false,
-    thirdFirstSemester: false,
-    thirdSecondSemester: false,
-  },
-
   // 국어
   koreanScores: [
     { score: '', decided: false, passed: false },

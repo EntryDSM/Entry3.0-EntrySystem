@@ -5,6 +5,19 @@ export const mutations = {
   updateVolunteerNAttendance: (state, { field, value }) => {
     state.gradeInput.volunteerNAttendance[field] = parseInt(value, 10);
   },
+  updateGrades: (state, { grades, resetAllGrade }) => {
+    const allGrades = grades;
+
+    for (let i = 0; i < allGrades.length; i += 1) {
+      for (let j = 0; j < allGrades[i].length; j += 1) {
+        const resetAll = allGrades[i][j];
+        // 초기화 - 점수 및 클릭 여부
+        resetAll.score = resetAllGrade;
+        resetAll.decided = true;
+        resetAll.passed = true;
+      }
+    }
+  },
   updateIntroduce: (state, payload) => {
     state.introNPlan.introduce = payload;
   },

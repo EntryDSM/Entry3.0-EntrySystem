@@ -4,7 +4,6 @@ export const getters = {
     const {
       gedScore,
       volunteerNAttendance,
-      semesters,
       koreanScores,
       societyScores,
       historyScores,
@@ -20,7 +19,6 @@ export const getters = {
     } else if (graduateType === 'DONE') {
       return {
         volunteerNAttendance,
-        semesters,
         koreanScores,
         societyScores,
         historyScores,
@@ -39,6 +37,7 @@ export const getters = {
         ],
       };
     } else if (graduateType === 'WILL') {
+      /*
       const prop = 'thirdSecondSemester';
       const filteredSemesters = Object.keys(semesters).reduce((obj, key) => {
         const semesterObj = obj;
@@ -48,10 +47,10 @@ export const getters = {
 
         return obj;
       }, {});
+      */
 
       return {
         volunteerNAttendance,
-        semesters: filteredSemesters,
         koreanScores: koreanScores.slice(0, 5),
         societyScores: societyScores.slice(0, 5),
         historyScores: historyScores.slice(0, 5),

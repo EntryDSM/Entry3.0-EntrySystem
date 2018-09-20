@@ -85,9 +85,9 @@
             <input type="checkbox"
                    class="input-checkbox"
                    id="input-first-first"
-                   :value="`${semesters.firstFirstSemester}`"
+                   :value="semesters.firstFirstSemester"
                    v-model="semesters.firstFirstSemester"
-                   @change="discompleteSemester"
+                   @change="discompleteSemester($event)"
             >
             <label class="input-checkbox-label" for="input-first-first"></label>
             <span class="table-row__semester-text">1학기</span>
@@ -96,9 +96,9 @@
             <input type="checkbox"
                    class="input-checkbox"
                    id="input-first-second"
-                   :value="`${semesters.firstSecondSemester}`"
+                   :value="semesters.firstSecondSemester"
                    v-model="semesters.firstSecondSemester"
-                   @change="discompleteSemester"
+                   @change="discompleteSemester($event)"
             >
             <label class="input-checkbox-label" for="input-first-second"></label>
             <span class="table-row__semester-text">2학기</span>
@@ -107,9 +107,9 @@
             <input type="checkbox"
                    class="input-checkbox"
                    id="input-second-first"
-                   :value="`${semesters.secondFirstSemester}`"
+                   :value="semesters.secondFirstSemester"
                    v-model="semesters.secondFirstSemester"
-                   @change="discompleteSemester"
+                   @change="discompleteSemester($event)"
             >
             <label class="input-checkbox-label" for="input-second-first"></label>
             <span class="table-row__semester-text">1학기</span>
@@ -118,9 +118,9 @@
             <input type="checkbox"
                    class="input-checkbox"
                    id="input-second-second"
-                   :value="`${semesters.secondSecondSemester}`"
+                   :value="semesters.secondSecondSemester"
                    v-model="semesters.secondSecondSemester"
-                   @change="discompleteSemester"
+                   @change="discompleteSemester($event)"
             >
             <label class="input-checkbox-label" for="input-second-second"></label>
             <span class="table-row__semester-text">2학기</span>
@@ -129,9 +129,9 @@
             <input type="checkbox"
                    class="input-checkbox"
                    id="input-third-first"
-                   :value="`${semesters.thirdFirstSemester}`"
+                   :value="semesters.thirdFirstSemester"
                    v-model="semesters.thirdFirstSemester"
-                   @change="discompleteSemester"
+                   @change="discompleteSemester($event)"
             >
             <label class="input-checkbox-label" for="input-third-first"></label>
             <span class="table-row__semester-text">1학기</span>
@@ -1318,8 +1318,6 @@ export default {
       // 다음 연결 링크
       nextLink: '/intro',
 
-      // 봉사 및 출석
-
       // 미이수 학기 선택
       semesters: {
         firstFirstSemester: false,
@@ -1329,76 +1327,6 @@ export default {
         thirdFirstSemester: false,
         thirdSecondSemester: false,
       },
-
-      // 국어
-      koreanScores: [
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-      ],
-
-      // 사회
-      societyScores: [
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-      ],
-
-      // 역사
-      historyScores: [
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-      ],
-
-      // 수학
-      mathScores: [
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-      ],
-
-      // 과학
-      scienceScores: [
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-      ],
-
-      // 기술 - 가정
-      techAndHomeScores: [
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-      ],
-
-      // 영어
-      englishScores: [
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-      ],
     };
   },
   computed: {
@@ -1406,6 +1334,56 @@ export default {
       get() {
         return this.$store.getters.selectType.volunteerNAttendance;
       },
+    },
+
+    // score : "A", "B", "C", "D", "E", "X"(미이수), null (씨발련이 입력 안함)
+    koreanScores: {
+      get() {
+        return this.$store.getters.selectType.koreanScores;
+      },
+    },
+    societyScores: {
+      get() {
+        return this.$store.getters.selectType.societyScores;
+      },
+    },
+    historyScores: {
+      get() {
+        return this.$store.getters.selectType.historyScores;
+      },
+    },
+    mathScores: {
+      get() {
+        return this.$store.getters.selectType.mathScores;
+      },
+    },
+    scienceScores: {
+      get() {
+        return this.$store.getters.selectType.scienceScores;
+      },
+    },
+    techAndHomeScores: {
+      get() {
+        return this.$store.getters.selectType.techAndHomeScores;
+      },
+    },
+    englishScores: {
+      get() {
+        return this.$store.getters.selectType.englishScores;
+      },
+    },
+    grades: {
+      get() {
+        return this.$store.getters.selectType.grades;
+      },
+    },
+  },
+  watch: {
+    grades: {
+      handler(val) {
+        console.log(val);
+      },
+      deep: true,
     },
   },
   methods: {
@@ -1430,17 +1408,10 @@ export default {
 
     // 실제 점수 초기화
     setGrades() {
-      const allGrades = this.grades;
-
-      for (let i = 0; i < allGrades.length; i += 1) {
-        for (let j = 0; j < allGrades[i].length; j += 1) {
-          const resetAll = allGrades[i][j];
-          // 초기화 - 점수 및 클릭 여부
-          resetAll.score = this.resetAllGrade;
-          resetAll.decided = true;
-          resetAll.passed = true;
-        }
-      }
+      this.$store.commit('updateGrades', {
+        grades: this.grades,
+        resetAllGrade: this.resetAllGrade,
+      });
     },
 
     // 미이수 체크 해제
