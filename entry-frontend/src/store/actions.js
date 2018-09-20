@@ -1,4 +1,5 @@
 export const actions = {
+  updateaccessToken: context => context.commit('updateaccessToken'),
   // modal 관련 이벤트
   changeIndex: context => context.commit('changeIndex'),
   // auth 관련 action
@@ -9,12 +10,12 @@ export const actions = {
   updateverify: context => context.commit('updateverify'),
   // classify 관련 action
   updateisGED: context => context.commit('updateisGED'),
-  updateEntranceModel: context => context.commit('updateEntranceModel'),
-  updateSocialOption: context => context.commit('updateSocialOption'),
+  updateadmission: context => context.commit('updateadmission'),
+  updateadmissionDetail: context => context.commit('updateadmissionDetail'),
   updateRegion: context => context.commit('updateRegion'),
   updateIsGraduated: context => context.commit('updateIsGraduated'),
   updateGraduationYear: context => context.commit('updateGraduationYear'),
-  updateAdditionalType: context => context.commit('updateAdditionalType'),
+  updateadditionalType: context => context.commit('updateadditionalType'),
   updateGraduateType: context => context.commit('updateGraduateType'),
   // PersonInfo 관련 action
   updatePersonName: context => context.commit('updatePersonName'),
