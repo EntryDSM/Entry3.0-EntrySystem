@@ -12,6 +12,7 @@ export const state = {
   PersonInfo,
   gradeInput,
   introNPlan,
+  accessToken: null,
 };
 
 export default state;

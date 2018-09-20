@@ -17,10 +17,10 @@
       </div>
       <div class="login__inputs">
         <input type="text" class="modal--input input-shake"
-        v-if="idwrong" v-model="id" placeholder="아이디"/>
+        v-if="idwrong" v-model="email" placeholder="아이디"/>
         <input type="text" class="modal--input" v-else v-model="email" placeholder="이메일"/>
         <input type="password" class="modal--input input-shake"
-        v-if="pwwrong" v-model="pw" placeholder="비밀번호"/>
+        v-if="pwwrong" v-model="password" placeholder="비밀번호"/>
         <input type="password" class="modal--input" v-else v-model="password" placeholder="비밀번호"/>
         <div class="modal--btn" v-on:click="login">
           로그인
@@ -37,7 +37,7 @@
 export default {
   data: () => ({
     email: '',
-    pw: '',
+    password: '',
     idwrong: false,
     pwwrong: false,
   }),
@@ -57,14 +57,18 @@ export default {
           this.pwwrong = false;
         }, 5000);
       } else {
-        this.$axios.post('로컬호스트/api/signin', { email, password }).then((res) => {
+        this.$axios.post('http://10.156.145.173:8080/api/signin', { email, password }).then((res) => {
           if (res.status === 200) {
-            this.$cookies.set('access_token', res.data.token, '4d');
+            // Promise.all
+            this.$cookies.set('accessToken', res.data.data.accessToken, '4d');
+            this.$store.commit('updateClassify', {
+              token: res.data.data.accessToken,
+            });
+            this.$store.commit('updateaccessToken', {
+              accessToken: res.data.data.accessToken,
+            });
             this.$store.commit('changeIndex', {
               index: 0,
-            });
-            this.$store.commit('updateClassify', {
-              token: res.data.token,
             });
           } else {
             this.pw = '';
