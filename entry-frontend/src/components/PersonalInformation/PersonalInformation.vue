@@ -244,7 +244,6 @@ export default {
       subText: '2019 입학원서 작성',
       yearOptions: [],
       monthOptions: [],
-      nextLink: 'grade-scheduled',
     };
   },
   computed: {
@@ -281,6 +280,15 @@ export default {
       get() {
         return this.$store.state.classify.isGED;
       },
+    },
+    nextLink() {
+      let link;
+      switch (this.$store.state.classify.graduateType) {
+        case 'DONE': link = 'grade-graduated'; break;
+        case 'GED': link = 'grade-ged'; break;
+        default: link = 'grade-scheduled';
+      }
+      return link;
     },
     personName: {
       get() {
