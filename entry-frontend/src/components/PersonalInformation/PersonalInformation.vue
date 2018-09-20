@@ -449,9 +449,9 @@ export default {
     const count = 20; // '년'옵션의 개수
     const yearArray = [];
     for (let i = 0; i < count; i += 1) {
-      const year = lastYear - i;
+      const year = `${lastYear - i}`;
       yearArray[i] = {
-        text: `${year}`,
+        text: year,
         value: year,
       };
     }

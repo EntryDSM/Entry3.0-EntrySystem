@@ -59,9 +59,7 @@ export default {
     },
   },
   created() {
-    for (let i = 0; i < this.options.length; i += 1) {
-      this.selected = this.options[i].value === this.value ? i : -1;
-    }
+    this.selected = this.options.findIndex(({ value }) => this.value === value);
   },
 };
 </script>
