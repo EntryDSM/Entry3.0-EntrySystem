@@ -25,6 +25,7 @@ html, body {
   width: 100%;
   height: 100%;
   min-width: 1180px;
+  font-family: 'NanumSquareRound', sans-serif;
 }
 
 input[type=password] {
@@ -47,17 +48,11 @@ time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
-  vertical-align: baseline;
-  font-family: 'NanumSquareRound', sans-serif;
 }
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
-}
-
-body {
-  line-height: 1;
 }
 
 ol, ul {
@@ -72,10 +67,5 @@ blockquote:before, blockquote:after,
 q:before, q:after {
   content: '';
   content: none;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
 }
 </style>
