@@ -1,13 +1,13 @@
 <template>
   <div class="prev-next-btn-cover">
-    <a @click="toPrevious"
+    <router-link :to="prevLink"
       type="button"
       class="input-btn input-btn--prev"
       v-if="prevShow">
       <span class="input-btn__arrow input-btn__arrow--left">〈</span>
       <span class="input-btn__text input-btn__text--prev">이전</span>
-    </a>
-    <router-link :to="link"
+    </router-link>
+    <router-link :to="nextLink"
       type="button"
       class="input-btn input-btn--next"
       v-if="nextShow">
@@ -33,14 +33,12 @@ export default {
       type: String,
       default: '다음',
     },
-    link: {
+    prevLink: {
+      type: String,
+    },
+    nextLink: {
       type: String,
       required: true,
-    },
-  },
-  methods: {
-    toPrevious() {
-      window.history.back();
     },
   },
 };
