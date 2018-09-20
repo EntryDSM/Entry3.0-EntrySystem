@@ -5,7 +5,7 @@
     <application></application>
     <introduction></introduction>
     <academic-plan></academic-plan>
-    <recommendation-letter></recommendation-letter>
+    <recommendation-letter v-if="admission !== 'NORMAL'"></recommendation-letter>
     <quitting-smoking></quitting-smoking>
     <entry-footer />
   </div>
@@ -38,6 +38,11 @@ export default {
       title: '원서 미리보기',
       subText: '대덕소프트웨어마이스터고등학교',
     };
+  },
+  computed: {
+    admission() {
+      return this.$store.state.classify.admission;
+    },
   },
 };
 </script>
