@@ -9,7 +9,8 @@
           <td class="table-data-text">봉사시간</td>
           <td class="table-data-text">
             <input type="number"
-                   v-model.number="volunteerNAttendance.volunteer"
+                   :value="volunteerNAttendance.volunteer"
+                   @change="updateVolunteerNAttendance('volunteer', $event.target.value)"
                    @keydown="onlyNumber"
                    min="0"
                    class="input-text table-data-text__input"
@@ -24,7 +25,8 @@
               <td class="table-data-text__row__data">전체 무단 결석 일수</td>
               <td class="table-data-text__row__data">
                 <input type="number"
-                       v-model.number="volunteerNAttendance.absence"
+                       :value="volunteerNAttendance.absence"
+                       @change="updateVolunteerNAttendance('absence', $event.target.value)"
                        @keydown="onlyNumber"
                        min="0"
                        class="input-text table-data-text__input"
@@ -34,7 +36,8 @@
               <td class="table-data-text__row__data">전체 무단 조퇴 일수</td>
               <td class="table-data-text__row__data">
                 <input type="number"
-                       v-model.number="volunteerNAttendance.earlyLeave"
+                       :value="volunteerNAttendance.earlyLeave"
+                       @change="updateVolunteerNAttendance('earlyLeave', $event.target.value)"
                        @keydown="onlyNumber"
                        min="0"
                        class="input-text table-data-text__input"
@@ -46,7 +49,8 @@
               <td class="table-data-text__row__data">전체 무단 지각 일수</td>
               <td class="table-data-text__row__data">
                 <input type="number"
-                       v-model.number="volunteerNAttendance.lateness"
+                       :value="volunteerNAttendance.lateness"
+                       @change="updateVolunteerNAttendance('lateness', $event.target.value)"
                        @keydown="onlyNumber"
                        min="0"
                        class="input-text table-data-text__input"
@@ -56,7 +60,8 @@
               <td class="table-data-text__row__data">전체 무단 결과 일수</td>
               <td class="table-data-text__row__data">
                 <input type="number"
-                       v-model.number="volunteerNAttendance.missingClass"
+                       :value="volunteerNAttendance.missingClass"
+                       @change="updateVolunteerNAttendance('missingClass', $event.target.value)"
                        @keydown="onlyNumber"
                        min="0"
                        class="input-text table-data-text__input"
@@ -1304,14 +1309,16 @@ export default {
       // Hover 체크
       checkHover: false,
 
+      // 모든 학기 초기화
+      resetAllGrade: '',
+
+      // 초기화 점수
+      scores: ['a', 'b', 'c', 'd', 'e'],
+
+      // 다음 연결 링크
+      nextLink: '/intro',
+
       // 봉사 및 출석
-      volunteerNAttendance: {
-        volunteer: 0,
-        absence: 0,
-        earlyLeave: 0,
-        lateness: 0,
-        missingClass: 0,
-      },
 
       // 미이수 학기 선택
       semesters: {
@@ -1320,17 +1327,12 @@ export default {
         secondFirstSemester: false,
         secondSecondSemester: false,
         thirdFirstSemester: false,
+        thirdSecondSemester: false,
       },
 
-      // 모든 학기 초기화
-      resetAllGrade: '',
-
-      // 초기화 점수
-      scores: ['a', 'b', 'c', 'd', 'e'],
-
-      /* 점수 실제 설정 */
       // 국어
       koreanScores: [
+        { score: '', decided: false, passed: false },
         { score: '', decided: false, passed: false },
         { score: '', decided: false, passed: false },
         { score: '', decided: false, passed: false },
@@ -1345,10 +1347,12 @@ export default {
         { score: '', decided: false, passed: false },
         { score: '', decided: false, passed: false },
         { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
       ],
 
       // 역사
       historyScores: [
+        { score: '', decided: false, passed: false },
         { score: '', decided: false, passed: false },
         { score: '', decided: false, passed: false },
         { score: '', decided: false, passed: false },
@@ -1363,10 +1367,12 @@ export default {
         { score: '', decided: false, passed: false },
         { score: '', decided: false, passed: false },
         { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
       ],
 
       // 과학
       scienceScores: [
+        { score: '', decided: false, passed: false },
         { score: '', decided: false, passed: false },
         { score: '', decided: false, passed: false },
         { score: '', decided: false, passed: false },
@@ -1381,6 +1387,7 @@ export default {
         { score: '', decided: false, passed: false },
         { score: '', decided: false, passed: false },
         { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
       ],
 
       // 영어
@@ -1390,26 +1397,26 @@ export default {
         { score: '', decided: false, passed: false },
         { score: '', decided: false, passed: false },
         { score: '', decided: false, passed: false },
+        { score: '', decided: false, passed: false },
       ],
-      nextLink: '/intro',
     };
   },
   computed: {
-    grades() {
-      const allGrades = [
-        this.koreanScores,
-        this.societyScores,
-        this.historyScores,
-        this.mathScores,
-        this.scienceScores,
-        this.techAndHomeScores,
-        this.englishScores,
-      ];
-
-      return allGrades;
+    volunteerNAttendance: {
+      get() {
+        return this.$store.getters.selectType.volunteerNAttendance;
+      },
     },
   },
   methods: {
+    // 봉사 및 출석 Commit
+    updateVolunteerNAttendance(field, value) {
+      this.$store.commit('updateVolunteerNAttendance', {
+        field,
+        value,
+      });
+    },
+
     // 전체 성적 기능
     setHoverGrade(grade) {
       this.checkHover = true;

@@ -1,4 +1,10 @@
 export const mutations = {
+  updateGedScore: (state, payload) => {
+    state.gradeInput.gedScore = payload;
+  },
+  updateVolunteerNAttendance: (state, { field, value }) => {
+    state.gradeInput.volunteerNAttendance[field] = parseInt(value, 10);
+  },
   updateIntroduce: (state, payload) => {
     state.introNPlan.introduce = payload;
   },

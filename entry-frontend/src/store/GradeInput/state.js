@@ -1,6 +1,6 @@
 export const GradeInput = {
   /* 검정고시 관련 */
-  zedScore: 0,
+  gedScore: 0,
 
   /* 졸업 예정, 졸업자 관련 */
 
