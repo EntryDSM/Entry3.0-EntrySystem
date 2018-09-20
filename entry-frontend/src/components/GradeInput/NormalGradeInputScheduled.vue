@@ -85,7 +85,7 @@
             <input type="checkbox"
                    class="input-checkbox"
                    id="input-first-first"
-                   :value="semesters.firstFirstSemester"
+                   :value="`${semesters.firstFirstSemester}`"
                    v-model="semesters.firstFirstSemester"
                    @change="discompleteSemester($event)"
             >
@@ -96,7 +96,7 @@
             <input type="checkbox"
                    class="input-checkbox"
                    id="input-first-second"
-                   :value="semesters.firstSecondSemester"
+                   :value="`${semesters.firstSecondSemester}`"
                    v-model="semesters.firstSecondSemester"
                    @change="discompleteSemester($event)"
             >
@@ -107,7 +107,7 @@
             <input type="checkbox"
                    class="input-checkbox"
                    id="input-second-first"
-                   :value="semesters.secondFirstSemester"
+                   :value="`${semesters.secondFirstSemester}`"
                    v-model="semesters.secondFirstSemester"
                    @change="discompleteSemester($event)"
             >
@@ -118,7 +118,7 @@
             <input type="checkbox"
                    class="input-checkbox"
                    id="input-second-second"
-                   :value="semesters.secondSecondSemester"
+                   :value="`${semesters.secondSecondSemester}`"
                    v-model="semesters.secondSecondSemester"
                    @change="discompleteSemester($event)"
             >
@@ -129,7 +129,7 @@
             <input type="checkbox"
                    class="input-checkbox"
                    id="input-third-first"
-                   :value="semesters.thirdFirstSemester"
+                   :value="`${semesters.thirdFirstSemester}`"
                    v-model="semesters.thirdFirstSemester"
                    @change="discompleteSemester($event)"
             >
@@ -1378,16 +1378,8 @@ export default {
       },
     },
   },
-  watch: {
-    grades: {
-      handler(val) {
-        console.log(val);
-      },
-      deep: true,
-    },
-  },
   methods: {
-    // 봉사 및 출석 Commit
+    // 봉사 및 출석 Commit - 완료
     updateVolunteerNAttendance(field, value) {
       this.$store.commit('updateVolunteerNAttendance', {
         field,
@@ -1396,17 +1388,17 @@ export default {
     },
 
     // 전체 성적 기능
-    setHoverGrade(grade) {
+    setHoverGrade(grade) { // 완료
       this.checkHover = true;
       this.resetAllGrade = grade.toUpperCase();
     },
 
-    // 초기화 버튼 설정
+    // 초기화 버튼 설정 - 완료
     setButton(t) {
       this.resetAllGrade = t.textContent.trim();
     },
 
-    // 실제 점수 초기화
+    // 실제 점수 초기화 - 완료
     setGrades() {
       this.$store.commit('updateGrades', {
         grades: this.grades,
@@ -1414,7 +1406,7 @@ export default {
       });
     },
 
-    // 미이수 체크 해제
+    // 미이수 체크 해제 - 완료
     resetDiscomplete() {
       const s = this.semesters;
       s.firstFirstSemester = false;
@@ -1424,90 +1416,59 @@ export default {
       s.thirdFirstSemester = false;
     },
 
-    resetGrade({ target }) {
+    resetGrade({ target }) { // 완료
       this.resetDiscomplete();
       this.setButton(target);
       this.setGrades();
     },
 
-    // 미이수 설정
+    // 미이수 설정 - 완료
     discompleteSemester({ target }) {
-      // 학기별 null로 초기화
-      function reset(all, index) {
-        for (let i = 0; i < all.length; i += 1) {
-          const allScores = all[i];
-
-          if (target.value === 'true') {
-            allScores[index].score = '';
-            allScores[index].passed = false;
-            allScores[index].decided = false;
-          } else {
-            allScores[index].score = 'X';
-            allScores[index].passed = false;
-            allScores[index].decided = true;
-          }
-        }
-      }
-      // 학급 불러오기
-      const allGrades = this.grades;
-
-      switch (target.id) {
-        case 'input-first-first':
-          reset(allGrades, 0);
-          break;
-        case 'input-first-second':
-          reset(allGrades, 1);
-          break;
-        case 'input-second-first':
-          reset(allGrades, 2);
-          break;
-        case 'input-second-second':
-          reset(allGrades, 3);
-          break;
-        case 'input-third-first':
-          reset(allGrades, 4);
-          break;
-        default: break;
-      }
+      this.$store.commit('updateDiscompleteSemester', {
+        grades: this.grades,
+        target,
+      });
     },
 
     // 점수를 눌렀을 시의 이벤트
     changeDecided({ target }, val) {
-      const v = val;
-      v.decided = !v.decided;
-      v.passed = target.innerText === 'X' ? false : !v.passed;
-      v.score = v.decided ? v.score : '';
+      this.$nextTick(() => {
+        this.$store.commit('updateChangeDecided', {
+          target,
+          val,
+        });
+      });
     },
 
     // 애니메이션을 위한 Class Binding
-    complete(current, compare) {
+    complete(current, compare) { // 완료
       return {
         decide: current !== compare && current !== '',
         underline: current !== '',
       };
     },
 
-    discomplete(current) {
+    discomplete(current) { // 완료
       return {
         decide: current !== 'X' && current !== '',
         underline: current !== '',
       };
     },
 
-    changeBackground(current) {
+    changeBackground(current) { // 완료
       return {
         background: current === 'X',
       };
     },
 
-    // 전체 성적 Hover를 위한 Class Binding
+    // 전체 성적 Hover를 위한 Class Binding - 완료
     allHoverCheck() {
       return {
         'all-hover': this.checkHover,
       };
     },
 
-    // 봉사 및 출석 Input Value 체크
+    // 봉사 및 출석 Input Value 체크 - 완료
     onlyNumber(e) {
       if (!(e.keyCode >= 48 && e.keyCode <= 57)) {
         switch (e.key) {
