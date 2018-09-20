@@ -1514,7 +1514,8 @@
     <prev-next-btn
       :prevShow="true"
       :nextShow="true"
-      :link="nextLink"/>
+      :prevLink="prevLink"
+      :nextLink="nextLink"/>
     <entry-footer />
   </div>
 </template>
@@ -1554,6 +1555,7 @@ export default {
       // 초기화 점수
       scores: ['a', 'b', 'c', 'd', 'e'],
 
+      prevLink: '/personal',
       nextLink: '/intro',
     };
   },

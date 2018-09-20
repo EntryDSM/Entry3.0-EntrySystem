@@ -14,7 +14,7 @@
 
         <!-- 이미지 첨부 컴포넌트 -->
         <attach-image class="form__cover__form__attach-image"
-          @upload="file => this.image = file"/>
+          @upload="path => this.imgPath = path"/>
         <div class="form__cover__form__colums">
           <div class="form__cover__form__colums__name">
             이름
@@ -22,8 +22,8 @@
           <div class="form__cover__form__colums__input-content">
             <input type="text"
               class="input-text input-text-name"
-              :value="PersonName"
-              @input="PersonName = $event.target.value">
+              :value="personName"
+              @input="personName = $event.target.value">
           </div>
         </div>
         <div class="form__cover__form__colums">
@@ -33,29 +33,29 @@
           <div class="form__cover__form__colums__input-content">
             <input type="radio"
               class="input-radio"
-              id="female"
-              value="female"
+              id="FEMALE"
+              value="FEMALE"
               @click="isOpen = false"
               v-model="sex">
-            <label class="input-radio-label" for="female">
+            <label class="input-radio-label" for="FEMALE">
               <span class="input-radio-span"></span>
             </label>
             <label class="form__cover__form__colums__input-content__label"
-              for="female">
+              for="FEMALE">
               여자
             </label>
 
             <input type="radio"
               class="input-radio"
-              id="male"
-              value="male"
+              id="MALE"
+              value="MALE"
               @click="isOpen = false"
               v-model="sex">
-            <label class="input-radio-label" for="male">
+            <label class="input-radio-label" for="MALE">
               <span class="input-radio-span"></span>
             </label>
             <label class="form__cover__form__colums__input-content__label"
-              for="male">
+              for="MALE">
               남자
             </label>
           </div>
@@ -99,14 +99,14 @@
             </label>
             <input type="text"
               class="input-text input-text-school-class"
-              v-model="schoolClass"
+              v-model="studentClass"
               @keydown="onlyNumber">
             <label class="title--input">
               반
             </label>
             <input type="text"
               class="input-text input-text-school-number"
-              v-model="schoolnumber"
+              v-model="studentNumber"
               @keydown="onlyNumber">
             <label class="title--input">
               번
@@ -133,8 +133,8 @@
           <div class="form__cover__form__colums__input-content">
             <input type="text"
               class="input-text input-text-guardian-name"
-              :value="guardianName"
-              @input="guardianName = $event.target.value">
+              :value="parentName"
+              @input="parentName = $event.target.value">
           </div>
         </div>
         <div class="form__cover__form__colums" v-if="!isGED">
@@ -144,7 +144,7 @@
           <div class="form__cover__form__colums__input-content">
             <input type="text"
               class="input-text input-text-school-contact"
-              v-model="schoolContact"
+              v-model="schoolTel"
               @keydown="onlyNumber">
             <span class="form__cover__form__colums__input-content__sign">
               * ‘-’ 문자를 제외한 숫자만 입력해주세요.
@@ -158,7 +158,7 @@
           <div class="form__cover__form__colums__input-content">
             <input type="text"
               class="input-text input-text-guardian-contact"
-              v-model="guardianContact"
+              v-model="parentTel"
               @keydown="onlyNumber">
             <span class="form__cover__form__colums__input-content__sign">
               * ‘-’ 문자를 제외한 숫자만 입력해주세요.
@@ -172,7 +172,7 @@
           <div class="form__cover__form__colums__input-content">
             <input type="text"
               class="input-text input-text-contact"
-              v-model="contact"
+              v-model="myTel"
               @keydown="onlyNumber">
             <span class="form__cover__form__colums__input-content__sign">
               * ‘-’ 문자를 제외한 숫자만 입력해주세요.
@@ -188,12 +188,12 @@
               disabled
               class="input-text input-text-zip"
               placeholder="우편번호"
-              :value="zip">
+              :value="zipCode">
             <input type="text"
               disabled
               class="input-text input-text-address"
               placeholder="기본주소"
-              :value="address">
+              :value="addressBase">
             <button class="button button-search-address" @click="openSearchAdress">
               주소 검색
             </button>
@@ -201,8 +201,8 @@
             <input type="text"
               class="input-text input-text-detailed-address"
               placeholder="상세주소"
-              :value="detailedAddress"
-              @input="detailedAddress = $event.target.value">
+              :value="addressDetail"
+              @input="addressDetail = $event.target.value">
           </div>
         </div>
       </div>
@@ -211,7 +211,8 @@
       <prev-next-btn
         :prevShow="true"
         :nextShow="true"
-        :link="nextLink"/>
+        :prevLink="prevLink"
+        :nextLink="nextLink"/>
     </div>
     <entry-footer />
   </div>
@@ -244,7 +245,7 @@ export default {
       subText: '2019 입학원서 작성',
       yearOptions: [],
       monthOptions: [],
-      nextLink: 'grade-scheduled',
+      prevLink: '/classify',
     };
   },
   computed: {
@@ -282,9 +283,18 @@ export default {
         return this.$store.state.classify.isGED;
       },
     },
-    PersonName: {
+    nextLink() {
+      let link;
+      switch (this.$store.state.classify.graduateType) {
+        case 'DONE': link = 'grade-graduated'; break;
+        case 'GED': link = 'grade-ged'; break;
+        default: link = 'grade-scheduled';
+      }
+      return link;
+    },
+    personName: {
       get() {
-        return this.$store.state.PersonInfo.PersonName;
+        return this.$store.state.PersonInfo.personName;
       },
       set(data) {
         this.$store.commit('updatePersonName', {
@@ -332,22 +342,22 @@ export default {
         });
       },
     },
-    schoolClass: {
+    studentClass: {
       get() {
-        return this.$store.state.PersonInfo.schoolClass;
+        return this.$store.state.PersonInfo.studentClass;
       },
       set(data) {
-        this.$store.commit('updateSchoolClass', {
+        this.$store.commit('updateStudentClass', {
           data,
         });
       },
     },
-    schoolnumber: {
+    studentNumber: {
       get() {
-        return this.$store.state.PersonInfo.schoolnumber;
+        return this.$store.state.PersonInfo.studentNumber;
       },
       set(data) {
-        this.$store.commit('updateSchoolnumber', {
+        this.$store.commit('updateStudentNumber', {
           data,
         });
       },
@@ -362,82 +372,82 @@ export default {
         });
       },
     },
-    guardianName: {
+    parentName: {
       get() {
-        return this.$store.state.PersonInfo.guardianName;
+        return this.$store.state.PersonInfo.parentName;
       },
       set(data) {
-        this.$store.commit('updateGuardianName', {
+        this.$store.commit('updateParentName', {
           data,
         });
       },
     },
-    schoolContact: {
+    schoolTel: {
       get() {
-        return this.$store.state.PersonInfo.schoolContact;
+        return this.$store.state.PersonInfo.schoolTel;
       },
       set(data) {
-        this.$store.commit('updateSchoolContact', {
+        this.$store.commit('updateSchoolTel', {
           data,
         });
       },
     },
-    guardianContact: {
+    parentTel: {
       get() {
-        return this.$store.state.PersonInfo.guardianContact;
+        return this.$store.state.PersonInfo.parentTel;
       },
       set(data) {
-        this.$store.commit('updateGuardianContact', {
+        this.$store.commit('updateParentTel', {
           data,
         });
       },
     },
-    contact: {
+    myTel: {
       get() {
-        return this.$store.state.PersonInfo.contact;
+        return this.$store.state.PersonInfo.myTel;
       },
       set(data) {
-        this.$store.commit('updateContact', {
+        this.$store.commit('updateMyTel', {
           data,
         });
       },
     },
-    zip: {
+    zipCode: {
       get() {
-        return this.$store.state.PersonInfo.zip;
+        return this.$store.state.PersonInfo.zipCode;
       },
       set(data) {
-        this.$store.commit('updateZip', {
+        this.$store.commit('updateZipCode', {
           data,
         });
       },
     },
-    address: {
+    addressBase: {
       get() {
-        return this.$store.state.PersonInfo.address;
+        return this.$store.state.PersonInfo.addressBase;
       },
       set(data) {
-        this.$store.commit('updateAddress', {
+        this.$store.commit('updateAddressBase', {
           data,
         });
       },
     },
-    detailedAddress: {
+    addressDetail: {
       get() {
-        return this.$store.state.PersonInfo.detailedAddress;
+        return this.$store.state.PersonInfo.addressDetail;
       },
       set(data) {
-        this.$store.commit('updateDetailedAddress', {
+        this.$store.commit('updateAddressDetail', {
           data,
         });
       },
     },
-    image: {
+    imgPath: {
       get() {
-        return this.$store.state.PersonInfo.image;
+        return this.$store.state.PersonInfo.imgPath;
       },
       set(data) {
-        this.$store.commit('updateImage', {
+        this.$store.commit('updateImgPath', {
           data,
         });
       },
@@ -449,9 +459,9 @@ export default {
     const count = 20; // '년'옵션의 개수
     const yearArray = [];
     for (let i = 0; i < count; i += 1) {
-      const year = lastYear - i;
+      const year = `${lastYear - i}`;
       yearArray[i] = {
-        text: `${year}`,
+        text: year,
         value: year,
       };
     }
@@ -503,8 +513,8 @@ export default {
           fullRoadAddr += fullRoadAddr ? extraRoadAddr : '';
 
           // 우편번호와 주소 정보를 해당 필드에 넣는다.
-          vueObject.zip = data.zonecode; // 5자리 새 우편번호 사용
-          vueObject.address = fullRoadAddr;
+          vueObject.zipCode = data.zonecode; // 5자리 새 우편번호 사용
+          vueObject.addressBase = fullRoadAddr;
         },
       }).open();
     },

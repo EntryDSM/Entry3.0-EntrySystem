@@ -45,7 +45,8 @@
       :prevShow="true"
       :nextShow="true"
       :text="btnText"
-      :link="nextLink"/>
+      :prevLink="prevLink"
+      :nextLink="nextLink"/>
     <entry-footer />
   </div>
 </template>
@@ -89,6 +90,15 @@ export default {
     },
   },
   computed: {
+    prevLink() {
+      let link;
+      switch (this.$store.state.classify.graduateType) {
+        case 'DONE': link = 'grade-graduated'; break;
+        case 'GED': link = 'grade-ged'; break;
+        default: link = 'grade-scheduled';
+      }
+      return link;
+    },
     ...mapState({
       introduce: state => state.introNPlan.introduce,
       plan: state => state.introNPlan.plan,

@@ -1285,7 +1285,8 @@
     <prev-next-btn
       :prevShow="true"
       :nextShow="true"
-      :link="nextLink"/>
+      :prevLink="prevLink"
+      :nextLink="nextLink"/>
     <entry-footer />
   </div>
 </template>
@@ -1316,6 +1317,7 @@ export default {
       scores: ['a', 'b', 'c', 'd', 'e'],
 
       // 다음 연결 링크
+      prevLink: '/personal',
       nextLink: '/intro',
 
       // 미이수 학기 선택

@@ -41,6 +41,15 @@ module.exports = {
   module: {
     rules: [
       ...(config.dev.useEslint ? [createLintingRule()] : []),
+      { 
+        test: /\.pdf$/,
+        use: [
+          {
+            loader: 'file-loader',
+          }
+        ]
+        // include: paths 
+      },
       {
         test: /.s[a|c]ss$/,
         loader: 'style!css!sass'
