@@ -44,7 +44,7 @@ export default {
     onClick: {
       type: Function,
       required: false,
-    }
+    },
   },
   methods: {
     toPrevious() {
