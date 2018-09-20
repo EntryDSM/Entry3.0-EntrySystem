@@ -63,6 +63,9 @@ export default {
             this.$store.commit('changeIndex', {
               index: 0,
             });
+            this.$store.commit('updateClassify', {
+              token: res.data.token,
+            });
           } else {
             this.pw = '';
             this.pwwrong = true;
