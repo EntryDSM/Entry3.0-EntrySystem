@@ -212,7 +212,8 @@
         :prevShow="true"
         :nextShow="true"
         :prevLink="prevLink"
-        :nextLink="nextLink"/>
+        :nextLink="nextLink"
+        :onClick="() => sendServer()"/>
     </div>
     <entry-footer />
   </div>
@@ -517,6 +518,24 @@ export default {
           vueObject.addressBase = fullRoadAddr;
         },
       }).open();
+    },
+    sendServer() {
+      const token = this.$cookies.get('accessToken');
+      const data = {...this.$store.state.PersonInfo};
+      data.birth = `${data.year}-${data.month}-${data.day}`;
+    
+      this.$axios({
+        method: 'put',
+        url: 'http://192.168.1.101:8080/api/me/info',
+        headers: { Authorization: `JWT ${token}` },
+        data
+      }).then((res) => {
+        if (res.status === 200) {
+          this.$toastr.s('서버에 임시저장 되었습니다.');
+        } else {
+          this.$toastr.e('서버와 통신이 불안정합니다.<br/> 재연결이 필요합니다.');
+        }
+      });
     },
   },
 };
