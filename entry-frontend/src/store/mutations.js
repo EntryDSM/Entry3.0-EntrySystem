@@ -54,6 +54,9 @@ export const mutations = {
       case 'input-third-first':
         reset(allGrades, 4);
         break;
+      case 'input-third-second':
+        reset(allGrades, 5);
+        break;
       default: break;
     }
   },
