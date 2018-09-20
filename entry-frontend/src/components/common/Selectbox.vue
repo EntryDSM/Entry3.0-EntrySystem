@@ -6,7 +6,7 @@
     ]">
     <div class="selectbox__current-value"
       @click="isEnabled ? toggleOption() : ''">
-      {{ value || disabledText }}
+      {{ selected > -1 ? options[selected].text : disabledText }}
     </div>
     <div class="selectbox__wrapper">
       <ul class="selectbox__wrapper__option">
@@ -14,7 +14,7 @@
         <li class="selectbox__wrapper__option__value"
           v-for="(option, index) in options" :key="option.value"
           :class="{'selectbox__wrapper__option__value--selected': selected === index}"
-          @click="changeValue(option.value, index)">
+          @click="changeValue(index)">
           {{ option.text }}
         </li>
       </ul>
@@ -52,16 +52,14 @@ export default {
     toggleOption() {
       this.isFocused = !this.isFocused;
     },
-    changeValue(value, index) {
+    changeValue(index) {
       this.selected = index;
-      this.$emit('input', value);
+      this.$emit('input', this.options[index].value);
       this.isFocused = false;
     },
   },
   created() {
-    for (let i = 0; i < this.options.length; i += 1) {
-      this.selected = this.options[i].value === this.value ? i : -1;
-    }
+    this.selected = this.options.findIndex(({ value }) => this.value === value);
   },
 };
 </script>

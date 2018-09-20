@@ -14,7 +14,7 @@
 
         <!-- 이미지 첨부 컴포넌트 -->
         <attach-image class="form__cover__form__attach-image"
-          @upload="file => this.image = file"/>
+          @upload="path => this.imgPath = path"/>
         <div class="form__cover__form__colums">
           <div class="form__cover__form__colums__name">
             이름
@@ -22,8 +22,8 @@
           <div class="form__cover__form__colums__input-content">
             <input type="text"
               class="input-text input-text-name"
-              :value="name"
-              @input="name = $event.target.value">
+              :value="personName"
+              @input="personName = $event.target.value">
           </div>
         </div>
         <div class="form__cover__form__colums">
@@ -33,29 +33,29 @@
           <div class="form__cover__form__colums__input-content">
             <input type="radio"
               class="input-radio"
-              id="female"
-              value="female"
+              id="FEMALE"
+              value="FEMALE"
               @click="isOpen = false"
               v-model="sex">
-            <label class="input-radio-label" for="female">
+            <label class="input-radio-label" for="FEMALE">
               <span class="input-radio-span"></span>
             </label>
             <label class="form__cover__form__colums__input-content__label"
-              for="female">
+              for="FEMALE">
               여자
             </label>
 
             <input type="radio"
               class="input-radio"
-              id="male"
-              value="male"
+              id="MALE"
+              value="MALE"
               @click="isOpen = false"
               v-model="sex">
-            <label class="input-radio-label" for="male">
+            <label class="input-radio-label" for="MALE">
               <span class="input-radio-span"></span>
             </label>
             <label class="form__cover__form__colums__input-content__label"
-              for="male">
+              for="MALE">
               남자
             </label>
           </div>
@@ -99,15 +99,15 @@
             </label>
             <input type="text"
               class="input-text input-text-school-class"
-              :value="schoolClass"
-              @input="onlyNumber">
+              v-model="studentClass"
+              @keydown="onlyNumber">
             <label class="title--input">
               반
             </label>
             <input type="text"
               class="input-text input-text-school-number"
-              :value="schoolnumber"
-              @input="onlyNumber">
+              v-model="studentNumber"
+              @keydown="onlyNumber">
             <label class="title--input">
               번
             </label>
@@ -133,8 +133,8 @@
           <div class="form__cover__form__colums__input-content">
             <input type="text"
               class="input-text input-text-guardian-name"
-              :value="guardianName"
-              @input="guardianName = $event.target.value">
+              :value="parentName"
+              @input="parentName = $event.target.value">
           </div>
         </div>
         <div class="form__cover__form__colums" v-if="!isGED">
@@ -144,8 +144,8 @@
           <div class="form__cover__form__colums__input-content">
             <input type="text"
               class="input-text input-text-school-contact"
-              :value="schoolContact"
-              @input="onlyNumber">
+              v-model="schoolTel"
+              @keydown="onlyNumber">
             <span class="form__cover__form__colums__input-content__sign">
               * ‘-’ 문자를 제외한 숫자만 입력해주세요.
             </span>
@@ -158,8 +158,8 @@
           <div class="form__cover__form__colums__input-content">
             <input type="text"
               class="input-text input-text-guardian-contact"
-              :value="guardianContact"
-              @input="onlyNumber">
+              v-model="parentTel"
+              @keydown="onlyNumber">
             <span class="form__cover__form__colums__input-content__sign">
               * ‘-’ 문자를 제외한 숫자만 입력해주세요.
             </span>
@@ -172,8 +172,8 @@
           <div class="form__cover__form__colums__input-content">
             <input type="text"
               class="input-text input-text-contact"
-              :value="contact"
-              @input="onlyNumber">
+              v-model="myTel"
+              @keydown="onlyNumber">
             <span class="form__cover__form__colums__input-content__sign">
               * ‘-’ 문자를 제외한 숫자만 입력해주세요.
             </span>
@@ -188,12 +188,12 @@
               disabled
               class="input-text input-text-zip"
               placeholder="우편번호"
-              :value="zip">
+              :value="zipCode">
             <input type="text"
               disabled
               class="input-text input-text-address"
               placeholder="기본주소"
-              :value="address">
+              :value="addressBase">
             <button class="button button-search-address" @click="openSearchAdress">
               주소 검색
             </button>
@@ -201,18 +201,17 @@
             <input type="text"
               class="input-text input-text-detailed-address"
               placeholder="상세주소"
-              :value="detailedAddress"
-              @input="detailedAddress = $event.target.value">
+              :value="addressDetail"
+              @input="addressDetail = $event.target.value">
           </div>
         </div>
       </div>
       <!-- form end -->
 
       <prev-next-btn
-      :prevShow="1"
-      :nextShow="1"
-      @toPrevPage="movePrev"
-      @toNextPage="moveNext"/>
+        :prevShow="true"
+        :nextShow="true"
+        :link="nextLink"/>
     </div>
     <entry-footer />
   </div>
@@ -240,28 +239,12 @@ export default {
   },
   data() {
     return {
-      isGED: true, // 검정고시 여부
       isOpen: false, // 학교 검색 모달창 열림 여부
       title: '인적 사항',
       subText: '2019 입학원서 작성',
       yearOptions: [],
       monthOptions: [],
-      name: null, // 이름
-      sex: null, // 성별
-      year: 2003, // 생년
-      month: '01', // 생월
-      day: '01', // 생일
-      schoolClass: null, // 학급 반
-      schoolnumber: null, //  학급 번호
-      schoolName: null, // 중학교명
-      guardianName: null, // 보호자명
-      schoolContact: null, // 학교 연락처
-      guardianContact: null, // 보호자 연락처
-      contact: null, // 본인 연락처
-      zip: null, // 우편번호
-      address: null, // 기본주소
-      detailedAddress: null, // 상세주소
-      image: null, // 이미지
+      nextLink: 'grade-scheduled',
     };
   },
   computed: {
@@ -294,6 +277,171 @@ export default {
       }
       return dayArray;
     },
+    isGED: {
+      get() {
+        return this.$store.state.classify.isGED;
+      },
+    },
+    personName: {
+      get() {
+        return this.$store.state.PersonInfo.personName;
+      },
+      set(data) {
+        this.$store.commit('updatePersonName', {
+          data,
+        });
+      },
+    },
+    sex: {
+      get() {
+        return this.$store.state.PersonInfo.sex;
+      },
+      set(data) {
+        this.$store.commit('updateSex', {
+          data,
+        });
+      },
+    },
+    year: {
+      get() {
+        return this.$store.state.PersonInfo.year;
+      },
+      set(data) {
+        this.$store.commit('updateYear', {
+          data,
+        });
+      },
+    },
+    month: {
+      get() {
+        return this.$store.state.PersonInfo.month;
+      },
+      set(data) {
+        this.$store.commit('updateMonth', {
+          data,
+        });
+      },
+    },
+    day: {
+      get() {
+        return this.$store.state.PersonInfo.day;
+      },
+      set(data) {
+        this.$store.commit('updateDay', {
+          data,
+        });
+      },
+    },
+    studentClass: {
+      get() {
+        return this.$store.state.PersonInfo.studentClass;
+      },
+      set(data) {
+        this.$store.commit('updateStudentClass', {
+          data,
+        });
+      },
+    },
+    studentNumber: {
+      get() {
+        return this.$store.state.PersonInfo.studentNumber;
+      },
+      set(data) {
+        this.$store.commit('updateStudentNumber', {
+          data,
+        });
+      },
+    },
+    schoolName: {
+      get() {
+        return this.$store.state.PersonInfo.schoolName;
+      },
+      set(data) {
+        this.$store.commit('updateSchoolName', {
+          data,
+        });
+      },
+    },
+    parentName: {
+      get() {
+        return this.$store.state.PersonInfo.parentName;
+      },
+      set(data) {
+        this.$store.commit('updateParentName', {
+          data,
+        });
+      },
+    },
+    schoolTel: {
+      get() {
+        return this.$store.state.PersonInfo.schoolTel;
+      },
+      set(data) {
+        this.$store.commit('updateSchoolTel', {
+          data,
+        });
+      },
+    },
+    parentTel: {
+      get() {
+        return this.$store.state.PersonInfo.parentTel;
+      },
+      set(data) {
+        this.$store.commit('updateParentTel', {
+          data,
+        });
+      },
+    },
+    myTel: {
+      get() {
+        return this.$store.state.PersonInfo.myTel;
+      },
+      set(data) {
+        this.$store.commit('updateMyTel', {
+          data,
+        });
+      },
+    },
+    zipCode: {
+      get() {
+        return this.$store.state.PersonInfo.zipCode;
+      },
+      set(data) {
+        this.$store.commit('updateZipCode', {
+          data,
+        });
+      },
+    },
+    addressBase: {
+      get() {
+        return this.$store.state.PersonInfo.addressBase;
+      },
+      set(data) {
+        this.$store.commit('updateAddressBase', {
+          data,
+        });
+      },
+    },
+    addressDetail: {
+      get() {
+        return this.$store.state.PersonInfo.addressDetail;
+      },
+      set(data) {
+        this.$store.commit('updateAddressDetail', {
+          data,
+        });
+      },
+    },
+    imgPath: {
+      get() {
+        return this.$store.state.PersonInfo.imgPath;
+      },
+      set(data) {
+        this.$store.commit('updateImgPath', {
+          data,
+        });
+      },
+    },
   },
   created() {
     // '년'옵션 생성
@@ -301,9 +449,9 @@ export default {
     const count = 20; // '년'옵션의 개수
     const yearArray = [];
     for (let i = 0; i < count; i += 1) {
-      const year = lastYear - i;
+      const year = `${lastYear - i}`;
       yearArray[i] = {
-        text: `${year}`,
+        text: year,
         value: year,
       };
     }
@@ -321,10 +469,17 @@ export default {
     this.monthOptions = monthArray;
   },
   methods: {
-    // 숫자만 입력가능하도록
+    // 숫자, 백스페이스가 아닐 경우 이벤트 막기
     onlyNumber(e) {
-      // 입력 데이터를 숫자만으로 바꾼다
-      e.target.value = e.target.value.replace(/[^\d]/g, '');
+      if (!(e.keyCode >= 48 && e.keyCode <= 57)) {
+        switch (e.key) {
+          case 'Backspace':
+          case 'ArrowLeft':
+          case 'ArrowRight':
+          case 'Delete': break;
+          default: e.preventDefault();
+        }
+      }
     },
     openSearchAdress() {
       const vueObject = this;
@@ -348,16 +503,10 @@ export default {
           fullRoadAddr += fullRoadAddr ? extraRoadAddr : '';
 
           // 우편번호와 주소 정보를 해당 필드에 넣는다.
-          vueObject.zip = data.zonecode; // 5자리 새 우편번호 사용
-          vueObject.address = fullRoadAddr;
+          vueObject.zipCode = data.zonecode; // 5자리 새 우편번호 사용
+          vueObject.addressBase = fullRoadAddr;
         },
       }).open();
-    },
-    movePrev() {
-      this.$router.push('/');
-    },
-    moveNext() {
-      this.$router.push('/');
     },
   },
 };
@@ -375,6 +524,10 @@ export default {
   color: #296169;
   margin-left: 15px;
   outline: none;
+  transition: 0.5s;
+  &:hover{
+    background-color: #d5edf0;
+  }
   &:active {
     background-color: #D8E6E9;
   }

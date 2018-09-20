@@ -61,9 +61,11 @@ export default {
     background-repeat: no-repeat;
     background-position: center center;
     @include e('preview') {
+      width: 100%;
+      height: 100%;
       background-repeat: no-repeat;
       background-position: center center;
-      background-size: contain;
+      background-size: cover;
     }
   }
 }
