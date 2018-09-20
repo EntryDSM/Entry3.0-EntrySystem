@@ -133,6 +133,7 @@
                 v-model="graduationYear"
                 :isEnabled="isGraduated"
                 :options="[
+                  {text: '2018', value:'2018'},
                   {text: '2017', value:'2017'},
                   {text: '2016', value:'2016'},
                   {text: '2015', value:'2015'},
@@ -245,10 +246,19 @@ export default {
   computed: {
     graduateType() {
       if (this.isGED) {
+        this.$store.commit('updateGraduationYear', {
+          data: null,
+        });
         return 'GED';
       } else if (!this.isGraduated) {
+        this.$store.commit('updateGraduationYear', {
+          data: 2019,
+        });
         return 'WILL';
       } else if (this.isGraduated) {
+        this.$store.commit('updateGraduationYear', {
+          data: null,
+        });
         return 'DONE';
       }
       return null;
@@ -296,6 +306,11 @@ export default {
         this.$store.commit('updateEntranceModel', {
           data: value,
         });
+        if (this.$store.state.classify.entranceModel !== 'SOCIAL') {
+          this.$store.commit('updateSocialOption', {
+            data: null,
+          });
+        }
       },
     },
     region: {
@@ -345,9 +360,6 @@ export default {
   methods: {
     moveNext() {
       this.$router.push('/');
-    },
-    socialOptionstoNull() {
-      this.socialOption = null;
     },
   },
 };
