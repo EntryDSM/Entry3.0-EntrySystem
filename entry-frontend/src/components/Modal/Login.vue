@@ -18,10 +18,10 @@
       <div class="login__inputs">
         <input type="text" class="modal--input input-shake"
         v-if="idwrong" v-model="id" placeholder="아이디"/>
-        <input type="text" class="modal--input" v-else v-model="id" placeholder="아이디"/>
+        <input type="text" class="modal--input" v-else v-model="email" placeholder="이메일"/>
         <input type="password" class="modal--input input-shake"
         v-if="pwwrong" v-model="pw" placeholder="비밀번호"/>
-        <input type="password" class="modal--input" v-else v-model="pw" placeholder="비밀번호"/>
+        <input type="password" class="modal--input" v-else v-model="password" placeholder="비밀번호"/>
         <div class="modal--btn" v-on:click="login">
           로그인
         </div>
@@ -36,31 +36,30 @@
 <script>
 export default {
   data: () => ({
-    id: '',
+    email: '',
     pw: '',
     idwrong: false,
     pwwrong: false,
   }),
   methods: {
     login() {
-      const id = this.id;
-      const pw = this.pw;
-      if (id === '') {
+      const { email, password } = this;
+      if (email === '') {
         this.idwrong = true;
         this.pwwrong = false;
         setTimeout(() => {
           this.idwrong = false;
         }, 5000);
-      } else if (pw === '') {
+      } else if (password === '') {
         this.pwwrong = true;
         this.idwrong = false;
         setTimeout(() => {
           this.pwwrong = false;
         }, 5000);
       } else {
-        this.$axios.post('/login', { id, pw }).then(({ data }) => {
-          if (data.type) {
-            this.$cookies.set('JWT', data.token, '4d');
+        this.$axios.post('로컬호스트/api/signin', { email, password }).then((res) => {
+          if (res.status === 200) {
+            this.$cookies.set('access_token', res.data.token, '4d');
             this.$store.commit('changeIndex', {
               index: 0,
             });
