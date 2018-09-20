@@ -10,6 +10,7 @@
           <td class="table-data-text">
             <input type="number"
                    v-model.number="volunteerNAttendance.volunteer"
+                   @change="updateVolunteerNAttendance('volunteer', $event.target.value)"
                    @keydown="onlyNumber"
                    min="0"
                    class="input-text table-data-text__input"
@@ -25,6 +26,7 @@
               <td class="table-data-text__row__data">
                 <input type="number"
                        v-model.number="volunteerNAttendance.absence"
+                       @change="updateVolunteerNAttendance('absence', $event.target.value)"
                        @keydown="onlyNumber"
                        min="0"
                        class="input-text table-data-text__input"
@@ -35,6 +37,7 @@
               <td class="table-data-text__row__data">
                 <input type="number"
                        v-model.number="volunteerNAttendance.earlyLeave"
+                       @change="updateVolunteerNAttendance('earlyLeave', $event.target.value)"
                        @keydown="onlyNumber"
                        min="0"
                        class="input-text table-data-text__input"
@@ -47,6 +50,7 @@
               <td class="table-data-text__row__data">
                 <input type="number"
                        v-model.number="volunteerNAttendance.lateness"
+                       @change="updateVolunteerNAttendance('lateness', $event.target.value)"
                        @keydown="onlyNumber"
                        min="0"
                        class="input-text table-data-text__input"
@@ -57,6 +61,7 @@
               <td class="table-data-text__row__data">
                 <input type="number"
                        v-model.number="volunteerNAttendance.missingClass"
+                       @change="updateVolunteerNAttendance('missingClass', $event.target.value)"
                        @keydown="onlyNumber"
                        min="0"
                        class="input-text table-data-text__input"
@@ -1534,15 +1539,6 @@ export default {
       // Hover 체크
       checkHover: false,
 
-      // 봉사 및 출석
-      volunteerNAttendance: {
-        volunteer: 0,
-        absence: 0,
-        earlyLeave: 0,
-        lateness: 0,
-        missingClass: 0,
-      },
-
       // 미이수 학기 선택
       semesters: {
         firstFirstSemester: false,
@@ -1559,96 +1555,68 @@ export default {
       // 초기화 점수
       scores: ['a', 'b', 'c', 'd', 'e'],
 
-      /* 점수 실제 설정 */
-      // 국어
-      koreanScores: [
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-      ],
-
-      // 사회
-      societyScores: [
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-      ],
-
-      // 역사
-      historyScores: [
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-      ],
-
-      // 수학
-      mathScores: [
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-      ],
-
-      // 과학
-      scienceScores: [
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-      ],
-
-      // 기술 - 가정
-      techAndHomeScores: [
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-      ],
-
-      // 영어
-      englishScores: [
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-      ],
       prevLink: '/personal',
       nextLink: '/intro',
     };
   },
   computed: {
-    grades() {
-      const allGrades = [
-        this.koreanScores,
-        this.societyScores,
-        this.historyScores,
-        this.mathScores,
-        this.scienceScores,
-        this.techAndHomeScores,
-        this.englishScores,
-      ];
+    volunteerNAttendance: {
+      get() {
+        return this.$store.getters.selectType.volunteerNAttendance;
+      },
+    },
 
-      return allGrades;
+    // score : "A", "B", "C", "D", "E", "X"(미이수), null (씨발련이 입력 안함)
+    koreanScores: {
+      get() {
+        return this.$store.getters.selectType.koreanScores;
+      },
+    },
+    societyScores: {
+      get() {
+        return this.$store.getters.selectType.societyScores;
+      },
+    },
+    historyScores: {
+      get() {
+        return this.$store.getters.selectType.historyScores;
+      },
+    },
+    mathScores: {
+      get() {
+        return this.$store.getters.selectType.mathScores;
+      },
+    },
+    scienceScores: {
+      get() {
+        return this.$store.getters.selectType.scienceScores;
+      },
+    },
+    techAndHomeScores: {
+      get() {
+        return this.$store.getters.selectType.techAndHomeScores;
+      },
+    },
+    englishScores: {
+      get() {
+        return this.$store.getters.selectType.englishScores;
+      },
+    },
+    grades: {
+      get() {
+        return this.$store.getters.selectType.grades;
+      },
     },
   },
   methods: {
+    // 봉사 및 출석 Commit - 완료
+    updateVolunteerNAttendance(field, value) {
+      this.$store.commit('updateVolunteerNAttendance', {
+        field,
+        value,
+      });
+    },
+
     // 전체 성적 기능
     setHoverGrade(grade) {
       this.checkHover = true;
@@ -1662,17 +1630,10 @@ export default {
 
     // 실제 점수 초기화
     setGrades() {
-      const allGrades = this.grades;
-
-      for (let i = 0; i < allGrades.length; i += 1) {
-        for (let j = 0; j < allGrades[i].length; j += 1) {
-          const resetAll = allGrades[i][j];
-          // 초기화 - 점수 및 클릭 여부
-          resetAll.score = this.resetAllGrade;
-          resetAll.decided = true;
-          resetAll.passed = true;
-        }
-      }
+      this.$store.commit('updateGrades', {
+        grades: this.grades,
+        resetAllGrade: this.resetAllGrade,
+      });
     },
 
     // 미이수 체크 해제
@@ -1691,56 +1652,22 @@ export default {
       this.setGrades();
     },
 
-    // 미이수 설정
+    // 미이수 설정 - 완료
     discompleteSemester({ target }) {
-      // 학기별 null로 초기화
-      function reset(all, index) {
-        for (let i = 0; i < all.length; i += 1) {
-          const allScores = all[i];
-
-          if (target.value === 'true') {
-            allScores[index].score = '';
-            allScores[index].passed = false;
-            allScores[index].decided = false;
-          } else {
-            allScores[index].score = 'X';
-            allScores[index].passed = false;
-            allScores[index].decided = true;
-          }
-        }
-      }
-      // 학급 불러오기
-      const allGrades = this.grades;
-
-      switch (target.id) {
-        case 'input-first-first':
-          reset(allGrades, 0);
-          break;
-        case 'input-first-second':
-          reset(allGrades, 1);
-          break;
-        case 'input-second-first':
-          reset(allGrades, 2);
-          break;
-        case 'input-second-second':
-          reset(allGrades, 3);
-          break;
-        case 'input-third-first':
-          reset(allGrades, 4);
-          break;
-        case 'input-third-second':
-          reset(allGrades, 5);
-          break;
-        default: break;
-      }
+      this.$store.commit('updateDiscompleteSemester', {
+        grades: this.grades,
+        target,
+      });
     },
 
     // 점수를 눌렀을 시의 이벤트
     changeDecided({ target }, val) {
-      const v = val;
-      v.decided = !v.decided;
-      v.passed = target.innerText === 'X' ? false : !v.passed;
-      v.score = v.decided ? v.score : '';
+      this.$nextTick(() => {
+        this.$store.commit('updateChangeDecided', {
+          target,
+          val,
+        });
+      });
     },
 
     // 애니메이션을 위한 Class Binding

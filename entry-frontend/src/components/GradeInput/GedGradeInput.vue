@@ -10,7 +10,7 @@
         </div>
         <div class="total-input-part">
           <input type="number"
-                 v-model.number="zedScore"
+                 v-model.number="gedScore"
                  @keydown="onlyNumber"
                  min="0"
                  max="100"
@@ -45,7 +45,6 @@ export default {
   },
   data() {
     return {
-      zedScore: 0,
       prevLink: '/personal',
       nextLink: '/intro',
     };
@@ -63,9 +62,19 @@ export default {
       }
     },
   },
+  computed: {
+    gedScore: {
+      get() {
+        return this.$store.getters.selectType.gedScore;
+      },
+      set(val) {
+        this.$store.commit('updateGedScore', val);
+      },
+    },
+  },
   watch: {
-    totalScore(val) {
-      if (val > 100) this.totalScore = 100;
+    gedScore(val) {
+      if (val > 100) this.gedScore = 100;
     },
   },
 };

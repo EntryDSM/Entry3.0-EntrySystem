@@ -9,7 +9,8 @@
           <td class="table-data-text">봉사시간</td>
           <td class="table-data-text">
             <input type="number"
-                   v-model.number="volunteerNAttendance.volunteer"
+                   :value="volunteerNAttendance.volunteer"
+                   @change="updateVolunteerNAttendance('volunteer', $event.target.value)"
                    @keydown="onlyNumber"
                    min="0"
                    class="input-text table-data-text__input"
@@ -24,7 +25,8 @@
               <td class="table-data-text__row__data">전체 무단 결석 일수</td>
               <td class="table-data-text__row__data">
                 <input type="number"
-                       v-model.number="volunteerNAttendance.absence"
+                       :value="volunteerNAttendance.absence"
+                       @change="updateVolunteerNAttendance('absence', $event.target.value)"
                        @keydown="onlyNumber"
                        min="0"
                        class="input-text table-data-text__input"
@@ -34,7 +36,8 @@
               <td class="table-data-text__row__data">전체 무단 조퇴 일수</td>
               <td class="table-data-text__row__data">
                 <input type="number"
-                       v-model.number="volunteerNAttendance.earlyLeave"
+                       :value="volunteerNAttendance.earlyLeave"
+                       @change="updateVolunteerNAttendance('earlyLeave', $event.target.value)"
                        @keydown="onlyNumber"
                        min="0"
                        class="input-text table-data-text__input"
@@ -46,7 +49,8 @@
               <td class="table-data-text__row__data">전체 무단 지각 일수</td>
               <td class="table-data-text__row__data">
                 <input type="number"
-                       v-model.number="volunteerNAttendance.lateness"
+                       :value="volunteerNAttendance.lateness"
+                       @change="updateVolunteerNAttendance('lateness', $event.target.value)"
                        @keydown="onlyNumber"
                        min="0"
                        class="input-text table-data-text__input"
@@ -56,7 +60,8 @@
               <td class="table-data-text__row__data">전체 무단 결과 일수</td>
               <td class="table-data-text__row__data">
                 <input type="number"
-                       v-model.number="volunteerNAttendance.missingClass"
+                       :value="volunteerNAttendance.missingClass"
+                       @change="updateVolunteerNAttendance('missingClass', $event.target.value)"
                        @keydown="onlyNumber"
                        min="0"
                        class="input-text table-data-text__input"
@@ -82,7 +87,7 @@
                    id="input-first-first"
                    :value="`${semesters.firstFirstSemester}`"
                    v-model="semesters.firstFirstSemester"
-                   @change="discompleteSemester"
+                   @change="discompleteSemester($event)"
             >
             <label class="input-checkbox-label" for="input-first-first"></label>
             <span class="table-row__semester-text">1학기</span>
@@ -93,7 +98,7 @@
                    id="input-first-second"
                    :value="`${semesters.firstSecondSemester}`"
                    v-model="semesters.firstSecondSemester"
-                   @change="discompleteSemester"
+                   @change="discompleteSemester($event)"
             >
             <label class="input-checkbox-label" for="input-first-second"></label>
             <span class="table-row__semester-text">2학기</span>
@@ -104,7 +109,7 @@
                    id="input-second-first"
                    :value="`${semesters.secondFirstSemester}`"
                    v-model="semesters.secondFirstSemester"
-                   @change="discompleteSemester"
+                   @change="discompleteSemester($event)"
             >
             <label class="input-checkbox-label" for="input-second-first"></label>
             <span class="table-row__semester-text">1학기</span>
@@ -115,7 +120,7 @@
                    id="input-second-second"
                    :value="`${semesters.secondSecondSemester}`"
                    v-model="semesters.secondSecondSemester"
-                   @change="discompleteSemester"
+                   @change="discompleteSemester($event)"
             >
             <label class="input-checkbox-label" for="input-second-second"></label>
             <span class="table-row__semester-text">2학기</span>
@@ -126,7 +131,7 @@
                    id="input-third-first"
                    :value="`${semesters.thirdFirstSemester}`"
                    v-model="semesters.thirdFirstSemester"
-                   @change="discompleteSemester"
+                   @change="discompleteSemester($event)"
             >
             <label class="input-checkbox-label" for="input-third-first"></label>
             <span class="table-row__semester-text">1학기</span>
@@ -1305,14 +1310,15 @@ export default {
       // Hover 체크
       checkHover: false,
 
-      // 봉사 및 출석
-      volunteerNAttendance: {
-        volunteer: 0,
-        absence: 0,
-        earlyLeave: 0,
-        lateness: 0,
-        missingClass: 0,
-      },
+      // 모든 학기 초기화
+      resetAllGrade: '',
+
+      // 초기화 점수
+      scores: ['a', 'b', 'c', 'd', 'e'],
+
+      // 다음 연결 링크
+      prevLink: '/personal',
+      nextLink: '/intro',
 
       // 미이수 학기 선택
       semesters: {
@@ -1321,124 +1327,88 @@ export default {
         secondFirstSemester: false,
         secondSecondSemester: false,
         thirdFirstSemester: false,
+        thirdSecondSemester: false,
       },
-
-      // 모든 학기 초기화
-      resetAllGrade: '',
-
-      // 초기화 점수
-      scores: ['a', 'b', 'c', 'd', 'e'],
-
-      /* 점수 실제 설정 */
-      // 국어
-      koreanScores: [
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-      ],
-
-      // 사회
-      societyScores: [
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-      ],
-
-      // 역사
-      historyScores: [
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-      ],
-
-      // 수학
-      mathScores: [
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-      ],
-
-      // 과학
-      scienceScores: [
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-      ],
-
-      // 기술 - 가정
-      techAndHomeScores: [
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-      ],
-
-      // 영어
-      englishScores: [
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-        { score: '', decided: false, passed: false },
-      ],
-      prevLink: '/personal',
-      nextLink: '/intro',
     };
   },
   computed: {
-    grades() {
-      const allGrades = [
-        this.koreanScores,
-        this.societyScores,
-        this.historyScores,
-        this.mathScores,
-        this.scienceScores,
-        this.techAndHomeScores,
-        this.englishScores,
-      ];
+    volunteerNAttendance: {
+      get() {
+        return this.$store.getters.selectType.volunteerNAttendance;
+      },
+    },
 
-      return allGrades;
+    // score : "A", "B", "C", "D", "E", "X"(미이수), null (씨발련이 입력 안함)
+    koreanScores: {
+      get() {
+        return this.$store.getters.selectType.koreanScores;
+      },
+    },
+    societyScores: {
+      get() {
+        return this.$store.getters.selectType.societyScores;
+      },
+    },
+    historyScores: {
+      get() {
+        return this.$store.getters.selectType.historyScores;
+      },
+    },
+    mathScores: {
+      get() {
+        return this.$store.getters.selectType.mathScores;
+      },
+    },
+    scienceScores: {
+      get() {
+        return this.$store.getters.selectType.scienceScores;
+      },
+    },
+    techAndHomeScores: {
+      get() {
+        return this.$store.getters.selectType.techAndHomeScores;
+      },
+    },
+    englishScores: {
+      get() {
+        return this.$store.getters.selectType.englishScores;
+      },
+    },
+    grades: {
+      get() {
+        return this.$store.getters.selectType.grades;
+      },
     },
   },
   methods: {
+    // 봉사 및 출석 Commit - 완료
+    updateVolunteerNAttendance(field, value) {
+      this.$store.commit('updateVolunteerNAttendance', {
+        field,
+        value,
+      });
+    },
+
     // 전체 성적 기능
-    setHoverGrade(grade) {
+    setHoverGrade(grade) { // 완료
       this.checkHover = true;
       this.resetAllGrade = grade.toUpperCase();
     },
 
-    // 초기화 버튼 설정
+    // 초기화 버튼 설정 - 완료
     setButton(t) {
       this.resetAllGrade = t.textContent.trim();
     },
 
-    // 실제 점수 초기화
+    // 실제 점수 초기화 - 완료
     setGrades() {
-      const allGrades = this.grades;
-
-      for (let i = 0; i < allGrades.length; i += 1) {
-        for (let j = 0; j < allGrades[i].length; j += 1) {
-          const resetAll = allGrades[i][j];
-          // 초기화 - 점수 및 클릭 여부
-          resetAll.score = this.resetAllGrade;
-          resetAll.decided = true;
-          resetAll.passed = true;
-        }
-      }
+      this.$store.commit('updateGrades', {
+        grades: this.grades,
+        resetAllGrade: this.resetAllGrade,
+      });
     },
 
-    // 미이수 체크 해제
+    // 미이수 체크 해제 - 완료
     resetDiscomplete() {
       const s = this.semesters;
       s.firstFirstSemester = false;
@@ -1448,90 +1418,59 @@ export default {
       s.thirdFirstSemester = false;
     },
 
-    resetGrade({ target }) {
+    resetGrade({ target }) { // 완료
       this.resetDiscomplete();
       this.setButton(target);
       this.setGrades();
     },
 
-    // 미이수 설정
+    // 미이수 설정 - 완료
     discompleteSemester({ target }) {
-      // 학기별 null로 초기화
-      function reset(all, index) {
-        for (let i = 0; i < all.length; i += 1) {
-          const allScores = all[i];
-
-          if (target.value === 'true') {
-            allScores[index].score = '';
-            allScores[index].passed = false;
-            allScores[index].decided = false;
-          } else {
-            allScores[index].score = 'X';
-            allScores[index].passed = false;
-            allScores[index].decided = true;
-          }
-        }
-      }
-      // 학급 불러오기
-      const allGrades = this.grades;
-
-      switch (target.id) {
-        case 'input-first-first':
-          reset(allGrades, 0);
-          break;
-        case 'input-first-second':
-          reset(allGrades, 1);
-          break;
-        case 'input-second-first':
-          reset(allGrades, 2);
-          break;
-        case 'input-second-second':
-          reset(allGrades, 3);
-          break;
-        case 'input-third-first':
-          reset(allGrades, 4);
-          break;
-        default: break;
-      }
+      this.$store.commit('updateDiscompleteSemester', {
+        grades: this.grades,
+        target,
+      });
     },
 
     // 점수를 눌렀을 시의 이벤트
     changeDecided({ target }, val) {
-      const v = val;
-      v.decided = !v.decided;
-      v.passed = target.innerText === 'X' ? false : !v.passed;
-      v.score = v.decided ? v.score : '';
+      this.$nextTick(() => {
+        this.$store.commit('updateChangeDecided', {
+          target,
+          val,
+        });
+      });
     },
 
     // 애니메이션을 위한 Class Binding
-    complete(current, compare) {
+    complete(current, compare) { // 완료
       return {
         decide: current !== compare && current !== '',
         underline: current !== '',
       };
     },
 
-    discomplete(current) {
+    discomplete(current) { // 완료
       return {
         decide: current !== 'X' && current !== '',
         underline: current !== '',
       };
     },
 
-    changeBackground(current) {
+    changeBackground(current) { // 완료
       return {
         background: current === 'X',
       };
     },
 
-    // 전체 성적 Hover를 위한 Class Binding
+    // 전체 성적 Hover를 위한 Class Binding - 완료
     allHoverCheck() {
       return {
         'all-hover': this.checkHover,
       };
     },
 
-    // 봉사 및 출석 Input Value 체크
+    // 봉사 및 출석 Input Value 체크 - 완료
     onlyNumber(e) {
       if (!(e.keyCode >= 48 && e.keyCode <= 57)) {
         switch (e.key) {

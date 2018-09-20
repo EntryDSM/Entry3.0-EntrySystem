@@ -1,6 +1,6 @@
 export const GradeInput = {
   /* 검정고시 관련 */
-  zedScore: 0,
+  gedScore: 0,
 
   /* 졸업 예정, 졸업자 관련 */
 
@@ -11,16 +11,6 @@ export const GradeInput = {
     earlyLeave: 0,
     lateness: 0,
     missingClass: 0,
-  },
-
-  // 미이수 학기 선택
-  semesters: {
-    firstFirstSemester: false,
-    firstSecondSemester: false,
-    secondFirstSemester: false,
-    secondSecondSemester: false,
-    thirdFirstSemester: false,
-    thirdSecondSemester: false,
   },
 
   // 국어
