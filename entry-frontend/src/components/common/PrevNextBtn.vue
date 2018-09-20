@@ -51,7 +51,9 @@ export default {
       window.history.back();
     },
     gotoNext() {
-      this.onClick();
+      if (typeof this.onClick === 'function') {
+        this.onClick();
+      }
       this.$router.push(this.nextLink);
     },
   },
