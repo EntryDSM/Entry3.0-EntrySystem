@@ -54,7 +54,7 @@ export const mutations = {
   },
   // PersonalInformation
   updatePersonName: (state, payload) => {
-    state.PersonInfo.PersonName = payload.data;
+    state.PersonInfo.personName = payload.data;
   },
   updateSex: (state, payload) => {
     state.PersonInfo.sex = payload.data;
@@ -68,35 +68,38 @@ export const mutations = {
   updateDay: (state, payload) => {
     state.PersonInfo.day = payload.data;
   },
-  updateSchoolClass: (state, payload) => {
-    state.PersonInfo.schoolClass = payload.data;
+  updateStudentClass: (state, payload) => {
+    state.PersonInfo.studentClass = payload.data;
   },
-  updateSchoolnumber: (state, payload) => {
-    state.PersonInfo.schoolnumber = payload.data;
+  updateStudentNumber: (state, payload) => {
+    state.PersonInfo.studentNumber = payload.data;
   },
   updateSchoolName: (state, payload) => {
     state.PersonInfo.schoolName = payload.data;
   },
-  updateGuardianName: (state, payload) => {
-    state.PersonInfo.guardianName = payload.data;
+  updateParentName: (state, payload) => {
+    state.PersonInfo.parentName = payload.data;
   },
-  updateSchoolContact: (state, payload) => {
-    state.PersonInfo.schoolContact = payload.data;
+  updateSchoolTel: (state, payload) => {
+    state.PersonInfo.schoolTel = payload.data;
   },
-  updateGuardianContact: (state, payload) => {
-    state.PersonInfo.guardianContact = payload.data;
+  updateParentTel: (state, payload) => {
+    state.PersonInfo.parentTel = payload.data;
   },
-  updateContact: (state, payload) => {
-    state.PersonInfo.contact = payload.data;
+  updateMyTel: (state, payload) => {
+    state.PersonInfo.myTel = payload.data;
   },
-  updateZip: (state, payload) => {
-    state.PersonInfo.zip = payload.data;
+  updateZipCode: (state, payload) => {
+    state.PersonInfo.zipCode = payload.data;
   },
-  updateAddress: (state, payload) => {
-    state.PersonInfo.address = payload.data;
+  updateAddressBase: (state, payload) => {
+    state.PersonInfo.addressBase = payload.data;
   },
-  updateDetailedAddress: (state, payload) => {
-    state.PersonInfo.detailedAddress = payload.data;
+  updateAddressDetail: (state, payload) => {
+    state.PersonInfo.addressDetail = payload.data;
+  },
+  updateImgPath: (state, payload) => {
+    state.PersonInfo.imgPath = payload.data;
   },
   updateClassify: (state, payload) => {
     axios.get('로컬호스트/api/me/classification',
