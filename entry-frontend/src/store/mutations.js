@@ -40,8 +40,8 @@ export const mutations = {
   updateIsGraduated: (state, payload) => {
     state.classify.isGraduated = payload.data;
   },
-  updateGraduationYear: (state, payload) => {
-    state.classify.graduationYear = payload.data;
+  updategraduateYear: (state, payload) => {
+    state.classify.graduateYear = payload.data;
   },
   updateSpecialPoints: (state, payload) => {
     state.classify.specialPoints = payload.data;

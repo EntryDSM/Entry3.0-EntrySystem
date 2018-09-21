@@ -130,7 +130,7 @@
             </div>
             <div class="form__cover__form__colums__input-content">
               <selectbox class="selectbox"
-                v-model="graduationYear"
+                v-model="graduateYear"
                 :isEnabled="isGraduated"
                 :options="[
                   {text: '2018', value:'2018'},
@@ -247,17 +247,17 @@ export default {
   computed: {
     graduateType() {
       if (this.isGED) {
-        this.$store.commit('updateGraduationYear', {
+        this.$store.commit('updategraduateYear', {
           data: null,
         });
         return 'GED';
       } else if (!this.isGraduated) {
-        this.$store.commit('updateGraduationYear', {
+        this.$store.commit('updategraduateYear', {
           data: 2019,
         });
         return 'WILL';
       } else if (this.isGraduated) {
-        this.$store.commit('updateGraduationYear', {
+        this.$store.commit('updategraduateYear', {
           data: null,
         });
         return 'DONE';
@@ -298,9 +298,12 @@ export default {
         this.$store.commit('updateadmission', {
           data: value,
         });
-        if (this.$store.state.classify.admission !== 'SOCIAL') {
-          this.$store.commit('updateSocialOption', {
-            data: null,
+        if (value !== 'SOCIAL') {
+          this.$store.commit('updateadmissionDetail', {
+            data: {
+              text: '',
+              value: 'NONE',
+            },
           });
         }
       },
@@ -338,12 +341,12 @@ export default {
         });
       },
     },
-    graduationYear: {
+    graduateYear: {
       get() {
-        return this.$store.state.classify.graduationYear;
+        return this.$store.state.classify.graduateYear;
       },
       set(value) {
-        this.$store.commit('updateGraduationYear', {
+        this.$store.commit('updategraduateYear', {
           data: value,
         });
       },
@@ -374,15 +377,20 @@ export default {
             additionalType,
             region,
             graduateYear,
-          }
-        }).then((res) => {
+            admissionDetail,
+          },
+        }).then(function process(res) {
           if (res.status === 200) {
             this.$toastr.s('서버에 임시저장 되었습니다.');
+          } else if (res.status === 400) {
+            res.data.errors(function (error) {
+              return this.$toastr.e(`${error.field}-${error.message}`);
+            });
           } else {
             this.$toastr.e('서버와 통신이 불안정합니다.<br/> 재연결이 필요합니다.');
           }
         });
-      } else if(graduateType === 'GED' && admission === 'SOCIAL'){
+      } else if (graduateType === 'GED' && admission === 'SOCIAL') {
         this.$axios({
           method: 'put',
           url: 'http://10.156.145.173:8080/api/me/classification',
@@ -392,18 +400,20 @@ export default {
             admissionDetail,
             admission,
             additionalType,
-            admissionDetail: 'NONE',
             region,
-          }
-        }).then((res) => {
+          },
+        }).then(function process(res) {
           if (res.status === 200) {
             this.$toastr.s('서버에 임시저장 되었습니다.');
+          } else if (res.status === 400) {
+            res.data.errors(function (error) {
+              return this.$toastr.e(`${error.field}-${error.message}`);
+            });
           } else {
             this.$toastr.e('서버와 통신이 불안정합니다.<br/> 재연결이 필요합니다.');
           }
         });
-      }
-      else if (admission === 'SOCIAL'){
+      } else if (admission === 'SOCIAL') {
         this.$axios({
           method: 'put',
           url: 'http://10.156.145.173:8080/api/me/classification',
@@ -415,16 +425,19 @@ export default {
             additionalType,
             region,
             graduateYear,
-          }
-        }).then((res) => {
+          },
+        }).then(function process(res) {
           if (res.status === 200) {
             this.$toastr.s('서버에 임시저장 되었습니다.');
+          } else if (res.status === 400) {
+            res.data.errors(function (error) {
+              return this.$toastr.e(`${error.field}-${error.message}`);
+            });
           } else {
             this.$toastr.e('서버와 통신이 불안정합니다.<br/> 재연결이 필요합니다.');
           }
         });
-      }
-      else {
+      } else {
         this.$axios({
           method: 'put',
           url: 'http://10.156.145.173:8080/api/me/classification',
@@ -433,12 +446,16 @@ export default {
             graduateType,
             admission,
             additionalType,
-            admissionDetail: 'NONE',
+            admissionDetail,
             region,
-          }
-        }).then((res) => {
+          },
+        }).then(function process(res) {
           if (res.status === 200) {
             this.$toastr.s('서버에 임시저장 되었습니다.');
+          } else if (res.status === 400) {
+            res.data.errors(function (error) {
+              return this.$toastr.e(`${error.field}-${error.message}`);
+            });
           } else {
             this.$toastr.e('서버와 통신이 불안정합니다.<br/> 재연결이 필요합니다.');
           }
