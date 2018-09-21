@@ -10,6 +10,7 @@ import NormalGradeInputGraduated from '../components/GradeInput/NormalGradeInput
 import GedGradeInput from '../components/GradeInput/GedGradeInput';
 import PersonalInformation from '../components/PersonalInformation/PersonalInformation';
 import Authorization from './../components/Authorization/Authorization';
+import Preview from './../components/Preview/Preview';
 
 Vue.use(Router);
 
@@ -57,5 +58,9 @@ export default new Router({
     path: '/intro',
     name: 'introduce',
     component: IntroduceNPlan,
+  }, {
+    path: '/preview',
+    name: 'preview',
+    component: Preview,
   }],
 });
