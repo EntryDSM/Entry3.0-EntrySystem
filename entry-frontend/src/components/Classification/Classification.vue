@@ -374,7 +374,7 @@ export default {
             additionalType,
             region,
             graduateYear,
-          }
+          },
         }).then((res) => {
           if (res.status === 200) {
             this.$toastr.s('서버에 임시저장 되었습니다.');
@@ -382,19 +382,18 @@ export default {
             this.$toastr.e('서버와 통신이 불안정합니다.<br/> 재연결이 필요합니다.');
           }
         });
-      } else if(graduateType === 'GED' && admission === 'SOCIAL'){
+      } else if (graduateType === 'GED' && admission === 'SOCIAL') {
         this.$axios({
           method: 'put',
           url: 'http://10.156.145.173:8080/api/me/classification',
           headers: { Authorization: `JWT ${token}` },
           data: {
             graduateType,
-            admissionDetail,
             admission,
             additionalType,
             admissionDetail: 'NONE',
             region,
-          }
+          },
         }).then((res) => {
           if (res.status === 200) {
             this.$toastr.s('서버에 임시저장 되었습니다.');
@@ -402,8 +401,7 @@ export default {
             this.$toastr.e('서버와 통신이 불안정합니다.<br/> 재연결이 필요합니다.');
           }
         });
-      }
-      else if (admission === 'SOCIAL'){
+      } else if (admission === 'SOCIAL') {
         this.$axios({
           method: 'put',
           url: 'http://10.156.145.173:8080/api/me/classification',
@@ -415,7 +413,7 @@ export default {
             additionalType,
             region,
             graduateYear,
-          }
+          },
         }).then((res) => {
           if (res.status === 200) {
             this.$toastr.s('서버에 임시저장 되었습니다.');
@@ -423,8 +421,7 @@ export default {
             this.$toastr.e('서버와 통신이 불안정합니다.<br/> 재연결이 필요합니다.');
           }
         });
-      }
-      else {
+      } else {
         this.$axios({
           method: 'put',
           url: 'http://10.156.145.173:8080/api/me/classification',
@@ -435,7 +432,7 @@ export default {
             additionalType,
             admissionDetail: 'NONE',
             region,
-          }
+          },
         }).then((res) => {
           if (res.status === 200) {
             this.$toastr.s('서버에 임시저장 되었습니다.');

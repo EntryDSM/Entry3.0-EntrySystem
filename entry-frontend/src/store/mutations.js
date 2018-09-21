@@ -73,7 +73,7 @@ export const mutations = {
     state.introNPlan.introduce = payload;
   },
   updatePlan: (state, payload) => {
-    state.introNPlan.plan = payload;
+    state.introNPlan.studyPlan = payload;
   },
   changeIndex: (state, payload) => {
     state.modal.index = payload.index;

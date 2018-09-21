@@ -30,7 +30,7 @@
         상세하게 기술하십시오.
       </p>
       <textarea class="intro-plan-write"
-                :value="plan"
+                :value="studyPlan"
                 @input="updatePlan"
                 maxlength="1600"
                 ref="planWrite"
@@ -101,7 +101,7 @@ export default {
     },
     ...mapState({
       introduce: state => state.introNPlan.introduce,
-      plan: state => state.introNPlan.plan,
+      studyPlan: state => state.introNPlan.studyPlan,
     }),
   },
   watch: {
@@ -110,7 +110,7 @@ export default {
       this.resize(intro);
       this.introLength = val.length;
     },
-    plan(val) {
+    studyPlan(val) {
       const plan = this.$refs.planWrite;
       this.resize(plan);
       this.planLength = val.length;
