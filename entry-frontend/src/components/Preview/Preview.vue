@@ -7,6 +7,11 @@
     <academic-plan></academic-plan>
     <recommendation-letter v-if="admission !== 'NORMAL'"></recommendation-letter>
     <quitting-smoking></quitting-smoking>
+    <prev-next-btn
+      :prevShow="true"
+      :nextShow="true"
+      :prevLink="prevLink"
+      :nextLink="nextLink"/>
     <entry-footer />
   </div>
 </template>
@@ -14,6 +19,7 @@
 <script>
 import Navigation from '../common/Navigation';
 import Headline from '../common/Headline';
+import PrevNextBtn from '../common/PrevNextBtn';
 import EntryFooter from '../common/EntryFooter';
 import AcademicPlan from './AcademicPlan';
 import Application from './Application';
@@ -26,6 +32,7 @@ export default {
   components: {
     Navigation,
     Headline,
+    PrevNextBtn,
     EntryFooter,
     AcademicPlan,
     Application,
@@ -37,6 +44,8 @@ export default {
     return {
       title: '원서 미리보기',
       subText: '대덕소프트웨어마이스터고등학교',
+      prevLink: '/intro',
+      nextLink: '/submit',
     };
   },
   computed: {

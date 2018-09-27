@@ -366,7 +366,7 @@ export default {
       if (graduateType !== 'GED') {
         this.$axios({
           method: 'put',
-          url: 'http://10.156.145.173:8080/api/me/classification',
+          url: 'http://entrydsm.hs.kr/api/me/classification',
           headers: { Authorization: `JWT ${token}` },
           data: {
             graduateType,
@@ -385,7 +385,7 @@ export default {
       } else if(graduateType === 'GED' && admission === 'SOCIAL'){
         this.$axios({
           method: 'put',
-          url: 'http://10.156.145.173:8080/api/me/classification',
+          url: 'http://entrydsm.hs.kr/api/me/classification',
           headers: { Authorization: `JWT ${token}` },
           data: {
             graduateType,
@@ -406,7 +406,7 @@ export default {
       else if (admission === 'SOCIAL'){
         this.$axios({
           method: 'put',
-          url: 'http://10.156.145.173:8080/api/me/classification',
+          url: 'http://entrydsm.hs.kr/api/me/classification',
           headers: { Authorization: `JWT ${token}` },
           data: {
             graduateType,
@@ -427,7 +427,7 @@ export default {
       else {
         this.$axios({
           method: 'put',
-          url: 'http://10.156.145.173:8080/api/me/classification',
+          url: 'http://entrydsm.hs.kr/api/me/classification',
           headers: { Authorization: `JWT ${token}` },
           data: {
             graduateType,

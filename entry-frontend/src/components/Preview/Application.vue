@@ -123,13 +123,13 @@
             <td>교과성적<br /> 환산점수</td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{firstGrade}}</td>
+            <td>{{secondGrade}}</td>
+            <td>{{thirdGrade}}</td>
+            <td>{{conversionScore}}</td>
+            <td>{{attendanceScore}}</td>
+            <td>{{volunteerScore}}</td>
+            <td>{{finalScore}}</td>
           </tr>
         </tbody>
       </table>
@@ -192,6 +192,17 @@
 <script>
 export default {
   name: 'application',
+  data() {
+    return {
+      firstGrade: 0,
+      secondGrade: 0,
+      thirdGrade: 0,
+      conversionScore: 0,
+      attendanceScore: 0,
+      volunteerScore: 0,
+      finalScore: 0,
+    };
+  },
   computed: {
     admission() { return this.$store.state.classify.admission; },
     admissionDetail() { return this.$store.state.classify.admissionDetail; },
@@ -216,6 +227,32 @@ export default {
     addressBase() { return this.$store.state.PersonInfo.addressBase; },
     addressDetail() { return this.$store.state.PersonInfo.addressDetail; },
     imgPath() { return this.$store.state.PersonInfo.imgPath; },
+  },
+  created() {
+    this.$axios.get('http://entrydsm.hs.kr/api/me/score',
+      { headers: { Authorization: `JWT ${this.$cookies.get('accessToken')}` },
+      }).then((res) => {
+      if (res.status === 200) {
+        const {
+          firstGrade,
+          secondGrade,
+          thirdGrade,
+          conversionScore,
+          attendanceScore,
+          volunteerScore,
+          finalScore,
+        } = res.data.data;
+        this.firstGrade = firstGrade;
+        this.secondGrade = secondGrade;
+        this.thirdGrade = thirdGrade;
+        this.conversionScore = conversionScore;
+        this.attendanceScore = attendanceScore;
+        this.volunteerScore = volunteerScore;
+        this.finalScore = finalScore;
+      } else {
+        this.$toastr.e('서버와 통신이 불안정합니다.<br/> 재연결이 필요합니다.');
+      }
+    });
   },
 };
 </script>
