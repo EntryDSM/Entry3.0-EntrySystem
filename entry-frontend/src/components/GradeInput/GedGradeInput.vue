@@ -10,7 +10,7 @@
         </div>
         <div class="total-input-part">
           <input type="number"
-                 v-model.number="gedScore"
+                 v-model.number="grade"
                  @keydown="onlyNumber"
                  min="0"
                  max="100"
@@ -63,9 +63,9 @@ export default {
     },
   },
   computed: {
-    gedScore: {
+    grade: {
       get() {
-        return this.$store.getters.selectType.gedScore;
+        return this.$store.getters.selectType.grade;
       },
       set(val) {
         this.$store.commit('updateGedScore', val);
@@ -73,8 +73,8 @@ export default {
     },
   },
   watch: {
-    gedScore(val) {
-      if (val > 100) this.gedScore = 100;
+    grade(val) {
+      if (val > 100) this.grade = 100;
     },
   },
 };

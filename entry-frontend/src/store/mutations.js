@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const mutations = {
   updateGedScore: (state, payload) => {
-    state.gradeInput.gedScore = payload;
+    state.gradeInput.grade = payload;
   },
   updateVolunteerNAttendance: (state, { field, value }) => {
     state.gradeInput.volunteerNAttendance[field] = parseInt(value, 10);
@@ -19,6 +19,8 @@ export const mutations = {
         resetAll.passed = true;
       }
     }
+
+    window.testGrades = allGrades;
   },
   updateDiscompleteSemester: (state, { grades, target }) => {
     // 학기별 null로 초기화

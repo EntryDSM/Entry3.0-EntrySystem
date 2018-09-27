@@ -2,38 +2,38 @@ export const getters = {
   selectType(state) {
     const { graduateType } = state.classify;
     const {
-      gedScore,
+      grade,
       volunteerNAttendance,
-      koreanScores,
-      societyScores,
-      historyScores,
-      mathScores,
-      scienceScores,
-      techAndHomeScores,
-      englishScores,
+      korean,
+      social,
+      history,
+      math,
+      science,
+      tech,
+      english,
     } = state.gradeInput;
 
     // 경우: 검정고시, 졸업, 졸업 예정
     if (graduateType === 'GED') {
-      return { gedScore };
+      return { grade };
     } else if (graduateType === 'DONE') {
       return {
         volunteerNAttendance,
-        koreanScores,
-        societyScores,
-        historyScores,
-        mathScores,
-        scienceScores,
-        techAndHomeScores,
-        englishScores,
+        korean,
+        social,
+        history,
+        math,
+        science,
+        tech,
+        english,
         grades: [
-          koreanScores,
-          societyScores,
-          historyScores,
-          mathScores,
-          scienceScores,
-          techAndHomeScores,
-          englishScores,
+          korean,
+          social,
+          history,
+          math,
+          science,
+          tech,
+          english,
         ],
       };
     } else if (graduateType === 'WILL') {
@@ -51,21 +51,21 @@ export const getters = {
 
       return {
         volunteerNAttendance,
-        koreanScores: koreanScores.slice(0, 5),
-        societyScores: societyScores.slice(0, 5),
-        historyScores: historyScores.slice(0, 5),
-        mathScores: mathScores.slice(0, 5),
-        scienceScores: scienceScores.slice(0, 5),
-        techAndHomeScores: techAndHomeScores.slice(0, 5),
-        englishScores: englishScores.slice(0, 5),
+        korean: korean.slice(0, 5),
+        social: social.slice(0, 5),
+        history: history.slice(0, 5),
+        math: math.slice(0, 5),
+        science: science.slice(0, 5),
+        tech: tech.slice(0, 5),
+        english: english.slice(0, 5),
         grades: [
-          koreanScores.slice(0, 5),
-          societyScores.slice(0, 5),
-          historyScores.slice(0, 5),
-          mathScores.slice(0, 5),
-          scienceScores.slice(0, 5),
-          techAndHomeScores.slice(0, 5),
-          englishScores.slice(0, 5),
+          korean.slice(0, 5),
+          social.slice(0, 5),
+          history.slice(0, 5),
+          math.slice(0, 5),
+          science.slice(0, 5),
+          tech.slice(0, 5),
+          english.slice(0, 5),
         ],
       };
     }
