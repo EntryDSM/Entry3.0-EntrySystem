@@ -1,12 +1,13 @@
 <template>
   <div class="prev-next-btn-cover">
-    <router-link :to="prevLink"
+    <a
       type="button"
       class="input-btn input-btn--prev"
-      v-if="prevShow">
+      v-if="prevShow"
+      @click="toPrevious">
       <span class="input-btn__arrow input-btn__arrow--left">〈</span>
       <span class="input-btn__text input-btn__text--prev">이전</span>
-    </router-link>
+    </a>
     <a
       type="button"
       class="input-btn input-btn--next"
@@ -48,10 +49,15 @@ export default {
   },
   methods: {
     toPrevious() {
+      if (typeof this.onClick === 'function') {
+        this.onClick();
+      }
       window.history.back();
     },
     gotoNext() {
-      this.onClick();
+      if (typeof this.onClick === 'function') {
+        this.onClick();
+      }
       this.$router.push(this.nextLink);
     },
   },

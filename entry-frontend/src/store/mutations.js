@@ -64,6 +64,15 @@ export const mutations = {
       default: break;
     }
   },
+  updateIntroAndPlan: (state, { data }) => {
+    const {
+      introduce,
+      studyPlan,
+    } = data;
+
+    state.introNPlan.introduce = introduce;
+    state.introNPlan.studyPlan = studyPlan;
+  },
   updateChangeDecided: (state, { target, val }) => {
     const v = val;
 
@@ -110,8 +119,8 @@ export const mutations = {
   updateIsGraduated: (state, payload) => {
     state.classify.isGraduated = payload.data;
   },
-  updateGraduationYear: (state, payload) => {
-    state.classify.graduationYear = payload.data;
+  updategraduateYear: (state, payload) => {
+    state.classify.graduateYear = payload.data;
   },
   updateSpecialPoints: (state, payload) => {
     state.classify.specialPoints = payload.data;
@@ -172,7 +181,7 @@ export const mutations = {
     state.PersonInfo.imgPath = payload.data;
   },
   updateClassify: (state, payload) => {
-    axios.get('http://10.156.145.173:8080/api/me/classification',
+    axios.get('http://entrydsm.hs.kr/api/me/classification',
       { headers: { Authorization: `JWT ${payload.token}` } },
     ).then((res) => {
       if (res.status === 200) {
@@ -186,6 +195,8 @@ export const mutations = {
         } = res.data.data;
         if (graduateType === 'GED') {
           state.classify.isGED = true;
+        } else if (graduateType === 'DONE') {
+          state.classify.isGraduated = true;
         }
         state.classify.graduateType = graduateType;
         state.classify.admission = admission;
@@ -219,9 +230,53 @@ export const mutations = {
         }
         state.classify.admissionDetail.value = admissionDetail;
         state.classify.region = region;
-        state.classify.graduateYear = graduateYear;
+        state.classify.graduateYear = graduateYear * 1;
         state.classify.additionalType = additionalType;
       }
+    });
+  },
+  updateInfo: (state, payload) => {
+    axios.get('http://entrydsm.hs.kr/api/me/info',
+      { headers: { Authorization: `JWT ${payload.token}` } },
+    ).then((res) => {
+      const {
+        addressBase,
+        addressDetail,
+        birth,
+        graduateYear,
+        imgPath,
+        myTel,
+        name,
+        parentName,
+        parentTel,
+        school,
+        schoolTel,
+        sex,
+        studentClass,
+        studentGrade,
+        studentNumber,
+        zipCode,
+      } = res.data.data;
+
+      state.PersonInfo.addressBase = addressBase;
+      state.PersonInfo.addressDetail = addressDetail;
+      state.PersonInfo.year = birth.split('-')[0];
+      state.PersonInfo.month = birth.split('-')[1];
+      state.PersonInfo.day = birth.split('-')[2];
+      state.classify.graduateYear = graduateYear;
+      state.PersonInfo.schoolName = (school != null) ? school.name : '';
+      state.PersonInfo.schoolCode = (school != null) ? school.code : '';
+      state.PersonInfo.schoolTel = schoolTel;
+      state.PersonInfo.sex = sex;
+      state.PersonInfo.studentClass = studentClass;
+      state.PersonInfo.studentGrade = studentGrade;
+      state.PersonInfo.studentNumber = studentNumber;
+      state.PersonInfo.zipCode = zipCode;
+      state.PersonInfo.personName = name;
+      state.PersonInfo.imgPath = imgPath;
+      state.PersonInfo.myTel = myTel;
+      state.PersonInfo.parentTel = parentTel;
+      state.PersonInfo.parentName = parentName;
     });
   },
   updateaccessToken: (state, payload) => {

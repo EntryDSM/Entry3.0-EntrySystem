@@ -1,1312 +1,1289 @@
 <template>
-  <div>
-    <navigation />
-    <headline :subText="'2019 입학원서 작성'" title="성적 입력" />
-    <div class="grade-input-cover">
-      <h3>봉사 & 출석</h3>
-      <table class="volunteer-attendance-table">
-        <tr class="table-row">
-          <td class="table-data-text">봉사시간</td>
-          <td class="table-data-text">
-            <input type="number"
-                   :value="volunteerNAttendance.volunteerTime"
-                   @change="updateVolunteerNAttendance('volunteerTime', $event.target.value)"
-                   @keydown="onlyNumber"
-                   min="0"
-                   class="input-text table-data-text__input"
-            >
-            <span class="table-data-text__time">시간</span>
-          </td>
-        </tr>
-        <tr class="table-row">
-          <td class="table-data-text">출석정보</td>
-          <td class="table-data-text table-data-text--attendance-info">
-            <tr class="table-data-text__row">
-              <td class="table-data-text__row__data">전체 무단 결석 일수</td>
-              <td class="table-data-text__row__data">
-                <input type="number"
-                       :value="volunteerNAttendance.fullCut"
-                       @change="updateVolunteerNAttendance('fullCut', $event.target.value)"
-                       @keydown="onlyNumber"
-                       min="0"
-                       class="input-text table-data-text__input"
-                >
-                <span class="table-data-text__time">일</span>
-              </td>
-              <td class="table-data-text__row__data">전체 무단 조퇴 일수</td>
-              <td class="table-data-text__row__data">
-                <input type="number"
-                       :value="volunteerNAttendance.earlyLeave"
-                       @change="updateVolunteerNAttendance('earlyLeave', $event.target.value)"
-                       @keydown="onlyNumber"
-                       min="0"
-                       class="input-text table-data-text__input"
-                >
-                <span class="table-data-text__time">일</span>
-              </td>
-            </tr>
-            <tr class="table-data-text__row">
-              <td class="table-data-text__row__data">전체 무단 지각 일수</td>
-              <td class="table-data-text__row__data">
-                <input type="number"
-                       :value="volunteerNAttendance.late"
-                       @change="updateVolunteerNAttendance('late', $event.target.value)"
-                       @keydown="onlyNumber"
-                       min="0"
-                       class="input-text table-data-text__input"
-                >
-                <span class="table-data-text__time">일</span>
-              </td>
-              <td class="table-data-text__row__data">전체 무단 결과 일수</td>
-              <td class="table-data-text__row__data">
-                <input type="number"
-                       :value="volunteerNAttendance.periodCut"
-                       @change="updateVolunteerNAttendance('periodCut', $event.target.value)"
-                       @keydown="onlyNumber"
-                       min="0"
-                       class="input-text table-data-text__input"
-                >
-                <span class="table-data-text__time">일</span>
-              </td>
-            </tr>
-          </td>
-        </tr>
-      </table>
+  <div class="grade-input-cover">
+    <h3>봉사 & 출석</h3>
+    <table class="volunteer-attendance-table">
+      <tr class="table-row">
+        <td class="table-data-text">봉사시간</td>
+        <td class="table-data-text">
+          <input type="number"
+                  :value="volunteerNAttendance.volunteerTime"
+                  @change="updateVolunteerNAttendance('volunteerTime', $event.target.value)"
+                  @keydown="onlyNumber"
+                  min="0"
+                  class="input-text table-data-text__input"
+          >
+          <span class="table-data-text__time">시간</span>
+        </td>
+      </tr>
+      <tr class="table-row">
+        <td class="table-data-text">출석정보</td>
+        <td class="table-data-text table-data-text--attendance-info">
+          <tr class="table-data-text__row">
+            <td class="table-data-text__row__data">전체 무단 결석 일수</td>
+            <td class="table-data-text__row__data">
+              <input type="number"
+                      :value="volunteerNAttendance.fullCut"
+                      @change="updateVolunteerNAttendance('fullCut', $event.target.value)"
+                      @keydown="onlyNumber"
+                      min="0"
+                      class="input-text table-data-text__input"
+              >
+              <span class="table-data-text__time">일</span>
+            </td>
+            <td class="table-data-text__row__data">전체 무단 조퇴 일수</td>
+            <td class="table-data-text__row__data">
+              <input type="number"
+                      :value="volunteerNAttendance.earlyLeave"
+                      @change="updateVolunteerNAttendance('earlyLeave', $event.target.value)"
+                      @keydown="onlyNumber"
+                      min="0"
+                      class="input-text table-data-text__input"
+              >
+              <span class="table-data-text__time">일</span>
+            </td>
+          </tr>
+          <tr class="table-data-text__row">
+            <td class="table-data-text__row__data">전체 무단 지각 일수</td>
+            <td class="table-data-text__row__data">
+              <input type="number"
+                      :value="volunteerNAttendance.late"
+                      @change="updateVolunteerNAttendance('late', $event.target.value)"
+                      @keydown="onlyNumber"
+                      min="0"
+                      class="input-text table-data-text__input"
+              >
+              <span class="table-data-text__time">일</span>
+            </td>
+            <td class="table-data-text__row__data">전체 무단 결과 일수</td>
+            <td class="table-data-text__row__data">
+              <input type="number"
+                      :value="volunteerNAttendance.periodCut"
+                      @change="updateVolunteerNAttendance('periodCut', $event.target.value)"
+                      @keydown="onlyNumber"
+                      min="0"
+                      class="input-text table-data-text__input"
+              >
+              <span class="table-data-text__time">일</span>
+            </td>
+          </tr>
+        </td>
+      </tr>
+    </table>
 
-      <h3>미이수 학기(자유학기제) 선택</h3>
-      <table class="discomplete-table">
-        <tr class="table-row">
-          <td class="table-row__first-grade">1학년</td>
-          <td class="table-row__second-grade">2학년</td>
-          <td class="table-row__third-grade">3학년</td>
-        </tr>
-        <tr class="table-row">
-          <td class="table-row__first-semester">
-            <input type="checkbox"
-                   class="input-checkbox"
-                   id="input-first-first"
-                   :value="`${semesters.firstFirstSemester}`"
-                   v-model="semesters.firstFirstSemester"
-                   @change="discompleteSemester($event)"
-            >
-            <label class="input-checkbox-label" for="input-first-first"></label>
-            <span class="table-row__semester-text">1학기</span>
-          </td>
-          <td class="table-row__first-semester">
-            <input type="checkbox"
-                   class="input-checkbox"
-                   id="input-first-second"
-                   :value="`${semesters.firstSecondSemester}`"
-                   v-model="semesters.firstSecondSemester"
-                   @change="discompleteSemester($event)"
-            >
-            <label class="input-checkbox-label" for="input-first-second"></label>
-            <span class="table-row__semester-text">2학기</span>
-          </td>
-          <td class="table-row__second-semester">
-            <input type="checkbox"
-                   class="input-checkbox"
-                   id="input-second-first"
-                   :value="`${semesters.secondFirstSemester}`"
-                   v-model="semesters.secondFirstSemester"
-                   @change="discompleteSemester($event)"
-            >
-            <label class="input-checkbox-label" for="input-second-first"></label>
-            <span class="table-row__semester-text">1학기</span>
-          </td>
-          <td class="table-row__second-semester">
-            <input type="checkbox"
-                   class="input-checkbox"
-                   id="input-second-second"
-                   :value="`${semesters.secondSecondSemester}`"
-                   v-model="semesters.secondSecondSemester"
-                   @change="discompleteSemester($event)"
-            >
-            <label class="input-checkbox-label" for="input-second-second"></label>
-            <span class="table-row__semester-text">2학기</span>
-          </td>
-          <td class="table-row__third-semester">
-            <input type="checkbox"
-                   class="input-checkbox"
-                   id="input-third-first"
-                   :value="`${semesters.thirdFirstSemester}`"
-                   v-model="semesters.thirdFirstSemester"
-                   @change="discompleteSemester($event)"
-            >
-            <label class="input-checkbox-label" for="input-third-first"></label>
-            <span class="table-row__semester-text">1학기</span>
-          </td>
-        </tr>
-      </table>
+    <h3>미이수 학기(자유학기제) 선택</h3>
+    <table class="discomplete-table">
+      <tr class="table-row">
+        <td class="table-row__first-grade">1학년</td>
+        <td class="table-row__second-grade">2학년</td>
+        <td class="table-row__third-grade">3학년</td>
+      </tr>
+      <tr class="table-row">
+        <td class="table-row__first-semester">
+          <input type="checkbox"
+                  class="input-checkbox"
+                  id="input-first-first"
+                  :value="`${semesters.firstFirstSemester}`"
+                  v-model="semesters.firstFirstSemester"
+                  @change="discompleteSemester($event)"
+          >
+          <label class="input-checkbox-label" for="input-first-first"></label>
+          <span class="table-row__semester-text">1학기</span>
+        </td>
+        <td class="table-row__first-semester">
+          <input type="checkbox"
+                  class="input-checkbox"
+                  id="input-first-second"
+                  :value="`${semesters.firstSecondSemester}`"
+                  v-model="semesters.firstSecondSemester"
+                  @change="discompleteSemester($event)"
+          >
+          <label class="input-checkbox-label" for="input-first-second"></label>
+          <span class="table-row__semester-text">2학기</span>
+        </td>
+        <td class="table-row__second-semester">
+          <input type="checkbox"
+                  class="input-checkbox"
+                  id="input-second-first"
+                  :value="`${semesters.secondFirstSemester}`"
+                  v-model="semesters.secondFirstSemester"
+                  @change="discompleteSemester($event)"
+          >
+          <label class="input-checkbox-label" for="input-second-first"></label>
+          <span class="table-row__semester-text">1학기</span>
+        </td>
+        <td class="table-row__second-semester">
+          <input type="checkbox"
+                  class="input-checkbox"
+                  id="input-second-second"
+                  :value="`${semesters.secondSecondSemester}`"
+                  v-model="semesters.secondSecondSemester"
+                  @change="discompleteSemester($event)"
+          >
+          <label class="input-checkbox-label" for="input-second-second"></label>
+          <span class="table-row__semester-text">2학기</span>
+        </td>
+        <td class="table-row__third-semester">
+          <input type="checkbox"
+                  class="input-checkbox"
+                  id="input-third-first"
+                  :value="`${semesters.thirdFirstSemester}`"
+                  v-model="semesters.thirdFirstSemester"
+                  @change="discompleteSemester($event)"
+          >
+          <label class="input-checkbox-label" for="input-third-first"></label>
+          <span class="table-row__semester-text">1학기</span>
+        </td>
+      </tr>
+    </table>
 
-      <h3>성적입력</h3>
-      <table class="grade-input-table" ref="grade-table">
-        <div class="all-grade-reset-cover">
-          <div class="all-grade-reset-cover__box" :class="allHoverCheck()">
-            <span class="all-grade-reset-cover__box__text">
-              전체 성적이 {{ resetAllGrade }} 로 초기화 됩니다.
-            </span>
-          </div>
-          <div class="all-grade-reset-cover__reset">
-            <span class="all-grade-reset-cover__reset__text">전체 성적 초기화: </span>
-            <button type="button"
-                    v-for="reset in scores"
-                    :key="reset"
-                    @click="resetGrade"
-                    @mouseover="setHoverGrade(reset)"
-                    @mouseout="checkHover = false"
-            >
-              {{ reset.toUpperCase() }}
-            </button>
-          </div>
+    <h3>성적입력(해당 학기 미이수 과목은 X 선택)</h3>
+    <table class="grade-input-table" ref="grade-table">
+      <div class="all-grade-reset-cover">
+        <div class="all-grade-reset-cover__box" :class="allHoverCheck()">
+          <span class="all-grade-reset-cover__box__text">
+            전체 성적이 {{ resetAllGrade }} 로 초기화 됩니다.
+          </span>
         </div>
-        <tr class="grade-input-table__row">
-          <td class="empty-space"></td>
-          <td class="first-grade row-grades" colspan="2">1학년</td>
-          <td class="second-grade row-grades" colspan="2">2학년</td>
-          <td class="third-grade row-grades">3학년</td>
-        </tr>
-        <tr class="grade-input-table__row">
-          <td class="empty-space"></td>
-          <td>1학기</td>
-          <td>2학기</td>
-          <td>1학기</td>
-          <td>2학기</td>
-          <td>1학기</td>
-        </tr>
-        <tr class="grade-input-table__row">
-          <td>국어</td>
-          <td :class="changeBackground(korean[0].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`korean-first-first-${k}`"
-                   v-model="korean[0].score"
-                   :checked="korean[0].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`korean-first-first-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, korean[0])"
-                   :class="complete(korean[0].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!korean[0].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="korean-first-first-null"
-                   v-model="korean[0].score"
-                   :checked="korean[0].decided"
-            >
-            <label for="korean-first-first-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, korean[0])"
-                   :class="discomplete(korean[0].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(korean[1].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`korean-first-second-${k}`"
-                   v-model="korean[1].score"
-                   :checked="korean[1].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`korean-first-second-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, korean[1])"
-                   :class="complete(korean[1].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!korean[1].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="korean-first-second-null"
-                   v-model="korean[1].score"
-                   :checked="korean[1].decided"
-            >
-            <label for="korean-first-second-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, korean[1])"
-                   :class="discomplete(korean[1].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(korean[2].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`korean-second-first-${k}`"
-                   v-model="korean[2].score"
-                   :checked="korean[2].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`korean-second-first-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, korean[2])"
-                   :class="complete(korean[2].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!korean[2].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="korean-second-first-null"
-                   v-model="korean[2].score"
-                   :checked="korean[2].decided"
-            >
-            <label for="korean-second-first-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, korean[2])"
-                   :class="discomplete(korean[2].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(korean[3].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`korean-second-second-${k}`"
-                   v-model="korean[3].score"
-                   :checked="korean[3].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`korean-second-second-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, korean[3])"
-                   :class="complete(korean[3].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!korean[3].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="korean-second-second-null"
-                   v-model="korean[3].score"
-                   :checked="korean[3].decided"
-            >
-            <label for="korean-second-second-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, korean[3])"
-                   :class="discomplete(korean[3].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(korean[4].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`korean-third-first-${k}`"
-                   v-model="korean[4].score"
-                   :checked="korean[4].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`korean-third-first-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, korean[4])"
-                   :class="complete(korean[4].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!korean[4].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="korean-third-first-null"
-                   v-model="korean[4].score"
-                   :checked="korean[4].decided"
-            >
-            <label for="korean-third-first-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, korean[4])"
-                   :class="discomplete(korean[4].score)"
-            >X</label>
-          </td>
-        </tr>
-        <tr class="grade-input-table__row">
-          <td>사회</td>
-          <td :class="changeBackground(social[0].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`society-first-first-${k}`"
-                   v-model="social[0].score"
-                   :checked="social[0].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`society-first-first-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, social[0])"
-                   :class="complete(social[0].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!social[0].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="society-first-first-null"
-                   v-model="social[0].score"
-                   :checked="social[0].decided"
-            >
-            <label for="society-first-first-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, social[0])"
-                   :class="discomplete(social[0].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(social[1].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`society-first-second-${k}`"
-                   v-model="social[1].score"
-                   :checked="social[1].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`society-first-second-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, social[1])"
-                   :class="complete(social[1].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!social[1].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="society-first-second-null"
-                   v-model="social[1].score"
-                   :checked="social[1].decided"
-            >
-            <label for="society-first-second-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, social[1])"
-                   :class="discomplete(social[1].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(social[2].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`society-second-first-${k}`"
-                   v-model="social[2].score"
-                   :checked="social[2].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`society-second-first-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, social[2])"
-                   :class="complete(social[2].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!social[2].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="society-second-first-null"
-                   v-model="social[2].score"
-                   :checked="social[2].decided"
-            >
-            <label for="society-second-first-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, social[2])"
-                   :class="discomplete(social[2].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(social[3].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`society-second-second-${k}`"
-                   v-model="social[3].score"
-                   :checked="social[3].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`society-second-second-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, social[3])"
-                   :class="complete(social[3].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!social[3].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="society-second-second-null"
-                   v-model="social[3].score"
-                   :checked="social[3].decided"
-            >
-            <label for="society-second-second-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, social[3])"
-                   :class="discomplete(social[3].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(social[4].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`society-third-first-${k}`"
-                   v-model="social[4].score"
-                   :checked="social[4].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`society-third-first-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, social[4])"
-                   :class="complete(social[4].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!social[4].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="society-third-first-null"
-                   v-model="social[4].score"
-                   :checked="social[4].decided"
-            >
-            <label for="society-third-first-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, social[4])"
-                   :class="discomplete(social[4].score)"
-            >X</label>
-          </td>
-        </tr>
-        <tr class="grade-input-table__row">
-          <td>역사</td>
-          <td :class="changeBackground(history[0].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`history-first-first-${k}`"
-                   v-model="history[0].score"
-                   :checked="history[0].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`history-first-first-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, history[0])"
-                   :class="complete(history[0].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!history[0].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="history-first-first-null"
-                   v-model="history[0].score"
-                   :checked="history[0].decided"
-            >
-            <label for="history-first-first-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, history[0])"
-                   :class="discomplete(history[0].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(history[1].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`history-first-second-${k}`"
-                   v-model="history[1].score"
-                   :checked="history[1].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`history-first-second-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, history[1])"
-                   :class="complete(history[1].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!history[1].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="history-first-second-null"
-                   v-model="history[1].score"
-                   :checked="history[1].decided"
-            >
-            <label for="history-first-second-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, history[1])"
-                   :class="discomplete(history[1].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(history[2].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`history-second-first-${k}`"
-                   v-model="history[2].score"
-                   :checked="history[2].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`history-second-first-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, history[2])"
-                   :class="complete(history[2].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!history[2].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="history-second-first-null"
-                   v-model="history[2].score"
-                   :checked="history[2].decided"
-            >
-            <label for="history-second-first-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, history[2])"
-                   :class="discomplete(history[2].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(history[3].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`history-second-second-${k}`"
-                   v-model="history[3].score"
-                   :checked="history[3].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`history-second-second-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, history[3])"
-                   :class="complete(history[3].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!history[3].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="history-second-second-null"
-                   v-model="history[3].score"
-                   :checked="history[3].decided"
-            >
-            <label for="history-second-second-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, history[3])"
-                   :class="discomplete(history[3].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(history[4].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`history-third-first-${k}`"
-                   v-model="history[4].score"
-                   :checked="history[4].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`history-third-first-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, history[4])"
-                   :class="complete(history[4].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!history[4].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="history-third-first-null"
-                   v-model="history[4].score"
-                   :checked="history[4].decided"
-            >
-            <label for="history-third-first-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, history[4])"
-                   :class="discomplete(history[4].score)"
-            >X</label>
-          </td>
-        </tr>
-        <tr class="grade-input-table__row">
-          <td>수학</td>
-          <td :class="changeBackground(math[0].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`math-first-first-${k}`"
-                   v-model="math[0].score"
-                   :checked="math[0].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`math-first-first-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, math[0])"
-                   :class="complete(math[0].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!math[0].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="math-first-first-null"
-                   v-model="math[0].score"
-                   :checked="math[0].decided"
-            >
-            <label for="math-first-first-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, math[0])"
-                   :class="discomplete(math[0].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(math[1].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`math-first-second-${k}`"
-                   v-model="math[1].score"
-                   :checked="math[1].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`math-first-second-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, math[1])"
-                   :class="complete(math[1].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!math[1].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="math-first-second-null"
-                   v-model="math[1].score"
-                   :checked="math[1].decided"
-            >
-            <label for="math-first-second-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, math[1])"
-                   :class="discomplete(math[1].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(math[2].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`math-second-first-${k}`"
-                   v-model="math[2].score"
-                   :checked="math[2].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`math-second-first-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, math[2])"
-                   :class="complete(math[2].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!math[2].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="math-second-first-null"
-                   v-model="math[2].score"
-                   :checked="math[2].decided"
-            >
-            <label for="math-second-first-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, math[2])"
-                   :class="discomplete(math[2].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(math[3].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`math-second-second-${k}`"
-                   v-model="math[3].score"
-                   :checked="math[3].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`math-second-second-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, math[3])"
-                   :class="complete(math[3].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!math[3].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="math-second-second-null"
-                   v-model="math[3].score"
-                   :checked="math[3].decided"
-            >
-            <label for="math-second-second-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, math[3])"
-                   :class="discomplete(math[3].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(math[4].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`math-third-first-${k}`"
-                   v-model="math[4].score"
-                   :checked="math[4].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`math-third-first-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, math[4])"
-                   :class="complete(math[4].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!math[4].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="math-third-first-null"
-                   v-model="math[4].score"
-                   :checked="math[4].decided"
-            >
-            <label for="math-third-first-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, math[4])"
-                   :class="discomplete(math[4].score)"
-            >X</label>
-          </td>
-        </tr>
-        <tr class="grade-input-table__row">
-          <td>과학</td>
-          <td :class="changeBackground(science[0].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`science-first-first-${k}`"
-                   v-model="science[0].score"
-                   :checked="science[0].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`science-first-first-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, science[0])"
-                   :class="complete(science[0].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!science[0].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="science-first-first-null"
-                   v-model="science[0].score"
-                   :checked="science[0].decided"
-            >
-            <label for="science-first-first-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, science[0])"
-                   :class="discomplete(science[0].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(science[1].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`science-first-second-${k}`"
-                   v-model="science[1].score"
-                   :checked="science[1].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`science-first-second-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, science[1])"
-                   :class="complete(science[1].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!science[1].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="science-first-second-null"
-                   v-model="science[1].score"
-                   :checked="science[1].decided"
-            >
-            <label for="science-first-second-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, science[1])"
-                   :class="discomplete(science[1].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(science[2].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`science-second-first-${k}`"
-                   v-model="science[2].score"
-                   :checked="science[2].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`science-second-first-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, science[2])"
-                   :class="complete(science[2].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!science[2].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="science-second-first-null"
-                   v-model="science[2].score"
-                   :checked="science[2].decided"
-            >
-            <label for="science-second-first-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, science[2])"
-                   :class="discomplete(science[2].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(science[3].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`science-second-second-${k}`"
-                   v-model="science[3].score"
-                   :checked="science[3].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`science-second-second-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, science[3])"
-                   :class="complete(science[3].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!science[3].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="science-second-second-null"
-                   v-model="science[3].score"
-                   :checked="science[3].decided"
-            >
-            <label for="science-second-second-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, science[3])"
-                   :class="discomplete(science[3].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(science[4].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`science-third-first-${k}`"
-                   v-model="science[4].score"
-                   :checked="science[4].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`science-third-first-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, science[4])"
-                   :class="complete(science[4].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!science[4].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="science-third-first-null"
-                   v-model="science[4].score"
-                   :checked="science[4].decided"
-            >
-            <label for="science-third-first-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, science[4])"
-                   :class="discomplete(science[4].score)"
-            >X</label>
-          </td>
-        </tr>
-        <tr class="grade-input-table__row">
-          <td>기술・가정</td>
-          <td :class="changeBackground(tech[0].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`tech-home-first-first-${k}`"
-                   v-model="tech[0].score"
-                   :checked="tech[0].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`tech-home-first-first-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, tech[0])"
-                   :class="complete(tech[0].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!tech[0].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="tech-home-first-first-null"
-                   v-model="tech[0].score"
-                   :checked="tech[0].decided"
-            >
-            <label for="tech-home-first-first-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, tech[0])"
-                   :class="discomplete(tech[0].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(tech[1].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`tech-home-first-second-${k}`"
-                   v-model="tech[1].score"
-                   :checked="tech[1].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`tech-home-first-second-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, tech[1])"
-                   :class="complete(tech[1].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!tech[1].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="tech-home-first-second-null"
-                   v-model="tech[1].score"
-                   :checked="tech[1].decided"
-            >
-            <label for="tech-home-first-second-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, tech[1])"
-                   :class="discomplete(tech[1].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(tech[2].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`tech-home-second-first-${k}`"
-                   v-model="tech[2].score"
-                   :checked="tech[2].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`tech-home-second-first-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, tech[2])"
-                   :class="complete(tech[2].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!tech[2].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="tech-home-second-first-null"
-                   v-model="tech[2].score"
-                   :checked="tech[2].decided"
-            >
-            <label for="tech-home-second-first-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, tech[2])"
-                   :class="discomplete(tech[2].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(tech[3].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`tech-home-second-second-${k}`"
-                   v-model="tech[3].score"
-                   :checked="tech[3].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`tech-home-second-second-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, tech[3])"
-                   :class="complete(tech[3].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!tech[3].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="tech-home-second-second-null"
-                   v-model="tech[3].score"
-                   :checked="tech[3].decided"
-            >
-            <label for="tech-home-second-second-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, tech[3])"
-                   :class="discomplete(tech[3].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(tech[4].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`tech-home-third-first-${k}`"
-                   v-model="tech[4].score"
-                   :checked="tech[4].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`tech-home-third-first-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, tech[4])"
-                   :class="complete(tech[4].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!tech[4].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="tech-home-third-first-null"
-                   v-model="tech[4].score"
-                   :checked="tech[4].decided"
-            >
-            <label for="tech-home-third-first-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, tech[4])"
-                   :class="discomplete(tech[4].score)"
-            >X</label>
-          </td>
-        </tr>
-        <tr class="grade-input-table__row">
-          <td>영어</td>
-          <td :class="changeBackground(english[0].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`english-first-first-${k}`"
-                   v-model="english[0].score"
-                   :checked="english[0].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`english-first-first-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, english[0])"
-                   :class="complete(english[0].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!english[0].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="english-first-first-null"
-                   v-model="english[0].score"
-                   :checked="english[0].decided"
-            >
-            <label for="english-first-first-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, english[0])"
-                   :class="discomplete(english[0].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(english[1].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`english-first-second-${k}`"
-                   v-model="english[1].score"
-                   :checked="english[1].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`english-first-second-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, english[1])"
-                   :class="complete(english[1].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!english[1].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="english-first-second-null"
-                   v-model="english[1].score"
-                   :checked="english[1].decided"
-            >
-            <label for="english-first-second-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, english[1])"
-                   :class="discomplete(english[1].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(english[2].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`english-second-first-${k}`"
-                   v-model="english[2].score"
-                   :checked="english[2].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`english-second-first-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, english[2])"
-                   :class="complete(english[2].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!english[2].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="english-second-first-null"
-                   v-model="english[2].score"
-                   :checked="english[2].decided"
-            >
-            <label for="english-second-first-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, english[2])"
-                   :class="discomplete(english[2].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(english[3].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`english-second-second-${k}`"
-                   v-model="english[3].score"
-                   :checked="english[3].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`english-second-second-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, english[3])"
-                   :class="complete(english[3].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!english[3].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="english-second-second-null"
-                   v-model="english[3].score"
-                   :checked="english[3].decided"
-            >
-            <label for="english-second-second-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, english[3])"
-                   :class="discomplete(english[3].score)"
-            >X</label>
-          </td>
-          <td :class="changeBackground(english[4].score)">
-            <input type="radio"
-                   v-for="k in scores"
-                   :key="k"
-                   :value="k.toUpperCase()"
-                   :id="`english-third-first-${k}`"
-                   v-model="english[4].score"
-                   :checked="english[4].decided"
-            >
-            <label v-for="(k, index) in scores"
-                   :key="index"
-                   :for="`english-third-first-${k}`"
-                   class="input-grade-label"
-                   @click="changeDecided($event, english[4])"
-                   :class="complete(english[4].score, k.toUpperCase())"
-            >
-              {{ k.toUpperCase() }}
-            </label>
-            <div class="button-side-line" v-show="!english[4].score"></div>
-            <input type="radio"
-                   value="X"
-                   id="english-third-first-null"
-                   v-model="english[4].score"
-                   :checked="english[4].decided"
-            >
-            <label for="english-third-first-null"
-                   class="input-grade-label"
-                   @click="changeDecided($event, english[4])"
-                   :class="discomplete(english[4].score)"
-            >X</label>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <prev-next-btn
-      :prevShow="true"
-      :nextShow="true"
-      :prevLink="prevLink"
-      :nextLink="nextLink"
-    />
-    <entry-footer />
+        <div class="all-grade-reset-cover__reset">
+          <span class="all-grade-reset-cover__reset__text">전체 성적 초기화: </span>
+          <button type="button"
+                  v-for="reset in scores"
+                  :key="reset"
+                  @click="resetGrade"
+                  @mouseover="setHoverGrade(reset)"
+                  @mouseout="checkHover = false"
+          >
+            {{ reset.toUpperCase() }}
+          </button>
+        </div>
+      </div>
+      <tr class="grade-input-table__row">
+        <td class="empty-space"></td>
+        <td class="first-grade row-grades" colspan="2">1학년</td>
+        <td class="second-grade row-grades" colspan="2">2학년</td>
+        <td class="third-grade row-grades">3학년</td>
+      </tr>
+      <tr class="grade-input-table__row">
+        <td class="empty-space"></td>
+        <td>1학기</td>
+        <td>2학기</td>
+        <td>1학기</td>
+        <td>2학기</td>
+        <td>1학기</td>
+      </tr>
+      <tr class="grade-input-table__row">
+        <td>국어</td>
+        <td :class="changeBackground(korean[0].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`korean-first-first-${k}`"
+                  v-model="korean[0].score"
+                  :checked="korean[0].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`korean-first-first-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, korean[0])"
+                  :class="complete(korean[0].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!korean[0].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="korean-first-first-null"
+                  v-model="korean[0].score"
+                  :checked="korean[0].decided"
+          >
+          <label for="korean-first-first-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, korean[0])"
+                  :class="discomplete(korean[0].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(korean[1].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`korean-first-second-${k}`"
+                  v-model="korean[1].score"
+                  :checked="korean[1].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`korean-first-second-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, korean[1])"
+                  :class="complete(korean[1].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!korean[1].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="korean-first-second-null"
+                  v-model="korean[1].score"
+                  :checked="korean[1].decided"
+          >
+          <label for="korean-first-second-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, korean[1])"
+                  :class="discomplete(korean[1].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(korean[2].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`korean-second-first-${k}`"
+                  v-model="korean[2].score"
+                  :checked="korean[2].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`korean-second-first-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, korean[2])"
+                  :class="complete(korean[2].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!korean[2].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="korean-second-first-null"
+                  v-model="korean[2].score"
+                  :checked="korean[2].decided"
+          >
+          <label for="korean-second-first-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, korean[2])"
+                  :class="discomplete(korean[2].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(korean[3].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`korean-second-second-${k}`"
+                  v-model="korean[3].score"
+                  :checked="korean[3].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`korean-second-second-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, korean[3])"
+                  :class="complete(korean[3].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!korean[3].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="korean-second-second-null"
+                  v-model="korean[3].score"
+                  :checked="korean[3].decided"
+          >
+          <label for="korean-second-second-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, korean[3])"
+                  :class="discomplete(korean[3].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(korean[4].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`korean-third-first-${k}`"
+                  v-model="korean[4].score"
+                  :checked="korean[4].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`korean-third-first-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, korean[4])"
+                  :class="complete(korean[4].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!korean[4].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="korean-third-first-null"
+                  v-model="korean[4].score"
+                  :checked="korean[4].decided"
+          >
+          <label for="korean-third-first-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, korean[4])"
+                  :class="discomplete(korean[4].score)"
+          >X</label>
+        </td>
+      </tr>
+      <tr class="grade-input-table__row">
+        <td>사회</td>
+        <td :class="changeBackground(social[0].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`society-first-first-${k}`"
+                  v-model="social[0].score"
+                  :checked="social[0].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`society-first-first-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, social[0])"
+                  :class="complete(social[0].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!social[0].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="society-first-first-null"
+                  v-model="social[0].score"
+                  :checked="social[0].decided"
+          >
+          <label for="society-first-first-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, social[0])"
+                  :class="discomplete(social[0].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(social[1].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`society-first-second-${k}`"
+                  v-model="social[1].score"
+                  :checked="social[1].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`society-first-second-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, social[1])"
+                  :class="complete(social[1].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!social[1].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="society-first-second-null"
+                  v-model="social[1].score"
+                  :checked="social[1].decided"
+          >
+          <label for="society-first-second-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, social[1])"
+                  :class="discomplete(social[1].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(social[2].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`society-second-first-${k}`"
+                  v-model="social[2].score"
+                  :checked="social[2].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`society-second-first-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, social[2])"
+                  :class="complete(social[2].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!social[2].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="society-second-first-null"
+                  v-model="social[2].score"
+                  :checked="social[2].decided"
+          >
+          <label for="society-second-first-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, social[2])"
+                  :class="discomplete(social[2].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(social[3].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`society-second-second-${k}`"
+                  v-model="social[3].score"
+                  :checked="social[3].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`society-second-second-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, social[3])"
+                  :class="complete(social[3].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!social[3].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="society-second-second-null"
+                  v-model="social[3].score"
+                  :checked="social[3].decided"
+          >
+          <label for="society-second-second-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, social[3])"
+                  :class="discomplete(social[3].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(social[4].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`society-third-first-${k}`"
+                  v-model="social[4].score"
+                  :checked="social[4].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`society-third-first-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, social[4])"
+                  :class="complete(social[4].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!social[4].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="society-third-first-null"
+                  v-model="social[4].score"
+                  :checked="social[4].decided"
+          >
+          <label for="society-third-first-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, social[4])"
+                  :class="discomplete(social[4].score)"
+          >X</label>
+        </td>
+      </tr>
+      <tr class="grade-input-table__row">
+        <td>역사</td>
+        <td :class="changeBackground(history[0].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`history-first-first-${k}`"
+                  v-model="history[0].score"
+                  :checked="history[0].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`history-first-first-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, history[0])"
+                  :class="complete(history[0].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!history[0].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="history-first-first-null"
+                  v-model="history[0].score"
+                  :checked="history[0].decided"
+          >
+          <label for="history-first-first-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, history[0])"
+                  :class="discomplete(history[0].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(history[1].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`history-first-second-${k}`"
+                  v-model="history[1].score"
+                  :checked="history[1].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`history-first-second-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, history[1])"
+                  :class="complete(history[1].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!history[1].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="history-first-second-null"
+                  v-model="history[1].score"
+                  :checked="history[1].decided"
+          >
+          <label for="history-first-second-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, history[1])"
+                  :class="discomplete(history[1].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(history[2].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`history-second-first-${k}`"
+                  v-model="history[2].score"
+                  :checked="history[2].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`history-second-first-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, history[2])"
+                  :class="complete(history[2].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!history[2].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="history-second-first-null"
+                  v-model="history[2].score"
+                  :checked="history[2].decided"
+          >
+          <label for="history-second-first-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, history[2])"
+                  :class="discomplete(history[2].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(history[3].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`history-second-second-${k}`"
+                  v-model="history[3].score"
+                  :checked="history[3].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`history-second-second-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, history[3])"
+                  :class="complete(history[3].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!history[3].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="history-second-second-null"
+                  v-model="history[3].score"
+                  :checked="history[3].decided"
+          >
+          <label for="history-second-second-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, history[3])"
+                  :class="discomplete(history[3].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(history[4].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`history-third-first-${k}`"
+                  v-model="history[4].score"
+                  :checked="history[4].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`history-third-first-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, history[4])"
+                  :class="complete(history[4].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!history[4].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="history-third-first-null"
+                  v-model="history[4].score"
+                  :checked="history[4].decided"
+          >
+          <label for="history-third-first-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, history[4])"
+                  :class="discomplete(history[4].score)"
+          >X</label>
+        </td>
+      </tr>
+      <tr class="grade-input-table__row">
+        <td>수학</td>
+        <td :class="changeBackground(math[0].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`math-first-first-${k}`"
+                  v-model="math[0].score"
+                  :checked="math[0].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`math-first-first-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, math[0])"
+                  :class="complete(math[0].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!math[0].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="math-first-first-null"
+                  v-model="math[0].score"
+                  :checked="math[0].decided"
+          >
+          <label for="math-first-first-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, math[0])"
+                  :class="discomplete(math[0].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(math[1].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`math-first-second-${k}`"
+                  v-model="math[1].score"
+                  :checked="math[1].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`math-first-second-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, math[1])"
+                  :class="complete(math[1].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!math[1].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="math-first-second-null"
+                  v-model="math[1].score"
+                  :checked="math[1].decided"
+          >
+          <label for="math-first-second-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, math[1])"
+                  :class="discomplete(math[1].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(math[2].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`math-second-first-${k}`"
+                  v-model="math[2].score"
+                  :checked="math[2].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`math-second-first-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, math[2])"
+                  :class="complete(math[2].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!math[2].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="math-second-first-null"
+                  v-model="math[2].score"
+                  :checked="math[2].decided"
+          >
+          <label for="math-second-first-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, math[2])"
+                  :class="discomplete(math[2].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(math[3].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`math-second-second-${k}`"
+                  v-model="math[3].score"
+                  :checked="math[3].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`math-second-second-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, math[3])"
+                  :class="complete(math[3].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!math[3].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="math-second-second-null"
+                  v-model="math[3].score"
+                  :checked="math[3].decided"
+          >
+          <label for="math-second-second-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, math[3])"
+                  :class="discomplete(math[3].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(math[4].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`math-third-first-${k}`"
+                  v-model="math[4].score"
+                  :checked="math[4].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`math-third-first-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, math[4])"
+                  :class="complete(math[4].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!math[4].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="math-third-first-null"
+                  v-model="math[4].score"
+                  :checked="math[4].decided"
+          >
+          <label for="math-third-first-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, math[4])"
+                  :class="discomplete(math[4].score)"
+          >X</label>
+        </td>
+      </tr>
+      <tr class="grade-input-table__row">
+        <td>과학</td>
+        <td :class="changeBackground(science[0].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`science-first-first-${k}`"
+                  v-model="science[0].score"
+                  :checked="science[0].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`science-first-first-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, science[0])"
+                  :class="complete(science[0].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!science[0].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="science-first-first-null"
+                  v-model="science[0].score"
+                  :checked="science[0].decided"
+          >
+          <label for="science-first-first-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, science[0])"
+                  :class="discomplete(science[0].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(science[1].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`science-first-second-${k}`"
+                  v-model="science[1].score"
+                  :checked="science[1].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`science-first-second-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, science[1])"
+                  :class="complete(science[1].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!science[1].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="science-first-second-null"
+                  v-model="science[1].score"
+                  :checked="science[1].decided"
+          >
+          <label for="science-first-second-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, science[1])"
+                  :class="discomplete(science[1].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(science[2].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`science-second-first-${k}`"
+                  v-model="science[2].score"
+                  :checked="science[2].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`science-second-first-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, science[2])"
+                  :class="complete(science[2].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!science[2].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="science-second-first-null"
+                  v-model="science[2].score"
+                  :checked="science[2].decided"
+          >
+          <label for="science-second-first-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, science[2])"
+                  :class="discomplete(science[2].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(science[3].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`science-second-second-${k}`"
+                  v-model="science[3].score"
+                  :checked="science[3].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`science-second-second-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, science[3])"
+                  :class="complete(science[3].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!science[3].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="science-second-second-null"
+                  v-model="science[3].score"
+                  :checked="science[3].decided"
+          >
+          <label for="science-second-second-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, science[3])"
+                  :class="discomplete(science[3].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(science[4].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`science-third-first-${k}`"
+                  v-model="science[4].score"
+                  :checked="science[4].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`science-third-first-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, science[4])"
+                  :class="complete(science[4].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!science[4].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="science-third-first-null"
+                  v-model="science[4].score"
+                  :checked="science[4].decided"
+          >
+          <label for="science-third-first-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, science[4])"
+                  :class="discomplete(science[4].score)"
+          >X</label>
+        </td>
+      </tr>
+      <tr class="grade-input-table__row">
+        <td>기술・가정</td>
+        <td :class="changeBackground(tech[0].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`tech-home-first-first-${k}`"
+                  v-model="tech[0].score"
+                  :checked="tech[0].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`tech-home-first-first-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, tech[0])"
+                  :class="complete(tech[0].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!tech[0].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="tech-home-first-first-null"
+                  v-model="tech[0].score"
+                  :checked="tech[0].decided"
+          >
+          <label for="tech-home-first-first-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, tech[0])"
+                  :class="discomplete(tech[0].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(tech[1].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`tech-home-first-second-${k}`"
+                  v-model="tech[1].score"
+                  :checked="tech[1].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`tech-home-first-second-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, tech[1])"
+                  :class="complete(tech[1].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!tech[1].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="tech-home-first-second-null"
+                  v-model="tech[1].score"
+                  :checked="tech[1].decided"
+          >
+          <label for="tech-home-first-second-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, tech[1])"
+                  :class="discomplete(tech[1].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(tech[2].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`tech-home-second-first-${k}`"
+                  v-model="tech[2].score"
+                  :checked="tech[2].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`tech-home-second-first-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, tech[2])"
+                  :class="complete(tech[2].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!tech[2].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="tech-home-second-first-null"
+                  v-model="tech[2].score"
+                  :checked="tech[2].decided"
+          >
+          <label for="tech-home-second-first-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, tech[2])"
+                  :class="discomplete(tech[2].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(tech[3].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`tech-home-second-second-${k}`"
+                  v-model="tech[3].score"
+                  :checked="tech[3].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`tech-home-second-second-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, tech[3])"
+                  :class="complete(tech[3].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!tech[3].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="tech-home-second-second-null"
+                  v-model="tech[3].score"
+                  :checked="tech[3].decided"
+          >
+          <label for="tech-home-second-second-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, tech[3])"
+                  :class="discomplete(tech[3].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(tech[4].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`tech-home-third-first-${k}`"
+                  v-model="tech[4].score"
+                  :checked="tech[4].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`tech-home-third-first-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, tech[4])"
+                  :class="complete(tech[4].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!tech[4].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="tech-home-third-first-null"
+                  v-model="tech[4].score"
+                  :checked="tech[4].decided"
+          >
+          <label for="tech-home-third-first-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, tech[4])"
+                  :class="discomplete(tech[4].score)"
+          >X</label>
+        </td>
+      </tr>
+      <tr class="grade-input-table__row">
+        <td>영어</td>
+        <td :class="changeBackground(english[0].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`english-first-first-${k}`"
+                  v-model="english[0].score"
+                  :checked="english[0].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`english-first-first-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, english[0])"
+                  :class="complete(english[0].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!english[0].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="english-first-first-null"
+                  v-model="english[0].score"
+                  :checked="english[0].decided"
+          >
+          <label for="english-first-first-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, english[0])"
+                  :class="discomplete(english[0].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(english[1].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`english-first-second-${k}`"
+                  v-model="english[1].score"
+                  :checked="english[1].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`english-first-second-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, english[1])"
+                  :class="complete(english[1].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!english[1].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="english-first-second-null"
+                  v-model="english[1].score"
+                  :checked="english[1].decided"
+          >
+          <label for="english-first-second-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, english[1])"
+                  :class="discomplete(english[1].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(english[2].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`english-second-first-${k}`"
+                  v-model="english[2].score"
+                  :checked="english[2].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`english-second-first-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, english[2])"
+                  :class="complete(english[2].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!english[2].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="english-second-first-null"
+                  v-model="english[2].score"
+                  :checked="english[2].decided"
+          >
+          <label for="english-second-first-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, english[2])"
+                  :class="discomplete(english[2].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(english[3].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`english-second-second-${k}`"
+                  v-model="english[3].score"
+                  :checked="english[3].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`english-second-second-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, english[3])"
+                  :class="complete(english[3].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!english[3].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="english-second-second-null"
+                  v-model="english[3].score"
+                  :checked="english[3].decided"
+          >
+          <label for="english-second-second-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, english[3])"
+                  :class="discomplete(english[3].score)"
+          >X</label>
+        </td>
+        <td :class="changeBackground(english[4].score)">
+          <input type="radio"
+                  v-for="k in scores"
+                  :key="k"
+                  :value="k.toUpperCase()"
+                  :id="`english-third-first-${k}`"
+                  v-model="english[4].score"
+                  :checked="english[4].decided"
+          >
+          <label v-for="(k, index) in scores"
+                  :key="index"
+                  :for="`english-third-first-${k}`"
+                  class="input-grade-label"
+                  @click="changeDecided($event, english[4])"
+                  :class="complete(english[4].score, k.toUpperCase())"
+          >
+            {{ k.toUpperCase() }}
+          </label>
+          <div class="button-side-line" v-show="!english[4].score"></div>
+          <input type="radio"
+                  value="X"
+                  id="english-third-first-null"
+                  v-model="english[4].score"
+                  :checked="english[4].decided"
+          >
+          <label for="english-third-first-null"
+                  class="input-grade-label"
+                  @click="changeDecided($event, english[4])"
+                  :class="discomplete(english[4].score)"
+          >X</label>
+        </td>
+      </tr>
+    </table>
   </div>
 </template>
 
 <script>
-import Navigation from '../common/Navigation';
-import Headline from '../common/Headline';
-import PrevNextBtn from '../common/PrevNextBtn';
-import EntryFooter from '../common/EntryFooter';
-import utils from '../../utils';
-
 export default {
   name: 'normal-grade-input-scheduled',
-  components: {
-    Navigation,
-    Headline,
-    PrevNextBtn,
-    EntryFooter,
-  },
   data() {
     return {
       // Hover 체크
@@ -1381,9 +1358,6 @@ export default {
         return this.$store.getters.selectType.grades;
       },
     },
-  },
-  mounted() {
-    console.log(utils.sendGrade(this.grades, 'WILL', this.volunteerNAttendance));
   },
   methods: {
     // 봉사 및 출석 Commit - 완료
