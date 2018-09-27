@@ -2,10 +2,10 @@
   <div class="info-brochure">
     <navigation />
     <headline :title="title" :subText="subText" />
-    <!-- <embed class="info-brochure__pdf"
+    <embed class="info-brochure__pdf"
       type='application/pdf'
       :src="`${brochureInfoSrc}#page=${pageNumber}&zoom=${zoom}`"
-      :height="height"> -->
+      :height="height">
     <entry-footer />
   </div>
 </template>
@@ -28,7 +28,7 @@ export default {
       title: '2019 신입생 전형요강',
       subText: '대덕소프트웨어마이스터고등학교',
       pdfId: 'pdf-target',
-      // brochureInfoSrc: pdf,
+      brochureInfoSrc: pdf,
       pageNumber: 1,
       zoom: 80,
       height: 1055,
