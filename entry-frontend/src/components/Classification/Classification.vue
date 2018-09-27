@@ -133,15 +133,15 @@
                 v-model="graduateYear"
                 :isEnabled="isGraduated"
                 :options="[
-                  {text: '2018', value:'2018'},
-                  {text: '2017', value:'2017'},
-                  {text: '2016', value:'2016'},
-                  {text: '2015', value:'2015'},
-                  {text: '2014', value:'2014'},
-                  {text: '2013', value:'2013'},
-                  {text: '2012', value:'2012'},
-                  {text: '2011', value:'2011'},
-                  {text: '2010', value:'2010'},
+                  {text: '2018', value: 2018},
+                  {text: '2017', value: 2017},
+                  {text: '2016', value: 2016},
+                  {text: '2015', value: 2015},
+                  {text: '2014', value: 2014},
+                  {text: '2013', value: 2013},
+                  {text: '2012', value: 2012},
+                  {text: '2011', value: 2011},
+                  {text: '2010', value: 2010},
                 ]"/>
                 년
               <span class="form__cover__form__colums__input-content__sign">
@@ -247,8 +247,8 @@ export default {
   computed: {
     graduateType() {
       if (this.isGED) {
-        this.$store.commit('updategraduateYear', {
-          data: null,
+        this.$store.commit('updateGraduateType', {
+          data: 'GED',
         });
         this.$store.commit('updateGraduateType', {
           data: 'GED',
@@ -263,15 +263,15 @@ export default {
         });
         return 'WILL';
       } else if (this.isGraduated) {
-        this.$store.commit('updategraduateYear', {
-          data: null,
+        this.$store.commit('updateGraduateType', {
+          data: 'DONE',
         });
         this.$store.commit('updateGraduateType', {
           data: 'DONE',
         });
         return 'DONE';
       }
-      return null;
+      return 'WILL';
     },
     isGED: {
       get() {
@@ -397,9 +397,9 @@ export default {
           graduateType,
           admission,
           additionalType,
+          admissionDetail,
           region,
           graduateYear,
-          admissionDetail,
         };
       } else if (graduateType === 'GED') {
         data = {
@@ -409,6 +409,9 @@ export default {
           admissionDetail,
           region,
         };
+      }
+      if (graduateType === 'DONE' && graduateYear === 2019) {
+        w('졸업자의 졸업년도가 설정되지 않았습니다.');
       }
       this.$axios({
         method: 'put',
