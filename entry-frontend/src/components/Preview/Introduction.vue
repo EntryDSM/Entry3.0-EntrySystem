@@ -48,11 +48,6 @@ export default {
 </script>
 
 <style scoped>
-html, body {
-  margin: 0;
-  padding: 0;
-}
-
 div {
   box-sizing: border-box;
 }
@@ -83,9 +78,6 @@ td {
 #preview-container {
   width: 595px;
   height: 842px;
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
   padding: 30px;
   border: 1px solid #000;
 }
