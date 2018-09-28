@@ -35,7 +35,55 @@ const utilsOfGrade = {
     return sendForm;
   },
 
-  getGrade: () => 'Hello',
+  getGrade: (responseGrade) => {
+    // 필터링 함수
+    const filteredGrade = (grades, subject) => {
+      const setSubject = subject;
+      const sub = grades.map(grade => Object.assign({}, {
+        score: grade[setSubject] === null ? '' : grade[setSubject],
+        passed: (grade[setSubject] !== null && grade[setSubject] !== 'X'),
+        decided: grade[setSubject] !== null,
+      }));
+
+      return sub;
+    };
+
+    const {
+      grades,
+      grade,
+      earlyLeave,
+      fullCut,
+      late,
+      periodCut,
+      volunteerTime,
+    } = responseGrade;
+    const totalGrades = [];
+    const subjects = [
+      'korean',
+      'social',
+      'history',
+      'math',
+      'science',
+      'tech',
+      'english',
+    ];
+
+    for (let sub = 0; sub < subjects.length; sub += 1) {
+      totalGrades.push(filteredGrade(grades, subjects[sub]));
+    }
+
+    const filteredObject = Object.assign({}, {
+      grades: totalGrades,
+      grade,
+      earlyLeave,
+      fullCut,
+      late,
+      periodCut,
+      volunteerTime,
+    });
+
+    return filteredObject;
+  },
 };
 
 export default utilsOfGrade;

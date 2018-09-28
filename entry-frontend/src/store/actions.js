@@ -1,4 +1,5 @@
 import axios from 'axios';
+import utils from '../utils';
 
 export const actions = {
   updateaccessToken: context => context.commit('updateaccessToken'),
@@ -51,6 +52,7 @@ export const actions = {
     })
     .catch(err => Promise.reject(err.response));
   },
+
   getIntro: ({ commit }, payload) => {
     axios.get('http://entrydsm.hs.kr/api/me/document', {
       headers: { Authorization: `JWT ${payload}` },
@@ -61,6 +63,18 @@ export const actions = {
     })
     .catch(err => Promise.reject(err.response));
   },
+
+  getGrades: ({ commit }, payload) => {
+    axios.get('http://entrydsm.hs.kr/api/me/grade', {
+      headers: { Authorization: `JWT ${payload}` },
+    })
+    .then((response) => {
+      const { data } = response.data;
+      commit('getGrades', utils.getGrade(data));
+    })
+    .catch(err => Promise.reject(err.response));
+  },
+
   updateGrade: (store, payload) => {
     axios({
       url: 'http://entrydsm.hs.kr/api/me/grade',

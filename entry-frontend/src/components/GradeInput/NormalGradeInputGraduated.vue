@@ -2074,8 +2074,9 @@ $button-color: #edf5f6;
         background-color: #cfdee0;
         position: absolute;
         top: 50%;
+        margin-top: -1px;
         transform: translateY(-50%);
-        right: 35px;
+        right: 33px;
       }
 
       // 점수 선택되었을 시의 애니메이션

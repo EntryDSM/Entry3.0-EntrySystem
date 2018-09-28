@@ -80,6 +80,31 @@ export const mutations = {
     v.passed = target.innerText === 'X' ? false : !v.passed;
     v.score = v.decided ? v.score : '';
   },
+  getGrades: (state, payload) => {
+    const { gradeInput } = state;
+    const subjects = [
+      'korean',
+      'social',
+      'history',
+      'math',
+      'science',
+      'tech',
+      'english',
+    ];
+
+    gradeInput.grade = payload.grade;
+    gradeInput.volunteerNAttendance = {
+      earlyLeave: payload.earlyLeave,
+      fullCut: payload.fullCut,
+      late: payload.late,
+      periodCut: payload.periodCut,
+      volunteerTime: payload.volunteerTime,
+    };
+    
+    for (let sub = 0; sub < subjects.length; sub += 1) {
+      gradeInput[subjects[sub]] = payload.grades[sub];
+    }
+  },
   updateIntroduce: (state, payload) => {
     state.introNPlan.introduce = payload;
   },
