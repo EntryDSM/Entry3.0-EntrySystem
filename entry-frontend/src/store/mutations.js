@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const mutations = {
   updateGedScore: (state, payload) => {
-    state.gradeInput.gedScore = payload;
+    state.gradeInput.grade = payload;
   },
   updateVolunteerNAttendance: (state, { field, value }) => {
     state.gradeInput.volunteerNAttendance[field] = parseInt(value, 10);
@@ -19,6 +19,8 @@ export const mutations = {
         resetAll.passed = true;
       }
     }
+
+    window.testGrades = allGrades;
   },
   updateDiscompleteSemester: (state, { grades, target }) => {
     // 학기별 null로 초기화
@@ -62,6 +64,15 @@ export const mutations = {
       default: break;
     }
   },
+  updateIntroAndPlan: (state, { data }) => {
+    const {
+      introduce,
+      studyPlan,
+    } = data;
+
+    state.introNPlan.introduce = introduce;
+    state.introNPlan.studyPlan = studyPlan;
+  },
   updateChangeDecided: (state, { target, val }) => {
     const v = val;
 
@@ -69,11 +80,37 @@ export const mutations = {
     v.passed = target.innerText === 'X' ? false : !v.passed;
     v.score = v.decided ? v.score : '';
   },
+  getGrades: (state, payload) => {
+    const { gradeInput } = state;
+    const subjects = [
+      'korean',
+      'social',
+      'history',
+      'math',
+      'science',
+      'tech',
+      'english',
+    ];
+
+    gradeInput.grade = payload.grade;
+    gradeInput.volunteerNAttendance = {
+      earlyLeave: payload.earlyLeave,
+      fullCut: payload.fullCut,
+      late: payload.late,
+      periodCut: payload.periodCut,
+      volunteerTime: payload.volunteerTime,
+    };
+    
+    for (let sub = 0; sub < subjects.length; sub += 1) {
+      // 각각의 subject에 대해 성적 적용
+      gradeInput[subjects[sub]] = payload.grades[sub];
+    }
+  },
   updateIntroduce: (state, payload) => {
     state.introNPlan.introduce = payload;
   },
   updatePlan: (state, payload) => {
-    state.introNPlan.plan = payload;
+    state.introNPlan.studyPlan = payload;
   },
   changeIndex: (state, payload) => {
     state.modal.index = payload.index;
@@ -108,8 +145,8 @@ export const mutations = {
   updateIsGraduated: (state, payload) => {
     state.classify.isGraduated = payload.data;
   },
-  updateGraduationYear: (state, payload) => {
-    state.classify.graduationYear = payload.data;
+  updategraduateYear: (state, payload) => {
+    state.classify.graduateYear = payload.data;
   },
   updateSpecialPoints: (state, payload) => {
     state.classify.specialPoints = payload.data;
@@ -184,6 +221,8 @@ export const mutations = {
         } = res.data.data;
         if (graduateType === 'GED') {
           state.classify.isGED = true;
+        } else if (graduateType === 'DONE') {
+          state.classify.isGraduated = true;
         }
         state.classify.graduateType = graduateType;
         state.classify.admission = admission;
@@ -217,7 +256,7 @@ export const mutations = {
         }
         state.classify.admissionDetail.value = admissionDetail;
         state.classify.region = region;
-        state.classify.graduateYear = graduateYear;
+        state.classify.graduateYear = graduateYear * 1;
         state.classify.additionalType = additionalType;
       }
     });
@@ -250,7 +289,7 @@ export const mutations = {
       state.PersonInfo.year = birth.split('-')[0];
       state.PersonInfo.month = birth.split('-')[1];
       state.PersonInfo.day = birth.split('-')[2];
-      state.PersonInfo.graduateYear = graduateYear;
+      state.classify.graduateYear = graduateYear;
       state.PersonInfo.schoolName = (school != null) ? school.name : '';
       state.PersonInfo.schoolCode = (school != null) ? school.code : '';
       state.PersonInfo.schoolTel = schoolTel;
@@ -259,7 +298,7 @@ export const mutations = {
       state.PersonInfo.studentGrade = studentGrade;
       state.PersonInfo.studentNumber = studentNumber;
       state.PersonInfo.zipCode = zipCode;
-      state.PersonInfo.name = name;
+      state.PersonInfo.personName = name;
       state.PersonInfo.imgPath = imgPath;
       state.PersonInfo.myTel = myTel;
       state.PersonInfo.parentTel = parentTel;

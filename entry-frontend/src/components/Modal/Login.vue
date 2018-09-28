@@ -44,6 +44,7 @@ export default {
   methods: {
     login() {
       const { email, password } = this;
+      const { s, e } = this.$toastr;
       if (email === '') {
         this.idwrong = true;
         this.pwwrong = false;
@@ -73,6 +74,7 @@ export default {
             this.$store.commit('changeIndex', {
               index: 0,
             });
+            s('로그인 성공.');
           } else {
             this.pw = '';
             this.pwwrong = true;
@@ -80,6 +82,17 @@ export default {
             setTimeout(() => {
               this.pwwrong = false;
             }, 5000);
+          }
+        }).catch((error) => {
+          this.pw = '';
+          this.pwwrong = true;
+          this.idwrong = false;
+          setTimeout(() => {
+            this.pwwrong = false;
+          }, 5000);
+          if (error.response.status !== 401) {
+            e('로그인 실패');
+            e(error);
           }
         });
       }

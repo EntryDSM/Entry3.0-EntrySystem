@@ -130,18 +130,18 @@
             </div>
             <div class="form__cover__form__colums__input-content">
               <selectbox class="selectbox"
-                v-model="graduationYear"
+                v-model="graduateYear"
                 :isEnabled="isGraduated"
                 :options="[
-                  {text: '2018', value:'2018'},
-                  {text: '2017', value:'2017'},
-                  {text: '2016', value:'2016'},
-                  {text: '2015', value:'2015'},
-                  {text: '2014', value:'2014'},
-                  {text: '2013', value:'2013'},
-                  {text: '2012', value:'2012'},
-                  {text: '2011', value:'2011'},
-                  {text: '2010', value:'2010'},
+                  {text: '2018', value: 2018},
+                  {text: '2017', value: 2017},
+                  {text: '2016', value: 2016},
+                  {text: '2015', value: 2015},
+                  {text: '2014', value: 2014},
+                  {text: '2013', value: 2013},
+                  {text: '2012', value: 2012},
+                  {text: '2011', value: 2011},
+                  {text: '2010', value: 2010},
                 ]"/>
                 년
               <span class="form__cover__form__colums__input-content__sign">
@@ -247,22 +247,31 @@ export default {
   computed: {
     graduateType() {
       if (this.isGED) {
-        this.$store.commit('updateGraduationYear', {
-          data: null,
+        this.$store.commit('updateGraduateType', {
+          data: 'GED',
+        });
+        this.$store.commit('updateGraduateType', {
+          data: 'GED',
         });
         return 'GED';
       } else if (!this.isGraduated) {
-        this.$store.commit('updateGraduationYear', {
+        this.$store.commit('updategraduateYear', {
           data: 2019,
+        });
+        this.$store.commit('updateGraduateType', {
+          data: 'WILL',
         });
         return 'WILL';
       } else if (this.isGraduated) {
-        this.$store.commit('updateGraduationYear', {
-          data: null,
+        this.$store.commit('updateGraduateType', {
+          data: 'DONE',
+        });
+        this.$store.commit('updateGraduateType', {
+          data: 'DONE',
         });
         return 'DONE';
       }
-      return null;
+      return 'WILL';
     },
     isGED: {
       get() {
@@ -298,9 +307,12 @@ export default {
         this.$store.commit('updateadmission', {
           data: value,
         });
-        if (this.$store.state.classify.admission !== 'SOCIAL') {
-          this.$store.commit('updateSocialOption', {
-            data: null,
+        if (value !== 'SOCIAL') {
+          this.$store.commit('updateadmissionDetail', {
+            data: {
+              text: '',
+              value: 'NONE',
+            },
           });
         }
       },
@@ -338,12 +350,12 @@ export default {
         });
       },
     },
-    graduationYear: {
+    graduateYear: {
       get() {
-        return this.$store.state.classify.graduationYear;
+        return this.$store.state.classify.graduateYear;
       },
       set(value) {
-        this.$store.commit('updateGraduationYear', {
+        this.$store.commit('updategraduateYear', {
           data: value,
         });
       },
@@ -355,6 +367,7 @@ export default {
     },
     sendServer() {
       const token = this.$cookies.get('accessToken');
+      const { s, e, w } = this.$toastr;
       const {
         graduateType,
         admission,
@@ -363,87 +376,69 @@ export default {
         graduateYear,
       } = this.$store.state.classify;
       const admissionDetail = this.$store.state.classify.admissionDetail.value;
-      if (graduateType !== 'GED') {
-        this.$axios({
-          method: 'put',
-          url: 'http://entrydsm.hs.kr/api/me/classification',
-          headers: { Authorization: `JWT ${token}` },
-          data: {
-            graduateType,
-            admission,
-            additionalType,
-            region,
-            graduateYear,
-          }
-        }).then((res) => {
-          if (res.status === 200) {
-            this.$toastr.s('서버에 임시저장 되었습니다.');
-          } else {
-            this.$toastr.e('서버와 통신이 불안정합니다.<br/> 재연결이 필요합니다.');
-          }
-        });
-      } else if(graduateType === 'GED' && admission === 'SOCIAL'){
-        this.$axios({
-          method: 'put',
-          url: 'http://entrydsm.hs.kr/api/me/classification',
-          headers: { Authorization: `JWT ${token}` },
-          data: {
-            graduateType,
-            admissionDetail,
-            admission,
-            additionalType,
-            admissionDetail: 'NONE',
-            region,
-          }
-        }).then((res) => {
-          if (res.status === 200) {
-            this.$toastr.s('서버에 임시저장 되었습니다.');
-          } else {
-            this.$toastr.e('서버와 통신이 불안정합니다.<br/> 재연결이 필요합니다.');
-          }
-        });
+      let data = {
+        graduateType,
+        admission,
+        admissionDetail,
+        additionalType,
+        region,
+        graduateYear,
+      };
+      if (graduateType === 'GED' && admission === 'SOCIAL') {
+        data = {
+          graduateType,
+          admission,
+          additionalType,
+          admissionDetail,
+          region,
+        };
+      } else if (admission === 'SOCIAL') {
+        data = {
+          graduateType,
+          admission,
+          additionalType,
+          admissionDetail,
+          region,
+          graduateYear,
+        };
+      } else if (graduateType === 'GED') {
+        data = {
+          graduateType,
+          admission,
+          additionalType,
+          admissionDetail,
+          region,
+        };
       }
-      else if (admission === 'SOCIAL'){
-        this.$axios({
-          method: 'put',
-          url: 'http://entrydsm.hs.kr/api/me/classification',
-          headers: { Authorization: `JWT ${token}` },
-          data: {
-            graduateType,
-            admissionDetail,
-            admission,
-            additionalType,
-            region,
-            graduateYear,
-          }
-        }).then((res) => {
-          if (res.status === 200) {
-            this.$toastr.s('서버에 임시저장 되었습니다.');
-          } else {
-            this.$toastr.e('서버와 통신이 불안정합니다.<br/> 재연결이 필요합니다.');
-          }
-        });
+      if (graduateType === 'DONE' && graduateYear === 2019) {
+        w('졸업자의 졸업년도가 설정되지 않았습니다.');
       }
-      else {
-        this.$axios({
-          method: 'put',
-          url: 'http://entrydsm.hs.kr/api/me/classification',
-          headers: { Authorization: `JWT ${token}` },
-          data: {
-            graduateType,
-            admission,
-            additionalType,
-            admissionDetail: 'NONE',
-            region,
-          }
-        }).then((res) => {
-          if (res.status === 200) {
-            this.$toastr.s('서버에 임시저장 되었습니다.');
-          } else {
-            this.$toastr.e('서버와 통신이 불안정합니다.<br/> 재연결이 필요합니다.');
-          }
-        });
-      }
+      this.$axios({
+        method: 'put',
+        url: 'http://entrydsm.hs.kr/api/me/classification',
+        headers: { Authorization: `JWT ${token}` },
+        data,
+      }).then((res) => {
+        if (res.status === 200) {
+          s('서버에 임시저장 되었습니다.');
+        } else if (res.status === 400) {
+          res.data.errors.map((error => e(`${error.field}-${error.message}`)));
+        } else {
+          e('서버와 통신이 불안정합니다.<br/>다시 시도해주세요.');
+        }
+      }).catch((error) => {
+        if (error.response.status === 400) {
+          error.response.data.errors.map((msg => w(`${msg.field}-${msg.message}`)));
+        } else if (error.response.status === 401) {
+          e('로그인이 반드시 필요합니다.');
+          this.$router.push('/');
+          this.$store.commit('changeIndex', {
+            index: 1,
+          });
+        } else {
+          e('서버와 통신이 불안정합니다.<br/>다시 시도해주세요.');
+        }
+      });
     },
   },
 };

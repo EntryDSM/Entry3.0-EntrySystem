@@ -212,7 +212,8 @@
         :prevShow="true"
         :nextShow="true"
         :prevLink="prevLink"
-        :nextLink="nextLink"/>
+        :nextLink="nextLink"
+        :onClick="() => sendServer()"/>
     </div>
     <entry-footer />
   </div>
@@ -246,6 +247,7 @@ export default {
       yearOptions: [],
       monthOptions: [],
       prevLink: '/classify',
+      nextLink: '/grade',
     };
   },
   computed: {
@@ -282,15 +284,6 @@ export default {
       get() {
         return this.$store.state.classify.isGED;
       },
-    },
-    nextLink() {
-      let link;
-      switch (this.$store.state.classify.graduateType) {
-        case 'DONE': link = 'grade-graduated'; break;
-        case 'GED': link = 'grade-ged'; break;
-        default: link = 'grade-scheduled';
-      }
-      return link;
     },
     personName: {
       get() {
@@ -517,6 +510,32 @@ export default {
           vueObject.addressBase = fullRoadAddr;
         },
       }).open();
+    },
+    sendServer() {
+      const token = this.$cookies.get('accessToken');
+      const data = { ...this.$store.state.PersonInfo };
+      const { s, e } = this.$toastr;
+      data.name = data.personName;
+      data.birth = `${data.year}-${data.month}-${data.day}`;
+      data.schoolCode = (data.schoolCode === null || data.schoolCode.trim() === '') ? null : data.schoolCode;
+      this.$axios({
+        method: 'put',
+        url: 'http://entrydsm.hs.kr/api/me/info',
+        headers: { Authorization: `JWT ${token}` },
+        data,
+      }).then((res) => {
+        if (res.status === 200) {
+          s('서버에 임시저장 되었습니다.');
+        }
+      }).catch((error) => {
+        if (error.response.status === 401) {
+          e('로그인이 반드시 필요합니다.');
+          this.$router.push('/');
+          this.$store.commit('changeIndex', {
+            index: 1,
+          });
+        }
+      });
     },
   },
 };
