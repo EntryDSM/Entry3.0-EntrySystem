@@ -102,6 +102,7 @@ export const mutations = {
     };
     
     for (let sub = 0; sub < subjects.length; sub += 1) {
+      // 각각의 subject에 대해 성적 적용
       gradeInput[subjects[sub]] = payload.grades[sub];
     }
   },
