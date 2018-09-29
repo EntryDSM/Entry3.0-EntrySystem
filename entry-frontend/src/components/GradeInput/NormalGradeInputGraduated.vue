@@ -1750,18 +1750,18 @@ $button-color: #edf5f6;
     align-items: center;
     justify-content: center;
     position: absolute;
-    left: 14px;
+    left: 10px;
     transition: 0.35s ease-in-out;
     border-style: solid;
     border-color: #cfdee0;
 
     @for $i from 1 through 4 {
       &:nth-of-type(#{$i + 1}) {
-        left: calc(14px + (22px * #{$i}));
+        left: calc(10px + (22px * #{$i}));
       }
     }
     &:nth-of-type(6) {
-      left: 128px;
+      left: 126px;
     }
   }
 
@@ -2076,7 +2076,7 @@ $button-color: #edf5f6;
         top: 50%;
         margin-top: -1px;
         transform: translateY(-50%);
-        right: 33px;
+        right: 35px;
       }
 
       // 점수 선택되었을 시의 애니메이션
