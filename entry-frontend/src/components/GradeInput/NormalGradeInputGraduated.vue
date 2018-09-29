@@ -147,7 +147,7 @@
       </tr>
     </table>
 
-    <h3>성적입력(해당 학기 미이수 과목은 X 선택)</h3>
+    <h3>성적입력 (해당 학기 미이수 과목은 X 선택)</h3>
     <table class="grade-input-table" ref="grade-table">
       <div class="all-grade-reset-cover">
         <div class="all-grade-reset-cover__box" :class="allHoverCheck()">
@@ -1737,7 +1737,7 @@ $button-color: #edf5f6;
   button {
     width: 20px;
     height: 20px;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .input-grade-label {
@@ -1920,16 +1920,16 @@ $button-color: #edf5f6;
     height: 675px;
 
     .all-grade-reset-cover {
-      width: 200px;
+      width: 250px;
       height: 60px;
       box-sizing: border-box;
       position: absolute;
       right: 0;
-      margin-top: -64px;
+      margin-top: -76px;
 
       @include e('box') {
-        width: 175px;
-        height: 24px;
+        width: 200px;
+        height: 30px;
         border: 1px solid $input-color;
         border-radius: 5px;
         display: flex;
@@ -1941,7 +1941,7 @@ $button-color: #edf5f6;
         transition: opacity .4s;
 
         @include e('text') {
-          font-size: 10px;
+          font-size: 12px;
           color: #26484c;
         }
       }
@@ -1959,7 +1959,7 @@ $button-color: #edf5f6;
         float: right;
 
         @include e('text') {
-          font-size: 10px;
+          font-size: 16px;
         }
 
         button {

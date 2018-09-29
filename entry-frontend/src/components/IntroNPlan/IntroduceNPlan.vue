@@ -1,7 +1,7 @@
 <template>
   <div>
     <navigation />
-    <headline :subText="'2019 입학원서 작성'" title="자기소개서&학업계획서" />
+    <headline :subText="'2019 입학원서 작성'" title="자기소개서 & 학업계획서" />
     <div class="intro-plan-cover">
       <h3>자기소개서</h3>
       <div class="underline"></div>
