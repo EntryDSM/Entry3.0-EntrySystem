@@ -182,10 +182,12 @@
         <p class="agreement-text">7. (개인정보의 수집·이용·제공에 대한 동의 거부) 지원자는 개인정보의 수집·이용·제공에 대한 동의를 거부할 수 있으며, 동의를 거부할 경우 지원결격 사유 조회 등 입학관리 업무를 수행할 수 없으므로 원서를 접수할 수 없습니다.</p>
       </div>
     </div>
-    <p>본 입학원서의 개인정보 수집·이용·제공에 동의합니다.</p>
-    <p>지원자 성명 <span class="application-info-long-blank"></span>(인)</p>
-    <p>보호자 성명 <span class="application-info-long-blank"></span>(인)</p>
-    <p>대덕소프트웨어마이스터고등학교장 귀하</p>
+    <div id="foo">
+      <p>본 입학원서의 개인정보 수집·이용·제공에 동의합니다.</p>
+      <p>지원자 성명 <span class="application-info-long-blank"></span>(인)</p>
+      <p>보호자 성명 <span class="application-info-long-blank"></span>(인)</p>
+      <p>대덕소프트웨어마이스터고등학교장 귀하</p>
+    </div>
   </div>
 </template>
 
@@ -347,7 +349,7 @@ input[type="checkbox"] {
 
 /* agreement-text */
 .agreement-text {
-  font-size: 2.5px;
+  font-size: 3px;
   margin: 0 6px;
 }
 
@@ -411,16 +413,17 @@ input[type="checkbox"] {
 #application-info-tables table:nth-child(7) tr:nth-child(1) td:nth-child(1) p, pre { margin: 12px; }
 
 /* row-9, 개인정보 활용 동의서 */
-#preview-container p:nth-child(1) { font-size: 7px; }
-#preview-container p:nth-child(2) { font-size: 7px; }
-#preview-container p:nth-child(3) { font-size: 7px; }
-#preview-container p:nth-child(4) { font-size: 7px; }
-#preview-container p:nth-child(5) { font-size: 7px; }
-#preview-container p:nth-child(6) { font-size: 7px; }
-#preview-container p:nth-child(7) { font-size: 7px; }
-#preview-container p:nth-child(8) { font-size: 7px; }
+#application-terms-info-box p:nth-child(1) { font-size: 8px; line-height: 1.2 }
+#application-terms-info-box p:nth-child(2) { font-size: 8px; line-height: 1.2 }
+#application-terms-info-box p:nth-child(3) { font-size: 8px; line-height: 1.2 }
+#application-terms-info-box p:nth-child(4) { font-size: 8px; line-height: 1.2 }
+#application-terms-info-box p:nth-child(5) { font-size: 8px; line-height: 1.2 }
+#application-terms-info-box p:nth-child(6) { font-size: 8px; line-height: 1.2 }
+#application-terms-info-box p:nth-child(7) { font-size: 8px; line-height: 1.2 }
+#application-terms-info-box p:nth-child(8) { font-size: 8px; line-height: 1.2 }
 
-#preview-container p:nth-child(11) { font-size: 10px; text-align: right; }
-#preview-container p:nth-child(12) { font-size: 10px; text-align: right; }
-#preview-container p:nth-child(13) { font-size: 14px; font-weight: bold; }
+#foo p:nth-child(1) { font-size: 10px; font-weight: bold; line-height: 2 }
+#foo p:nth-child(2) { font-size: 10px; text-align: right; line-height: 2}
+#foo p:nth-child(3) { font-size: 10px; text-align: right; }
+#foo p:nth-child(4) { font-size: 14px; font-weight: bold; }
 </style>
