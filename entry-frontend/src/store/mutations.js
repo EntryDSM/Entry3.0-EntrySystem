@@ -236,8 +236,9 @@ export const mutations = {
   updateStudentNumber: (state, payload) => {
     state.PersonInfo.studentNumber = payload.data;
   },
-  updateSchoolName: (state, payload) => {
-    state.PersonInfo.schoolName = payload.data;
+  updateSchool: (state, payload) => {
+    state.PersonInfo.school = payload.data;
+    state.PersonInfo.schoolCode = payload.data.code;
   },
   updateParentName: (state, payload) => {
     state.PersonInfo.parentName = payload.data;

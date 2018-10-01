@@ -34,7 +34,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../../style/setting';
 $M-input-background: #f9fbfc;
 $M-input-placeholder: #acc6c9;
