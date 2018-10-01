@@ -242,13 +242,13 @@ export default {
           volunteerScore,
           finalScore,
         } = res.data.data;
-        this.firstGrade = firstGrade;
-        this.secondGrade = secondGrade;
-        this.thirdGrade = thirdGrade;
-        this.conversionScore = conversionScore;
-        this.attendanceScore = attendanceScore;
-        this.volunteerScore = volunteerScore;
-        this.finalScore = finalScore;
+        this.firstGrade = firstGrade.toFixed(3);
+        this.secondGrade = secondGrade.toFixed(3);
+        this.thirdGrade = thirdGrade.toFixed(3);
+        this.conversionScore = conversionScore.toFixed(3);
+        this.attendanceScore = attendanceScore.toFixed(3);
+        this.volunteerScore = volunteerScore.toFixed(3);
+        this.finalScore = finalScore.toFixed(3);
       } else {
         this.$toastr.e('서버와 통신이 불안정합니다.<br/> 재연결이 필요합니다.');
       }
