@@ -20,7 +20,7 @@
         </tr>
         <tr>
           <td><pre>주   소</pre></td>
-          <td colspan="3">{{addressBase}} ({{addressDetail}})</td>
+          <td colspan="3">{{addressBase}}{{addressDetail ? `(${addressDetail})` : ''}}</td>
         </tr>
         <tr>
           <td id="quitting-smoking-content" colspan="5">
@@ -31,7 +31,7 @@
               <p>하나, 위의 약속을 위반할 경우 어떠한 처벌에도 이의를 제기하지 않겠습니다.</p>
             </div>
             <div id="quitting-content-declaration">
-              <pre>   나 (<span class="quitting-blank"></span>)은(는) 장차 소프트웨어 분야를 선도할 전문가로 성장<br />하기 위하여 흡연을 하지 않겠습니다.</pre>
+              <pre>   나 (<span class="quitting-blank" style="text-align:center">{{personName}}</span>)은(는) 장차 소프트웨어 분야를 선도할 전문가로 성장<br />하기 위하여 흡연을 하지 않겠습니다.</pre>
               <pre>   보호자는 서약자가 금연을 하는데 용기와 도움을 줄 것을 약속합니다.</pre>
             </div>
             <div id="quitting-content-footer">
