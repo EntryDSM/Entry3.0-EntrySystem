@@ -1,20 +1,20 @@
 <template>
-  <div class="modal">
+  <div class="school-modal">
     <selectbox
-      class="modal__select-office"
+      class="school-modal__select-office"
       v-model="office"
       :options="offices"></selectbox>
     <input
       type="text"
-      class="input-text modal__input"
+      class="input-text school-modal__input"
       placeholder="중학교 명"
       v-focus
       v-model="keyword"
       @keyup.enter="getSchools"
       @keydown.esc="$emit('close')">
-    <ul class="modal__list">
+    <ul class="school-modal__list">
       <li
-        class="modal__school"
+        class="school-modal__school"
         v-for="school in schools"
         :key="school.code"
         @click="selectSchool(school)">
@@ -105,7 +105,7 @@ $color-main3: #5f8a90;
 $color-main4: #f7fbfc;
 $modal-z-index: 5;
 
-.modal {
+.school-modal {
   $modal-width: 1000px;
   $modal-height: 500px;
 
