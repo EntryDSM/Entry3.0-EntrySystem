@@ -13,7 +13,7 @@
           </tr>
           <tr>
             <td>출신중학교</td>
-            <td>{{schoolName}}</td>
+            <td>{{school.name}}</td>
           </tr>
         </tbody>
       </table>
@@ -38,7 +38,7 @@ export default {
   name: 'introduction',
   computed: {
     personName() { return this.$store.state.PersonInfo.personName; },
-    schoolName() { return this.$store.state.PersonInfo.schoolName; },
+    school() { return this.$store.state.PersonInfo.school; },
     ...mapState({
       introduce: state => state.introNPlan.introduce,
       plan: state => state.introNPlan.plan,

@@ -10,7 +10,7 @@
             <td>접수번호</td>
             <td></td>
             <td>중학교 코드</td>
-            <td></td>
+            <td>{{school.code}}</td>
             <td>반</td>
             <td>{{studentClass}}</td>
             <td>수험번호</td>
@@ -218,7 +218,7 @@ export default {
     day() { return this.$store.state.PersonInfo.day; },
     studentClass() { return this.$store.state.PersonInfo.studentClass; },
     studentNumber() { return this.$store.state.PersonInfo.studentNumber; },
-    schoolName() { return this.$store.state.PersonInfo.schoolName; },
+    school() { return this.$store.state.PersonInfo.school; },
     parentName() { return this.$store.state.PersonInfo.parentName; },
     schoolTel() { return this.$store.state.PersonInfo.schoolTel; },
     parentTel() { return this.$store.state.PersonInfo.parentTel; },
