@@ -122,6 +122,8 @@ td {
 #preview-text {
   width: 100%;
   height: 550px;
+  white-space: pre-line;
+  line-height: 1.4;
 }
 
 /* row_1, 성명~ */
