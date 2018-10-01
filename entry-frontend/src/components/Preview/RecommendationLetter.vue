@@ -6,8 +6,8 @@
     <div id="recommendation-letter-content">
       <div>
         <p>[<span class="recommendation-blank"></span>]중학교</p>
-        <p>3학년 <span class="recommendation-blank"></span>반</p>
-        <p>성 명 : <span class="recommendation-blank"></span></p>
+        <p>3학년 <span class="recommendation-blank">{{studentClass}}</span>반</p>
+        <p>성 명 : <span class="recommendation-blank">{{personName}}</span></p>
       </div>
       <table>
         <tbody>
@@ -52,6 +52,10 @@
 <script>
 export default {
   name: 'academic-plan',
+  computed: {
+    personName() { return this.$store.state.PersonInfo.personName; },
+    studentClass() { return this.$store.state.PersonInfo.studentClass; },
+  },
 };
 </script>
 

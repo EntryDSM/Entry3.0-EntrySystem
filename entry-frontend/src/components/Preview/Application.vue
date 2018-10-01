@@ -36,7 +36,7 @@
           </tr>
           <tr>
             <td>주소</td>
-            <td colspan="6">{{addressBase}}({{addressDetail}})</td>
+            <td colspan="6">{{addressBase}}{{addressDetail ? `(${addressDetail})` : ''}}</td>
           </tr>
         </tbody>
       </table>
@@ -55,15 +55,13 @@
             <td>학교</td>
             <td>{{schoolTel}}</td>
             <td class="application-info-textalign-left">
-              <input :checked="graduateType === 'DONE'" type="checkbox" onclick="return false" />{{graduationYear}}년 2월 중학교 졸업</td>
+              <input :checked="graduateType === 'DONE'" type="checkbox" onclick="return false" /><span :style="{paddingRight: graduateType === 'DONE' ? '0' : '7px'}">{{graduateType === 'DONE' ? graduationYear : '201'}}</span>년 2월 중학교 졸업</td>
           </tr>
           <tr>
             <td>학생</td>
             <td>{{myTel}}</td>
             <td class="application-info-textalign-left">
-              <input :checked="graduateType === 'GED'" type="checkbox" onclick="return false" />
-              <div style="display: inline; padding-left:20px"></div>년
-              <div style="display: inline; padding-left:20px"></div>월 고입 검정고시 합격
+              <input :checked="graduateType === 'GED'" type="checkbox" onclick="return false" />201<span style="padding:0 9px 0 7px">년</span>월 고입 검정고시 합격
             </td>
           </tr>
         </tbody>
@@ -136,14 +134,6 @@
       <table>
         <tbody>
           <tr>
-            <td><pre>사     진<br /><br />(3cm×4cm)</pre></td>
-            <td>
-              <pre>본인의 귀 고등학교에 입학하고자 소정의 서류를 갖추어<br />지원합니다.                                              </pre>
-              <p>2018년 10 월 <span class="application-info-blank"></span>일</p>
-              <p>지원자 : <span class="application-info-long-blank"></span>(인)   보호자 : <span class="application-info-long-blank"></span>(인)</p>
-              <br />
-              <p>대덕소프트웨어마이스터고등학교장 귀하</p>
-            </td>
             <td>
               <p>보훈번호:(<span class="application-info-middle-blank"></span>)</p>
               <p>위는 국가유공자</p>
@@ -151,6 +141,14 @@
               <p>2018.10. <span class="application-info-middle-blank"></span>.</p>
               <p>작성자 : <span class="application-info-middle-blank"></span>(인)</p>
             </td>
+            <td>
+              <pre>본인의 귀 고등학교에 입학하고자 소정의 서류를 갖추어<br />지원합니다.                                              </pre>
+              <p>2018년 10 월 <span class="application-info-blank"></span>일</p>
+              <p>지원자 : <span class="application-info-long-blank">{{ personName }}</span>(인)   보호자 : <span class="application-info-long-blank">{{parentName}}</span>(인)</p>
+              <br />
+              <p>대덕소프트웨어마이스터고등학교장 귀하</p>
+            </td>
+            <td><pre>사     진<br /><br />(3cm×4cm)</pre></td>
           </tr>
         </tbody>
       </table>
@@ -184,8 +182,8 @@
     </div>
     <div id="foo">
       <p>본 입학원서의 개인정보 수집·이용·제공에 동의합니다.</p>
-      <p>지원자 성명 <span class="application-info-long-blank"></span>(인)</p>
-      <p>보호자 성명 <span class="application-info-long-blank"></span>(인)</p>
+      <p>지원자 성명 <span class="application-info-long-blank">{{personName}}</span>(인)</p>
+      <p>보호자 성명 <span class="application-info-long-blank">{{parentName}}</span>(인)</p>
       <p>대덕소프트웨어마이스터고등학교장 귀하</p>
     </div>
   </div>
@@ -401,12 +399,12 @@ input[type="checkbox"] {
 #application-info-tables table:nth-child(5) tr:nth-child(1) td:nth-child(5) { width: 13%; }
 
 /* row_7, 사진~ */
-#application-info-tables table:nth-child(6) tr:nth-child(1) td:nth-child(1) { width: 3cm; height: 4cm; }
+#application-info-tables table:nth-child(6) tr:nth-child(1) td:nth-child(1) { width: 21%; }
+#application-info-tables table:nth-child(6) tr:nth-child(1) td:nth-child(1) p, pre { margin: 10px; }
 #application-info-tables table:nth-child(6) tr:nth-child(1) td:nth-child(2) { width: 58%; }
 #application-info-tables table:nth-child(6) tr:nth-child(1) td:nth-child(2) p, pre { margin: 10px; }
 #application-info-tables table:nth-child(6) tr:nth-child(1) td:nth-child(2) p:nth-child(5) { font-size: 11px; font-weight: bold; text-align: left; margin-left: 10px; }
-#application-info-tables table:nth-child(6) tr:nth-child(1) td:nth-child(3) { width: 21%; }
-#application-info-tables table:nth-child(6) tr:nth-child(1) td:nth-child(3) p, pre { margin: 10px; }
+#application-info-tables table:nth-child(6) tr:nth-child(1) td:nth-child(3) { width: 3cm; height: 4cm; }
 
 /* row_8, 추천서~ */
 #application-info-tables table:nth-child(7) tr:nth-child(1) td:nth-child(1) { border: 1px solid #000 }

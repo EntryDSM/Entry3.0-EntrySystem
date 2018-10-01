@@ -29,7 +29,7 @@
               이루고자 하는 목표를 달성하기 위해 생각하는 학업계획을 상세하게 기술하십시오.</td>
           </tr>
           <tr>
-            <td>(1,600자 이내)<div id="preview-text">{{plan}}</div></td>
+            <td><div id="preview-text">{{studyPlan}}</div></td>
           </tr>
         </tbody>
       </table>
@@ -47,7 +47,7 @@ export default {
     schoolName() { return this.$store.state.PersonInfo.schoolName; },
     ...mapState({
       introduce: state => state.introNPlan.introduce,
-      plan: state => state.introNPlan.plan,
+      studyPlan: state => state.introNPlan.studyPlan,
     }),
   },
 };
