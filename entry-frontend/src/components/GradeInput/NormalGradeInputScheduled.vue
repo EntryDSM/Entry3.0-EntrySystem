@@ -1485,10 +1485,6 @@ $input-color: #5f8a90;
 $table-background: #f7fbfc;
 $button-color: #edf5f6;
 
-* {
-  will-change: transform;
-}
-
 .grade-input-cover {
   width: 1140px;
   margin: 0 auto;
