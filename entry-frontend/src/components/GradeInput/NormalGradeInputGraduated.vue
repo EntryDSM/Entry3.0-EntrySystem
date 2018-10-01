@@ -2087,7 +2087,7 @@ $button-color: #edf5f6;
         top: 50%;
         margin-top: -1px;
         transform: translateY(-50%);
-        right: 35px;
+        right: 36px;
       }
 
       // 점수 선택되었을 시의 애니메이션
