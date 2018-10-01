@@ -29,7 +29,7 @@
               이루고자 하는 목표를 달성하기 위해 생각하는 학업계획을 상세하게 기술하십시오.</td>
           </tr>
           <tr>
-            <td><div id="preview-text">{{studyPlan}}</div></td>
+            <td><pre id="preview-text">{{studyPlan}}</pre></td>
           </tr>
         </tbody>
       </table>
