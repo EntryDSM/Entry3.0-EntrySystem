@@ -72,9 +72,8 @@ export default {
           this.$store.commit('updateaccessToken', {
             data: token,
           });
-          this.$store.commit('updateClassify', {
-            token,
-          });
+          this.$store.dispatch('getClassify', token);
+          this.$store.dispatch('getInfo', token);
           return true;
         }
         return false;
