@@ -98,7 +98,10 @@ $input-pseudo: #608a8e;
 .input-radio-span {
   width: 9px;
   height: 9px;
-  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 50%;
   background-color: none;
 }

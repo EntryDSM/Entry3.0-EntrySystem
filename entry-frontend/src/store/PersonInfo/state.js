@@ -6,11 +6,12 @@ export const PersonInfo = {
   day: null, // 생일 -> YYYY-MM-DD 로 보내야함
   studentClass: null, // 학급 반
   studentNumber: null, //  학급 번호
+  schoolCode: null, // 중학교 코드
   school: {
     code: null,
-    fullName: null,
     government: null,
     name: null,
+    schoolRegion: null,
   }, // 중학교 code, government, name, schoolRegion
   parentName: null, // 보호자명
   schoolTel: null, // 학교 연락처
