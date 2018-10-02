@@ -159,7 +159,7 @@
               <pre>추        천        서</pre>
               <pre>본 입학원서의 내용은 사실과 다름이 없으며 상기자는 귀교에 입학 적격자로<br />인정되므로 추천합니다.                                                              </pre>
               <p>2018년 10 월 <span class="application-info-middle-blank"></span>일</p>
-              <p>작성자 : <span class="application-info-long-blank"></span>(인)<span class="application-info-long-blank"></span><span class="application-info-long-blank"></span>(<span class="application-info-long-blank"></span>)중학교장<span class="application-info-middle-blank"></span>(직인)</p>
+              <p>작성자 : <span class="application-info-long-blank"></span>(인)<span class="application-info-long-blank"></span><span class="application-info-long-blank"></span>{{school.name}}장<span class="application-info-middle-blank"></span>(직인)</p>
             </td>
           </tr>
         </tbody>
@@ -229,7 +229,7 @@ export default {
     imgPath() { return this.$store.state.PersonInfo.imgPath; },
   },
   created() {
-    this.$axios.get('http://entrydsm.hs.kr/api/me/score',
+    this.$axios.get('http://114.108.135.15/api/me/score',
       { headers: { Authorization: `JWT ${this.$cookies.get('accessToken')}` },
       }).then((res) => {
       if (res.status === 200) {
@@ -336,7 +336,7 @@ input[type="checkbox"] {
 /* middle number blank */
 .application-info-middle-blank {
   display: inline-block;
-  width: 34px;
+  width: 15px;
 }
 
 #application-terms-info-box {
