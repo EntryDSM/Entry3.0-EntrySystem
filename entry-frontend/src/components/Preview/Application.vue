@@ -194,6 +194,7 @@
 </template>
 
 <script>
+const phoneReg = /(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/;
 export default {
   props: {
     nowYear: Number,
@@ -229,16 +230,16 @@ export default {
     studentNumber() { return this.$store.state.PersonInfo.studentNumber; },
     school() { return this.$store.state.PersonInfo.school; },
     parentName() { return this.$store.state.PersonInfo.parentName; },
-    schoolTel() { return this.$store.state.PersonInfo.schoolTel; },
-    parentTel() { return this.$store.state.PersonInfo.parentTel; },
-    myTel() { return this.$store.state.PersonInfo.myTel; },
+    schoolTel() { return this.$store.state.PersonInfo.schoolTel.replace(phoneReg, '$1-$2-$3'); },
+    parentTel() { return this.$store.state.PersonInfo.parentTel.replace(phoneReg, '$1-$2-$3'); },
+    myTel() { return this.$store.state.PersonInfo.myTel.replace(phoneReg, '$1-$2-$3'); },
     zipCode() { return this.$store.state.PersonInfo.zipCode; },
     addressBase() { return this.$store.state.PersonInfo.addressBase; },
     addressDetail() { return this.$store.state.PersonInfo.addressDetail; },
     imgPath() { return this.$store.state.PersonInfo.imgPath; },
     imgBgStyle() {
       return {
-        background: `url(${this.imgPath}) no-repeat center center`,
+        background: `url(http://114.108.135.15/images/${this.imgPath}) no-repeat center center`,
         backgroundSize: 'cover',
       };
     },

@@ -528,6 +528,7 @@ export default {
       const { s, e } = this.$toastr;
       data.name = data.personName;
       data.birth = `${data.year}-${data.month}-${data.day}`;
+      data.schoolCode = this.school.code;
       this.$axios({
         method: 'put',
         url: 'http://114.108.135.15/api/me/info',
