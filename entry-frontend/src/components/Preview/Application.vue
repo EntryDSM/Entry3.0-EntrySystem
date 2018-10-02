@@ -136,7 +136,7 @@
         <tbody>
           <tr>
             <td class="img-cover">
-              <div class="img" :style="imgBgStyle"></div>
+              <img class="img" :src="`http://114.108.135.15/images/${this.imgPath}`">
               <pre>사     진<br /><br />(3cm×4cm)</pre>
             </td>
             <td>
