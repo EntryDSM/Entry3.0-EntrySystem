@@ -187,7 +187,7 @@ $intro-plan: #5f8a90;
 
   .intro-plan-write {
     width: 100%;
-    height: 600px;
+    height: 1000px;
     resize: vertical;
     border-radius: 10px;
     line-height: 1.3;
