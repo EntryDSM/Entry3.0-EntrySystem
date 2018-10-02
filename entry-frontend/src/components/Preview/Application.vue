@@ -10,7 +10,7 @@
             <td>접수번호</td>
             <td></td>
             <td>중학교 코드</td>
-            <td></td>
+            <td>{{school.code}}</td>
             <td>반</td>
             <td>{{studentClass}}</td>
             <td>수험번호</td>
@@ -55,7 +55,8 @@
             <td>학교</td>
             <td>{{schoolTel}}</td>
             <td class="application-info-textalign-left">
-              <input :checked="graduateType === 'DONE'" type="checkbox" onclick="return false" /><span :style="{paddingRight: graduateType === 'DONE' ? '0' : '7px'}">{{graduateType === 'DONE' ? graduationYear : '201'}}</span>년 2월 중학교 졸업</td>
+              <input :checked="graduateType === 'DONE'" type="checkbox" onclick="return false" />
+              <span :style="{paddingRight: graduateType === 'DONE' ? '0' : '7px'}">{{graduateType === 'DONE' ? graduateYear : '201'}}</span>년 2월 중학교 졸업</td>
           </tr>
           <tr>
             <td>학생</td>
@@ -134,21 +135,24 @@
       <table>
         <tbody>
           <tr>
-            <td>
-              <p>보훈번호:(<span class="application-info-middle-blank"></span>)</p>
-              <p>위는 국가유공자</p>
-              <p>자녀임을 확인함</p>
-              <p>2018.10. <span class="application-info-middle-blank"></span>.</p>
-              <p>작성자 : <span class="application-info-middle-blank"></span>(인)</p>
+            <td class="img-cover">
+              <div class="img" :style="imgBgStyle"></div>
+              <pre>사     진<br /><br />(3cm×4cm)</pre>
             </td>
             <td>
               <pre>본인의 귀 고등학교에 입학하고자 소정의 서류를 갖추어<br />지원합니다.                                              </pre>
-              <p>2018년 10 월 <span class="application-info-blank"></span>일</p>
+              <p>2018년 10 월 <span class="application-info-blank">{{nowDay}}</span>일</p>
               <p>지원자 : <span class="application-info-long-blank">{{ personName }}</span>(인)   보호자 : <span class="application-info-long-blank">{{parentName}}</span>(인)</p>
               <br />
               <p>대덕소프트웨어마이스터고등학교장 귀하</p>
             </td>
-            <td><pre>사     진<br /><br />(3cm×4cm)</pre></td>
+            <td>
+              <p>보훈번호:(<span class="application-info-middle-blank"></span>)</p>
+              <p>위는 국가유공자</p>
+              <p>자녀임을 확인함</p>
+              <p>2018.10.{{nowDay}}.</p>
+              <p>작성자 : <span class="application-info-middle-blank"></span>(인)</p>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -158,7 +162,7 @@
             <td>
               <pre>추        천        서</pre>
               <pre>본 입학원서의 내용은 사실과 다름이 없으며 상기자는 귀교에 입학 적격자로<br />인정되므로 추천합니다.                                                              </pre>
-              <p>2018년 10 월 <span class="application-info-middle-blank"></span>일</p>
+              <p>2018년 10 월 <span class="application-info-middle-blank">{{nowDay}}</span>일</p>
               <p>작성자 : <span class="application-info-long-blank"></span>(인)<span class="application-info-long-blank"></span><span class="application-info-long-blank"></span>(<span class="application-info-long-blank"></span>)중학교장<span class="application-info-middle-blank"></span>(직인)</p>
             </td>
           </tr>
@@ -191,6 +195,11 @@
 
 <script>
 export default {
+  props: {
+    nowYear: Number,
+    nowMonth: Number,
+    nowDay: Number,
+  },
   name: 'application',
   data() {
     return {
@@ -208,7 +217,7 @@ export default {
     admissionDetail() { return this.$store.state.classify.admissionDetail; },
     region() { return this.$store.state.classify.region; },
     isGraduated() { return this.$store.state.classify.isGraduated; },
-    graduationYear() { return this.$store.state.classify.graduationYear; },
+    graduateYear() { return this.$store.state.classify.graduateYear; },
     additionalType() { return this.$store.state.classify.additionalType; },
     graduateType() { return this.$store.state.classify.graduateType; },
     personName() { return this.$store.state.PersonInfo.personName; },
@@ -218,7 +227,7 @@ export default {
     day() { return this.$store.state.PersonInfo.day; },
     studentClass() { return this.$store.state.PersonInfo.studentClass; },
     studentNumber() { return this.$store.state.PersonInfo.studentNumber; },
-    schoolName() { return this.$store.state.PersonInfo.schoolName; },
+    school() { return this.$store.state.PersonInfo.school; },
     parentName() { return this.$store.state.PersonInfo.parentName; },
     schoolTel() { return this.$store.state.PersonInfo.schoolTel; },
     parentTel() { return this.$store.state.PersonInfo.parentTel; },
@@ -227,9 +236,15 @@ export default {
     addressBase() { return this.$store.state.PersonInfo.addressBase; },
     addressDetail() { return this.$store.state.PersonInfo.addressDetail; },
     imgPath() { return this.$store.state.PersonInfo.imgPath; },
+    imgBgStyle() {
+      return {
+        background: `url(${this.imgPath}) no-repeat center center`,
+        backgroundSize: 'cover',
+      };
+    },
   },
   created() {
-    this.$axios.get('http://entrydsm.hs.kr/api/me/score',
+    this.$axios.get('http://114.108.135.15/api/me/score',
       { headers: { Authorization: `JWT ${this.$cookies.get('accessToken')}` },
       }).then((res) => {
       if (res.status === 200) {
@@ -242,13 +257,13 @@ export default {
           volunteerScore,
           finalScore,
         } = res.data.data;
-        this.firstGrade = firstGrade;
-        this.secondGrade = secondGrade;
-        this.thirdGrade = thirdGrade;
-        this.conversionScore = conversionScore;
-        this.attendanceScore = attendanceScore;
-        this.volunteerScore = volunteerScore;
-        this.finalScore = finalScore;
+        this.firstGrade = firstGrade.toFixed(3);
+        this.secondGrade = secondGrade.toFixed(3);
+        this.thirdGrade = thirdGrade.toFixed(3);
+        this.conversionScore = conversionScore.toFixed(3);
+        this.attendanceScore = attendanceScore.toFixed(3);
+        this.volunteerScore = volunteerScore.toFixed(3);
+        this.finalScore = finalScore.toFixed(3);
       } else {
         this.$toastr.e('서버와 통신이 불안정합니다.<br/> 재연결이 필요합니다.');
       }
@@ -336,7 +351,7 @@ input[type="checkbox"] {
 /* middle number blank */
 .application-info-middle-blank {
   display: inline-block;
-  width: 34px;
+  width: 15px;
 }
 
 #application-terms-info-box {
@@ -399,12 +414,12 @@ input[type="checkbox"] {
 #application-info-tables table:nth-child(5) tr:nth-child(1) td:nth-child(5) { width: 13%; }
 
 /* row_7, 사진~ */
-#application-info-tables table:nth-child(6) tr:nth-child(1) td:nth-child(1) { width: 21%; }
-#application-info-tables table:nth-child(6) tr:nth-child(1) td:nth-child(1) p, pre { margin: 10px; }
+#application-info-tables table:nth-child(6) tr:nth-child(1) td:nth-child(1) { width: 3cm; height: 4cm; }
 #application-info-tables table:nth-child(6) tr:nth-child(1) td:nth-child(2) { width: 58%; }
 #application-info-tables table:nth-child(6) tr:nth-child(1) td:nth-child(2) p, pre { margin: 10px; }
 #application-info-tables table:nth-child(6) tr:nth-child(1) td:nth-child(2) p:nth-child(5) { font-size: 11px; font-weight: bold; text-align: left; margin-left: 10px; }
-#application-info-tables table:nth-child(6) tr:nth-child(1) td:nth-child(3) { width: 3cm; height: 4cm; }
+#application-info-tables table:nth-child(6) tr:nth-child(1) td:nth-child(3) { width: 21%; }
+#application-info-tables table:nth-child(6) tr:nth-child(1) td:nth-child(3) p, pre { margin: 10px; }
 
 /* row_8, 추천서~ */
 #application-info-tables table:nth-child(7) tr:nth-child(1) td:nth-child(1) { border: 1px solid #000 }
@@ -424,4 +439,17 @@ input[type="checkbox"] {
 #foo p:nth-child(2) { font-size: 10px; text-align: right; line-height: 2}
 #foo p:nth-child(3) { font-size: 10px; text-align: right; }
 #foo p:nth-child(4) { font-size: 14px; font-weight: bold; }
+#foo p:nth-child(2) span { text-align: center; }
+#foo p:nth-child(3) span { text-align: center; }
+
+.img-cover {
+  position: relative;
+}
+.img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
 </style>

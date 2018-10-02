@@ -236,8 +236,8 @@ export const mutations = {
   updateStudentNumber: (state, payload) => {
     state.PersonInfo.studentNumber = payload.data;
   },
-  updateSchoolName: (state, payload) => {
-    state.PersonInfo.schoolName = payload.data;
+  updateSchool: (state, payload) => {
+    state.PersonInfo.school = payload.data;
   },
   updateParentName: (state, payload) => {
     state.PersonInfo.parentName = payload.data;
@@ -289,6 +289,7 @@ export const mutations = {
     state.PersonInfo.month = birth.split('-')[1];
     state.PersonInfo.day = birth.split('-')[2];
     state.classify.graduateYear = graduateYear;
+    state.PersonInfo.school = school;
     state.PersonInfo.schoolName = (school != null) ? school.name : '';
     state.PersonInfo.schoolCode = (school != null) ? school.code : '';
     state.PersonInfo.schoolTel = schoolTel;

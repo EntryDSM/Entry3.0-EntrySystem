@@ -74,6 +74,7 @@ export default {
           });
           this.$store.dispatch('getClassify', token);
           this.$store.dispatch('getInfo', token);
+          this.$store.dispatch('getIntro', token);
           return true;
         }
         return false;
