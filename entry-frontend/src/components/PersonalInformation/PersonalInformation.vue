@@ -536,7 +536,7 @@ export default {
         data,
       }).then((res) => {
         if (res.status === 200) {
-          s('서버에 임시저장 되었습니다.');
+          s('인적 사항이 임시저장 되었습니다.');
         }
       }).catch((error) => {
         if (error.response.status === 401) {
@@ -545,6 +545,9 @@ export default {
           this.$store.commit('changeIndex', {
             index: 1,
           });
+        } else {
+          e('인적 사항 임시저장에 실패하였습니다.');
+          error.response.data.errors.map((msg => e(`${msg.field}-${msg.message}`)));
         }
       });
     },
