@@ -142,7 +142,7 @@
             <td>
               <pre>본인의 귀 고등학교에 입학하고자 소정의 서류를 갖추어<br />지원합니다.                                              </pre>
               <p>2018년 10 월 <span class="application-info-blank">{{nowDay}}</span>일</p>
-              <p>지원자 : <span class="application-info-long-blank">{{ personName }}</span>(인)   보호자 : <span class="application-info-long-blank">{{parentName}}</span>(인)</p>
+              <p>지원자 : <span class="application-info-long-blank">{{ personName }}</span>(인)<span style="padding-right: 20px"></span>보호자 : <span class="application-info-long-blank">{{parentName}}</span>(인)</p>
               <br />
               <p>대덕소프트웨어마이스터고등학교장 귀하</p>
             </td>
@@ -162,7 +162,7 @@
             <td>
               <pre>추        천        서</pre>
               <pre>본 입학원서의 내용은 사실과 다름이 없으며 상기자는 귀교에 입학 적격자로<br />인정되므로 추천합니다.                                                              </pre>
-              <p>2018년 10 월 <span class="application-info-middle-blank"></span>일</p>
+              <p>2018년 10 월 <span class="application-info-middle-blank">{{nowDay}}</span>일</p>
               <p>작성자 : <span class="application-info-long-blank"></span>(인)<span class="application-info-long-blank"></span><span class="application-info-long-blank"></span>{{school.name}}장<span class="application-info-middle-blank"></span>(직인)</p>
             </td>
           </tr>
@@ -237,12 +237,6 @@ export default {
     addressBase() { return this.$store.state.PersonInfo.addressBase; },
     addressDetail() { return this.$store.state.PersonInfo.addressDetail; },
     imgPath() { return this.$store.state.PersonInfo.imgPath; },
-    imgBgStyle() {
-      return {
-        background: `url(http://114.108.135.15/images/${this.imgPath}) no-repeat center center`,
-        backgroundSize: 'cover',
-      };
-    },
   },
   created() {
     this.$axios.get('http://114.108.135.15/api/me/score',
@@ -400,7 +394,7 @@ input[type="checkbox"] {
 
 #application-info-tables table:nth-child(4) tr:nth-child(1) td:nth-child(1) { width: 10%; }
 #application-info-tables table:nth-child(4) tr:nth-child(1) td:nth-child(2) { width: 10%; }
-#application-info-tables table:nth-child(4) tr:nth-child(1) td:nth-child(3) { width: 8.1%; }
+#application-info-tables table:nth-child(4) tr:nth-child(1) td:nth-child(3) { width: 7.9%; }
 #application-info-tables table:nth-child(4) tr:nth-child(1) td:nth-child(4) { width: 24.9%; }
 #application-info-tables table:nth-child(4) tr:nth-child(1) td:nth-child(5) { width: 8.1%; }
 #application-info-tables table:nth-child(4) tr:nth-child(1) td:nth-child(6) { width: 17%; }
@@ -410,7 +404,7 @@ input[type="checkbox"] {
 /* row_6, 내신성적~ */
 #application-info-tables table:nth-child(5) tr:nth-child(1) td:nth-child(1) { width: 10%; }
 #application-info-tables table:nth-child(5) tr:nth-child(1) td:nth-child(2) { width: 50%; }
-#application-info-tables table:nth-child(5) tr:nth-child(1) td:nth-child(3) { width: 13%; }
+#application-info-tables table:nth-child(5) tr:nth-child(1) td:nth-child(3) { width: 14%; }
 #application-info-tables table:nth-child(5) tr:nth-child(1) td:nth-child(4) { width: 13%; }
 #application-info-tables table:nth-child(5) tr:nth-child(1) td:nth-child(5) { width: 13%; }
 
