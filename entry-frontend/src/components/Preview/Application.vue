@@ -243,22 +243,13 @@ export default {
       { headers: { Authorization: `JWT ${this.$cookies.get('accessToken')}` },
       }).then((res) => {
       if (res.status === 200) {
-        const {
-          firstGrade,
-          secondGrade,
-          thirdGrade,
-          conversionScore,
-          attendanceScore,
-          volunteerScore,
-          finalScore,
-        } = res.data.data;
-        this.firstGrade = firstGrade.toFixed(3);
-        this.secondGrade = secondGrade.toFixed(3);
-        this.thirdGrade = thirdGrade.toFixed(3);
-        this.conversionScore = conversionScore.toFixed(3);
-        this.attendanceScore = attendanceScore.toFixed(3);
-        this.volunteerScore = volunteerScore.toFixed(3);
-        this.finalScore = finalScore.toFixed(3);
+        const keyArray = Object.keys(res.data.data);
+        const valueArray = Object.values(res.data.data);
+        for (let i = 0; i < keyArray.length; i += 1) {
+          if (typeof valueArray[i] === 'number') {
+            this[keyArray[i]] = valueArray[i] ? valueArray[i].toFixed(3) : 0;
+          }
+        }
       } else {
         this.$toastr.e('서버와 통신이 불안정합니다.<br/> 재연결이 필요합니다.');
       }
