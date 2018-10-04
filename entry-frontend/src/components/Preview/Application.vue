@@ -55,8 +55,7 @@
             <td>학교</td>
             <td>{{schoolTel}}</td>
             <td class="application-info-textalign-left">
-              <input :checked="graduateType === 'DONE'" type="checkbox" onclick="return false" />
-              <span :style="{paddingRight: graduateType === 'DONE' ? '0' : '7px'}">{{graduateType === 'DONE' ? graduateYear : '201'}}</span>년 2월 중학교 졸업</td>
+              <input :checked="graduateType === 'DONE'" type="checkbox" onclick="return false" /><span :style="{paddingRight: graduateType === 'DONE' ? '0' : '7px'}">{{graduateType === 'DONE' ? graduateYear : '201'}}</span>년 2월 중학교 졸업</td>
           </tr>
           <tr>
             <td>학생</td>
