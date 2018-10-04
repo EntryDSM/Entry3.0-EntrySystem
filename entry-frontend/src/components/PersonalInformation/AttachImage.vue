@@ -21,11 +21,6 @@ export default {
       get() {
         return this.$store.state.PersonInfo.imgPath;
       },
-      set(data) {
-        this.$store.commit('updateImgPath', {
-          data,
-        });
-      },
     },
   },
   methods: {
