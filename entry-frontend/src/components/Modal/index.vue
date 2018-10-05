@@ -1,17 +1,17 @@
 <template>
-    <div class="modal" v-if="index > 0">
-      <div class="modal__background" @click="closeModal"></div>
-      <div class="modal__contants">
-        <div class="modal__contants__close" @click="closeModal"></div>
-        <login v-if="index === 1"/>
-        <reset-pw v-if="(index >= 2 && index < 6)"/>
-      </div>
-      <div class="modal__contants modal__contants--confirm" v-if="index >= 6">
-        <div class="modal__contants__close" @click="closeModal"></div>
-        <verify v-if="index === 6"/>
-        <finish v-if="index === 7"/>
-      </div>
+  <div class="modal" v-if="index > 0">
+    <div class="modal__background" @click="closeModal"></div>
+    <div class="modal__contants">
+      <div class="modal__contants__close" @click="closeModal"></div>
+      <login v-if="index === 1"/>
+      <reset-pw v-if="(index >= 2 && index < 6)"/>
     </div>
+    <div class="modal__contants modal__contants--confirm" v-if="index >= 6">
+      <div class="modal__contants__close" @click="closeModal"></div>
+      <verify v-if="index === 6"/>
+      <finish v-if="index === 7"/>
+    </div>
+  </div>
 </template>
 
 <script>
