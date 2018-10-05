@@ -489,7 +489,7 @@ export default {
   methods: {
     // 숫자, 백스페이스가 아닐 경우 이벤트 막기
     onlyNumber(e) {
-      if (!(e.keyCode >= 48 && e.keyCode <= 57)) {
+      if (!(e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) {
         switch (e.key) {
           case 'Backspace':
           case 'ArrowLeft':
