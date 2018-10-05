@@ -67,6 +67,9 @@ export default {
             this.$store.commit('updateaccessToken', {
               accessToken: res.data.data.accessToken,
             });
+            this.$store.dispatch('getMypage', {
+              token: res.data.data.accessToken,
+            });
             this.$store.commit('changeIndex', {
               index: 0,
             });
@@ -87,7 +90,7 @@ export default {
             this.pwwrong = false;
           }, 5000);
           if (error.response.status !== 401) {
-            e('로그인 실패');
+            e('로그인 실패. 학교에 문의 주시기 바랍니다.');
             e(error);
           }
         });

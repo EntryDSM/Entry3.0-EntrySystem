@@ -3,19 +3,19 @@
     <div class="Verify__Icon">
       <div class="Verify__Icon__box Verify__Icon__box--info" v-if="isInfoValid==='작성완료'">
       </div>
-      <div class="Verify__Icon__box Verify__Icon__box--info Verify__Icon__box--false" v-else>
+      <div class="Verify__Icon__box Verify__Icon__box--info Verify__Icon__box--false" @click="changeRouter('personal')" v-else>
       </div>
       <div class="Verify__Icon__box Verify__Icon__box--classify" v-if="isClassificationValid==='작성완료'">
       </div>
-      <div class="Verify__Icon__box Verify__Icon__box--classify Verify__Icon__box--false" v-else>
+      <div class="Verify__Icon__box Verify__Icon__box--classify Verify__Icon__box--false" @click="changeRouter('classify')" v-else>
       </div>
       <div class="Verify__Icon__box Verify__Icon__box--plan" v-if="isDocumentValid==='작성완료'">
       </div>
-      <div class="Verify__Icon__box Verify__Icon__box--plan Verify__Icon__box--false" v-else>
+      <div class="Verify__Icon__box Verify__Icon__box--plan Verify__Icon__box--false" @click="changeRouter('intro')" v-else>
       </div>
       <div class="Verify__Icon__box Verify__Icon__box--gradeInput" v-if="isGradeValid==='작성완료'">
       </div>
-      <div class="Verify__Icon__box Verify__Icon__box--gradeInput Verify__Icon__box--false" v-else>
+      <div class="Verify__Icon__box Verify__Icon__box--gradeInput Verify__Icon__box--false" @click="changeRouter('grade')" v-else>
       </div>
     </div>
     <div class="Verify__msg" v-if="!isValid">
@@ -107,6 +107,12 @@ export default {
         }
       });
     },
+    changeRouter(url) {
+      this.$router.push(`/${url}`);
+      this.$store.commit('changeIndex', {
+        index: 0,
+      });
+    },
   },
 };
 </script>
@@ -144,6 +150,7 @@ export default {
       }
       @include m('false') {
         background-color: #FFF !important;
+        cursor: pointer;
         &::after{
           position: absolute;
           opacity: 0;
