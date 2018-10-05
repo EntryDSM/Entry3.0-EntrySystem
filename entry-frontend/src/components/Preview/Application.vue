@@ -25,7 +25,7 @@
             <td>성명</td>
             <td>{{personName}}</td>
             <td>생년월일</td>
-            <td>{{year}}.{{month}}.{{day}}</td>
+            <td>{{year}}.{{month}}.{{day}}.</td>
             <td>성별</td>
             <td class="application-info-textalign-left">
               <input :checked="sex === 'MALE'" type="checkbox" onclick="return false" />남
@@ -139,7 +139,7 @@
               <pre>사     진<br /><br />(3cm×4cm)</pre>
             </td>
             <td>
-              <pre>본인의 귀 고등학교에 입학하고자 소정의 서류를 갖추어<br />지원합니다.                                              </pre>
+              <pre>본인은 귀 고등학교에 입학하고자 소정의 서류를 갖추어<br />지원합니다.                                              </pre>
               <p>2018년 10 월 <span class="application-info-blank">{{nowDay}}</span>일</p>
               <p>지원자 : <span class="application-info-long-blank">{{ personName }}</span>(인)<span style="padding-right: 20px"></span>보호자 : <span class="application-info-long-blank">{{parentName}}</span>(인)</p>
               <br />

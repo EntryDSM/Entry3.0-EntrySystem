@@ -465,7 +465,8 @@ export default {
         }
       }).catch((error) => {
         if (error.response.status === 400) {
-          error.response.data.errors.map((msg => w(`${msg.field}-${msg.message}`)));
+          e('전형 구분 임시저장에 실패하였습니다.');
+          error.response.data.errors.map((msg => (w(`${msg.field}-${msg.message}`))));
         } else if (error.response.status === 401) {
           e('로그인이 반드시 필요합니다.');
           this.$router.push('/');

@@ -532,7 +532,7 @@ export default {
     sendServer() {
       const token = this.$cookies.get('accessToken');
       const data = { ...this.$store.state.PersonInfo };
-      const { s, e } = this.$toastr;
+      const { s, w, e } = this.$toastr;
       data.name = data.personName;
       data.birth = `${data.year}-${data.month}-${data.day}`;
       data.schoolCode = this.school.code;
@@ -553,8 +553,48 @@ export default {
             index: 1,
           });
         } else {
-          e('인적 사항 임시저장에 실패하였습니다.');
-          error.response.data.errors.map((msg => e(`${msg.field}-${msg.message}`)));
+          e('인적사항 임시저장을 실패하였습니다.');
+          error.response.data.errors.map(((msg) => {
+            let field;
+            let message;
+            switch (msg.field) {
+              case 'myTel':
+                field = '본인 연락처';
+                break;
+              case 'parentName':
+                field = '보호자명';
+                break;
+              case 'zipCode':
+                field = '우편번호';
+                break;
+              case 'name':
+                field = '이름';
+                break;
+              case 'studentNumber':
+                field = '학번';
+                break;
+              case 'studentClass':
+                field = '반';
+                break;
+              case 'parentTel':
+                field = '보호자 연락처';
+                break;
+              case 'schoolTel':
+                field = '학교 연락처';
+                break;
+              default:
+                field = msg.field;
+            }
+            switch (msg.message) {
+              case 'must not be null':
+                message = '값을 비워둘 수 없습니다.';
+                break;
+              default:
+                message = '잘못된 값입니다.';
+                break;
+            }
+            return w(`${field}-${message}`);
+          }));
         }
       });
     },
