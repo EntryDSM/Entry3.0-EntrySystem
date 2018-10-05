@@ -89,6 +89,12 @@ export default {
       this.$router.push('/');
     },
   },
+  created() {
+    const token = this.$cookies.get('accessToken');
+    this.$store.dispatch('getMypage', {
+      token,
+    });
+  },
 };
 </script>
 

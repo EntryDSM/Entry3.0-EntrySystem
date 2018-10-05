@@ -484,11 +484,15 @@ export default {
         index: 1,
       });
     }
+    if (this.$store.state.mypage.applyStatus.finalSubmit) {
+      e('최종 제출 후에는 접근 할 수 없습니다.');
+      this.$router.push('/');
+    }
   },
   methods: {
     // 숫자, 백스페이스가 아닐 경우 이벤트 막기
     onlyNumber(e) {
-      if (!(e.keyCode >= 48 && e.keyCode <= 57)) {
+      if (!(e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) {
         switch (e.key) {
           case 'Backspace':
           case 'ArrowLeft':

@@ -340,7 +340,8 @@ input[type="checkbox"] {
 }
 
 #application-terms-info-box {
-  height: 150px;
+  padding-top: 10px;
+  height: 160px;
   /* padding: 2px; */
   border: 1px solid black;
 }
