@@ -67,6 +67,9 @@ export default {
             this.$store.commit('updateaccessToken', {
               accessToken: res.data.data.accessToken,
             });
+            this.$store.dispatch('getMypage', {
+              token: res.data.data.accessToken,
+            });
             this.$store.commit('changeIndex', {
               index: 0,
             });

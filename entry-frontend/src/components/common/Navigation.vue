@@ -72,6 +72,11 @@ export default {
           this.$store.commit('updateaccessToken', {
             data: token,
           });
+          this.$store.dispatch('getMypage',
+            {
+              token,
+            },
+          );
           this.$store.dispatch('getClassify', token);
           this.$store.dispatch('getInfo', token);
           this.$store.dispatch('getIntro', token);
