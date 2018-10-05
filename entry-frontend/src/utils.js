@@ -3,7 +3,6 @@ const utilsOfGrade = {
   sendGrade: (grade, grades, graduateType, volunteerNAttendance) => {
     const gradeArr = [];
     const typeCount = graduateType === 'DONE' ? 6 : 5;
-    console.log(grades);
     const semesters = [
       'korean',
       'social',

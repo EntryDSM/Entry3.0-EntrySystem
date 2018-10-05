@@ -146,7 +146,8 @@
             <input type="text"
               class="input-text input-text-school-contact"
               v-model="schoolTel"
-              @keydown="onlyNumber">
+              @keydown="onlyNumber"
+              maxLength="11">
             <span class="form__cover__form__colums__input-content__sign">
               * ‘-’ 문자를 제외한 숫자만 입력해주세요.
             </span>
@@ -160,7 +161,8 @@
             <input type="text"
               class="input-text input-text-guardian-contact"
               v-model="parentTel"
-              @keydown="onlyNumber">
+              @keydown="onlyNumber"
+              maxLength="11">
             <span class="form__cover__form__colums__input-content__sign">
               * ‘-’ 문자를 제외한 숫자만 입력해주세요.
             </span>
@@ -174,7 +176,8 @@
             <input type="text"
               class="input-text input-text-contact"
               v-model="myTel"
-              @keydown="onlyNumber">
+              @keydown="onlyNumber"
+              maxLength="11">
             <span class="form__cover__form__colums__input-content__sign">
               * ‘-’ 문자를 제외한 숫자만 입력해주세요.
             </span>
