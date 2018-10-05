@@ -12,8 +12,7 @@
         placeholder="중학교 명"
         v-focus
         v-model="keyword"
-        @keyup.enter="getSchools"
-        @keydown.esc="$emit('close')">
+        v-on:input="search">
       <ul class="school-modal__list">
         <li
           class="school-modal__school"

@@ -5,7 +5,7 @@
     </div>
     <div id="recommendation-letter-content">
       <div>
-        <p>{{school.name}}중학교</p>
+        <p>{{school.name}}</p>
         <p>3학년 <span class="recommendation-blank">{{studentClass}}</span>반</p>
         <p>성 명 : <span class="recommendation-blank">{{personName}}</span></p>
       </div>
