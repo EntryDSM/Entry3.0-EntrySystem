@@ -203,7 +203,7 @@
         :prevShow="false"
         :nextShow="true"
         :nextLink="nextLink"
-        :onClick="() => sendServer()"/>
+        :onClick="sendServer.bind(this)"/>
     </div>
     <entry-footer />
   </div>
