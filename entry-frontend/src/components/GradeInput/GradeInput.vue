@@ -80,10 +80,6 @@ export default {
       },
     },
   },
-  mounted() {
-    const token = this.$cookies.get('accessToken');
-    this.$store.dispatch('getGrades', token);
-  },
   methods: {
     updateGrade() {
       const {
