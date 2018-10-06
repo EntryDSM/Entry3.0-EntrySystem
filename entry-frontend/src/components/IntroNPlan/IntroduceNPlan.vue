@@ -82,10 +82,6 @@ export default {
       planLength: state => state.introNPlan.planLength,
     }),
   },
-  mounted() {
-    const token = this.$cookies.get('accessToken');
-    this.$store.dispatch('getIntro', token);
-  },
   created() {
     const token = this.$cookies.get('accessToken');
     const { e } = this.$toastr;
