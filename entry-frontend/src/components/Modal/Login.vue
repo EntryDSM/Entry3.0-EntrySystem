@@ -58,17 +58,20 @@ export default {
           this.pwwrong = false;
         }, 5000);
       } else {
-        this.$axios.post('http://entry.entrydsm.hs.kr/api/signin', { email, password }).then((res) => {
+        this.$axios.post('https://entry.entrydsm.hs.kr:80/api/signin', { email, password }).then((res) => {
           if (res.status === 200) {
             // Promise.all
-            this.$cookies.set('accessToken', res.data.data.accessToken, '4d');
-            this.$store.dispatch('getClassify', res.data.data.accessToken);
-            this.$store.dispatch('getInfo', res.data.data.accessToken);
+            const token = res.data.data.accessToken;
+            this.$cookies.set('accessToken', token, '4d');
+            this.$store.dispatch('getClassify', { token });
+            this.$store.dispatch('getInfo', { token });
+            this.$store.dispatch('getGrades', { token });
+            this.$store.dispatch('getIntro', { token });
             this.$store.commit('updateaccessToken', {
-              accessToken: res.data.data.accessToken,
+              accessToken: token,
             });
             this.$store.dispatch('getMypage', {
-              token: res.data.data.accessToken,
+              token,
             });
             this.$store.commit('changeIndex', {
               index: 0,

@@ -93,7 +93,7 @@ export default {
       const { e } = this.$toastr;
       this.$axios({
         method: 'post',
-        url: 'http://entry.entrydsm.hs.kr/api/submit',
+        url: 'https://entry.entrydsm.hs.kr:80/api/submit',
         headers: { Authorization: `JWT ${token}` },
       }).then(() => {
         this.$store.commit('changeIndex', {
