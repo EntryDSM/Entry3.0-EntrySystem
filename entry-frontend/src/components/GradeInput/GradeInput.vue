@@ -91,7 +91,6 @@ export default {
       const { s, e } = this.$toastr;
       const token = this.$cookies.get('accessToken');
       const sendData = utils.sendGrade(grade, grades, graduateType, volunteerNAttendance);
-
       this.$store.dispatch('updateGrade', {
         token,
         sendData,

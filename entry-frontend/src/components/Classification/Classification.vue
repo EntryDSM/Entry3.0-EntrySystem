@@ -203,7 +203,7 @@
         :prevShow="false"
         :nextShow="true"
         :nextLink="nextLink"
-        :onClick="() => sendServer()"/>
+        :onClick="sendServer.bind(this)"/>
     </div>
     <entry-footer />
   </div>
@@ -456,7 +456,7 @@ export default {
       }
       this.$axios({
         method: 'put',
-        url: 'https://entry.entrydsm.hs.kr:80api/me/classification',
+        url: 'https://entry.entrydsm.hs.kr:80/api/me/classification',
         headers: { Authorization: `JWT ${token}` },
         data,
       }).then((res) => {
