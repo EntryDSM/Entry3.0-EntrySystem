@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     gotoPrev() {
-      if (typeof this.onClick === 'function' && this.disablePrevClick !== true) {
+      if (typeof this.onClick === 'function' && this.disablePrevClick !== true && typeof this.SavingFunction !== 'function') {
         this.onClick();
       } else if (typeof this.SavingFunction === 'function') {
         this.SavingFunction();
