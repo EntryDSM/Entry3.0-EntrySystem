@@ -497,6 +497,7 @@ export default {
           case 'Backspace':
           case 'ArrowLeft':
           case 'ArrowRight':
+          case 'Tab':
           case 'Delete': break;
           default: e.preventDefault();
         }
