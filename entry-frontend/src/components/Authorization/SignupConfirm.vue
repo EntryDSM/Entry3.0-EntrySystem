@@ -1,5 +1,5 @@
 <script>
-import CONSTANT from './../../api/constant';
+import contact from './../../api/contact';
 
 export default {
   props: [
@@ -7,7 +7,7 @@ export default {
   ],
   created() {
     const { s, e } = this.$toastr;
-    this.$axios.get(`${CONSTANT.CONFIRM_URI}${this.code}`).then(() => {
+    contact.confirmSignup(this.code).then(() => {
       s('인증이 완료되었습니다. 로그인을 해주세요.');
       this.$router.push('/');
       this.$store.commit('changeIndex', {
