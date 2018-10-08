@@ -9,6 +9,7 @@ import GradeInput from '../components/GradeInput/GradeInput';
 import PersonalInformation from '../components/PersonalInformation/PersonalInformation';
 import Authorization from './../components/Authorization/Authorization';
 import Preview from './../components/Preview/Preview';
+import SignupConfirm from './../components/Authorization/SignupConfirm';
 
 Vue.use(Router);
 
@@ -52,5 +53,10 @@ export default new Router({
     path: '/grade',
     name: 'grade-input',
     component: GradeInput,
-  }],
+  }, {
+    path: '/confirm/:code',
+    name: 'signup-confirm',
+    component: SignupConfirm,
+  },
+],
 });
