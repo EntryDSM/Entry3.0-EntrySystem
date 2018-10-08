@@ -18,14 +18,21 @@
       <div class="verify__Icon__box verify__Icon__box--gradeInput verify__Icon__box--false" @click="changeRouter('grade')" v-else>
       </div>
     </div>
-    <div class="verify__msg" v-if="!isValid">
-      <p class="verify__msg__header">원서를 미리 볼 수 없습니다</p>
+    <div class="verify__msg" >
+      <p class="verify__msg__header">현재 원서 작성 현황입니다.</p>
       <div class="verify__msg__hr"></div>
-      <p class="verify__msg__content">
+      <p class="verify__msg__content" v-if="!isValid">
         아직 입력되지 않았거나 잘못 된 정보가 있습니다.<br/>
         위의 카드를 통해 페이지를 확인하시고 <br/>
         해당 항목을 입력하거나 수정해주시길 바랍니다.<br/>
       </p>
+      <p class="verify__msg__content" v-else>
+        현재 원서 입력이 다 된 상태입니다.<br/>
+        아래 버튼을 눌러 미리 보기를 할 수 있습니다.<br/>
+      </p>
+      <div class="modal--btn verify__msg__btn verify__msg__btn--long" @click="gotoPreview" v-if="isValid">
+        미리 보기
+      </div>
     </div>
   </div>
 </template>
@@ -71,17 +78,15 @@ export default {
       },
     },
   },
-  created() {
-    if (this.isValid) {
-      this.$router.push('/preview');
-      this.$store.commit('changeIndex', {
-        index: 0,
-      });
-    }
-  },
   methods: {
     changeRouter(url) {
       this.$router.push(`/${url}`);
+      this.$store.commit('changeIndex', {
+        index: 0,
+      });
+    },
+    gotoPreview() {
+      this.$router.push('/preview');
       this.$store.commit('changeIndex', {
         index: 0,
       });
@@ -91,7 +96,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../style/setting';
+@import '../../style/setting';
 .verify{
   widows: 100%;
   height: 100%;
@@ -228,6 +233,9 @@ export default {
       width: 295px;
       height: 40px;
       margin: 25px auto 0 auto;
+      @include m('long') {
+        width: 295px;
+      }
     }
   }
 }

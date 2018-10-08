@@ -10,6 +10,7 @@
       <div class="modal__contants__close" @click="closeModal"></div>
       <verify v-if="index === 6"/>
       <finish v-if="index === 7"/>
+      <check-modal v-if="index === 8"/>
     </div>
   </div>
 </template>
@@ -18,6 +19,7 @@
 // div class="modal__background" @click="changeModal"></div>  고치기
 import Login from './Login';
 import ResetPw from './ResetPw';
+import CheckModal from './CheckModal';
 import Verify from './Verify/Verify';
 import Finish from './Verify/Finish';
 
@@ -26,6 +28,7 @@ export default {
   components: {
     Login,
     ResetPw,
+    CheckModal,
     Verify,
     Finish,
   },
@@ -71,7 +74,9 @@ $M-close-color: #dee8e9;
     background-color: rgba($color: #8C8C8C, $alpha: 0.3);
   }
   @include e('contants'){
-    position: fixed;
+    position: absolute;
+    left: calc(50% - 225px);
+    top: calc(50% - 200px);
     width: 400px;
     height: 450px;
     background-color: #FFF;
@@ -79,9 +84,13 @@ $M-close-color: #dee8e9;
     justify-content: center;
     align-items: center;
     color: $M-modal-color;
+    animation: modalpop 0.5s;
     @include m('confirm') {
+      left: calc(50% - 350px);
+      top: calc(50% - 300px);
       width: 700px;
       height: 600px;
+      animation: confirmModalPop 0.5s;
     }
     @include e('close'){
         position: absolute;
@@ -207,6 +216,34 @@ $M-close-color: #dee8e9;
   100%{
     opacity: 0;
     top: 0px;
+  }
+}
+@keyframes modalpop{
+  0% {
+    opacity: 0;
+    top: calc(50% - 100px);
+  }
+  65%{
+    opacity: 1;
+    top: calc(50% - 240px);
+  }
+  100%{
+    opacity: 1;
+    top: calc(50% - 200px);
+  }
+}
+@keyframes confirmModalPop{
+  0% {
+    opacity: 0;
+    top: calc(50% - 100px);
+  }
+  65%{
+    opacity: 1;
+    top: calc(50% - 330px);
+  }
+  100%{
+    opacity: 1;
+    top: calc(50% - 300px);
   }
 }
 </style>
