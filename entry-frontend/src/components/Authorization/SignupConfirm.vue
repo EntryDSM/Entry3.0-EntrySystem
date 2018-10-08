@@ -1,11 +1,13 @@
 <script>
+import CONSTANT from './../../api/constant';
+
 export default {
   props: [
     'code',
   ],
   created() {
     const { s, e } = this.$toastr;
-    this.$axios.get(`https://entry.entrydsm.hs.kr:80/api/signup/confirm/${this.code}`).then(() => {
+    this.$axios.get(`${CONSTANT.CONFIRM_URI}${this.code}`).then(() => {
       s('인증이 완료되었습니다. 로그인을 해주세요.');
       this.$router.push('/');
       this.$store.commit('changeIndex', {
