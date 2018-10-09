@@ -2,7 +2,7 @@
   <div class="modal" v-if="index > 0">
     <div class="modal__background" @click="closeModal"></div>
     <div class="modal__contants">
-      <div class="modal__contants__close" @click="closeModal"></div>
+      <div class="modal__contants__close" v-if="index < 6" @click="closeModal"></div>
       <login v-if="index === 1"/>
       <reset-pw v-if="(index >= 2 && index < 6)"/>
     </div>
@@ -60,7 +60,7 @@ $M-close-color: #dee8e9;
 
 .modal{
   position: fixed;
-  z-index: 9;
+  z-index: 99;
   top: 0;
   left: 0;
   width: 100vw;
