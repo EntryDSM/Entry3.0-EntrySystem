@@ -188,7 +188,7 @@ export default {
     },
     moveToNextPage() {
       const { s, e } = this.$toastr;
-      this.$axios.post('http://entry.entrydsm.hs.kr/api/signup', { email: this.email, password: this.pw }).then(() => {
+      this.$axios.post('https://entry.entrydsm.hs.kr:80/api/signup', { email: this.email, password: this.pw }).then(() => {
         s(`${this.email}로 인증 메일을 보냈습니다.<br/>메일함을 확인해주세요.`);
         this.$store.commit('updateEmail', '');
         this.$store.commit('updatePw', '');
@@ -219,11 +219,11 @@ export default {
     width: 1140px;
     height: 1px;
     position: absolute;
-    background: linear-gradient(left, transparent 0%, #769b9f 50%, transparent 100%);
+    background: -webkit-linear-gradient(left, transparent 0%, #769b9f 50%, transparent 100%);
   }
   &.--false{
     &::before, &::after{
-      background: linear-gradient(left, transparent 0%, #a7a7a7 50%, transparent 100%);
+      background: -webkit-linear-gradient(left, transparent 0%, #a7a7a7 50%, transparent 100%);
     }
   }
   &::after{

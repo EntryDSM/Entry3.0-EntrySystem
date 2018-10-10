@@ -46,8 +46,8 @@
       :nextShow="true"
       :text="btnText"
       :prevLink="prevLink"
-      :nextLink="nextLink"
-      :onClick="() => updateIntro()"/>
+      :SavingFunction="updateIntro.bind(this)"
+      :onClick="gotoPreview.bind(this)"/>
     <entry-footer />
   </div>
 </template>
@@ -82,10 +82,6 @@ export default {
       planLength: state => state.introNPlan.planLength,
     }),
   },
-  mounted() {
-    const token = this.$cookies.get('accessToken');
-    this.$store.dispatch('getIntro', token);
-  },
   created() {
     const token = this.$cookies.get('accessToken');
     const { e } = this.$toastr;
@@ -95,6 +91,10 @@ export default {
       this.$store.commit('changeIndex', {
         index: 1,
       });
+    }
+    if (this.$store.state.mypage.applyStatus.finalSubmit) {
+      e('최종 제출 후에는 접근 할 수 없습니다.');
+      this.$router.push('/');
     }
   },
   methods: {
@@ -120,11 +120,21 @@ export default {
         leng: value.length,
       });
     },
-
     updateIntro() {
       const token = this.$cookies.get('accessToken');
       const { s, e } = this.$toastr;
       this.$store.dispatch('updateIntro', {
+        token,
+        introduce: this.introduce,
+        studyPlan: this.studyPlan,
+        s,
+        e,
+      });
+    },
+    gotoPreview() {
+      const token = this.$cookies.get('accessToken');
+      const { s, e } = this.$toastr;
+      this.$store.dispatch('gotoPreview', {
         token,
         introduce: this.introduce,
         studyPlan: this.studyPlan,

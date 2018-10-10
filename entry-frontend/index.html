@@ -4,14 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css">
-    <link rel="shortcut icon" href="./src/assets/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="./src/assets/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
     <title>Entry 3.0</title>
   </head>
   <body>
     <div id="app"></div>
     <!-- built files will be auto injected -->
-    <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
     <script>
         console.log(`%c 
                                                                                                
@@ -24,10 +23,11 @@
                                                                                                                                
         `, "font-family:monospace")
       var isChrome = !!window.chrome && !!window.chrome.webstore;
-      if (!isChrome || !bowser.chrome) {
-        alert('EntryDSM은 크롬 환경에서만 접속 할 수 있습니다.');
+      if (!isChrome) {
+        alert('EntryDSM은 Window, Mac, Linux환경의 크롬에서만 접속 할 수 있습니다.');
         window.location.href = 'https://www.google.com/intl/ko_ALL/chrome/';
       }
     </script>
+    <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
   </body>
 </html>

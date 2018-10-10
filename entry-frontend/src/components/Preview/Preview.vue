@@ -1,7 +1,8 @@
 <template>
   <div class="info-preview">
     <navigation />
-    <headline :title="title" :subText="subText" />
+    <headline v-if="!finalSubmit" :title="title" :subText="subText" />
+    <headline v-else :title="'입학원서 출력'" :subText="subText" />
     <div class="pdf-target a4">
       <application
         :nowYear="nowYear"
@@ -27,16 +28,27 @@
       </button>
     </div>
     <prev-next-btn
+      v-if="!finalSubmit"
       :prevShow="true"
       :nextShow="true"
+      :text="'최종 제출'"
       :prevLink="prevLink"
       :disablePrevClick="true"
-      :onClick="() => confirm()"/>
+      :onClick="confirm.bind(this)"/>
+    <prev-next-btn
+      v-else
+      :prevShow="false"
+      :nextShow="true"
+      :text="'마이페이지'"
+      :prevLink="prevLink"
+      :disablePrevClick="true"
+      :onClick="confirm.bind(this)"/>
     <entry-footer />
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import Navigation from '../common/Navigation';
 import Headline from '../common/Headline';
 import PrevNextBtn from '../common/PrevNextBtn';
@@ -84,12 +96,15 @@ export default {
         index: 1,
       });
     }
+    if (!this.isValid) {
+      e('원서를 전부 채우지 못하였습니다.<br/>모두 채운 뒤 미리보기를 볼 수 있습니다.');
+    }
   },
-  computed: {
-    admission() {
-      return this.$store.state.classify.admission;
-    },
-  },
+  computed: mapState({
+    admission: state => state.classify.admission,
+    isValid: state => state.mypage.validationResult.isValid,
+    finalSubmit: state => state.mypage.applyStatus.finalSubmit,
+  }),
   methods: {
     pagePrint() {
       const initBody = document.querySelector('.app');
@@ -108,7 +123,7 @@ export default {
     },
     confirm() {
       this.$store.commit('changeIndex', {
-        index: 6,
+        index: 7,
       });
     },
   },

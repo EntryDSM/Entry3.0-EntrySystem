@@ -1369,6 +1369,10 @@ export default {
         index: 1,
       });
     }
+    if (this.$store.state.mypage.applyStatus.finalSubmit) {
+      e('최종 제출 후에는 접근 할 수 없습니다.');
+      this.$router.push('/');
+    }
   },
   methods: {
     // 봉사 및 출석 Commit - 완료
@@ -1563,9 +1567,9 @@ $button-color: #edf5f6;
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      background: linear-gradient(left, transparent 0%,
+      background: -webkit-linear-gradient(left, transparent 0%,
       $table-border 15%, $table-border 85%, transparent 100%);
-      z-index: 99;
+      z-index: 98;
     }
 
     &::before { top: 0; }
@@ -1652,7 +1656,7 @@ $button-color: #edf5f6;
       height: calc(100% / 2);
 
       &:first-of-type {
-        background: linear-gradient(left, transparent 0%,
+        background: -webkit-linear-gradient(left, transparent 0%,
         $table-background 10%, $table-background 90%, transparent 100%);
       }
 

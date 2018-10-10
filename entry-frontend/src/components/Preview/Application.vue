@@ -25,7 +25,7 @@
             <td>성명</td>
             <td>{{personName}}</td>
             <td>생년월일</td>
-            <td>{{year}}.{{month}}.{{day}}</td>
+            <td>{{year}}.{{month}}.{{day}}.</td>
             <td>성별</td>
             <td class="application-info-textalign-left">
               <input :checked="sex === 'MALE'" type="checkbox" onclick="return false" />남
@@ -135,11 +135,11 @@
         <tbody>
           <tr>
             <td class="img-cover">
-              <img class="img" :src="`http://entry.entrydsm.hs.kr/images/${this.imgPath}`">
+              <img class="img" :src="this.imgPath">
               <pre>사     진<br /><br />(3cm×4cm)</pre>
             </td>
             <td>
-              <pre>본인의 귀 고등학교에 입학하고자 소정의 서류를 갖추어<br />지원합니다.                                              </pre>
+              <pre>본인은 귀 고등학교에 입학하고자 소정의 서류를 갖추어<br />지원합니다.                                              </pre>
               <p>2018년 10 월 <span class="application-info-blank">{{nowDay}}</span>일</p>
               <p>지원자 : <span class="application-info-long-blank">{{ personName }}</span>(인)<span style="padding-right: 20px"></span>보호자 : <span class="application-info-long-blank">{{parentName}}</span>(인)</p>
               <br />
@@ -193,6 +193,8 @@
 </template>
 
 <script>
+import CONSTANT from '../../api/constant';
+
 const phoneReg = /(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/;
 export default {
   props: {
@@ -235,10 +237,10 @@ export default {
     zipCode() { return this.$store.state.PersonInfo.zipCode; },
     addressBase() { return this.$store.state.PersonInfo.addressBase; },
     addressDetail() { return this.$store.state.PersonInfo.addressDetail; },
-    imgPath() { return this.$store.state.PersonInfo.imgPath; },
+    imgPath() { return `${CONSTANT.IMAGE_URI}${this.$store.state.PersonInfo.imgPath}`; },
   },
   created() {
-    this.$axios.get('http://entry.entrydsm.hs.kr/api/me/score',
+    this.$axios.get('https://entry.entrydsm.hs.kr:80/api/me/score',
       { headers: { Authorization: `JWT ${this.$cookies.get('accessToken')}` },
       }).then((res) => {
       if (res.status === 200) {
@@ -340,7 +342,8 @@ input[type="checkbox"] {
 }
 
 #application-terms-info-box {
-  height: 150px;
+  padding-top: 10px;
+  height: 160px;
   /* padding: 2px; */
   border: 1px solid black;
 }

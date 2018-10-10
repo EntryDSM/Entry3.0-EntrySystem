@@ -282,16 +282,16 @@ export const mutations = {
       studentNumber,
       zipCode,
     } = data;
-
     state.PersonInfo.addressBase = addressBase;
     state.PersonInfo.addressDetail = addressDetail;
     state.PersonInfo.year = birth.split('-')[0];
     state.PersonInfo.month = birth.split('-')[1];
     state.PersonInfo.day = birth.split('-')[2];
     state.classify.graduateYear = graduateYear;
-    state.PersonInfo.school = school;
-    state.PersonInfo.schoolName = (school != null) ? school.name : '';
-    state.PersonInfo.schoolCode = (school != null) ? school.code : '';
+    state.PersonInfo.school.code = school.code;
+    state.PersonInfo.school.government = school.government;
+    state.PersonInfo.school.name = school.name;
+    state.PersonInfo.school.schoolRegion = school.schoolRegion;
     state.PersonInfo.schoolTel = schoolTel;
     state.PersonInfo.sex = sex;
     state.PersonInfo.studentClass = studentClass;
@@ -316,8 +316,21 @@ export const mutations = {
     state.mypage.applyStatus = applyStatus;
   },
 
+  checkValidate: (state, { data }) => {
+    const {
+      graduateType,
+      validationResult,
+      applyStatus,
+    } = data;
+    state.mypage.graduateType = graduateType;
+    state.mypage.validationResult = validationResult;
+    state.mypage.applyStatus = applyStatus;
+    state.modal.index = 6;
+  },
+
   updateaccessToken: (state, payload) => {
-    state.accessToken = payload.data;
+    state.accessToken = payload.accessToken;
+    state.email = payload.email;
   },
 };
 

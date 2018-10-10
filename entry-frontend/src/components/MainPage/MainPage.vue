@@ -15,9 +15,12 @@
               2019 신입생 모집
             </h1>
             <div class="main-page__link-box">
-              <a @click="writeApplication" class="main-page__link">
+              <a v-if="!finalSubmit" @click="writeApplication" class="main-page__link">
                 원서작성
               </a>
+              <router-link v-else :to="'/preview'" class="main-page__link">
+                원서출력
+              </router-link>
               <a class="main-page__link"
                 @click="activeSchedulePage = true">
                 모집일정
@@ -60,6 +63,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import Navigation from '../common/Navigation';
 import EntryFooter from '../common/EntryFooter';
 import Schedule from './Schedule';
@@ -77,6 +81,9 @@ export default {
       isAppearSchedule: false, // to animatell
     };
   },
+  computed: mapState({
+    finalSubmit: state => state.mypage.applyStatus.finalSubmit,
+  }),
   methods: {
     writeApplication() {
       const token = this.$cookies.get('accessToken');
@@ -158,7 +165,7 @@ export default {
     display: inline-block;
     width: 175px;
     border-radius: 30px;
-    background-image: linear-gradient(101deg, #82cdca, #5db3b6);
+    background: -webkit-linear-gradient(101deg, #82cdca, #5db3b6);
     box-shadow: 1px 25px 20px -15px #9ff0eb;
     font-size: 22px;
     color: #fff;

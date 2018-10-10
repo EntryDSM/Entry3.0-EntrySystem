@@ -60,6 +60,10 @@ export default {
         index: 1,
       });
     }
+    if (this.$store.state.mypage.applyStatus.finalSubmit) {
+      e('최종 제출 후에는 접근 할 수 없습니다.');
+      this.$router.push('/');
+    }
   },
 };
 </script>
@@ -95,9 +99,9 @@ export default {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      background: linear-gradient(left, transparent 0%,
+      background: -webkit-linear-gradient(left, transparent 0%,
       #769b9f 15%, #769b9f 85%, transparent 100%);
-      z-index: 99;
+      z-index: 98;
     }
 
     &::before { top: 0; }

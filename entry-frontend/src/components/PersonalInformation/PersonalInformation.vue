@@ -484,15 +484,20 @@ export default {
         index: 1,
       });
     }
+    if (this.$store.state.mypage.applyStatus.finalSubmit) {
+      e('최종 제출 후에는 접근 할 수 없습니다.');
+      this.$router.push('/');
+    }
   },
   methods: {
     // 숫자, 백스페이스가 아닐 경우 이벤트 막기
     onlyNumber(e) {
-      if (!(e.keyCode >= 48 && e.keyCode <= 57)) {
+      if (!(e.key >= 0 && e.key <= 9)) {
         switch (e.key) {
           case 'Backspace':
           case 'ArrowLeft':
           case 'ArrowRight':
+          case 'Tab':
           case 'Delete': break;
           default: e.preventDefault();
         }
@@ -528,13 +533,13 @@ export default {
     sendServer() {
       const token = this.$cookies.get('accessToken');
       const data = { ...this.$store.state.PersonInfo };
-      const { s, e } = this.$toastr;
+      const { s, w, e } = this.$toastr;
       data.name = data.personName;
       data.birth = `${data.year}-${data.month}-${data.day}`;
       data.schoolCode = this.school.code;
       this.$axios({
         method: 'put',
-        url: 'http://entry.entrydsm.hs.kr/api/me/info',
+        url: 'https://entry.entrydsm.hs.kr:80/api/me/info',
         headers: { Authorization: `JWT ${token}` },
         data,
       }).then((res) => {
@@ -549,8 +554,48 @@ export default {
             index: 1,
           });
         } else {
-          e('인적 사항 임시저장에 실패하였습니다.');
-          error.response.data.errors.map((msg => e(`${msg.field}-${msg.message}`)));
+          e('인적사항 임시저장을 실패하였습니다.');
+          error.response.data.errors.map(((msg) => {
+            let field;
+            let message;
+            switch (msg.field) {
+              case 'myTel':
+                field = '본인 연락처';
+                break;
+              case 'parentName':
+                field = '보호자명';
+                break;
+              case 'zipCode':
+                field = '우편번호';
+                break;
+              case 'name':
+                field = '이름';
+                break;
+              case 'studentNumber':
+                field = '학번';
+                break;
+              case 'studentClass':
+                field = '반';
+                break;
+              case 'parentTel':
+                field = '보호자 연락처';
+                break;
+              case 'schoolTel':
+                field = '학교 연락처';
+                break;
+              default:
+                field = msg.field;
+            }
+            switch (msg.message) {
+              case 'must not be null':
+                message = '값을 비워둘 수 없습니다.';
+                break;
+              default:
+                message = '잘못된 값입니다.';
+                break;
+            }
+            return w(`${field}-${message}`);
+          }));
         }
       });
     },

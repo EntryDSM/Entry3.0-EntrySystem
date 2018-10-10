@@ -40,7 +40,7 @@
     </div>
     <div class="AcceptTerms__checkbox">
       <input type="checkbox" class="AcceptTerms__checkbox--input" id="Accept-checkbox"
-      @click="sendAccept"/>
+      v-model="isAccept"/>
       <label class="AcceptTerms__checkbox--label" for="Accept-checkbox"></label>
       개인정보 이용약관에 동의합니다
     </div>
@@ -49,9 +49,14 @@
 
 <script>
 export default {
-  methods: {
-    sendAccept() {
-      this.$store.commit('updateAccept', !this.$store.state.auth.isAccept);
+  computed: {
+    isAccept: {
+      get() {
+        return this.$store.state.auth.isAccept;
+      },
+      set(value) {
+        this.$store.commit('updateAccept', value);
+      },
     },
   },
 };
@@ -67,10 +72,6 @@ export default {
       height: 300px;
       background: #eff7f8;
       background: -webkit-linear-gradient(left, transparent 0%, #eff7f8 50%, transparent 100%);
-      background: -moz-linear-gradient(left, transparent 0%, #eff7f8 50%, transparent 100%);
-      background: -ms-linear-gradient(left, transparent 0%, #eff7f8 50%, transparent 100%);
-      background: -o-linear-gradient(left, transparent 0%, #eff7f8 50%, transparent 100%);
-      background: linear-gradient(left, transparent 0%, #eff7f8 50%, transparent 100%);
       &::before, &::after{
         content: '';
         display: block;
@@ -78,10 +79,6 @@ export default {
         height: 1px;
         position: absolute;
         background: -webkit-linear-gradient(left, transparent 0%, #5f8a90 50%, transparent 100%);
-        background: -moz-linear-gradient(left, transparent 0%, #5f8a90 50%, transparent 100%);
-        background: -ms-linear-gradient(left, transparent 0%, #5f8a90 50%, transparent 100%);
-        background: -o-linear-gradient(left, transparent 0%, #5f8a90 50%, transparent 100%);
-        background: linear-gradient(left, transparent 0%, #5f8a90 50%, transparent 100%);
       }
       &::after{
         bottom: 0;

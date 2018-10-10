@@ -1,41 +1,31 @@
 <template>
-  <div class="Verify">
-    <div class="Verify__Icon">
-      <div class="Verify__Icon__box Verify__Icon__box--info" v-if="isInfoValid==='작성완료'">
+  <div class="verify">
+    <div class="verify__Icon">
+      <div class="verify__Icon__box verify__Icon__box--info" v-if="isInfoValid==='작성완료'">
       </div>
-      <div class="Verify__Icon__box Verify__Icon__box--info Verify__Icon__box--false" v-else>
+      <div class="verify__Icon__box verify__Icon__box--info verify__Icon__box--false" @click="changeRouter('personal')" v-else>
       </div>
-      <div class="Verify__Icon__box Verify__Icon__box--classify" v-if="isClassificationValid==='작성완료'">
+      <div class="verify__Icon__box verify__Icon__box--classify" v-if="isClassificationValid==='작성완료'">
       </div>
-      <div class="Verify__Icon__box Verify__Icon__box--classify Verify__Icon__box--false" v-else>
+      <div class="verify__Icon__box verify__Icon__box--classify verify__Icon__box--false" @click="changeRouter('classify')" v-else>
       </div>
-      <div class="Verify__Icon__box Verify__Icon__box--plan" v-if="isDocumentValid==='작성완료'">
+      <div class="verify__Icon__box verify__Icon__box--plan" v-if="isDocumentValid==='작성완료'">
       </div>
-      <div class="Verify__Icon__box Verify__Icon__box--plan Verify__Icon__box--false" v-else>
+      <div class="verify__Icon__box verify__Icon__box--plan verify__Icon__box--false" @click="changeRouter('intro')" v-else>
       </div>
-      <div class="Verify__Icon__box Verify__Icon__box--gradeInput" v-if="isGradeValid==='작성완료'">
+      <div class="verify__Icon__box verify__Icon__box--gradeInput" v-if="isGradeValid==='작성완료'">
       </div>
-      <div class="Verify__Icon__box Verify__Icon__box--gradeInput Verify__Icon__box--false" v-else>
+      <div class="verify__Icon__box verify__Icon__box--gradeInput verify__Icon__box--false" @click="changeRouter('grade')" v-else>
       </div>
     </div>
-    <div class="Verify__msg" v-if="!isValid">
-      <p class="Verify__msg__header">원서를 미리 볼 수 없습니다</p>
-      <div class="Verify__msg__hr"></div>
-      <p class="Verify__msg__content">
+    <div class="verify__msg" v-if="!isValid">
+      <p class="verify__msg__header">원서를 미리 볼 수 없습니다</p>
+      <div class="verify__msg__hr"></div>
+      <p class="verify__msg__content">
         아직 입력되지 않았거나 잘못 된 정보가 있습니다.<br/>
         위의 카드를 통해 페이지를 확인하시고 <br/>
         해당 항목을 입력하거나 수정해주시길 바랍니다.<br/>
       </p>
-    </div>
-    <div class="Verify__msg" v-else>
-      <p class="Verify__msg__header">최종 제출을 하시겠습니까?</p>
-      <div class="Verify__msg__hr"></div>
-      <p class="Verify__msg__content">
-        최종 제출이 완료 후에는 작성한 입학 원서를 수정할 수 없습니다.
-      </p>
-      <div class="modal--btn Verify__msg__btn" @click="FinalSubmit">
-        최종 제출
-      </div>
     </div>
   </div>
 </template>
@@ -82,29 +72,18 @@ export default {
     },
   },
   created() {
-    const token = this.$cookies.get('accessToken');
-    this.$store.dispatch('getMypage', {
-      token,
-    });
+    if (this.isValid) {
+      this.$router.push('/preview');
+      this.$store.commit('changeIndex', {
+        index: 0,
+      });
+    }
   },
   methods: {
-    FinalSubmit() {
-      const token = this.$cookies.get('accessToken');
-      const { e } = this.$toastr;
-      this.$axios({
-        method: 'post',
-        url: 'http://entry.entrydsm.hs.kr/api/submit',
-        headers: { Authorization: `JWT ${token}` },
-      }).then(() => {
-        this.$store.commit('changeIndex', {
-          index: 7,
-        });
-      }).catch((error) => {
-        if (error.response.status === 403) {
-          e('이미 최종 제출 되어있는 수험생입니다.');
-        } else if (error.response.status === 400) {
-          e('부족한 부분이 있습니다. 위 아이콘을 통해 채우지 못한 부분을 확인해주세요.');
-        }
+    changeRouter(url) {
+      this.$router.push(`/${url}`);
+      this.$store.commit('changeIndex', {
+        index: 0,
       });
     },
   },
@@ -113,7 +92,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../../style/setting';
-.Verify{
+.verify{
   widows: 100%;
   height: 100%;
   position: absolute;
@@ -144,6 +123,7 @@ export default {
       }
       @include m('false') {
         background-color: #FFF !important;
+        cursor: pointer;
         &::after{
           position: absolute;
           opacity: 0;
