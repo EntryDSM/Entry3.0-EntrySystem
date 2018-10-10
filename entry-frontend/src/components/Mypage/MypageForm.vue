@@ -25,6 +25,7 @@
       </div>
       <div class="form__value">
         {{ finalSubmitString }}
+        <span v-if="finalSubmit">* 최종제출 취소는 학교로 문의하세요</span>
         <button
           v-if="!finalSubmit"
           @click="gotoPreview"
@@ -152,6 +153,10 @@ $border1: solid 1px #eff3f4;
   @include e('value') {
     flex: 1;
     padding-left: 35px;
+    & span {
+      margin-left: 15px;
+      font-size: 14px;
+    }
   }
   @include e('preview-btn') {
     width: 140px;

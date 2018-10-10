@@ -29,7 +29,7 @@
         nav__wrapper__contants__list__link--login"
         v-if="!isLogin"
         @click="changeIndex">
-          로그인
+          원서수정
       </li>
       <li class="nav__wrapper__contants__list__link
         nav__wrapper__contants__list__link--login"

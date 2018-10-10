@@ -94,16 +94,17 @@ $M-close-color: #dee8e9;
     }
     @include e('close'){
         position: absolute;
-        top: 18px;
-        right: 14px;
-        width: 12px;
-        height: 12px;
+        cursor: pointer;
+        top: 25px;
+        right: 20px;
+        width: 18px;
+        height: 18px;
         &::before, &::after{
           position: relative;
           content: "";
           display: block;
           z-index: 7;
-          width: 12px;
+          width: 18px;
           height: 2px;
           border-radius: 10px;
           background-color: $M-close-color;
