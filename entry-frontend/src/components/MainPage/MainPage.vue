@@ -53,7 +53,7 @@
             </transition>
             <schedule v-if="isAppearSchedule"
               @close="activeSchedulePage = isAppearSchedule = false"
-              :router-link="'/classify'"/>
+              router-link="/auth"/>
           </div>
         </div>
       </transition>
@@ -86,16 +86,7 @@ export default {
   }),
   methods: {
     writeApplication() {
-      const token = this.$cookies.get('accessToken');
-      const { e } = this.$toastr;
-      if (token !== undefined && token !== null && token !== '') {
-        this.$router.push('/classify');
-      } else {
-        e('로그인이 필요한 기능입니다.');
-        this.$store.commit('changeIndex', {
-          index: 1,
-        });
-      }
+      this.$router.push('/auth');
     },
   },
 };

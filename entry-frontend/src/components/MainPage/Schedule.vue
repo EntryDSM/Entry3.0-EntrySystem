@@ -21,7 +21,7 @@
           <p class="schedule__content__text">
             {{ scheduleDateText }}
           </p>
-          <router-link to='/classify'  class="schedule__content__link">
+          <router-link :to='routerLink' class="schedule__content__link">
             원서작성 하러가기
           </router-link >
         </div>
@@ -70,7 +70,7 @@ export default {
     ProcessBar,
   },
   props: {
-    rotuerLink: String,
+    routerLink: String,
   },
   data() {
     return {
