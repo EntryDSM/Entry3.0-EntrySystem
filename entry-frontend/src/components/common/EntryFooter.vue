@@ -51,6 +51,19 @@
             </router-link>
           </li>
         </ul>
+        <a href="https://www.facebook.com/entrydsm" target="_blank">
+          <img src="../../assets/Footer/ico_facebook.png"
+               alt="페이스북 이동 링크"
+               class="link-imgs link-imgs--facebook-link"
+          >
+        </a>
+        <a href="https://github.com/Jaws-bar/Entry3.0-EntrySystem" target="_blank">
+          <img src="../../assets/Footer/ico_github.png"
+              alt="깃허브 이동 링크"
+              class="link-imgs link-imgs--github-link"
+          >
+        </a>
+
       </div>
     </div>
   </footer>
@@ -90,7 +103,7 @@ export default {
 $white: #fff;
 
 footer {
-  height: 178px;
+  height: 200px;
   background-color: #78C2CA;
 
   .footer-cover {
@@ -105,6 +118,7 @@ footer {
     @include e('logo') {
       width: 100px;
       display: block;
+      margin-top: 13px;
     }
 
     // Copyright 부분
@@ -152,7 +166,7 @@ footer {
           list-style: none;
           margin-top: 15px;
           &:first-of-type{
-            margin-top: 0;
+            margin-top: 7px;
             a {
               font-size: 15px;
               opacity: 1;
@@ -170,6 +184,20 @@ footer {
               opacity: 1;
             }
           }
+        }
+      }
+
+      .link-imgs {
+        position: absolute;
+        width: 20px;
+        margin-top: -25px;
+
+        @include m('facebook-link') {
+          right: 31px;
+        }
+
+        @include m('github-link') {
+          right: 1px;
         }
       }
     }
