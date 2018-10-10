@@ -40,9 +40,7 @@
       :prevShow="false"
       :nextShow="true"
       :text="'마이페이지'"
-      :prevLink="prevLink"
-      :disablePrevClick="true"
-      :onClick="confirm.bind(this)"/>
+      :nextLink="'/mypage'"/>
     <entry-footer />
   </div>
 </template>
