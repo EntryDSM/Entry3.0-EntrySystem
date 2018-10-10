@@ -24,11 +24,12 @@ export default {
   name: 'ged-grade-input',
   methods: {
     onlyNumber(e) {
-      if (!(e.keyCode >= 48 && e.keyCode <= 57)) {
+      if (!(e.key >= 0 && e.key <= 9)) {
         switch (e.key) {
           case 'Backspace':
           case 'ArrowLeft':
           case 'ArrowRight':
+          case 'Tab':
           case 'Delete': break;
           default: e.preventDefault();
         }
