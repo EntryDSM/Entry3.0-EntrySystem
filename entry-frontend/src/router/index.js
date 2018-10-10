@@ -58,6 +58,7 @@ export default new Router({
     path: '/confirm/:code',
     name: 'signup-confirm',
     component: SignupConfirm,
+    props: true,
   },
   {
     path: '/mypage',
