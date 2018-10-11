@@ -2,9 +2,10 @@
   <div class="modal" v-if="index > 0">
     <div class="modal__background" @click="closeModal"></div>
     <div class="modal__contants">
-      <div class="modal__contants__close" v-if="index < 6" @click="closeModal"></div>
+      <div class="modal__contants__close" v-if="index < 7" @click="closeModal"></div>
       <login v-if="index === 1"/>
       <reset-pw v-if="(index >= 2 && index < 6)"/>
+      <email-verify v-if="index === 6"/>
     </div>
     <div class="modal__contants modal__contants--confirm" v-if="index >= 7">
       <div class="modal__contants__close" @click="closeModal"></div>
@@ -22,15 +23,18 @@ import ResetPw from './ResetPw';
 import CheckModal from './CheckModal';
 import Verify from './Verify/Verify';
 import Finish from './Verify/Finish';
+import EmailVerify from './EmailVerify';
 
 export default {
   name: 'Modal',
+  props: ['email'],
   components: {
     Login,
     ResetPw,
     CheckModal,
     Verify,
     Finish,
+    EmailVerify,
   },
   computed: {
     index() {

@@ -4,29 +4,25 @@
     <div class="ChangeSuccess__email">[ {{email}} ]</div>
     <div class="ChangeSuccess__division"></div>
     <div class="ChangeSuccess__contents">
-      비밀번호 재설정이 완료되었습니다
-    </div>
-    <div class="modal--btn" @click="goLogin">
-      로그인
+      위의 이메일에서 인증 링크를 확인해주세요
     </div>
   </div>
 </template>
 
 <script>
 import Lottie from 'vue-lottie';
-import * as animationData from './../../../assets/checkAnimation.json';
+import * as animationData from './../../assets/checkAnimation.json';
 
 export default {
-  props: ['email'],
   components: {
     Lottie,
   },
-  methods: {
-    goLogin() {
-      this.$store.commit('changeIndex', {
-        index: 1,
-      });
+  computed: {
+    email() {
+      return this.$store.state.auth.email;
     },
+  },
+  methods: {
     handleAnimation(anim) {
       this.anim = anim;
     },
@@ -44,8 +40,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../style/setting';
+@import '../../style/setting';
 .ChangeSuccess{
+  position: relative;
+  top: -10px;
   @include e('email'){
     font-size: 18px;
     color: #000000;

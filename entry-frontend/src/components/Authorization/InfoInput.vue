@@ -170,6 +170,24 @@ export default {
       return this.$store.state.auth.isAccept;
     },
   },
+  created() {
+    this.$store.commit('updateEmail', '');
+    this.$store.commit('updatePw', '');
+    this.$store.commit('updatePwCheck', '');
+    this.$store.commit('updateAccept', false);
+    this.$store.commit('updateverify', {
+      index: 0,
+      data: false,
+    });
+    this.$store.commit('updateverify', {
+      index: 1,
+      data: false,
+    });
+    this.$store.commit('updateverify', {
+      index: 2,
+      data: false,
+    });
+  },
   methods: {
     warning() {
       const { w } = this.$toastr;
@@ -187,14 +205,20 @@ export default {
       }
     },
     moveToNextPage() {
-      const { s, e } = this.$toastr;
+      const { e } = this.$toastr;
       this.$axios.post('https://entry.entrydsm.hs.kr:80/api/signup', { email: this.email, password: this.pw }).then(() => {
-        s(`${this.email}로 인증 메일을 보냈습니다.<br/>메일함을 확인해주세요.`);
-        this.$store.commit('updateEmail', '');
-        this.$store.commit('updatePw', '');
-        this.$store.commit('updatePwCheck', '');
-        this.$store.commit('updateAccept', false);
         this.$router.push('/');
+        this.$store.commit('changeIndex', {
+          index: 6,
+        });
+        setTimeout(
+          () => {
+            this.$store.commit('changeIndex', {
+              index: 0,
+            });
+          },
+          10000,
+        );
       }).catch((error) => {
         if (error.response.status === 400) {
           e('이미 사용하고 있는 이메일입니다.');

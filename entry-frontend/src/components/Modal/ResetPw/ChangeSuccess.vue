@@ -46,6 +46,8 @@ export default {
 <style lang="scss" scoped>
 @import '../../../style/setting';
 .ChangeSuccess{
+  position: relative;
+  top: -10px;
   @include e('email'){
     font-size: 18px;
     color: #000000;
