@@ -23,7 +23,7 @@
         v-if="pwwrong" v-model="password" placeholder="비밀번호"/>
         <input type="password" class="modal--input" v-else v-model="password" placeholder="비밀번호"/>
         <button type="submit" class="modal--btn">
-          로그인
+          수정하기
         </button>
       </form>
       <div class="login__links">
@@ -80,6 +80,7 @@ export default {
               index: 0,
             });
             s('로그인 성공.');
+            this.$router.push('/classify');
           } else {
             this.pw = '';
             this.pwwrong = true;
