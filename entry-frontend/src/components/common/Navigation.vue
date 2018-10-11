@@ -70,11 +70,7 @@ export default {
       return this.$store.state.modal.index;
     },
     userName() {
-      if (this.$store.state.PersonInfo.personName === ''
-      || this.$store.state.PersonInfo.personName === null) {
-        return this.$store.state.email;
-      }
-      return this.$store.state.PersonInfo.personName;
+      return this.$store.state.email;
     },
     isLogin: {
       get() {
