@@ -15,11 +15,14 @@
               2019 신입생 모집
             </h1>
             <div class="main-page__link-box">
-              <a v-if="!finalSubmit" @click="writeApplication" class="main-page__link">
-                원서작성
-              </a>
-              <router-link v-else :to="'/preview'" class="main-page__link">
+              <router-link v-if="finalSubmit" :to="'/preview'" class="main-page__link">
                 원서출력
+              </router-link>
+              <router-link v-else-if="isLogin" :to="'/classify'" class="main-page__link">
+                원서수정
+              </router-link>
+              <router-link v-else :to="'/auth'" class="main-page__link">
+                원서작성
               </router-link>
               <a class="main-page__link"
                 @click="activeSchedulePage = true">
@@ -42,9 +45,15 @@
             <transition name="appear">
               <template v-if="isAppearSchedule">
                 <div class="main-page__link-box">
-                  <a @click="writeApplication" class="main-page__link">
+                  <router-link v-if="finalSubmit" :to="'/preview'" class="main-page__link">
+                    원서출력
+                  </router-link>
+                  <router-link v-else-if="isLogin" :to="'/classify'" class="main-page__link">
+                    원서수정
+                  </router-link>
+                  <router-link v-else :to="'/auth'" class="main-page__link">
                     원서작성
-                  </a>
+                  </router-link>
                   <router-link to="/info-summary" class="main-page__link">
                     전형요강
                   </router-link>
@@ -81,13 +90,14 @@ export default {
       isAppearSchedule: false, // to animatell
     };
   },
-  computed: mapState({
-    finalSubmit: state => state.mypage.applyStatus.finalSubmit,
-  }),
-  methods: {
-    writeApplication() {
-      this.$router.push('/auth');
+  computed: {
+    isLogin() {
+      const token = this.$cookies.get('accessToken');
+      return this.$store.state.accessToken !== null && typeof token === 'string';
     },
+    ...mapState({
+      finalSubmit: state => state.mypage.applyStatus.finalSubmit,
+    }),
   },
 };
 </script>
