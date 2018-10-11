@@ -1,7 +1,7 @@
 <template>
   <div class="grade-input-cover">
     <h3>봉사 & 출석</h3>
-    <table class="volunteer-attendance-table">
+    <table class="volunteer-attendance-table" cellspacing="0">
       <tr class="table-row">
         <td class="table-data-text">봉사시간</td>
         <td class="table-data-text">
@@ -71,7 +71,7 @@
     </table>
 
     <h3>미이수 학기(자유학기제) 선택</h3>
-    <table class="discomplete-table">
+    <table class="discomplete-table" cellspacing="0">
       <tr class="table-row">
         <td class="table-row__first-grade grade-names">1학년</td>
         <td class="table-row__second-grade grade-names">2학년</td>
@@ -148,7 +148,7 @@
     </table>
 
     <h3>성적입력(해당 학기 미이수 과목은 X 선택)</h3>
-    <table class="grade-input-table" ref="grade-table">
+    <table class="grade-input-table" ref="grade-table" cellspacing="0">
       <div class="all-grade-reset-cover">
         <div class="all-grade-reset-cover__box" :class="allHoverCheck()">
           <span class="all-grade-reset-cover__box__text">
@@ -184,7 +184,7 @@
         <td>2학기</td>
       </tr>
       <tr class="grade-input-table__row">
-        <td>국어</td>
+        <td class="korean-text">국어</td>
         <td :class="changeBackground(korean[0].score)">
           <input type="radio"
                   v-for="k in scores"
@@ -1800,7 +1800,7 @@ $button-color: #edf5f6;
     }
 
     &::before { top: 0; }
-    &::after { bottom: 0; }
+    &::after { bottom: -1px; }
   }
 
   .volunteer-attendance-table {
@@ -1879,6 +1879,9 @@ $button-color: #edf5f6;
     width: 100%;
     height: 150px;
 
+    &::before { top: 1px; }
+    &::after { bottom: 0; }
+
     .table-row {
       height: calc(100% / 2);
 
@@ -1934,6 +1937,8 @@ $button-color: #edf5f6;
 
   .grade-input-table {
     height: 675px;
+
+    &::after { bottom: 1px; }
 
     .all-grade-reset-cover {
       width: 200px;
@@ -1992,6 +1997,10 @@ $button-color: #edf5f6;
       width: 100%;
       height: 75px;
 
+      .korean-text {
+        border-top: 1px solid $table-inner;
+      }
+
       &:first-of-type {
         height: 75px;
         font-size: 20px;
@@ -2028,7 +2037,6 @@ $button-color: #edf5f6;
           background-color: $table-background;
           font-size: 20px;
           border: {
-            top: 1px solid $table-inner;
             right: 1px solid $table-inner;
           }
         }
@@ -2092,7 +2100,7 @@ $button-color: #edf5f6;
         top: 50%;
         margin-top: -1px;
         transform: translateY(-50%);
-        right: 36px;
+        right: 35px;
       }
 
       // 점수 선택되었을 시의 애니메이션

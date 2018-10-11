@@ -9,6 +9,7 @@ export default {
     const { s, e } = this.$toastr;
     contact.confirmSignup(this.code).then(() => {
       s('인증이 완료되었습니다. 로그인을 해주세요.');
+      // 리다이렉트는 전형구분 페이지로
       this.$router.push('/');
       this.$store.commit('changeIndex', {
         index: 1,

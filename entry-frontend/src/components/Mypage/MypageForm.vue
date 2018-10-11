@@ -25,7 +25,7 @@
       </div>
       <div class="form__value">
         {{ finalSubmitString }}
-        <span v-if="finalSubmit">* 최종제출 취소는 학교로 문의하세요</span>
+        <span>* 최종제출 취소는 학교로 문의하세요</span>
         <button
           v-if="!finalSubmit"
           @click="gotoPreview"

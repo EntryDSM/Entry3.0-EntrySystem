@@ -65,6 +65,7 @@ export default {
   },
 
   confirmSignup(code) {
+    // 토큰 쿠키에 등록하기
     return axios.get(`${CONSTANT.CONFIRM_URI}${code}`);
   },
 };
