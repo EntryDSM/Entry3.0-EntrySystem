@@ -1,19 +1,19 @@
 <template>
   <div class="Verify">
     <div class="Verify__Icon">
-      <div class="Verify__Icon__box Verify__Icon__box--info" v-if="isInfoValid==='작성완료'">
+      <div class="Verify__Icon__box Verify__Icon__box--info" @click="changeRouter('personal')" v-if="isInfoValid==='작성완료'">
       </div>
       <div class="Verify__Icon__box Verify__Icon__box--info Verify__Icon__box--false" @click="changeRouter('personal')" v-else>
       </div>
-      <div class="Verify__Icon__box Verify__Icon__box--classify" v-if="isClassificationValid==='작성완료'">
+      <div class="Verify__Icon__box Verify__Icon__box--classify" @click="changeRouter('personal')" v-if="isClassificationValid==='작성완료'">
       </div>
       <div class="Verify__Icon__box Verify__Icon__box--classify Verify__Icon__box--false" @click="changeRouter('classify')" v-else>
       </div>
-      <div class="Verify__Icon__box Verify__Icon__box--plan" v-if="isDocumentValid==='작성완료'">
+      <div class="Verify__Icon__box Verify__Icon__box--plan" @click="changeRouter('personal')" v-if="isDocumentValid==='작성완료'">
       </div>
       <div class="Verify__Icon__box Verify__Icon__box--plan Verify__Icon__box--false" @click="changeRouter('intro')" v-else>
       </div>
-      <div class="Verify__Icon__box Verify__Icon__box--gradeInput" v-if="isGradeValid==='작성완료'">
+      <div class="Verify__Icon__box Verify__Icon__box--gradeInput" @click="changeRouter('personal')" v-if="isGradeValid==='작성완료'">
       </div>
       <div class="Verify__Icon__box Verify__Icon__box--gradeInput Verify__Icon__box--false" @click="changeRouter('grade')" v-else>
       </div>
