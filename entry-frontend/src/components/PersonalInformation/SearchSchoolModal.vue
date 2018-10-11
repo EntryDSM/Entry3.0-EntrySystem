@@ -11,8 +11,10 @@
         class="input-text school-modal__input"
         placeholder="중학교 명"
         v-focus
-        v-model="keyword"
-        v-on:input="search">
+        @input="keyword = $event.target.value"
+        :value="keyword"
+        @keyup="search"
+      >
       <ul class="school-modal__list">
         <li
           class="school-modal__school"
@@ -31,7 +33,8 @@
 </template>
 
 <script>
-import CONSTANT from '../../api/constant';
+import _ from 'lodash';
+import contact from '../../api/contact';
 import Selectbox from '../common/Selectbox';
 
 const focus = {
@@ -63,7 +66,7 @@ const offices = [
 
 export default {
   directives: { focus },
-  name: 'school-modal',
+  name: 'search-school-modal',
   components: {
     Selectbox,
   },
@@ -77,18 +80,29 @@ export default {
   },
   methods: {
     search() {
-      this.current = 1;
-      this.getSchools();
-    },
-    getSchools() {
+      const { keyword, office } = this;
       const token = this.$cookies.get('accessToken');
-      this.$axios.get(`${CONSTANT.SCHOOL_URI}/search?name=${this.keyword}&government=${this.office}`,
-        { headers: { Authorization: `JWT ${token}` } })
-        .then(({ data }) => {
-          this.schools = data.data;
-        })
-        .catch(err => Promise.reject(err.response));
+
+      this.searchSchool(this, token, keyword, office);
     },
+    searchSchool: _.debounce((self, token, keyword, office) => {
+      const s = self;
+      contact.getSchool({
+        token,
+        keyword,
+        office,
+      })
+      .then(({ data }) => {
+        const schoolData = data.data;
+        const initialObject = [{
+          code: '0000000',
+          name: '검색 결과가 없습니다.',
+        }];
+
+        s.schools = schoolData.length !== 0 ? schoolData : initialObject;
+      })
+      .catch(err => Promise.reject(err.response));
+    }, 500),
     selectSchool(school) {
       this.$emit('selectSchool', school);
       this.$emit('close');
@@ -200,6 +214,7 @@ $modal-z-index: 5;
         background-color: #f4f9fa;
         display: block;
         text-align: center;
+        cursor: pointer;
       }
     }
   }
