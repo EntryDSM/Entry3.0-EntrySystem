@@ -101,7 +101,7 @@ export default {
     },
     changeModalIndex() {
       this.$store.commit('changeIndex', {
-        index: 8,
+        index: 9,
       });
     },
     changeRouter(url) {

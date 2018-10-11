@@ -42,7 +42,7 @@
       <input type="checkbox" class="AcceptTerms__checkbox--input" id="Accept-checkbox"
       v-model="isAccept"/>
       <label class="AcceptTerms__checkbox--label" for="Accept-checkbox"></label>
-      개인정보 이용약관에 동의합니다
+      <label class="AcceptTerms__checkbox--text" for="Accept-checkbox">개인정보 이용약관에 동의합니다</label>
     </div>
   </div>
 </template>
@@ -119,6 +119,7 @@ export default {
         margin-right: 5px;
         display: inline-block;
         box-sizing: border-box;
+        cursor: pointer;
         &::after{
           content: "✔";
           color: #FFF;
@@ -127,10 +128,14 @@ export default {
           top: 3px;
         }
       }
+      @include m('text'){
+        cursor: pointer;
+      }
     }
   }
   .AcceptTerms__checkbox--input:checked + .AcceptTerms__checkbox--label,
   .AcceptTerms__checkbox--label.checked {
     background-color: #799da1;
+    cursor: pointer;
   }
 </style>
