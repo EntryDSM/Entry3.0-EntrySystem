@@ -1,19 +1,19 @@
 <template>
   <div class="verify">
     <div class="verify__Icon">
-      <div class="verify__Icon__box verify__Icon__box--info" v-if="isInfoValid==='작성완료'">
+      <div class="verify__Icon__box verify__Icon__box--info" @click="changeRouter('personal')" v-if="isInfoValid==='작성완료'">
       </div>
       <div class="verify__Icon__box verify__Icon__box--info verify__Icon__box--false" @click="changeRouter('personal')" v-else>
       </div>
-      <div class="verify__Icon__box verify__Icon__box--classify" v-if="isClassificationValid==='작성완료'">
+      <div class="verify__Icon__box verify__Icon__box--classify" @click="changeRouter('classify')"  v-if="isClassificationValid==='작성완료'">
       </div>
       <div class="verify__Icon__box verify__Icon__box--classify verify__Icon__box--false" @click="changeRouter('classify')" v-else>
       </div>
-      <div class="verify__Icon__box verify__Icon__box--plan" v-if="isDocumentValid==='작성완료'">
+      <div class="verify__Icon__box verify__Icon__box--plan" @click="changeRouter('intro')" v-if="isDocumentValid==='작성완료'">
       </div>
       <div class="verify__Icon__box verify__Icon__box--plan verify__Icon__box--false" @click="changeRouter('intro')" v-else>
       </div>
-      <div class="verify__Icon__box verify__Icon__box--gradeInput" v-if="isGradeValid==='작성완료'">
+      <div class="verify__Icon__box verify__Icon__box--gradeInput" @click="changeRouter('grade')" v-if="isGradeValid==='작성완료'">
       </div>
       <div class="verify__Icon__box verify__Icon__box--gradeInput verify__Icon__box--false" @click="changeRouter('grade')" v-else>
       </div>
@@ -115,6 +115,7 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
+      cursor: pointer;
       &::after{
         content: '작성완료';
         opacity: 0;
@@ -123,7 +124,6 @@ export default {
       }
       @include m('false') {
         background-color: #FFF !important;
-        cursor: pointer;
         &::after{
           position: absolute;
           opacity: 0;

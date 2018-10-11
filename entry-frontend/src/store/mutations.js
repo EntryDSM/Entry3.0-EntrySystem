@@ -325,7 +325,7 @@ export const mutations = {
     state.mypage.graduateType = graduateType;
     state.mypage.validationResult = validationResult;
     state.mypage.applyStatus = applyStatus;
-    state.modal.index = 6;
+    state.modal.index = 7;
   },
 
   updateaccessToken: (state, payload) => {

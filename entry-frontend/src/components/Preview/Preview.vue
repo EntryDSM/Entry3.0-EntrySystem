@@ -121,7 +121,7 @@ export default {
     },
     confirm() {
       this.$store.commit('changeIndex', {
-        index: 7,
+        index: 8,
       });
     },
   },

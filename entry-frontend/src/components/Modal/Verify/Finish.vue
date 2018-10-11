@@ -1,43 +1,43 @@
 <template>
-  <div class="Verify">
-    <div class="Verify__Icon">
-      <div class="Verify__Icon__box Verify__Icon__box--info" v-if="isInfoValid==='작성완료'">
+  <div class="verify">
+    <div class="verify__Icon">
+      <div class="verify__Icon__box verify__Icon__box--info" @click="changeRouter('personal')" v-if="isInfoValid==='작성완료'">
       </div>
-      <div class="Verify__Icon__box Verify__Icon__box--info Verify__Icon__box--false" @click="changeRouter('personal')" v-else>
+      <div class="verify__Icon__box verify__Icon__box--info verify__Icon__box--false" @click="changeRouter('personal')" v-else>
       </div>
-      <div class="Verify__Icon__box Verify__Icon__box--classify" v-if="isClassificationValid==='작성완료'">
+      <div class="verify__Icon__box verify__Icon__box--classify" @click="changeRouter('classify')"  v-if="isClassificationValid==='작성완료'">
       </div>
-      <div class="Verify__Icon__box Verify__Icon__box--classify Verify__Icon__box--false" @click="changeRouter('classify')" v-else>
+      <div class="verify__Icon__box verify__Icon__box--classify verify__Icon__box--false" @click="changeRouter('classify')" v-else>
       </div>
-      <div class="Verify__Icon__box Verify__Icon__box--plan" v-if="isDocumentValid==='작성완료'">
+      <div class="verify__Icon__box verify__Icon__box--plan" @click="changeRouter('intro')" v-if="isDocumentValid==='작성완료'">
       </div>
-      <div class="Verify__Icon__box Verify__Icon__box--plan Verify__Icon__box--false" @click="changeRouter('intro')" v-else>
+      <div class="verify__Icon__box verify__Icon__box--plan verify__Icon__box--false" @click="changeRouter('intro')" v-else>
       </div>
-      <div class="Verify__Icon__box Verify__Icon__box--gradeInput" v-if="isGradeValid==='작성완료'">
+      <div class="verify__Icon__box verify__Icon__box--gradeInput" @click="changeRouter('grade')" v-if="isGradeValid==='작성완료'">
       </div>
-      <div class="Verify__Icon__box Verify__Icon__box--gradeInput Verify__Icon__box--false" @click="changeRouter('grade')" v-else>
+      <div class="verify__Icon__box verify__Icon__box--gradeInput verify__Icon__box--false" @click="changeRouter('grade')" v-else>
       </div>
     </div>
-    <div class="Verify__msg" v-if="!submit">
-      <p class="Verify__msg__header">최종 제출을 하시겠습니까?</p>
-      <div class="Verify__msg__hr"></div>
-      <p class="Verify__msg__content">
+    <div class="verify__msg" v-if="!submit">
+      <p class="verify__msg__header">최종 제출을 하시겠습니까?</p>
+      <div class="verify__msg__hr"></div>
+      <p class="verify__msg__content">
         최종 제출이 완료 후에는 작성한 입학 원서를 수정할 수 없습니다.
       </p>
-      <div class="modal--btn Verify__msg__btn Verify__msg__btn--long" @click="FinalSubmit">
+      <div class="modal--btn verify__msg__btn verify__msg__btn--long" @click="FinalSubmit">
         최종 제출
       </div>
     </div>
-    <div class="Verify__msg" v-else>
-      <p class="Verify__msg__header">최종 제출이 완료되었습니다</p>
-      <div class="Verify__msg__hr"></div>
-      <p class="Verify__msg__content">
+    <div class="verify__msg" v-else>
+      <p class="verify__msg__header">최종 제출이 완료되었습니다</p>
+      <div class="verify__msg__hr"></div>
+      <p class="verify__msg__content">
         전형료 납부 여부와 우편물 발송 도착 여부는 마이페이지에서 확인하실 수 있습니다.
       </p>
-      <div class="modal--btn Verify__msg__btn" @click="gotoMypage">
+      <div class="modal--btn verify__msg__btn" @click="gotoMypage">
         마이페이지
       </div>
-      <div class="modal--btn Verify__msg__btn" @click="gotoHome">
+      <div class="modal--btn verify__msg__btn" @click="gotoHome">
         모집 일정
       </div>
     </div>
@@ -141,7 +141,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../../style/setting';
-.Verify{
+.verify{
   widows: 100%;
   height: 100%;
   position: absolute;
@@ -164,6 +164,7 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
+      cursor: pointer;
       &::after{
         content: '작성완료';
         opacity: 0;
