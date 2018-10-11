@@ -67,4 +67,16 @@ export default {
   confirmSignup(code) {
     return axios.post(`${CONSTANT.CONFIRM_URI}${code}`);
   },
+
+  getSchool(payload) {
+    const {
+      token,
+      keyword,
+      office,
+    } = payload;
+
+    return axios.get(`${CONSTANT.SCHOOL_URI}/search?name=${keyword}&government=${office}`, {
+      headers: { Authorization: `JWT ${token}` },
+    });
+  },
 };
