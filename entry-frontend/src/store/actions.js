@@ -39,25 +39,23 @@ export const actions = {
   updateImgPath: context => context.commit('updateImgPath'),
   updateIntro: (state, payload) => {
     contact.updateDocument('document', payload)
-    .then(() => payload.s('자기소개서 및 학업계획서 정보가<br/>임시저장 되었습니다.'))
-    .catch((err) => {
-      payload.e('자기소개서와 학업계획서 정보저장을 실패하였습니다..');
-      Promise.reject(err.response);
+    .then(() => { if (typeof payload.s === 'function') payload.s('자기소개서 및 학업계획서 정보가<br/>임시저장 되었습니다.'); })
+    .catch(() => {
+      if (typeof payload.e === 'function') payload.e('자기소개서와 학업계획서 정보저장을 실패하였습니다..');
     });
   },
   gotoPreview: ({ commit }, payload) => {
     contact.updateDocument('document', payload)
     .then(() => {
-      if (payload.s) payload.s('자기소개서 및 학업계획서 정보가<br/>임시저장 되었습니다.');
+      if (typeof payload.s === 'function') payload.s('자기소개서 및 학업계획서 정보가<br/>임시저장 되었습니다.');
       contact.getMypage('mypage', payload.token)
       .then((response) => {
       const { data } = response;
       commit('checkValidate', data);
     });
     })
-    .catch((err) => {
-      if (payload.e) payload.e('자기소개서와 학업계획서 정보저장을 실패하였습니다..');
-      Promise.reject(err.response);
+    .catch(() => {
+      if (typeof payload.e === 'function') payload.e('자기소개서와 학업계획서 정보저장을 실패하였습니다..');
     });
   },
 
@@ -66,11 +64,10 @@ export const actions = {
     .then((response) => {
       const { data } = response;
       commit('updateIntroAndPlan', data);
-      payload.s('자기소개서 및 학업계획서 정보를<br/>불러왔습니다');
+      if (typeof payload.s === 'function') payload.s('자기소개서 및 학업계획서 정보를<br/>불러왔습니다');
     })
-    .catch((err) => {
-      payload.e('자기소개서 및 학업계획서 정보를<br/>불러오는데 실패하였습니다.');
-      Promise.reject(err.response);
+    .catch(() => {
+      if (typeof payload.e === 'function') payload.e('자기소개서 및 학업계획서 정보를<br/>불러오는데 실패하였습니다.');
     });
   },
 
@@ -79,20 +76,18 @@ export const actions = {
     .then((response) => {
       const { data } = response.data;
       commit('getGrades', utils.getGrade(data));
-      payload.s('성적 정보를 불러왔습니다');
+      if (typeof payload.s === 'function') payload.s('성적 정보를 불러왔습니다');
     })
-    .catch((err) => {
-      payload.e('성적 정보를 불러오는데<br/>실패하였습니다.');
-      Promise.reject(err.response);
+    .catch(() => {
+      if (typeof payload.e === 'function') payload.e('성적 정보를 불러오는데<br/>실패하였습니다.');
     });
   },
 
   updateGrade: (store, payload) => {
     contact.updateGrades('grade', payload)
-    .then(() => payload.s('성적 정보가 임시저장 되었습니다.'))
-    .catch((err) => {
-      payload.e('성적 정보를 임시저장하지 못하였습니다..');
-      Promise.reject(err.response);
+    .then(() => { if (typeof payload.s === 'function') payload.s('성적 정보가 임시저장 되었습니다.'); })
+    .catch(() => {
+      if (typeof payload.e === 'function') payload.e('성적 정보를 임시저장하지 못하였습니다..');
     });
   },
 
@@ -101,10 +96,9 @@ export const actions = {
     .then((response) => {
       const { data } = response;
       commit('updateClassify', data);
-      payload.s('전형 정보를 불러왔습니다');
-    }).catch((err) => {
-      payload.e('전형 정보를 불러오는데<br/>실패하였습니다.');
-      Promise.reject(err.response);
+      if (typeof payload.s === 'function') payload.s('전형 정보를 불러왔습니다');
+    }).catch(() => {
+      if (typeof payload.e === 'function') payload.e('전형 정보를 불러오는데<br/>실패하였습니다.');
     });
   },
 
@@ -113,10 +107,9 @@ export const actions = {
     .then((response) => {
       const { data } = response;
       commit('updateInfo', data);
-      payload.s('인적사항 정보를 불러왔습니다');
-    }).catch((err) => {
-      payload.e('인적사항 정보를 불러오는데<br/>실패하였습니다.');
-      Promise.reject(err.response);
+      if (typeof payload.s === 'function') payload.s('인적사항 정보를 불러왔습니다');
+    }).catch(() => {
+      if (typeof payload.e === 'function') payload.e('인적사항 정보를 불러오는데<br/>실패하였습니다.');
     });
   },
 
@@ -125,10 +118,9 @@ export const actions = {
     .then((response) => {
       const { data } = response;
       commit('updateMypage', data);
-      payload.s('유저 정보를 불러왔습니다');
-    }).catch((err) => {
-      payload.e('유저 정보를 불러오는데<br/>실패하였습니다.');
-      Promise.reject(err.response);
+      if (typeof payload.s === 'function') payload.s('유저 정보를 불러왔습니다');
+    }).catch(() => {
+      if (typeof payload.e === 'function') payload.e('유저 정보를 불러오는데<br/>실패하였습니다.');
     });
   },
 };

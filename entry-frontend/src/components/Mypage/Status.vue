@@ -60,9 +60,10 @@ export default {
     cursor: pointer;
   }
   @include e('state') {
+    color: #356a71;
     font-size: 18px;
     text-align: center;
-    line-height: 30px;
+    line-height: 40px;
     width: 100%;
     cursor: pointer;
   }
