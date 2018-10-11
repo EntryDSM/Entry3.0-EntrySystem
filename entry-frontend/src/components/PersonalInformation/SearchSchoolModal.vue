@@ -26,6 +26,9 @@
           </div>
           <div class="select">선택</div>
         </li>
+        <li class="school-modal__none" v-show="isEmpty">
+          검색 결과가 없습니다.
+        </li>
       </ul>
       <div class="school-modal__close" @click="closeModal"></div>
     </div>
@@ -78,6 +81,11 @@ export default {
       schools: [],
     };
   },
+  computed: {
+    isEmpty() {
+      return !this.schools.lenght;
+    },
+  },
   methods: {
     search() {
       const { keyword, office } = this;
@@ -94,12 +102,7 @@ export default {
       })
       .then(({ data }) => {
         const schoolData = data.data;
-        const initialObject = [{
-          code: '0000000',
-          name: '검색 결과가 없습니다.',
-        }];
-
-        s.schools = schoolData.length !== 0 ? schoolData : initialObject;
+        s.schools = schoolData;
       })
       .catch(err => Promise.reject(err.response));
     }, 500),
@@ -217,6 +220,12 @@ $modal-z-index: 5;
         cursor: pointer;
       }
     }
+  }
+  @include e('none') {
+    height: 60px;
+    padding-left: 25px;
+    position: relative;
+    line-height: 60px;
   }
 }
 
