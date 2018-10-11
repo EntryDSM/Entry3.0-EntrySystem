@@ -77,20 +77,20 @@ export default {
       entryLinks: [
         { name: '입학안내', route: '/' },
         { name: '공지사항', route: '/' },
-        { name: '전형일정', route: '/' },
-        { name: '전형요강', route: '/' },
+        { name: '모집일정', route: '/' },
+        { name: '전형요강', route: '/info-summary' },
         { name: 'Q&A', route: '/' },
       ],
 
       reportLinks: [
         { name: '입학원서', route: '/' },
-        { name: '원서작성 및 수정', route: '/' },
-        { name: '나의 원서보기', route: '/' },
+        { name: '원서작성 및 수정', route: '/classify' },
+        { name: '나의 원서보기', route: '/preview' },
       ],
 
       introLinks: [
         { name: 'Entry 소개', route: '/' },
-        { name: '시스템 소개', route: '/' },
+        { name: '시스템 소개', route: '/info-system' },
         { name: '개발자 소개', route: '/' },
       ],
     };
