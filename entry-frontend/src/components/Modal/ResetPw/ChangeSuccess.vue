@@ -1,5 +1,6 @@
 <template>
   <div class="ChangeSuccess">
+    <lottie :options="defaultOptions" :height="200" :width="200" v-on:animCreated="handleAnimation"/>
     <div class="ChangeSuccess__email">[ {{email}} ]</div>
     <div class="ChangeSuccess__division"></div>
     <div class="ChangeSuccess__contents">
@@ -12,14 +13,32 @@
 </template>
 
 <script>
+import Lottie from 'vue-lottie';
+import * as animationData from './../../../assets/checkAnimation.json';
+
 export default {
   props: ['email'],
+  components: {
+    Lottie,
+  },
   methods: {
     goLogin() {
       this.$store.commit('changeIndex', {
         index: 1,
       });
     },
+    handleAnimation(anim) {
+      this.anim = anim;
+    },
+  },
+  data() {
+    return {
+      defaultOptions: {
+        animationData,
+        loop: false,
+      },
+      animationSpeed: 1,
+    };
   },
 };
 </script>
@@ -47,6 +66,9 @@ export default {
     text-align: center;
     font-weight: 300;
   }
+}
+.modal--btn{
+  margin-top: 15px;
 }
 </style>
 
