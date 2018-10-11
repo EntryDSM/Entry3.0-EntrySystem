@@ -172,6 +172,7 @@ $border1: solid 1px #eff3f4;
     right: 337px;
     outline: none;
     transition: 0.5s;
+    cursor: pointer;
     &:hover{
       background-color: #d5edf0;
     }
