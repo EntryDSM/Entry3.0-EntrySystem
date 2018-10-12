@@ -13,7 +13,6 @@ export default {
   created() {
     const { s, e } = this.$toastr;
     contact.confirmSignup(this.code).then((res) => {
-      if (res.status === 200) {
         const { token, email } = res.data.data.accessToken;
         this.$cookies.set('accessToken', token, '4d');
         this.$store.dispatch('getClassify', { token });
@@ -34,7 +33,6 @@ export default {
         s('인증이 완료되었습니다.');
         s('로그인 성공.');
         this.$router.push('/classify');
-      }
     }).catch((error) => {
       e(error.response.data.errors[0].message);
       this.$router.push('/');
