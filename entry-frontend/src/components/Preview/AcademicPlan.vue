@@ -1,5 +1,6 @@
 <template>
   <div id="preview-container">
+    <div class="watermark" v-if="!finalSubmit">EntryDSM 3.0 미리보기</div>
     <div id="introduction-header">
       학업계획서
     </div>
@@ -42,6 +43,7 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'academic-plan',
+  props: ['finalSubmit'],
   computed: {
     personName() { return this.$store.state.PersonInfo.personName; },
     school() { return this.$store.state.PersonInfo.school; },
@@ -82,6 +84,7 @@ td {
 
 /* All preview document(pdf) use this container. */
 #preview-container {
+  position: relative;
   width: 595px;
   height: 842px;
   padding: 30px;
@@ -140,5 +143,16 @@ td {
 }
 #introduction-info-tables table:nth-child(2) tr:nth-child(2) td:nth-child(1) {
   text-align: left; padding: 8px; height: 570px; border-top: 0; width: 100%;
+}
+
+.watermark {
+  position: absolute;
+  top: 400px;
+  left: 60px;
+  opacity: 0.2;
+  font-family: sans-serif;
+  font-size: 50px;
+  color: #000;
+  transform: rotate(-30deg);
 }
 </style>

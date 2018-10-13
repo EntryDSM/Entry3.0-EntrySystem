@@ -1,5 +1,6 @@
 <template>
   <div id="preview-container">
+    <div class="watermark" v-if="!finalSubmit">EntryDSM 3.0 미리보기</div>
     <div id="application-header">
       2019학년도 대덕소프트웨어마이스터고등학교 입학원서
     </div>
@@ -201,6 +202,7 @@ export default {
     nowYear: Number,
     nowMonth: Number,
     nowDay: Number,
+    finalSubmit: Boolean,
   },
   name: 'application',
   data() {
@@ -290,6 +292,7 @@ input[type="checkbox"] {
 
 /* All preview document(pdf) use this container. */
 #preview-container {
+  position: relative;
   width: 595px;
   height: 842px;
   padding: 30px;
@@ -440,4 +443,15 @@ input[type="checkbox"] {
   left: 0;
   top: 0;
 }
+.watermark {
+  position: absolute;
+  top: 400px;
+  left: 60px;
+  opacity: 0.2;
+  font-family: sans-serif;
+  font-size: 50px;
+  color: #000;
+  transform: rotate(-30deg);
+}
+
 </style>
