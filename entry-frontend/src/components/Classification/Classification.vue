@@ -386,6 +386,16 @@ export default {
         });
       },
     },
+    finalSubmit() {
+      return this.$store.state.mypage.applyStatus.finalSubmit;
+    },
+  },
+  watch: {
+    finalSubmit() {
+      if (this.finalSubmit) {
+        this.$router.push('/mypage');
+      }
+    },
   },
   created() {
     const token = this.$cookies.get('accessToken');
