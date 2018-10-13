@@ -1,5 +1,6 @@
 <template>
   <div id="preview-container">
+    <div class="watermark" v-if="!finalSubmit">EntryDSM 3.0 미리보기</div>
     <div id="recommendation-letter-header">
       학교장추천서
     </div>
@@ -55,6 +56,7 @@ export default {
     nowYear: Number,
     nowMonth: Number,
     nowDay: Number,
+    finalSubmit: Boolean,
   },
   name: 'recommendation-letter',
   computed: {
@@ -129,6 +131,7 @@ td {
 
 /* All preview document(pdf) use this container. */
 #preview-container {
+  position: relative;
   width: 595px;
   height: 842px;
   padding: 30px;
@@ -188,4 +191,15 @@ td {
 .check {
   font-size: 30px;
 }
+.watermark {
+  position: absolute;
+  top: 400px;
+  left: 60px;
+  opacity: 0.2;
+  font-family: sans-serif;
+  font-size: 50px;
+  color: #000;
+  transform: rotate(-30deg);
+}
+
 </style>

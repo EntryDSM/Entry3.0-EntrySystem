@@ -1,5 +1,6 @@
 <template>
   <div id="preview-container">
+    <div class="watermark" v-if="!finalSubmit">EntryDSM 3.0 미리보기</div>
     <div id="quitting-header">
       금연서약서
     </div>
@@ -53,6 +54,7 @@ export default {
     nowYear: Number,
     nowMonth: Number,
     nowDay: Number,
+    finalSubmit: Boolean,
   },
   name: 'quitting-smoking',
   computed: {
@@ -95,6 +97,7 @@ td {
 
 /* All preview document(pdf) use this container. */
 #preview-container {
+  position: relative;
   width: 595px;
   height: 842px;
   padding: 30px;
@@ -130,4 +133,15 @@ td {
 #quitting-smoking-content #quitting-content-footer p:nth-child(1) .quitting-blank { width: 40px; display: inline-block; }
 #quitting-smoking-content #quitting-content-footer p:nth-child(2) .quitting-blank { width: 120px; display: inline-block; text-align: center; }
 #quitting-smoking-content #quitting-content-footer p:nth-child(3) .quitting-blank { width: 120px; display: inline-block; text-align: center; }
+.watermark {
+  position: absolute;
+  top: 400px;
+  left: 60px;
+  opacity: 0.2;
+  font-family: sans-serif;
+  font-size: 50px;
+  color: #000;
+  transform: rotate(-30deg);
+}
+
 </style>

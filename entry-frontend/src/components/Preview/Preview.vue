@@ -7,22 +7,26 @@
       <application
         :nowYear="nowYear"
         :nowMonth="nowMonth"
-        :nowDay="nowDay"/>
-      <introduction class="introduction"/>
-      <academic-plan/>
+        :nowDay="nowDay"
+        :finalSubmit="finalSubmit"/>
+      <introduction class="introduction" :finalSubmit="finalSubmit"/>
+      <academic-plan :finalSubmit="finalSubmit"/>
       <recommendation-letter
         v-if="admission !== 'NORMAL'"
         :nowYear="nowYear"
         :nowMonth="nowMonth"
-        :nowDay="nowDay"/>
+        :nowDay="nowDay"
+        :finalSubmit="finalSubmit"/>
       <quitting-smoking
         :nowYear="nowYear"
         :nowMonth="nowMonth"
-        :nowDay="nowDay"/>
+        :nowDay="nowDay"
+        :finalSubmit="finalSubmit"/>
     </div>
     <div class="btn-cover">
       <button
         class="input-btn"
+        v-if="finalSubmit"
         @click="pagePrint">
         <span class="input-btn__text">모두 인쇄</span>
       </button>

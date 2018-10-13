@@ -27,7 +27,7 @@
           <div class="select">선택</div>
         </li>
         <li class="school-modal__none" v-show="isEmpty">
-          검색 결과가 없습니다.
+          더이상 검색 결과가 없습니다.
         </li>
       </ul>
       <div class="school-modal__close" @click="closeModal"></div>
