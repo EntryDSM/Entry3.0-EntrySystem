@@ -69,7 +69,7 @@
           </div>
         </div>
         <span class="InfoInput__wapper__inputBox__warning">
-            * 영문(대소문자 포함), 숫자 포함 8자리 이상, 특수기호 가능
+            * 영문, 숫자 포함 8자리 이상 16자리 이하
         </span>
       </div>
       <div class="InfoInput__wapper pwcheck">
@@ -114,7 +114,7 @@
 
 <script>
 const emailReg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
-const pwReg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,16}$/;
+const pwReg = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,16}$/
 export default {
   computed: {
     email: {
