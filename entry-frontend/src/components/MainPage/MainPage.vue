@@ -16,7 +16,10 @@
               2019 신입생 모집
             </h1>
             <div class="main-page__link-box">
-              <div @click="openBranchModal" class="main-page__link">
+              <div v-if="isLogin" @click="gotoWrite" class="main-page__link">
+                원서작성
+              </div>
+              <div v-else @click="openBranchModal" class="main-page__link">
                 원서작성
               </div>
               <a class="main-page__link"
@@ -40,7 +43,10 @@
             <transition name="appear">
               <template v-if="isAppearSchedule">
                 <div class="main-page__link-box">
-                  <div @click="openBranchModal" class="main-page__link">
+                  <div v-if="isLogin" @click="gotoWrite" class="main-page__link">
+                    원서작성
+                  </div>
+                  <div v-else @click="openBranchModal" class="main-page__link">
                     원서작성
                   </div>
                   <router-link to="/info-summary" class="main-page__link">
@@ -93,6 +99,13 @@ export default {
       this.$store.commit('changeIndex', {
        index: 10,
       });
+    },
+    gotoWrite() {
+      if (this.finalSubmit) {
+        this.$router.push('/mypage');
+        return;
+      }
+      this.$router.push('/classify');
     },
   },
 };
