@@ -21,9 +21,12 @@
           <p class="schedule__content__text">
             {{ scheduleDateText }}
           </p>
-          <router-link :to='routerLink' class="schedule__content__link">
+          <a v-if="isLogin" @click="gotoWrite" class="schedule__content__link">
             원서작성 하러가기
-          </router-link >
+          </a>
+          <a v-else @click="openBranchModal" class="schedule__content__link">
+            원서작성 하러가기
+          </a>
         </div>
       </transition>
     </div>
@@ -103,6 +106,10 @@ export default {
         ${this.pad(this.date.getDate(), 2)}일`
       );
     },
+    isLogin() {
+      const token = this.$cookies.get('accessToken');
+      return this.$store.state.accessToken !== null && typeof token === 'string';
+    },
     restOfDateText() {
       const endDate = new Date(...this.endDate);
 
@@ -136,6 +143,18 @@ export default {
       });
       if (current === 0) current = 0.5;
       return current;
+    },
+    openBranchModal() {
+      this.$store.commit('changeIndex', {
+       index: 10,
+      });
+    },
+    gotoWrite() {
+      if (this.finalSubmit) {
+        this.$router.push('/mypage');
+        return;
+      }
+      this.$router.push('/classify');
     },
     pad(text, n) {
       return '0'.repeat(n - 1).concat(text).slice(-n);
