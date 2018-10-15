@@ -28,7 +28,7 @@
       </form>
       <div class="login__links">
         <span class="login__links__link" @click="closeModal">아직 원서작성을 시작하지 않으셨나요?</span>
-        <span class="login__links__link" @click="changeIndex">비밀번호 재설정</span>
+        <span class="login__links__link">비밀번호 재설정은 학교에 문의해주세요.</span>
       </div>
   </div>
 </template>
