@@ -3,7 +3,7 @@
     <nav class="nav__wrapper">
     <div class="nav__wrapper__contants">
       <div class="nav__wrapper__contants__logo">
-      <router-link to="/">
+      <router-link to="/" class="main-link">
         <img
           @click="$emit('on-main')"
           class="nav__wrapper__contants__logo--img"
@@ -154,10 +154,11 @@ export default {
 <style lang="scss" scoped>
 @import '../../style/setting.scss';
 .nav {
+  box-shadow: 0 2px 10px 0 rgba(99, 141, 147, 0.05);
+
   @include e('wrapper'){
     height: 60px;
     padding: 0 auto;
-    box-shadow: 0 2px 10px 0 rgba(99, 141, 147, 0.05);
     @include e('contants'){
       position: relative;
       width: 1140px;
@@ -165,6 +166,9 @@ export default {
       margin: 0 auto;
       display: flex;
       flex-direction: row;
+
+      .main-link { height: 30px; }
+
       @include e('logo'){
         display: flex;
         justify-content: center;
