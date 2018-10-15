@@ -22,6 +22,11 @@
                                                                                                                                                                
                                                                                                                                
         `, "font-family:monospace")
+        var isChrome = !!window.chrome && !!window.chrome.webstore;
+    if (!isChrome) {
+      alert('❖ 양해 부탁드립니다! ❖\nEntryDSM은 Window, Mac, Linux환경의 크롬에서만 접속 할 수 있습니다.\n이메일 인증 중이셨더라도 크롬으로 다시 접속 부탁드립니다.');
+      window.location.href = 'https://www.google.com/intl/ko_ALL/chrome/';
+    }
     </script>
     <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
   </body>
