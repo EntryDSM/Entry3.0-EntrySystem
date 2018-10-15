@@ -22,7 +22,7 @@
           :key="school.code"
           @click="selectSchool(school)">
           <div class="cover">
-            {{ school.name }}
+            {{ school.name }} ({{ school.government }})
           </div>
           <div class="select">선택</div>
         </li>
@@ -107,8 +107,22 @@ export default {
       .catch(err => Promise.reject(err.response));
     }, 500),
     selectSchool(school) {
-      this.$emit('selectSchool', school);
-      this.$emit('close');
+      const { e } = this.$toastr;
+      if (school.government === '대전광역시교육청') {
+        if (this.$store.state.classify.region) {
+          this.$emit('selectSchool', school);
+          this.$emit('close');
+          return;
+        }
+        e('전국지역 학생이 대전광역시 소속 학교를 선택할 수 없습니다.');
+      } else {
+        if (!this.$store.state.classify.region) {
+          this.$emit('selectSchool', school);
+          this.$emit('close');
+          return;
+        }
+        e('대전지역이 대전이외 소속 학교를 선택할 수 없습니다.');
+      }
     },
     closeModal() {
       this.$emit('close');

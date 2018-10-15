@@ -19,7 +19,7 @@
           placeholder="●●●●●●●●●●●●" v-model="pw" readonly/>
         </div>
         <span class="InfoInput__wapper__inputBox__warning --false">
-            * 영문(대소문자 포함), 숫자 포함 8자리 이상, 특수기호 가능
+            * 영문, 숫자 포함 8자리 이상 16자리 이하
         </span>
       </div>
       <div class="InfoInput__wapper pwcheck --false">
