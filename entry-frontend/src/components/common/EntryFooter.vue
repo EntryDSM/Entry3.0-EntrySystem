@@ -21,37 +21,8 @@
       </p>
 
       <div class="footer-cover__navigation">
-        <ul class="navigation-cover">
-          <li v-for="link in entryLinks"
-              :key="link.name"
-              class="navigation-cover__lists"
-          >
-            <router-link :to="link.route" class="navigation-cover__lists__links">
-              {{ link.name }}
-            </router-link>
-          </li>
-        </ul>
-        <ul class="navigation-cover">
-          <li v-for="link in reportLinks"
-              :key="link.name"
-              class="navigation-cover__lists"
-          >
-            <router-link :to="link.route" class="navigation-cover__lists__links">
-              {{ link.name }}
-            </router-link>
-          </li>
-        </ul>
-        <ul class="navigation-cover">
-          <li v-for="link in introLinks"
-              :key="link.name"
-              class="navigation-cover__lists"
-          >
-            <router-link :to="link.route" class="navigation-cover__lists__links">
-              {{ link.name }}
-            </router-link>
-          </li>
-        </ul>
-        <a href="https://www.facebook.com/entrydsm" target="_blank">
+        <div class="footer-cover__icon">
+          <a href="https://www.facebook.com/entrydsm" target="_blank">
           <img src="../../assets/Footer/ico_facebook.png"
                alt="페이스북 이동 링크"
                class="link-imgs link-imgs--facebook-link"
@@ -63,7 +34,7 @@
               class="link-imgs link-imgs--github-link"
           >
         </a>
-
+        </div>
       </div>
     </div>
   </footer>
@@ -72,29 +43,6 @@
 <script>
 export default {
   name: 'entry-footer',
-  data() {
-    return {
-      entryLinks: [
-        { name: '입학안내', route: '/' },
-        { name: '공지사항', route: '/' },
-        { name: '모집일정', route: '/' },
-        { name: '전형요강', route: '/info-summary' },
-        { name: 'Q&A', route: '/' },
-      ],
-
-      reportLinks: [
-        { name: '입학원서', route: '/' },
-        { name: '원서작성 및 수정', route: '/classify' },
-        { name: '나의 원서보기', route: '/preview' },
-      ],
-
-      introLinks: [
-        { name: 'Entry 소개', route: '/' },
-        { name: '시스템 소개', route: '/info-system' },
-        { name: '개발자 소개', route: '/' },
-      ],
-    };
-  },
 };
 </script>
 
@@ -103,6 +51,7 @@ export default {
 $white: #fff;
 
 footer {
+  position: relative;
   height: 200px;
   background-color: #78C2CA;
 
@@ -113,6 +62,7 @@ footer {
     position: relative;
     padding: 20px 0;
     margin: 0 auto;
+    position: relative;
 
     // 로고 부분
     @include e('logo') {
@@ -141,7 +91,11 @@ footer {
         padding-left: 16px;
       }
     }
-
+    @include e('icon') {
+      position: absolute;
+      bottom: 0px;
+      right: 0;
+    }
     // 푸터 네비게이션
     @include e('navigation') {
       position: absolute;
@@ -155,6 +109,8 @@ footer {
         display: inline-block;
         vertical-align: top;
         margin-left: 70px;
+        position: absolute;
+        right: 100px;
         &:first-of-type {
           margin-left: 0;
         }
@@ -189,15 +145,18 @@ footer {
 
       .link-imgs {
         position: absolute;
-        width: 20px;
+        width: 30px;
         margin-top: -25px;
-
+        opacity: 0.75;
+        transition: 0.5s;
         @include m('facebook-link') {
-          right: 31px;
+          right: 45px;
         }
-
         @include m('github-link') {
           right: 1px;
+        }
+        &:hover{
+          opacity: 1;
         }
       }
     }
