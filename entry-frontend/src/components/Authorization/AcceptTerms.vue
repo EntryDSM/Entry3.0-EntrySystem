@@ -41,7 +41,7 @@
     <div class="AcceptTerms__checkbox">
       <input type="checkbox" class="AcceptTerms__checkbox--input" id="Accept-checkbox"
       v-model="isAccept"/>
-      <label class="AcceptTerms__checkbox--label" for="Accept-checkbox"></label>
+      <label class="AcceptTerms__checkbox--label" for="Accept-checkbox">✔</label>
       <label class="AcceptTerms__checkbox--text" for="Accept-checkbox">개인정보 이용약관에 동의합니다</label>
     </div>
   </div>
@@ -120,13 +120,9 @@ export default {
         display: inline-block;
         box-sizing: border-box;
         cursor: pointer;
-        &::after{
-          content: "✔";
-          color: #FFF;
-          position: relative;
-          left: 4.5px;
-          top: 3px;
-        }
+        color: #FFF;
+        line-height: 22px;
+        text-align: center;
       }
       @include m('text'){
         cursor: pointer;
