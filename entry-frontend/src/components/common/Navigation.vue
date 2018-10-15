@@ -13,7 +13,7 @@
     </div>
     <ul class="nav__wrapper__contants__list">
       <li class="nav__wrapper__contants__list__link">
-        <router-link to="/info-system">시스템 소개</router-link>
+        <a href="#">시스템 소개</a>
       </li>
       <li class="nav__wrapper__contants__list__link">
         <a @click="writeApplication">원서작성</a>
@@ -66,7 +66,6 @@ export default {
       this.index = 0;
     });
     const isChrome = !!window.chrome && !!window.chrome.webstore;
-    console.log(isChrome);
     if (!isChrome) {
       alert('EntryDSM은 Window, Mac, Linux환경의 크롬에서만 접속 할 수 있습니다.');
       window.location.href = 'https://www.google.com/intl/ko_ALL/chrome/';
