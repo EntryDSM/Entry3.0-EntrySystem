@@ -199,11 +199,12 @@ $intro-plan: #5f8a90;
 
   .intro-plan-write {
     width: 100%;
-    height: 1000px;
+    height: 700px;
     resize: vertical;
-    border-radius: 10px;
+    border-radius: 10px 10px 0 0;
     line-height: 1.3;
     border: 1px solid $intro-plan;
+    border-bottom: 0;
     margin-top: 10px;
     font-size: 18px;
     padding: 7.5px;
@@ -217,7 +218,7 @@ $intro-plan: #5f8a90;
     background-color: #c6e0df;
     border-radius: 0 0 10px 10px;
     position: absolute;
-    margin-top: -34px;
+    margin-top: -5px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
