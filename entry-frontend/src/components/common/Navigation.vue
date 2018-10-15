@@ -59,11 +59,6 @@ export default {
     this.$on('CloseModal', () => {
       this.index = 0;
     });
-    const isChrome = !!window.chrome && !!window.chrome.webstore;
-    if (!isChrome) {
-      alert('EntryDSM은 Window, Mac, Linux환경의 크롬에서만 접속 할 수 있습니다.');
-      window.location.href = 'https://www.google.com/intl/ko_ALL/chrome/';
-    }
   },
   computed: {
     index() {
