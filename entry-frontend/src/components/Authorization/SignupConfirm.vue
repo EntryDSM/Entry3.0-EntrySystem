@@ -21,25 +21,8 @@ export default {
           window.location.href = 'https://www.google.com/intl/ko_ALL/chrome/';
           return;
         }
-        this.$cookies.set('accessToken', token, '4d');
-        this.$store.dispatch('getClassify', { token });
-        this.$store.dispatch('getInfo', { token });
-        this.$store.dispatch('getGrades', { token });
-        this.$store.dispatch('getIntro', { token });
-        this.$store.commit('updateaccessToken', {
-          accessToken: token,
-          email: email.replace(emailReg, '$1'),
-        });
-        localStorage.setItem('name', email.replace(emailReg, '$1'));
-        this.$store.dispatch('getMypage', {
-          token,
-        });
-        this.$store.commit('changeIndex', {
-          index: 0,
-        });
-        s('인증이 완료되었습니다.');
-        s('로그인 성공.');
-        this.$router.push('/classify');
+        alert('인증이 완료되었습니다. 입력하신 정보로 로그인 해주세요.');
+        this.$router.push('/');
     }).catch((error) => {
       e(error.response.data.errors[0].message);
       this.$router.push('/');
