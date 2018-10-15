@@ -1770,6 +1770,7 @@ $button-color: #edf5f6;
     transition: 0.35s ease-in-out;
     border-style: solid;
     border-color: #cfdee0;
+    z-index: 9999;
 
     @for $i from 1 through 4 {
       &:nth-of-type(#{$i + 1}) {
@@ -2123,6 +2124,7 @@ $button-color: #edf5f6;
 
       .background {
         background-color: $table-background;
+        z-index: 8888;
       }
     }
   }
