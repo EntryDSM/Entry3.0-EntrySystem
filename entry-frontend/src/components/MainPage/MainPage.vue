@@ -2,7 +2,8 @@
   <div class="main-page">
     <navigation
       @on-main="activeSchedulePage = isAppearSchedule = false"
-      @on-schedule="activeSchedulePage = true"/>
+      @on-schedule="activeSchedulePage = true"
+      class="main-navigation"/>
     <div class="main-page__hider">
       <transition name="page1">
         <div class="main-page__cover main-page__cover--page1"
@@ -101,6 +102,8 @@ export default {
 @import '../../style/setting';
 
 .main-page {
+  .main-navigation { box-shadow: none; }
+
   background-image: url('../../assets/MainPage/main_background.svg');
   background-size: cover;
   background-position: center center;
