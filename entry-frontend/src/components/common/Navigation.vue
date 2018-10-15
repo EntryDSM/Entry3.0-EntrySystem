@@ -13,10 +13,10 @@
     </div>
     <ul class="nav__wrapper__contants__list">
       <li class="nav__wrapper__contants__list__link">
-        <a href="#">시스템 소개</a>
+        <a href="#">공지사항</a>
       </li>
       <li class="nav__wrapper__contants__list__link">
-        <a @click="writeApplication">원서작성</a>
+        <a @click="writeApplication">Q&A</a>
       </li>
       <li class="nav__wrapper__contants__list__link">
         <router-link to="/info-summary">전형요강</router-link>
@@ -27,15 +27,9 @@
       </li>
       <li class="nav__wrapper__contants__list__link
         nav__wrapper__contants__list__link--login"
-        v-if="!isLogin"
-        @click="changeIndex">
-          원서수정
-      </li>
-      <li class="nav__wrapper__contants__list__link
-        nav__wrapper__contants__list__link--login"
-        v-else
+        v-if="isLogin"
         @click="changeUserModal">
-          {{userName}} 님 <span class="btn" v-bind:class="{ rotate: onUserModal }">▾</span>
+          <span class="username-btn">{{userName}}</span>
       </li>
     </ul>
     <user-modal :onUserModal="onUserModal" v-if="onUserModal"/>
@@ -192,7 +186,13 @@ export default {
           cursor: pointer;
           display: inline-block;
           @include m('login'){
-            margin-left: 103px;
+            margin-left: 67px;
+            .username-btn {
+              background-color: #65bbb7;
+              padding: 7px 18px;
+              border-radius: 30px;
+              color: #fff;
+            }
           }
         }
       }
