@@ -47,7 +47,8 @@
       :text="btnText"
       :prevLink="prevLink"
       :SavingFunction="updateIntro.bind(this)"
-      :onClick="gotoPreview.bind(this)"/>
+      :onClick="gotoPreview.bind(this)"
+      class="prev-next-btn"/>
     <entry-footer />
   </div>
 </template>
@@ -199,16 +200,26 @@ $intro-plan: #5f8a90;
 
   .intro-plan-write {
     width: 100%;
-    height: 1000px;
+    min-height: 650px;
     resize: vertical;
-    border-radius: 10px;
+    border-radius: 10px 10px 0 0;
     line-height: 1.3;
     border: 1px solid $intro-plan;
+    border-bottom: 0;
     margin-top: 10px;
     font-size: 18px;
     padding: 7.5px;
     box-sizing: border-box;
     outline: none;
+  }
+
+  .intro-plan-write::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .intro-plan-write::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #abc2c5;
   }
 
   .intro-plan-check {
@@ -217,7 +228,7 @@ $intro-plan: #5f8a90;
     background-color: #c6e0df;
     border-radius: 0 0 10px 10px;
     position: absolute;
-    margin-top: -34px;
+    margin-top: -5px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -234,5 +245,9 @@ $intro-plan: #5f8a90;
       padding-right: 13px;
     }
   }
+}
+
+.prev-next-btn {
+  margin-top: 35px !important;
 }
 </style>

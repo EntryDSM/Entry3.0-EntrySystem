@@ -54,7 +54,7 @@ const scheduleData = [
   {
     scheduleName: '2차 발표',
     word: '발표일',
-    endDate: [2018, 10, 9, 10, 0],
+    endDate: [2018, 10, 5, 14, 0],
   },
   {
     scheduleName: '합격자 등록',
@@ -144,8 +144,8 @@ export default {
       const date = new Date(...array);
 
       // 'yyyy, mm, dd, (d) hh:mm'
-      return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}
-        (${week[date.getDay()]}) ${this.pad(date.getHours(), 2)}:${this.pad(date.getMinutes(), 2)}`;
+      return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate() - 1}
+        (${week[date.getDay() - 1]}) ${this.pad(date.getHours(), 2)}:${this.pad(date.getMinutes(), 2)}`;
     },
     changeCurrent(current) {
       // current index의 객체 참조
