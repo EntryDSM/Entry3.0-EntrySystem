@@ -27,7 +27,7 @@
           <div class="select">선택</div>
         </li>
         <li class="school-modal__none" v-show="isEmpty">
-          더이상 검색 결과가 없습니다.
+          더 이상 검색 결과가 없습니다.
         </li>
       </ul>
       <div class="school-modal__close" @click="closeModal"></div>
@@ -83,7 +83,7 @@ export default {
   },
   computed: {
     isEmpty() {
-      return !this.schools.lenght;
+      return !this.schools.length && this.keyword;
     },
   },
   methods: {
@@ -166,6 +166,8 @@ $modal-z-index: 5;
   z-index: $modal-z-index;
   background-color: #fff;
   padding: 40px 45px;
+  display: flex;
+  flex-wrap: wrap;
   @include e('close'){
     position: absolute;
     top: 18px;
