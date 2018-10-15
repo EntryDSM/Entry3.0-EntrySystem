@@ -16,7 +16,7 @@
         </div>
         <div class="InfoInput__wapper__inputBox --false">
           <input type="password" class="InfoInput__wapper__inputBox__input --false"
-          placeholder="●●●●●●●●●●●●" v-model="pw" readonly/>
+          placeholder="••••••••" v-model="pw" readonly/>
         </div>
         <span class="InfoInput__wapper__inputBox__warning --false">
             * 영문, 숫자 포함 8자리 이상 16자리 이하
@@ -28,7 +28,7 @@
         </div>
         <div class="InfoInput__wapper__inputBox --false">
           <input type="password" class="InfoInput__wapper__inputBox__input --false"
-          placeholder="●●●●●●●●●●●●" v-model="pwcheck" readonly/>
+          placeholder="••••••••" v-model="pwcheck" readonly/>
         </div>
       </div>
     </div>
@@ -63,7 +63,7 @@
         </div>
         <div class="InfoInput__wapper__inputBox">
           <input type="password" class="InfoInput__wapper__inputBox__input"
-          placeholder="●●●●●●●●●●●●" v-model="pw"/>
+          placeholder="••••••••" v-model="pw"/>
           <div class="InfoInput__wapper__inputBox__check" v-if="verify[1]">
             ✓
           </div>
@@ -78,7 +78,7 @@
         </div>
         <div class="InfoInput__wapper__inputBox">
           <input type="password" class="InfoInput__wapper__inputBox__input"
-          placeholder="●●●●●●●●●●●●" v-model="pwcheck"/>
+          placeholder="••••••••" v-model="pwcheck"/>
           <div class="InfoInput__wapper__inputBox__check " v-if="verify[2]">
             ✓
           </div>
