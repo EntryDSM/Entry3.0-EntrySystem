@@ -2066,7 +2066,7 @@ $button-color: #edf5f6;
         &::before {
           content: '';
           position: absolute;
-          width: 125px;
+          width: 130px;
           height: 30px;
           background-image: url(../../assets/GradeInput/no-score.png);
           background-size: cover;
