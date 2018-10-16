@@ -42,7 +42,7 @@ export default {
         s('사진이 성공적으로 업로드 되었습니다');
         this.$emit('upload', `${res.data.data}`);
       }).catch((error) => {
-        e('사진 업로드가 실패하였습니다. 다른 사진으로 다시 업로드 해주세요.');
+        e('사진 업로드가 실패하였습니다.<br/>사진의 용량을 줄여주세요');
         if (error.response.status === 413) {
           e('사진은 5MB이하만 업로드 할 수 있습니다.');
         }

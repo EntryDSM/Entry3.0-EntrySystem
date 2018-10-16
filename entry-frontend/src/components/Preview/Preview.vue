@@ -92,14 +92,17 @@ export default {
     const token = this.$cookies.get('accessToken');
     const { e } = this.$toastr;
     if (token === undefined || token === null || token === '') {
-      this.$router.push('/');
+      this.$router.go(-1);
       e('해당 페이지는 로그인이 필요합니다.');
       this.$store.commit('changeIndex', {
         index: 1,
       });
     }
     if (!this.isValid) {
-      e('원서를 전부 채우지 못하였습니다.<br/>모두 채운 뒤 미리보기를 볼 수 있습니다.');
+      this.$router.go(-1);
+      this.$store.commit('changeIndex', {
+        index: 7,
+      });
     }
   },
   computed: mapState({
@@ -194,7 +197,6 @@ $inner-btn: #296169;
       background-color: #D8E6E9;
     }
     right: 0;
-
     @include e('text') {
       font-size: 18px;
       color: $inner-btn;
