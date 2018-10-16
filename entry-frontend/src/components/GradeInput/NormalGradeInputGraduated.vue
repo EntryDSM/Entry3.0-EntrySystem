@@ -2068,7 +2068,7 @@ $button-color: #edf5f6;
           position: absolute;
           width: 130px;
           height: 30px;
-          background-image: url(../../assets/GradeInput/no-score.png);
+          background-image: url('../../assets/GradeInput/no-score.png');
           background-size: cover;
           opacity: 0;
           visibility: hidden;
