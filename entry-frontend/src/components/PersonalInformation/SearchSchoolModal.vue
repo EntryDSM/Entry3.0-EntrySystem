@@ -212,6 +212,7 @@ $modal-z-index: 5;
     height: 60px;
     line-height: 60px;
     font-size: 18px;
+    cursor: pointer;
   }
   @include e('school') {
     border-bottom: 1px solid #f1f5f5;
