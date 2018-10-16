@@ -25,6 +25,11 @@ public class SignupDTOTest extends ValidationTest {
     }
 
     @Test
+    public void 이메일_끝이_언더바() {
+        assertConstraintViolations(new SignupDTO("nooheat_@naver.com", SAFE_PASSWORD), 0);
+    }
+
+    @Test
     public void 비밀번호_형식_안맞음() {
         assertConstraintViolations(new SignupDTO(SAFE_EMAIL, UNSAFE_PASSWORD), 1);
     }

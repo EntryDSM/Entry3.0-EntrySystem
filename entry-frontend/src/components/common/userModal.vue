@@ -26,6 +26,7 @@
     <router-link class="userModal__menu" to="/mypage">
       마이페이지
     </router-link>
+    <div class="userModal__hr userModal__hr--custom" />
     <div class="userModal__menu" @click="logout">
       로그아웃
     </div>
@@ -121,40 +122,47 @@ export default {
   top: 60px;
   right: 0;
   width: 150px;
-  height: 230px;
+  height: 235px;
   border-radius: 5px;
   background-color: #ffffff;
-  box-shadow: 0 0 20px -7px rgba(76, 166, 160, 1);
+  box-shadow: 0 0 20px -7px #4ca6a062;
   z-index: 5;
   transition: 0.5s;
   opacity: 1;
   animation: pop 0.5s;
-  padding-top: 21px;
   @include e('status'){
+    margin: 21px 0 11px 0;
     text-align: center;
   }
   @include e('hr'){
     display: block;
-    width: 43px;
+    width: 16px;
     height: 1px;
     background: -webkit-linear-gradient(left, transparent 0%, #8aaaad 50%, transparent 100%);
-    margin: 10px auto 10px auto;
+    margin: 0 auto 10px auto;
     @include m('long'){
-      width: 100px;
+      width: 75px;
+      margin-top: 10px;
       margin-bottom: 0;
+    }
+    @include m('custom') {
+      margin: 0 auto;
+      width: 75px;
+      height: 1px;
+      background: -webkit-linear-gradient(left, transparent 0%, #ecf3f4 50%, transparent 100%);
     }
   }
   @include e('Icon'){
-    width: 80px;
-    height: 80px;
+    width: 65px;
+    height: 65px;
     transform: rotate(-45deg);
     position: relative;
-    margin: 25px auto 30px auto;
+    margin: 20px auto 25px auto;
     cursor: pointer;
     @include e('box'){
       display: inline-block;
-      width: 35px;
-      height: 35px;
+      width: 28px;
+      height: 28px;
       border: solid 1px #96b2b5;
       float: left;
       transition: 0.5s;
@@ -247,4 +255,3 @@ a {
   }
 }
 </style>
-

@@ -80,7 +80,7 @@ export default {
               index: 0,
             });
             s('로그인 성공.');
-            this.$router.push('/classify');
+            this.$router.push('/mypage');
           } else {
             this.pw = '';
             this.pwwrong = true;

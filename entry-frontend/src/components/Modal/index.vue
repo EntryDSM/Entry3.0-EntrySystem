@@ -1,17 +1,21 @@
 <template>
   <div class="modal" v-if="index > 0">
     <div class="modal__background" @click="closeModal"></div>
-    <div class="modal__contants">
+    <div class="modal__contants" v-if="index < 7">
       <div class="modal__contants__close" v-if="index < 7" @click="closeModal"></div>
       <login v-if="index === 1"/>
       <reset-pw v-if="(index >= 2 && index < 6)"/>
       <email-verify v-if="index === 6"/>
     </div>
-    <div class="modal__contants modal__contants--confirm" v-if="index >= 7">
+    <div class="modal__contants modal__contants--confirm" v-if="(index >= 7 && index<10)">
       <div class="modal__contants__close" @click="closeModal"></div>
       <verify v-if="index === 7"/>
       <finish v-if="index === 8"/>
       <check-modal v-if="index === 9"/>
+    </div>
+    <div class="modal__contants modal__contants--branch" v-if="index>9">
+      <div class="modal__contants__close modal__contants__close--branch" @click="closeModal"></div>
+      <branch-modal v-if="index===10"/>
     </div>
   </div>
 </template>
@@ -24,6 +28,7 @@ import CheckModal from './CheckModal';
 import Verify from './Verify/Verify';
 import Finish from './Verify/Finish';
 import EmailVerify from './EmailVerify';
+import branchModal from './branchModal';
 
 export default {
   name: 'Modal',
@@ -35,6 +40,7 @@ export default {
     Verify,
     Finish,
     EmailVerify,
+    branchModal,
   },
   computed: {
     index() {
@@ -96,6 +102,13 @@ $M-close-color: #dee8e9;
       height: 600px;
       animation: confirmModalPop 0.5s;
     }
+    @include m('branch') {
+      left: calc(50% - 250px);
+      top: calc(50% - 150px);
+      width: 500px;
+      height: 300px;
+      animation: branchModalPop 0.5s;
+    }
     @include e('close'){
         position: absolute;
         cursor: pointer;
@@ -119,6 +132,10 @@ $M-close-color: #dee8e9;
         }
         &::after{
           transform: rotate(45deg);
+        }
+        @include m('branch') {
+          top: 10px;
+          right: 5px;
         }
     }
   }
@@ -249,6 +266,20 @@ $M-close-color: #dee8e9;
   100%{
     opacity: 1;
     top: calc(50% - 300px);
+  }
+}
+@keyframes branchModalPop{
+  0% {
+    opacity: 0;
+    top: calc(50% - 100px);
+  }
+  65%{
+    opacity: 1;
+    top: calc(50% - 180px);
+  }
+  100%{
+    opacity: 1;
+    top: calc(50% - 150px);
   }
 }
 </style>

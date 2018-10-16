@@ -7,23 +7,23 @@
       </button>
       <transition name="appear-content">
         <div class="schedule__content" v-if="isAppear">
-          <p class="schedule__content__text">
+          <p class="schedule__text">
             지금은 <span class="text-deco--1">{{ scheduleName }}</span> 기간입니다.
           </p>
-          <p class="schedule__content__text">
+          <p class="schedule__text">
             오늘은 <span class="text-deco--2">{{ thisDateText }}</span>이며
             {{ word }}까지 <span class="text-deco--2">{{ restOfDateText }}</span> 남았습니다.
           </p>
-          <process-bar class="schedule__content__process-bar"
+          <process-bar class="schedule__process-bar"
             :captions="captions"
             :ahead="todayIndex"
             @change="changeCurrent"/>
-          <p class="schedule__content__text">
+          <p class="schedule__text">
             {{ scheduleDateText }}
           </p>
-          <router-link :to='routerLink' class="schedule__content__link">
+          <div @click="gotoWrite" class="schedule__link">
             원서작성 하러가기
-          </router-link >
+          </div>
         </div>
       </transition>
     </div>
@@ -92,10 +92,24 @@ export default {
     // ["원서작성", "1차 발표", "면접", "2차 발표", "합격자 등록"]
     this.captions = Array.from(scheduleData, data => data.scheduleName);
 
+
     this.todayIndex = this.checkCurrent();
     this.changeCurrent(this.todayIndex);
+
+    const index = parseInt(this.todayIndex, 10);
+    this.scheduleName = scheduleData[index].scheduleName;
+    this.word = scheduleData[index].word;
+    this.endDate = scheduleData[index].endDate;
+    this.startDate = scheduleData[index].startDate;
   },
   computed: {
+    isLogin() {
+      const token = this.$cookies.get('accessToken');
+      return this.$store.state.accessToken !== null && typeof token === 'string';
+    },
+    finalSubmit() {
+      return this.$store.state.mypage.applyStatus.finalSubmit;
+    },
     thisDateText() {
       return (
         `${this.date.getFullYear().toString().slice(-2)}년
@@ -112,7 +126,7 @@ export default {
 
       // calculate diffrance
       const diff = endDate - this.date;
-      let dateDiff = parseInt(diff / DAY, 10);
+      let dateDiff = parseInt(diff / DAY, 10) - 1;
       let hourDiff = parseInt((diff / HOUR) % 24, 10);
 
       // pad
@@ -149,19 +163,25 @@ export default {
     },
     changeCurrent(current) {
       // current index의 객체 참조
-      let contents = scheduleData[parseInt(current, 10)];
-      // contents 객체의 배열화
-      contents = Object.values(contents);
-      // contents 적용
-      this.setContent(...contents);
+      const index = parseInt(current, 10);
+      const endDate = scheduleData[index].endDate;
+      const startDate = scheduleData[index].startDate;
+      this.setContent(endDate, startDate || '');
     },
-    setContent(scheduleName, word, endDate, startDate) {
-      this.scheduleName = scheduleName;
-      this.word = word;
-      this.endDate = endDate;
-      this.startDate = startDate;
+    setContent(endDate, startDate) {
       if (startDate) this.scheduleDateText = `${this.formatDateText(startDate)} ~ ${this.formatDateText(endDate)}`;
       else this.scheduleDateText = this.formatDateText(endDate);
+    },
+    gotoWrite() {
+      if (!this.isLogin) {
+        this.$store.commit('changeIndex', {
+          index: 10,
+        });
+      } else if (this.finalSubmit) {
+        this.$router.push('/mypage');
+      } else {
+        this.$router.push('/classify');
+      }
     },
   },
 };
@@ -196,40 +216,38 @@ export default {
     font-weight: lighter;
     outline: none;
   }
-  @include e('content') {
-    @include e('process-bar') {
-      margin: {
-        top: 100px;
-        bottom: 60px;
-        left: auto;
-        right: auto;
-      }
+  @include e('process-bar') {
+    margin: {
+      top: 100px;
+      bottom: 60px;
+      left: auto;
+      right: auto;
     }
+  }
+  text-align: center;
+  @include e('text') {
+    font-size: 22px;
+    line-height: 2.05;
+    letter-spacing: 0.6px;
     text-align: center;
-    @include e('text') {
-      font-size: 22px;
-      line-height: 2.05;
-      letter-spacing: 0.6px;
-      text-align: center;
-      color: #000;
-      font-weight: bold;
-    }
-    @include e('link') {
-      height: 50px;
-      display: inline-block;
-      width: 300px;
-      border-radius: 30px;
-      background: -webkit-linear-gradient(101deg, #82cdca, #5db3b6);
-      box-shadow: 1px 25px 20px -15px #9ff0eb;
-      font-size: 22px;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      line-height: 50px;
-      text-decoration: none;
-      margin: {
-        top: 40px;
-      }
+    color: #000;
+    font-weight: bold;
+  }
+  @include e('link') {
+    height: 50px;
+    display: inline-block;
+    width: 300px;
+    border-radius: 30px;
+    background: -webkit-linear-gradient(101deg, #82cdca, #5db3b6);
+    box-shadow: 1px 25px 20px -15px #9ff0eb;
+    font-size: 22px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    line-height: 50px;
+    text-decoration: none;
+    margin: {
+      top: 40px;
     }
   }
 }

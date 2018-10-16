@@ -1587,21 +1587,6 @@ export default {
       },
     },
   },
-  created() {
-    const token = this.$cookies.get('accessToken');
-    const { e } = this.$toastr;
-    if (token === undefined || token === null || token === '') {
-      this.$router.push('/');
-      e('해당 페이지는 로그인이 필요합니다.');
-      this.$store.commit('changeIndex', {
-        index: 1,
-      });
-    }
-    if (this.$store.state.mypage.applyStatus.finalSubmit) {
-      e('최종 제출 후에는 접근 할 수 없습니다.');
-      this.$router.push('/');
-    }
-  },
   methods: {
     // 봉사 및 출석 Commit - 완료
     updateVolunteerNAttendance(field, value) {
@@ -1770,6 +1755,7 @@ $button-color: #edf5f6;
     transition: 0.35s ease-in-out;
     border-style: solid;
     border-color: #cfdee0;
+    z-index: 9999;
 
     @for $i from 1 through 4 {
       &:nth-of-type(#{$i + 1}) {
@@ -2065,9 +2051,9 @@ $button-color: #edf5f6;
         &::before {
           content: '';
           position: absolute;
-          width: 125px;
+          width: 130px;
           height: 30px;
-          background-image: url(../../assets/GradeInput/no-score.png);
+          background-image: url('../../assets/GradeInput/no-score.png');
           background-size: cover;
           opacity: 0;
           visibility: hidden;
@@ -2123,6 +2109,7 @@ $button-color: #edf5f6;
 
       .background {
         background-color: $table-background;
+        z-index: 8888;
       }
     }
   }

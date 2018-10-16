@@ -16,7 +16,7 @@
         </div>
         <div class="InfoInput__wapper__inputBox --false">
           <input type="password" class="InfoInput__wapper__inputBox__input --false"
-          placeholder="●●●●●●●●●●●●" v-model="pw" readonly/>
+          placeholder="••••••••" v-model="pw" readonly/>
         </div>
         <span class="InfoInput__wapper__inputBox__warning --false">
             * 영문, 숫자 포함 8자리 이상 16자리 이하
@@ -28,7 +28,7 @@
         </div>
         <div class="InfoInput__wapper__inputBox --false">
           <input type="password" class="InfoInput__wapper__inputBox__input --false"
-          placeholder="●●●●●●●●●●●●" v-model="pwcheck" readonly/>
+          placeholder="••••••••" v-model="pwcheck" readonly/>
         </div>
       </div>
     </div>
@@ -63,7 +63,7 @@
         </div>
         <div class="InfoInput__wapper__inputBox">
           <input type="password" class="InfoInput__wapper__inputBox__input"
-          placeholder="●●●●●●●●●●●●" v-model="pw"/>
+          placeholder="••••••••" v-model="pw"/>
           <div class="InfoInput__wapper__inputBox__check" v-if="verify[1]">
             ✓
           </div>
@@ -78,7 +78,7 @@
         </div>
         <div class="InfoInput__wapper__inputBox">
           <input type="password" class="InfoInput__wapper__inputBox__input"
-          placeholder="●●●●●●●●●●●●" v-model="pwcheck"/>
+          placeholder="••••••••" v-model="pwcheck"/>
           <div class="InfoInput__wapper__inputBox__check " v-if="verify[2]">
             ✓
           </div>
@@ -113,7 +113,7 @@
 </template>
 
 <script>
-const emailReg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
+const emailReg = /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 const pwReg = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,16}$/;
 
 export default {
@@ -238,45 +238,46 @@ export default {
   position: relative;
   width: 1140px;
   height: 226px;
-  &::before, &::after {
-    content: '';
-    display: block;
-    width: 1140px;
-    height: 1px;
-    position: absolute;
-    background: -webkit-linear-gradient(left, transparent 0%, #769b9f 50%, transparent 100%);
+  border: {
+    top: 1px solid #5f8a90;
+    bottom: 1px solid #5f8a90;
   }
   &.--false{
-    &::before, &::after{
-      background: -webkit-linear-gradient(left, transparent 0%, #a7a7a7 50%, transparent 100%);
-    }
-  }
-  &::after{
-    bottom: 0;
+    border-color: #a7a7a7;
   }
   @include e(wapper){
     position: relative;
-    &:not(.pwcheck){
-      border-bottom: 1px solid #5f8a90;
+
+    &:nth-of-type(2) {
+      &::before, &::after {
+        content: '';
+        display: block;
+        width: 1140px;
+        height: 1px;
+        position: absolute;
+        background: -webkit-linear-gradient(left, transparent 0%, #5f8a90 50%, transparent 100%);
+      }
+
+      &.--false {
+        &::before, &::after {
+          background: -webkit-linear-gradient(left, transparent 0%, #a7a7a7 50%, transparent 100%);
+        }
+      }
     }
+
+    @include e(title){
+    position: relative;
+    display: inline-block;
+    width: 148px;
+    height: 100%;
+    font-size: 20px;
+    color: #000;
+    text-align: center;
+    line-height: 75px;
+    float: left;
     &.--false{
-      &:not(.pwcheck){
-        border-color: #a7a7a7;
-      }
+      color: #939393;
     }
-      @include e(title){
-      position: relative;
-      display: inline-block;
-      width: 148px;
-      height: 100%;
-      font-size: 20px;
-      color: #000;
-      text-align: center;
-      line-height: 75px;
-      float: left;
-      &.--false{
-        color: #939393;
-      }
     }
     @include e(inputBox){
       position: relative;
