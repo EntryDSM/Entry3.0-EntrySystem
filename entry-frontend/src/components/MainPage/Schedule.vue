@@ -21,12 +21,9 @@
           <p class="schedule__text">
             {{ scheduleDateText }}
           </p>
-          <div v-if="isLogin" @click="gotoWrite" class="schedule__link">
-              원서작성 하러가기
-            </div>
-            <div v-else @click="openBranchModal" class="schedule__link">
-              원서작성 하러가기
-            </div>
+          <div @click="gotoWrite" class="schedule__link">
+            원서작성 하러가기
+          </div>
         </div>
       </transition>
     </div>
@@ -175,17 +172,16 @@ export default {
       if (startDate) this.scheduleDateText = `${this.formatDateText(startDate)} ~ ${this.formatDateText(endDate)}`;
       else this.scheduleDateText = this.formatDateText(endDate);
     },
-    openBranchModal() {
-      this.$store.commit('changeIndex', {
-       index: 10,
-      });
-    },
     gotoWrite() {
-      if (this.finalSubmit) {
+      if (!this.isLogin) {
+        this.$store.commit('changeIndex', {
+          index: 10,
+        });
+      } else if (this.finalSubmit) {
         this.$router.push('/mypage');
-        return;
+      } else {
+        this.$router.push('/classify');
       }
-      this.$router.push('/classify');
     },
   },
 };
