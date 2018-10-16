@@ -9,12 +9,12 @@
       <table>
         <tbody>
           <tr>
-            <td><pre>성       명</pre></td>
-            <td>{{personName}}</td>
+            <td><pre style="font-size:12px;">성       명</pre></td>
+            <td style="font-size:12px;">{{personName}}</td>
           </tr>
           <tr>
             <td>출신중학교</td>
-            <td>{{school.name}}</td>
+            <td style="font-size:12px;">{{school.name}}</td>
           </tr>
         </tbody>
       </table>
