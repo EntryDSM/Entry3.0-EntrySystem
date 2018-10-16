@@ -149,6 +149,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
+    margin-bottom: 100px;
     border: {
       bottom: solid 6px #6ab7b7;
     }
