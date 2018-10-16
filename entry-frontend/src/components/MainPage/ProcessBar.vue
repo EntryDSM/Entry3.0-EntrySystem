@@ -118,11 +118,14 @@ export default {
 }
 
 .current {
-  font-size: 20px !important;
   font-weight: bolder !important;
   background-image: url('../../assets/MainPage/process_moment_current.png');
   background-position: center center;
   background-size: 40px 40px;
   background-repeat: no-repeat;
+
+  & > div {
+    font-size: 20px;
+  }
 }
 </style>
