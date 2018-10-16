@@ -238,45 +238,46 @@ export default {
   position: relative;
   width: 1140px;
   height: 226px;
-  &::before, &::after {
-    content: '';
-    display: block;
-    width: 1140px;
-    height: 1px;
-    position: absolute;
-    background: -webkit-linear-gradient(left, transparent 0%, #769b9f 50%, transparent 100%);
+  border: {
+    top: 1px solid #5f8a90;
+    bottom: 1px solid #5f8a90;
   }
   &.--false{
-    &::before, &::after{
-      background: -webkit-linear-gradient(left, transparent 0%, #a7a7a7 50%, transparent 100%);
-    }
-  }
-  &::after{
-    bottom: 0;
+    border-color: #a7a7a7;
   }
   @include e(wapper){
     position: relative;
-    &:not(.pwcheck){
-      border-bottom: 1px solid #5f8a90;
+
+    &:nth-of-type(2) {
+      &::before, &::after {
+        content: '';
+        display: block;
+        width: 1140px;
+        height: 1px;
+        position: absolute;
+        background: -webkit-linear-gradient(left, transparent 0%, #5f8a90 50%, transparent 100%);
+      }
+
+      &.--false {
+        &::before, &::after {
+          background: -webkit-linear-gradient(left, transparent 0%, #a7a7a7 50%, transparent 100%);
+        }
+      }
     }
+
+    @include e(title){
+    position: relative;
+    display: inline-block;
+    width: 148px;
+    height: 100%;
+    font-size: 20px;
+    color: #000;
+    text-align: center;
+    line-height: 75px;
+    float: left;
     &.--false{
-      &:not(.pwcheck){
-        border-color: #a7a7a7;
-      }
+      color: #939393;
     }
-      @include e(title){
-      position: relative;
-      display: inline-block;
-      width: 148px;
-      height: 100%;
-      font-size: 20px;
-      color: #000;
-      text-align: center;
-      line-height: 75px;
-      float: left;
-      &.--false{
-        color: #939393;
-      }
     }
     @include e(inputBox){
       position: relative;
