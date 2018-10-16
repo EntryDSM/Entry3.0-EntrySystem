@@ -196,7 +196,7 @@ $modal-z-index: 5;
     width: 200px;
   }
   @include e('input') {
-    width: 193px;
+    width: 710px;
     margin-left: 10px;
   }
   @include e('list') {
