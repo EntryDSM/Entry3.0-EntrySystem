@@ -1,6 +1,6 @@
 <template>
   <div id="preview-container">
-    <div class="watermark" v-if="!finalSubmit">
+    <div class="watermark" v-show="!finalSubmit">
       <div class="watermark__wrong">
         * 본 원서(테스트 원서)를 출력하여 실제 접수시 사용시 정상적으로 지원이 완료되지 않을 수 있습니다.
       </div>
