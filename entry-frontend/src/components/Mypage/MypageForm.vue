@@ -163,7 +163,7 @@ $border1: solid 1px #eff3f4;
     height: 40px;
     border-radius: 5px;
     background-color: #f7fbfc;
-    border: 1px solid #98c4ca;
+    border: 1px solid #5f8a90;
     font-size: 18px;
     color: #296169;
     position: absolute;
