@@ -112,6 +112,7 @@ export default {
   }
   @include e('joiner') {
     width: 47px;
+    margin-top: 3px;
     background: url('../../assets/Mypage/joiner.png') no-repeat center 70px;
     background-size: contain;
   }
