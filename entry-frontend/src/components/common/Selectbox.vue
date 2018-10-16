@@ -172,11 +172,11 @@ $border-color: #8aaaad;
         box-sizing: border-box;
         &:hover {
           color: #2a4649;
-          background-color: #e4ebeb;
+          background-color: #d0e5ea;
         }
         @include m('selected') {
           color: #2a4649;
-          background-color: #e4ebeb;
+          background-color: #e7f3f6;
         }
       }
     }

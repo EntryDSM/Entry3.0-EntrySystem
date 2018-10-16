@@ -171,7 +171,7 @@ $modal-z-index: 5;
   @include e('close'){
     position: absolute;
     top: 18px;
-    right: 14px;
+    right: 16px;
     width: 12px;
     height: 12px;
     &::before, &::after{
@@ -179,7 +179,7 @@ $modal-z-index: 5;
       content: "";
       display: block;
       z-index: 8;
-      width: 12px;
+      width: 18px;
       height: 2px;
       border-radius: 10px;
       background-color: #dee8e9;
@@ -196,7 +196,7 @@ $modal-z-index: 5;
     width: 200px;
   }
   @include e('input') {
-    width: 193px;
+    width: 710px;
     margin-left: 10px;
   }
   @include e('list') {
@@ -212,6 +212,7 @@ $modal-z-index: 5;
     height: 60px;
     line-height: 60px;
     font-size: 18px;
+    cursor: pointer;
   }
   @include e('school') {
     border-bottom: 1px solid #f1f5f5;

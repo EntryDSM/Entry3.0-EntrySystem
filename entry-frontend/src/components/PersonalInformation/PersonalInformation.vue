@@ -206,7 +206,9 @@
               class="input-text input-text-detailed-address"
               placeholder="상세주소"
               :value="addressDetail"
-              @input="addressDetail = $event.target.value">
+              @input="addressDetail = $event.target.value"
+              :disabled="!zipCode && !addressBase"
+            >
           </div>
         </div>
       </div>

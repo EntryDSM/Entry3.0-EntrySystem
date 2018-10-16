@@ -149,6 +149,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
+    margin-bottom: 100px;
     border: {
       bottom: solid 6px #6ab7b7;
     }
@@ -177,7 +178,7 @@ export default {
     display: inline-block;
     width: 175px;
     border-radius: 30px;
-    background: -webkit-linear-gradient(101deg, #82cdca, #5db3b6);
+    background: -webkit-linear-gradient(left, #82cdca, #5db3b6);
     box-shadow: 1px 25px 20px -15px #9ff0eb;
     font-size: 22px;
     color: #fff;
