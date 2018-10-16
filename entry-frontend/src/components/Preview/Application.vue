@@ -1,7 +1,20 @@
 <template>
   <div id="preview-container">
-    <div class="watermark" v-if="!finalSubmit">EntryDSM 3.0 미리보기</div>
-    <div id="application-header">
+    <div class="watermark" v-if="!finalSubmit">
+      <div class="watermark__wrong">
+        * 본 원서(테스트 원서)를 출력하여 실제 접수시 사용시 정상적으로 지원이 완료되지 않을 수 있습니다.
+      </div>
+      <div class="watermark__contents">
+        <img class="watermark__contents__img" src="../../assets/entry_logo.png">
+        본 원서는 Entry3.0에서 제공하는<br/>
+        미리보기 테스트 원서입니다.
+      </div>
+      <div class="watermark__wrong watermark__wrong--last">
+        * 본 원서(테스트 원서)를 출력하여 실제 접수시 사용시 정상적으로 지원이 완료되지 않을 수 있습니다.
+      </div>
+    </div>
+    <div class="container--wrapper">
+      <div id="application-header">
       2019학년도 대덕소프트웨어마이스터고등학교 입학원서
     </div>
     <span id="application-info-tables">
@@ -189,6 +202,7 @@
       <p>지원자 성명 <span class="application-info-long-blank">{{personName}}</span>(인)</p>
       <p>보호자 성명 <span class="application-info-long-blank">{{parentName}}</span>(인)</p>
       <p>대덕소프트웨어마이스터고등학교장 귀하</p>
+    </div>
     </div>
   </div>
 </template>
@@ -445,13 +459,43 @@ input[type="checkbox"] {
 }
 .watermark {
   position: absolute;
-  top: 400px;
-  left: 60px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  z-index: 1;
+  text-align: center;
   opacity: 0.2;
-  font-family: sans-serif;
-  font-size: 50px;
-  color: #000;
-  transform: rotate(-30deg);
 }
 
+.watermark__wrong {
+  font-size: 13px;
+  color: #F00;
+  font-weight: 900;
+}
+.watermark__wrong--last{
+  position: absolute;
+  bottom: 20px;
+}
+.watermark__contents{
+  position: absolute;
+  margin: 0 auto;
+  top: calc(50% - 75px);
+  left: 145px;
+  font-size: 20px;
+  font-weight: 900;
+}
+.watermark__contents__img{
+  width: 300px;
+  -webkit-filter: grayscale(100%);
+  filter: gray;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 20px;
+}
+.container--wrapper {
+  position: relative;
+  z-index: 3;
+}
 </style>
