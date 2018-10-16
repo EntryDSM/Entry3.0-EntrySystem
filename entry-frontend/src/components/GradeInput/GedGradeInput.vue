@@ -51,21 +51,6 @@ export default {
       if (val > 100) this.grade = 100;
     },
   },
-  created() {
-    const token = this.$cookies.get('accessToken');
-    const { e } = this.$toastr;
-    if (token === undefined || token === null || token === '') {
-      this.$router.go(-1);
-      e('해당 페이지는 로그인이 필요합니다.');
-      this.$store.commit('changeIndex', {
-        index: 1,
-      });
-    }
-    if (this.$store.state.mypage.applyStatus.finalSubmit) {
-      e('최종 제출 후에는 접근 할 수 없습니다.');
-      this.$router.go(-1);
-    }
-  },
 };
 </script>
 

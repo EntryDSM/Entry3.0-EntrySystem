@@ -21,9 +21,9 @@
           <p class="schedule__text">
             {{ scheduleDateText }}
           </p>
-          <router-link :to='routerLink' class="schedule__link">
+          <div @click="gotoWrite" class="schedule__link">
             원서작성 하러가기
-          </router-link >
+          </div>
         </div>
       </transition>
     </div>
@@ -103,6 +103,13 @@ export default {
     this.startDate = scheduleData[index].startDate;
   },
   computed: {
+    isLogin() {
+      const token = this.$cookies.get('accessToken');
+      return this.$store.state.accessToken !== null && typeof token === 'string';
+    },
+    finalSubmit() {
+      return this.$store.state.mypage.applyStatus.finalSubmit;
+    },
     thisDateText() {
       return (
         `${this.date.getFullYear().toString().slice(-2)}년
@@ -164,6 +171,17 @@ export default {
     setContent(endDate, startDate) {
       if (startDate) this.scheduleDateText = `${this.formatDateText(startDate)} ~ ${this.formatDateText(endDate)}`;
       else this.scheduleDateText = this.formatDateText(endDate);
+    },
+    gotoWrite() {
+      if (!this.isLogin) {
+        this.$store.commit('changeIndex', {
+          index: 10,
+        });
+      } else if (this.finalSubmit) {
+        this.$router.push('/mypage');
+      } else {
+        this.$router.push('/classify');
+      }
     },
   },
 };
