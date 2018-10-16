@@ -15,8 +15,7 @@ import javax.validation.constraints.Pattern;
 @NoArgsConstructor
 public class SignupDTO {
     @NotNull
-    @Email(regexp = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$",
-            flags = Pattern.Flag.CASE_INSENSITIVE)
+    @Email(regexp = "([\\w-.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([\\w-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$")
     private String email;
 
     @NotNull
