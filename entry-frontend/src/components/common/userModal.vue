@@ -125,7 +125,7 @@ export default {
   height: 235px;
   border-radius: 5px;
   background-color: #ffffff;
-  box-shadow: 0 0 20px -7px rgba(76, 166, 160, 1);
+  box-shadow: 0 0 20px -7px #4ca6a0;
   z-index: 5;
   transition: 0.5s;
   opacity: 1;
