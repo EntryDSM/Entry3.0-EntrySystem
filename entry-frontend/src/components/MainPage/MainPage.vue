@@ -16,15 +16,12 @@
               2019 신입생 모집
             </h1>
             <div class="main-page__link-box">
-              <router-link v-if="finalSubmit" :to="'/preview'" class="main-page__link">
-                원서출력
-              </router-link>
-              <router-link v-else-if="isLogin" :to="'/classify'" class="main-page__link">
-                원서수정
-              </router-link>
-              <router-link v-else :to="'/auth'" class="main-page__link">
+              <div v-if="isLogin" @click="gotoWrite" class="main-page__link">
                 원서작성
-              </router-link>
+              </div>
+              <div v-else @click="openBranchModal" class="main-page__link">
+                원서작성
+              </div>
               <a class="main-page__link"
                 @click="activeSchedulePage = true">
                 모집일정
@@ -46,15 +43,12 @@
             <transition name="appear">
               <template v-if="isAppearSchedule">
                 <div class="main-page__link-box">
-                  <router-link v-if="finalSubmit" :to="'/preview'" class="main-page__link">
-                    원서출력
-                  </router-link>
-                  <router-link v-else-if="isLogin" :to="'/classify'" class="main-page__link">
-                    원서수정
-                  </router-link>
-                  <router-link v-else :to="'/auth'" class="main-page__link">
+                  <div v-if="isLogin" @click="gotoWrite" class="main-page__link">
                     원서작성
-                  </router-link>
+                  </div>
+                  <div v-else @click="openBranchModal" class="main-page__link">
+                    원서작성
+                  </div>
                   <router-link to="/info-summary" class="main-page__link">
                     전형요강
                   </router-link>
@@ -99,6 +93,20 @@ export default {
     ...mapState({
       finalSubmit: state => state.mypage.applyStatus.finalSubmit,
     }),
+  },
+  methods: {
+    openBranchModal() {
+      this.$store.commit('changeIndex', {
+       index: 10,
+      });
+    },
+    gotoWrite() {
+      if (this.finalSubmit) {
+        this.$router.push('/mypage');
+        return;
+      }
+      this.$router.push('/classify');
+    },
   },
 };
 </script>

@@ -13,10 +13,10 @@
     </div>
     <ul class="nav__wrapper__contants__list">
       <li class="nav__wrapper__contants__list__link">
-        <a href="#">공지사항</a>
+        <a href="http://dsmhs.djsch.kr/boardCnts/list.do?boardID=54814&m=0602&s=dsmhs">공지사항</a>
       </li>
       <li class="nav__wrapper__contants__list__link">
-        <a @click="writeApplication">Q&A</a>
+        <a href="http://dsmhs.djsch.kr/boardCnts/list.do?boardID=76196&m=0605&s=dsmhs">Q&A</a>
       </li>
       <li class="nav__wrapper__contants__list__link">
         <router-link to="/info-summary">전형요강</router-link>
@@ -59,11 +59,6 @@ export default {
     this.$on('CloseModal', () => {
       this.index = 0;
     });
-    const isChrome = !!window.chrome && !!window.chrome.webstore;
-    if (!isChrome) {
-      alert('EntryDSM은 Window, Mac, Linux환경의 크롬에서만 접속 할 수 있습니다.');
-      window.location.href = 'https://www.google.com/intl/ko_ALL/chrome/';
-    }
   },
   computed: {
     index() {
