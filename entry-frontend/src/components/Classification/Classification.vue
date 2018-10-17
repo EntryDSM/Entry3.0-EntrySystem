@@ -259,6 +259,15 @@ export default {
         this.$store.commit('updateSchoolTel', {
           data: '',
         });
+        this.$store.commit('updateGedScore', 60);
+        this.$store.commit('updateSchool', {
+          data: {
+            code: '',
+            government: '',
+            name: '',
+            schoolRegion: '',
+          },
+        });
         return 'GED';
       } else if (!this.isGraduated) {
         this.$store.commit('updategraduateYear', {
@@ -272,6 +281,14 @@ export default {
         });
         this.$store.commit('updateStudentNumber', {
           data: '1',
+        });
+        this.$store.commit('updateSchool', {
+          data: {
+            code: null,
+            government: null,
+            name: null,
+            schoolRegion: null,
+          },
         });
         return 'WILL';
       } else if (this.isGraduated) {
@@ -287,6 +304,14 @@ export default {
         this.$store.commit('updateGraduateType', {
           data: 'DONE',
         });
+        this.$store.commit('updateSchool', {
+          data: {
+            code: null,
+            government: null,
+            name: null,
+            schoolRegion: null,
+          },
+        });
         return 'DONE';
       }
       return 'WILL';
@@ -301,14 +326,6 @@ export default {
         });
         this.$store.commit('updateGraduateType', {
           data: this.graduateType,
-        });
-        this.$store.commit('updateSchool', {
-          data: {
-            code: null,
-            government: null,
-            name: null,
-            schoolRegion: null,
-          },
         });
       },
     },
