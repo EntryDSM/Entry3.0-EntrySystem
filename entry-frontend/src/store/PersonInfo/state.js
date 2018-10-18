@@ -16,7 +16,7 @@ export const PersonInfo = {
   schoolTel: null, // 학교 연락처
   parentTel: null, // 보호자 연락처
   myTel: null, // 본인 연락처
-  zipCode: null, // 우편번호
+  zipCode: '', // 우편번호
   addressBase: null, // 기본주소
   addressDetail: null, // 상세주소
   imgPath: null, // 증명사진

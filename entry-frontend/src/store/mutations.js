@@ -282,26 +282,43 @@ export const mutations = {
       studentNumber,
       zipCode,
     } = data;
+    if (zipCode !== null && zipCode !== undefined) {
+      state.PersonInfo.zipCode = zipCode;
+    }
     state.PersonInfo.addressBase = addressBase;
     state.PersonInfo.addressDetail = addressDetail;
     state.PersonInfo.year = birth.split('-')[0];
     state.PersonInfo.month = birth.split('-')[1];
     state.PersonInfo.day = birth.split('-')[2];
     state.classify.graduateYear = graduateYear;
-    if (school.code !== null && school.code !== undefined) {
+    if (school !== null && school.code !== null) {
       state.PersonInfo.school.code = school.code;
       state.PersonInfo.school.government = school.government;
       state.PersonInfo.school.name = school.name;
       state.PersonInfo.school.schoolRegion = school.schoolRegion;
+    } else {
+      state.PersonInfo.school.code = '';
+      state.PersonInfo.school.government = '';
+      state.PersonInfo.school.name = '';
+      state.PersonInfo.school.schoolRegion = '';
     }
-    state.PersonInfo.schoolTel = schoolTel;
     state.PersonInfo.sex = sex;
-    state.PersonInfo.studentClass = studentClass;
-    state.PersonInfo.studentGrade = studentGrade;
-    state.PersonInfo.studentNumber = studentNumber;
-    state.PersonInfo.zipCode = zipCode;
+    if (schoolTel !== null && schoolTel !== undefined) {
+      state.PersonInfo.schoolTel = schoolTel;
+    }
+    if (studentClass !== null && studentClass !== undefined) {
+      state.PersonInfo.studentClass = studentClass;
+    }
+    if (studentGrade !== null && studentGrade !== undefined) {
+      state.PersonInfo.studentGrade = studentGrade;
+    }
+    if (schoolTel !== null && schoolTel !== undefined) {
+      state.PersonInfo.studentNumber = studentNumber;
+    }
     state.PersonInfo.personName = name;
-    state.PersonInfo.imgPath = imgPath;
+    if (imgPath !== null && imgPath !== undefined) {
+      state.PersonInfo.imgPath = imgPath;
+    }
     state.PersonInfo.myTel = myTel;
     state.PersonInfo.parentTel = parentTel;
     state.PersonInfo.parentName = parentName;

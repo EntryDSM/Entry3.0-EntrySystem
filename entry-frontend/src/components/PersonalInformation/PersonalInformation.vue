@@ -378,13 +378,13 @@ export default {
     },
     school: {
       get() {
-        if (this.$store.state.PersonInfo.school.code === null) {
+        if (this.$store.state.PersonInfo.school.code === null && this.$store.state.classify.isGED) {
           this.$store.commit('updateSchool', {
             data: {
-              code: null,
-              government: null,
-              name: null,
-              schoolRegion: null,
+              code: '',
+              government: '',
+              name: '',
+              schoolRegion: '',
             },
           });
         }
